@@ -160,7 +160,7 @@ p{margin:0 0 1em}
 .guide p{margin:0;color:var(--grey);max-width:44em}
 .guide .ga{align-self:center;color:var(--ink);transition:transform .35s var(--ease)}
 .guide:hover .ga{transform:translateX(6px)}
-.post{display:block;text-decoration:none;border-top:1px solid var(--ink);padding-top:22px}
+.post{padding:22px;display:block;text-decoration:none;border-top:1px solid var(--ink);padding-top:22px}
 .post .thumb{display:none}
 .post small{display:block;color:var(--gold-d);font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
 .post h3{margin-bottom:.35em}

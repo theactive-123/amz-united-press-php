@@ -23,13 +23,18 @@ function render_service_tabs(): string {
         'design' => '<circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2"/><circle cx="12" cy="7.6" r="1.2"/><circle cx="15.6" cy="10" r="1.2"/><path d="M12 21c-1.5 0-2-1.5-1-2.5s0-2.5-1.5-2.5"/>',
         'publish' => '<path d="m3 11 18-8-8 18-2.2-7.8z"/>',
     ];
-    $ph = photos()['cat'];
+    $ph = [
+        'write' => ['Crafting Stories at the Writing Desk.png', 'Crafting stories at a writing desk'],
+        'edit' => ['Cozy Manuscript Editing Workspace.png', 'Manuscript editing workspace'],
+        'design' => ['Cinematic Book Design Workspace.png', 'Book design workspace'],
+        'publish' => ['Self-Publishing Dashboard Workspace.png', 'Self-publishing dashboard workspace'],
+    ];
     $tabs = '<div class="xs-tabs" role="tablist" aria-label="Service categories">';
     $panels = '<div class="xs-stage">';
     foreach (data('cats') as $i => $c) {
         $subs = subs_of($c['k']);
         $tabs .= '<button type="button" role="tab" class="xs-tab" id="xt' . $i . '" aria-controls="xpn' . $i . '" aria-selected="' . ($i === 0 ? 'true' : 'false') . '" tabindex="' . ($i === 0 ? 0 : -1) . '"><svg viewBox="0 0 24 24" aria-hidden="true">' . $icons[$c['k']] . '</svg><span class="xs-n">0' . ($i + 1) . '</span><b>' . e($c['t']) . '</b></button>';
-        $panels .= '<div class="xs-panel" role="tabpanel" id="xpn' . $i . '" aria-labelledby="xt' . $i . '"' . ($i ? ' hidden' : '') . '><div class="xs-photo x-frame">' . photo($ph[$c['k']][0], 1000, $ph[$c['k']][1]) . '</div><div class="xs-body"><h3>' . e($c['t']) . '</h3><p>' . e($c['d']) . '</p><ul class="xs-subs">';
+        $panels .= '<div class="xs-panel" role="tabpanel" id="xpn' . $i . '" aria-labelledby="xt' . $i . '"' . ($i ? ' hidden' : '') . '><div class="xs-photo x-frame">' . '<img src="' . e(asset('img/Fourparts/' . rawurlencode($ph[$c['k']][0]))) . '" alt="' . e($ph[$c['k']][1]) . '" loading="lazy" decoding="async">' . '</div><div class="xs-body"><h3>' . e($c['t']) . '</h3><p>' . e($c['d']) . '</p><ul class="xs-subs">';
         foreach ($subs as $s) $panels .= '<li><a href="' . e(url('/services/' . $s['slug'])) . '"><span>' . e($s['t']) . '</span>' . ic('arrow') . '</a></li>';
         $panels .= '</ul><a class="x-link" href="' . e(url('/services#cat-' . $c['k'])) . '">Explore ' . e(strtolower($c['t'])) . ' ' . ic('arrow') . '</a></div></div>';
     }
@@ -38,10 +43,15 @@ function render_service_tabs(): string {
 
 /** Pinned scroll journey: the four stages. */
 function render_journey_steps(): string {
-    $jp = photos()['journey'];
+    $jp = [
+        ['Remote Project Discussion on Google Meet.png', 'Book consultation over Google Meet'],
+        ['Book Project Proposal Workspace.png', 'Book project proposal workspace'],
+        ['Cozy InDesign Book Layout Workspace.png', 'Book production and layout workspace'],
+        ['Author Workspace with KDP Publishing Dashboard.png', 'Author workspace with publishing dashboard'],
+    ];
     $h = '';
     foreach (data('steps') as $i => $s) {
-        $h .= '<article class="jstep' . ($i === 0 ? ' on' : '') . '" aria-label="Stage ' . ($i + 1) . ': ' . e($s['t']) . '"><div class="jtxt"><span class="jn" aria-hidden="true">0' . ($i + 1) . '</span><h3>' . e($s['t']) . '</h3><p>' . e($s['d']) . '</p><span class="chip">Typical: ' . e($s['time']) . '</span></div><div class="jphoto">' . photo($jp[$i][0], 1000, $jp[$i][1]) . '</div></article>';
+        $h .= '<article class="jstep' . ($i === 0 ? ' on' : '') . '" aria-label="Stage ' . ($i + 1) . ': ' . e($s['t']) . '"><div class="jtxt"><span class="jn" aria-hidden="true">0' . ($i + 1) . '</span><h3>' . e($s['t']) . '</h3><p>' . e($s['d']) . '</p><span class="chip">Typical: ' . e($s['time']) . '</span></div><div class="jphoto">' . '<img src="' . e(asset('img/' . rawurlencode('From first idea to finished book') . '/' . rawurlencode($jp[$i][0]))) . '" alt="' . e($jp[$i][1]) . '" loading="lazy" decoding="async">' . '</div></article>';
     }
     return $h;
 }

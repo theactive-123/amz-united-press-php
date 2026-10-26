@@ -15,7 +15,7 @@ body{font-size:17px}
 .x-hero .lead{font-size:clamp(1.02rem,1.25vw,1.15rem)}
 .x-big{font-size:clamp(1.3rem,2.3vw,2.1rem)}
 .x-commit li{font-size:1rem}
-.x-marq-t span{font-size:clamp(1.6rem,4vw,3.6rem)}
+.x-marq-t span{font-size:clamp(1.6rem,4vw,2.6rem)}
 .x-marq{padding:14px 0}
 .x-figs-wrap .fig b{font-size:clamp(2.5rem,6vw,5.8rem)}
 .xs-tab b{font-size:clamp(1.1rem,1.55vw,1.4rem)}
@@ -247,3 +247,10 @@ img{max-width:100%}
 .x-man-photo .x-frame{aspect-ratio:auto;background:transparent}
 .x-man-photo .x-frame>img{width:100%;height:auto;object-fit:contain}
 @media(max-width:940px){.x-man-grid{grid-template-columns:1fr}.x-man-text{grid-column:1;grid-row:1}.x-man-photo{grid-column:1;grid-row:2;width:100%;max-width:640px;justify-self:center}}
+
+/* Larger book showcase extends beyond its desktop column. */
+@media(min-width:941px){.x-man{overflow-x:clip}.x-man-photo{width:150%;max-width:none;margin-left:-7%}.x-man-photo .x-frame{overflow:visible;border-radius:0}.x-man-photo .x-frame>img{max-width:none;width:100%;height:auto}}
+footer.site-footer:hover::after {
+    color: #f79f18 !important;
+    transition: .9s;
+}

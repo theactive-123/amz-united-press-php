@@ -65,7 +65,7 @@ img.img-fail{opacity:0}
 @media(max-width:1180px){.x-hero-cards{display:none}}
 
 /* ---- 2. ticker + photo strip ---- */
-.x-marq{background:var(--xg);color:#141413;overflow:hidden;white-space:nowrap;padding:18px 0;border-block:2px solid #141413}
+.x-marq{background:var(--xg);color:#141413;overflow:hidden;white-space:nowrap;padding:7px 0;border-block:2px solid #141413}
 .x-marq-t{display:flex;width:max-content;align-items:center;gap:clamp(22px,3vw,44px);padding-right:clamp(22px,3vw,44px);animation:xmq 36s linear infinite}
 .x-marq-t span{font-family:var(--xs);font-weight:800;font-size:clamp(2rem,5vw,4.4rem);letter-spacing:-.04em;text-transform:uppercase;line-height:1}
 .x-marq-t i{font-style:normal;font-size:clamp(1.4rem,3vw,2.6rem)}
