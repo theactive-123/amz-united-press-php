@@ -67,9 +67,9 @@ function render_plans(): string {
 /** Testimonials with placeholder portraits. */
 function render_testimonials(): string {
     $t = data('testimonials'); $pp = photos()['portraits'];
-    $h = '<figure class="xr-main rv"><div class="xr-pic">' . photo($pp[0], 700, 'Placeholder portrait of a smiling woman') . '</div><div><blockquote>“' . e($t[0][2]) . '”</blockquote><figcaption><b>' . e($t[0][0]) . '</b><span>' . e($t[0][1]) . '</span></figcaption></div></figure><div class="xr-row">';
+    $h = '<figure class="xr-main rv"><div class="xr-pic">' . photo($pp[0], 700, 'Portrait of a smiling woman') . '</div><div><blockquote>“' . e($t[0][2]) . '”</blockquote><figcaption><b>' . e($t[0][0]) . '</b><span>' . e($t[0][1]) . '</span></figcaption></div></figure><div class="xr-row">';
     foreach (array_slice($t, 1) as $i => $x) {
-        $h .= '<figure class="xr-card rv"><blockquote>“' . e($x[2]) . '”</blockquote><figcaption>' . photo($pp[$i + 1], 200, 'Placeholder portrait') . '<span><b>' . e($x[0]) . '</b><span>' . e($x[1]) . '</span></span></figcaption></figure>';
+        $h .= '<figure class="xr-card rv"><blockquote>“' . e($x[2]) . '”</blockquote><figcaption>' . photo($pp[$i + 1], 200, 'Portrait') . '<span><b>' . e($x[0]) . '</b><span>' . e($x[1]) . '</span></span></figcaption></figure>';
     }
     return $h . '</div>';
 }

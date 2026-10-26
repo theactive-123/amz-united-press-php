@@ -207,7 +207,6 @@ include __DIR__ . '/includes/header.php';
       </div>
       <div class="postcard"><?= render_form('home', 'Tell us about your book', 'Takes about a minute. We reply within one business day.', 'home') ?></div>
     </div>
-    <p class="x-credit-all">Photographs: Unsplash, used as placeholders. Replace with licensed or brand photography before launch.</p>
   </section>
 </div>
 <?php include __DIR__ . '/includes/footer.php'; ?>

@@ -16,7 +16,7 @@ return [
         'email' => 'hello@amzunitedpress.com',
         'address' => '240 Publishing Lane, Suite 200, Austin, TX 78701',
         'hours' => 'Mon–Fri, 9am–6pm CT',
-        'show_placeholder_notes' => true,
+        'show_placeholder_notes' => false,
     ],
 
     // Portfolio books and review counts supplied for the website.
