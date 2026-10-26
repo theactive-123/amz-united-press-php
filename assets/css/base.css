@@ -80,7 +80,7 @@ p{margin:0 0 1em}
   .nav>ul{align-items:center}
   .has-sub{display:flex;align-items:center}
   .has-sub>a{padding-right:24px}
-  .has-sub>a::before{content:"";position:absolute;right:10px;top:50%;width:5px;height:5px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-70%) rotate(45deg)}
+  .has-sub>a::before{content:"";position:absolute;right:0px;top:50%;width:5px;height:5px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-70%) rotate(45deg)}
   .has-sub .mega{position:absolute;left:0;right:0;top:100%;padding-top:0}
   .has-sub .mega>.wrap{max-width:none;background:var(--paper);border:1px solid var(--line);border-top:0;box-shadow:0 30px 50px -30px rgba(23,26,25,.35);padding:32px 32px 18px;max-width:1200px;margin:0 auto}
   .has-sub:hover .mega,.has-sub:focus-within .mega{display:block}

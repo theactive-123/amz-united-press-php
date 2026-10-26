@@ -208,3 +208,42 @@ body{font-size:17px}
 @media (max-width:560px){.logo img{height:38px}}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 img{max-width:100%}
+
+/* Full-width animated homepage portfolio. */
+.x-shelf .list-track{display:block;position:relative;box-sizing:border-box;width:100%;max-width:none;margin:32px 0 22px;padding:24px clamp(18px,3vw,56px) 32px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:none;scroll-behavior:auto;scrollbar-width:none;overscroll-behavior-x:contain;overflow-anchor:none}
+.x-shelf .list-track::-webkit-scrollbar{display:none}
+.x-shelf .cover-belt{position:relative;display:flex;align-items:flex-start;gap:clamp(20px,3vw,56px);width:100%}
+.x-shelf .cover-belt .li:nth-child(n){flex:0 0 calc((100% - 3 * clamp(20px,3vw,56px))/4);width:auto;max-width:none;margin:0;min-width:0;transition:opacity .15s linear}
+.x-shelf .cover-belt .bkw{display:block;padding:8px}
+.x-shelf .cover-belt .li:focus-visible{outline-offset:-3px;opacity:1!important}
+.x-shelf .list-foot{justify-content:flex-end;text-align:right}
+.x-shelf .list-foot .arrows{display:flex;align-items:center;gap:10px}
+@media(max-width:900px){.x-shelf .cover-belt .li:nth-child(n){flex-basis:calc((100% - clamp(20px,3vw,56px))/2)}}
+@media(max-width:540px){.x-shelf .cover-belt .li:nth-child(n){flex-basis:100%}.x-shelf .list-foot{justify-content:center;text-align:center}.x-shelf .cover-belt .bkw{max-width:300px;margin:auto}.x-shelf .li-meta{text-align:center}}
+@media(prefers-reduced-motion:reduce){.x-shelf .cover-belt .li{transition:none}}
+
+.portfolio-cover img{display:block;width:100%;height:100%;object-fit:contain;border-radius:inherit}
+.book-reviews,.book-author{display:block;font-size:.88rem;color:var(--grey);margin-top:6px;line-height:1.4}
+.portfolio-cover{overflow:hidden}
+
+.book-description{margin:18px 0 0;line-height:1.65;font-size:1rem;color:var(--grey);max-width:46ch}
+
+/* Frameless hero artwork, balanced with the headline and copy. */
+.x-hero .x-hero-in{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:center;gap:clamp(24px,4vw,72px)}
+.x-hero-copy{min-width:0}
+.x-hero .x-hero-body{max-width:100%}
+.x-hero h1{font-size:clamp(2.9rem,6.2vw,6.5rem)}
+.banner-right-image{width:125%;max-width:none;margin-left:-4%;min-width:0;align-self:center;background:none;border:0;border-radius:0;box-shadow:none;animation:banner-image-reveal 1.2s cubic-bezier(.16,1,.3,1) .25s both}
+.banner-right-image img{display:block;width:100%;height:auto;max-height:800px;object-fit:contain;background:none;border:0;border-radius:0;box-shadow:none;filter:drop-shadow(0 24px 24px rgba(0,0,0,.25))}
+@keyframes banner-image-reveal{from{opacity:0;transform:translate3d(48px,32px,0) scale(.86)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@media(max-width:900px){.x-hero .x-hero-in{grid-template-columns:1fr;gap:36px}.x-hero h1{font-size:clamp(3rem,10vw,5.8rem)}.banner-right-image{width:min(100%,720px);margin-left:0;justify-self:center}.banner-right-image img{max-height:540px}}
+@media(max-width:540px){.x-hero h1{font-size:clamp(2.8rem,13vw,4rem)}.banner-right-image img{max-height:400px}}
+@media(prefers-reduced-motion:reduce){.banner-right-image{animation:none}}
+
+/* Manifesto: copy left, book showcase right. */
+.x-man-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center}
+.x-man-text{grid-column:1;grid-row:1}
+.x-man-photo{grid-column:2;grid-row:1;position:static;min-width:0}
+.x-man-photo .x-frame{aspect-ratio:auto;background:transparent}
+.x-man-photo .x-frame>img{width:100%;height:auto;object-fit:contain}
+@media(max-width:940px){.x-man-grid{grid-template-columns:1fr}.x-man-text{grid-column:1;grid-row:1}.x-man-photo{grid-column:1;grid-row:2;width:100%;max-width:640px;justify-self:center}}

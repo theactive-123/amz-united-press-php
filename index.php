@@ -17,6 +17,7 @@ include __DIR__ . '/includes/header.php';
   <section class="x-hero" aria-labelledby="home-h1">
     <div class="x-hero-bg px" data-px="0.12"><img src="https://images.unsplash.com/photo-1676107779594-7a23bd99e07c?auto=format&fit=crop&w=1900&q=75" alt="" fetchpriority="high" decoding="async" onerror="this.classList.add('img-fail')"></div>
     <div class="x-w x-hero-in">
+      <div class="x-hero-copy">
       <p class="x-kick ent" style="--d:0"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 4h4.5v16H4.5zM10.5 4H15v16h-4.5z"/><path d="m17 5.2 3.6 1-3.6 13.2-2.6-.8"/></svg>Ebook publishing studio</p>
       <h1 id="home-h1"><span class="sr">We write your ebook. Your ideas deserve a life beyond the screen.</span><span aria-hidden="true"><span class="h1-l ent" style="--d:1">We <span class="rot"><b id="rot">write</b></span></span><span class="h1-l ent" style="--d:2">your ebook.</span></span></h1>
       <p class="x-deck ent" style="--d:3">Your ideas deserve a life beyond the screen.</p>
@@ -29,22 +30,33 @@ include __DIR__ . '/includes/header.php';
         </div>
         <div class="hero-pop"><span class="hand">Popular for you</span><span id="hero-pop" style="display:contents"></span></div>
       </div>
-    </div>
-    <div class="x-hero-cards" aria-hidden="true">
-      <figure class="px" data-px="-0.1"><img src="https://images.unsplash.com/photo-1511530953363-05f1642e118f?auto=format&fit=crop&w=600&q=75" alt="" loading="lazy" onerror="this.classList.add('img-fail')"></figure>
-      <figure class="px" data-px="0.18"><img src="https://images.unsplash.com/photo-1532103840122-d3110d6beda1?auto=format&fit=crop&w=600&q=75" alt="" loading="lazy" onerror="this.classList.add('img-fail')"></figure>
+      </div>
+      <div class="banner-right-image">
+        <img src="<?= e(asset('img/banner-right-image.png')) ?>" alt="Two illustrated book covers" fetchpriority="high" decoding="async">
+      </div>
     </div>
     <a class="x-scroll" href="#how" aria-label="Scroll to the next section"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
   </section>
 
   <!-- 2. Ticker + photo strip -->
   <div class="x-marq" aria-hidden="true"><div class="x-marq-t"><span>Writing</span><i>✦</i><span>Editing</span><i>✦</i><span>Cover design</span><i>✦</i><span>Publishing</span><i>✦</i><span>Launch</span><i>✦</i><span>Writing</span><i>✦</i><span>Editing</span><i>✦</i><span>Cover design</span><i>✦</i><span>Publishing</span><i>✦</i><span>Launch</span><i>✦</i></div></div>
-  <div class="x-strip" aria-hidden="true"><div class="x-strip-t" id="x-strip"><?php foreach (array_merge(photos()['strip'], photos()['strip']) as $id) echo photo($id, 520); ?></div></div>
+  <section class="x-strip trusted-strip" aria-labelledby="trusted-heading">
+    <div class="trusted-label"><span class="trusted-eyebrow"><i aria-hidden="true"></i> Our author community</span><h2 id="trusted-heading">Trusted by <em>clients.</em></h2><p>Our authors, proudly holding the books they brought to life.</p></div>
+    <div class="trusted-window" aria-hidden="true">
+      <div class="x-strip-t" id="x-strip">
+        <?php
+          $clientImages = glob(__DIR__ . '/assets/img/client-images/*.{png,jpg,jpeg,webp,avif}', GLOB_BRACE) ?: [];
+          natsort($clientImages);
+          for ($copy = 0; $copy < 2; $copy++):
+        ?><div class="trusted-group"><?php foreach ($clientImages as $clientImage): ?><img src="<?= e(asset('img/client-images/' . rawurlencode(basename($clientImage)))) ?>" alt="" loading="lazy" decoding="async"><?php endforeach; ?></div><?php endfor; ?>
+      </div>
+    </div>
+  </section>
 
   <!-- 3. Manifesto -->
   <section class="x-man" id="how" aria-labelledby="m-h">
     <div class="x-w x-man-grid">
-      <div class="x-man-photo"><figure class="x-frame px" data-px="0.08"><img src="https://images.unsplash.com/photo-1522648485144-849409408aee?auto=format&fit=crop&w=1000&q=75" alt="A writer working at a desk, seen from above" loading="lazy" onerror="this.classList.add('img-fail')"></figure><figcaption class="x-credit">Placeholder photo</figcaption></div>
+      <div class="x-man-photo"><figure class="x-frame rv"><img src="<?= e(asset('img/Cinematic%20Sci-Fi%20Book%20Cover%20Showcase.png')) ?>" alt="Cinematic sci-fi book cover showcase" loading="lazy" decoding="async"></figure></div>
       <div class="x-man-text">
         <p class="x-kick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="m8.5 10.5 2.2 2.2 4.3-4.4"/></svg>How we work</p>
         <h2 class="x-h2 rv" id="m-h">We tell you <em>plainly.</em></h2>
@@ -57,7 +69,29 @@ include __DIR__ . '/includes/header.php';
         </ul>
       </div>
     </div>
-    <div class="x-figs-wrap"><div class="x-w"><div class="figs" id="stats" role="list" aria-label="Studio figures"><?= render_stats() ?></div><?= ph_note('Sample figures. Replace with verified numbers before launch.') ?></div></div>
+    <section class="publishing-platforms" aria-labelledby="platform-heading">
+      <div class="x-w platform-layout">
+        <div class="platform-copy">
+          <p class="x-kick">Beyond the manuscript</p>
+          <h2 id="platform-heading">We Publish<br>Your Book<br>On All Leading<br><em>Platforms!</em></h2>
+        </div>
+        <div class="platform-marquees" aria-label="Publishing platforms">
+          <?php
+          $platforms = [
+            'abebooks' => 'AbeBooks', 'scribd' => 'Scribd',
+            'penguin_random_house' => 'Penguin Random House', 'barnes_noble' => 'Barnes & Noble',
+            'rakuten_kobo' => 'Rakuten Kobo', 'lulu' => 'Lulu', 'createspace' => 'CreateSpace',
+            'alibris' => 'Alibris', 'hachette' => 'Hachette Book Group', 'ibooks' => 'iBooks',
+            'amazon_kindle' => 'Amazon Kindle', 'simon_schuster' => 'Simon & Schuster',
+            'draft2digital' => 'Draft2Digital', 'harpercollins' => 'HarperCollins',
+            'ingramspark' => 'IngramSpark', 'new_york_times' => 'The New York Times',
+            'macmillan' => 'Macmillan', 'smashwords' => 'Smashwords',
+          ];
+          foreach (array_chunk($platforms, 6, true) as $row => $logos):
+          ?><div class="platform-row<?= $row === 1 ? ' platform-row-reverse' : '' ?>"><div class="platform-belt"><?php for ($copy = 0; $copy < 2; $copy++): ?><div class="platform-group"<?= $copy ? ' aria-hidden="true"' : '' ?>><?php foreach ($logos as $file => $name): ?><div class="platform-logo"><img src="<?= e(asset('img/publishable-logo/' . $file . '.png')) ?>" alt="<?= $copy ? '' : e($name) ?>" loading="lazy" decoding="async"></div><?php endforeach; ?></div><?php endfor; ?></div></div><?php endforeach; ?>
+        </div>
+      </div>
+    </section>
   </section>
 
   <!-- 4. Services -->
@@ -103,12 +137,10 @@ include __DIR__ . '/includes/header.php';
   <section class="x-shelf list-ch" aria-labelledby="l-h">
     <div class="x-w">
       <p class="x-kick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 4h4.5v16H4.5zM10.5 4H15v16h-4.5z"/><path d="m17 5.2 3.6 1-3.6 13.2-2.6-.8"/></svg>The shelf</p>
-      <h2 class="x-h2 rv" id="l-h">Covers across <em>eleven</em> genres.</h2>
-      <div class="tabs" role="tablist" aria-label="Browse concept covers by genre" data-tabs="home"></div>
+      <h2 class="x-h2 rv" id="l-h">Books from our <em>portfolio</em>.</h2>
     </div>
-    <div class="list-track" id="list-track" data-works="home" role="tabpanel" aria-live="polite" tabindex="0"></div>
+    <div class="list-track" id="list-track" data-works="home" role="region" aria-roledescription="carousel" aria-label="Book covers across all genres" tabindex="0"></div>
     <div class="x-w list-foot">
-      <p class="note-small">Illustrative concept covers drawn for this page. They are not client work.</p>
       <div class="arrows"><button type="button" id="list-prev" aria-label="Previous covers"><svg class="ic" aria-hidden="true" style="transform:scaleX(-1)"><use href="#i-arrow"/></svg></button><button type="button" id="list-next" aria-label="Next covers"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button></div>
     </div>
   </section>

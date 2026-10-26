@@ -15,7 +15,7 @@ return [
      * base_path: leave '' if the site sits in the main folder of the domain.
      *            If it sits in a sub-folder (e.g. https://example.com/press), set '/press'. */
     'site_url'  => '',
-    'base_path' => '',
+    'base_path' => '/amz-united-press-php',
 
     /* ---------- Email (SMTP) ----------
      * driver:     'smtp'  = send through your mail server (recommended)

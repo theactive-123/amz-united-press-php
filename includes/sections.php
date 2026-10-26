@@ -28,9 +28,9 @@ function render_service_tabs(): string {
     $panels = '<div class="xs-stage">';
     foreach (data('cats') as $i => $c) {
         $subs = subs_of($c['k']);
-        $tabs .= '<button type="button" role="tab" class="xs-tab" id="xt' . $i . '" aria-controls="xpn' . $i . '" aria-selected="' . ($i === 0 ? 'true' : 'false') . '" tabindex="' . ($i === 0 ? 0 : -1) . '"><svg viewBox="0 0 24 24" aria-hidden="true">' . $icons[$c['k']] . '</svg><span class="xs-n">0' . ($i + 1) . '</span><b>' . e($c['t']) . '</b><small>from $' . number_format(min_price($subs)) . '</small></button>';
+        $tabs .= '<button type="button" role="tab" class="xs-tab" id="xt' . $i . '" aria-controls="xpn' . $i . '" aria-selected="' . ($i === 0 ? 'true' : 'false') . '" tabindex="' . ($i === 0 ? 0 : -1) . '"><svg viewBox="0 0 24 24" aria-hidden="true">' . $icons[$c['k']] . '</svg><span class="xs-n">0' . ($i + 1) . '</span><b>' . e($c['t']) . '</b></button>';
         $panels .= '<div class="xs-panel" role="tabpanel" id="xpn' . $i . '" aria-labelledby="xt' . $i . '"' . ($i ? ' hidden' : '') . '><div class="xs-photo x-frame">' . photo($ph[$c['k']][0], 1000, $ph[$c['k']][1]) . '</div><div class="xs-body"><h3>' . e($c['t']) . '</h3><p>' . e($c['d']) . '</p><ul class="xs-subs">';
-        foreach ($subs as $s) $panels .= '<li><a href="' . e(url('/services/' . $s['slug'])) . '"><span>' . e($s['t']) . '</span><small>from ' . e($s['price']) . '</small>' . ic('arrow') . '</a></li>';
+        foreach ($subs as $s) $panels .= '<li><a href="' . e(url('/services/' . $s['slug'])) . '"><span>' . e($s['t']) . '</span>' . ic('arrow') . '</a></li>';
         $panels .= '</ul><a class="x-link" href="' . e(url('/services#cat-' . $c['k'])) . '">Explore ' . e(strtolower($c['t'])) . ' ' . ic('arrow') . '</a></div></div>';
     }
     return $tabs . '</div>' . $panels . '</div>';
