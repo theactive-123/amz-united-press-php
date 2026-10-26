@@ -1,0 +1,41 @@
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="foot-logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo-light.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>" loading="lazy"></a>
+        <p style="margin-top:24px;max-width:24em">Ebook writing, editing, design and publishing for authors and founders.</p>
+      </div>
+      <div><h4>Services</h4><ul>
+        <?php foreach (data('subs') as $s): ?><li><a href="<?= e(url('/services/' . $s['slug'])) ?>"><?= e($s['t']) ?></a></li><?php endforeach; ?>
+        <li><a href="<?= e(url('/services')) ?>"><strong>All services</strong></a></li>
+      </ul></div>
+      <div><h4>Company</h4><ul>
+        <li><a href="<?= e(url('/about')) ?>">About</a></li><li><a href="<?= e(url('/how-it-works')) ?>">How it works</a></li><li><a href="<?= e(url('/portfolio')) ?>">Portfolio</a></li><li><a href="<?= e(url('/pricing')) ?>">Pricing</a></li><li><a href="<?= e(url('/faq')) ?>">FAQ</a></li>
+      </ul></div>
+      <div><h4>Contact</h4><ul>
+        <li><a href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>"><?= e(site('phone')) ?></a></li>
+        <li><a href="mailto:<?= e(site('email')) ?>"><?= e(site('email')) ?></a></li>
+        <li><?= e(site('hours')) ?></li>
+        <li><?= e(site('address')) ?></li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="yr"><?= date('Y') ?></span> <?= e(site('name')) ?>. All rights reserved.</span><span><a href="<?= e(url('/privacy')) ?>">Privacy</a> &nbsp;·&nbsp; <a href="<?= e(url('/terms')) ?>">Terms</a></span></div>
+  </div>
+</footer>
+
+<div class="dock"><a class="btn btn-dark" href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>Call us</a><button type="button" class="btn btn-primary" data-quote>Free quote</button></div>
+
+<!-- Pop-ups -->
+<dialog id="workDialog" aria-labelledby="dlgTitle"><div class="modal-in" id="dlgBody"></div></dialog>
+<dialog id="quoteDialog" aria-label="Request a free quote"><div class="qd"><button type="button" class="modal-close" data-qclose aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button>
+  <div data-form-host="quote"><?= render_form('quote', 'Request a free quote', 'Tell us about your book. We reply personally, with no obligation.', 'quote') ?></div>
+</div></dialog>
+
+<script>window.AMZ=<?= json_encode(['base' => rtrim((string)cfg('base_path', ''), '/'), 'work' => data('work'), 'genres' => data('genres'), 'svcset' => data('svcset')], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG) ?>;</script>
+<script src="<?= e(asset('js/covers.js')) ?>"></script>
+<script src="<?= e(asset('js/main.js')) ?>"></script>
+<script src="<?= e(asset('js/forms.js')) ?>"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "AMZ United Press",
+  "short_name": "AMZ Press",
+  "description": "Ebook writing, editing, cover design and publishing for authors and founders.",
+  "icons": [
+    {"src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png"}
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "theme_color": "#F29102",
+  "background_color": "#FBFAF7",
+  "display": "standalone"
+}

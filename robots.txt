@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /forms/
+Disallow: /includes/
+Disallow: /storage/
+Disallow: /thank-you
+
+# Replace with your real domain before launch
+Sitemap: https://www.example.com/sitemap.xml
