@@ -6,6 +6,16 @@ declare(strict_types=1);
 
 define('ROOT', dirname(__DIR__));
 $GLOBALS['CONFIG'] = require __DIR__ . '/config.php';
+// Resolve installation paths on both domain-root hosting and local subfolders.
+if (($GLOBALS['CONFIG']['base_path'] ?? null) === null) {
+    $documentRoot = realpath($_SERVER['DOCUMENT_ROOT'] ?? '') ?: '';
+    $siteRoot = str_replace('\\', '/', ROOT);
+    $documentRoot = rtrim(str_replace('\\', '/', $documentRoot), '/');
+    $GLOBALS['CONFIG']['base_path'] = $documentRoot !== '' && strncasecmp($siteRoot . '/', $documentRoot . '/', strlen($documentRoot) + 1) === 0
+        ? substr($siteRoot, strlen($documentRoot))
+        : '';
+}
+
 $GLOBALS['DATA']   = require __DIR__ . '/data.php';
 date_default_timezone_set($GLOBALS['CONFIG']['timezone'] ?? 'UTC');
 

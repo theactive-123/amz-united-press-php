@@ -12,10 +12,10 @@ return [
     /* ---------- Website address ----------
      * site_url:  leave '' to detect automatically. Or set it, for example 'https://www.amzunitedpress.com'
      *            (no trailing slash). It is used in canonical links, the sitemap and social previews.
-     * base_path: leave '' if the site sits in the main folder of the domain.
+     * base_path: null detects the folder from the server document root; '' forces the domain root.
      *            If it sits in a sub-folder (e.g. https://example.com/press), set '/press'. */
     'site_url'  => '',
-    'base_path' => '/amz-united-press-php',
+    'base_path' => null,
 
     /* ---------- Email (SMTP) ----------
      * driver:     'smtp'  = send through your mail server (recommended)

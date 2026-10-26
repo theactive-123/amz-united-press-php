@@ -1,13 +1,11 @@
 # AMZ United Press: Apache configuration (needs mod_rewrite; mod_headers, mod_deflate, mod_expires are optional but recommended)
-# If the site lives in a sub-folder, set RewriteBase to it (for example /demo/) and set base_path in includes/config.php.
+# Relative rewrites support domain-root and subfolder installs; PHP detects the base path.
 
 Options -Indexes -MultiViews
 DirectoryIndex index.php
-ErrorDocument 404 /amz-united-press-php/404.php
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /amz-united-press-php/
 
 # --- Force HTTPS (uncomment on a live site with an SSL certificate) ---
 # RewriteCond %{HTTPS} off
@@ -44,6 +42,11 @@ RewriteRule ^([a-z0-9-]+)/?$ $1.php [L]
 # --- Remove trailing slash ---
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/$ $1 [R=301,L]
+
+# Custom 404 page without an installation-specific path.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ 404.php [L]
 </IfModule>
 
 # --- Security ---
