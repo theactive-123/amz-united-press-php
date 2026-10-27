@@ -8,6 +8,8 @@ $fm = sub_by_slug('book-formatting-services');
 $FAQ = [
     ['How much do your book editing services cost?', 'Proofreading starts from ' . $pr['price'] . ', formatting from ' . $fm['price'] . ' and full book editing from ' . $ed['price'] . '. The final price depends on your word count and the level of editing your manuscript needs. We read a sample first and send a written quote, so you know the cost before any work begins.'],
     ['What is the difference between editing and proofreading?', 'Editing improves the writing itself: structure, pacing, clarity, consistency and style. Proofreading is the final check for typos, grammar, punctuation and formatting slips once the text is otherwise finished. Most books benefit from editing first and a proofread last.'],
+    ['What types of book editing do you offer?', 'We offer an editorial assessment, developmental (structural) editing for story and argument, line editing for style and flow, copy editing for grammar and consistency, and manuscript proofreading as the final check. After a free sample read, we recommend the level, or combination, your book actually needs.'],
+    ['Do you proofread ebooks and novels?', 'Yes. Our professional proofreaders work on novels, memoirs, nonfiction and ebooks, checking the final text and the formatted files so nothing slips through on Kindle, EPUB or print.'],
     ['Will editing change my voice?', 'No. Good editing makes your book sound more like you, not like the editor. Every change is tracked so you can accept or reject it, and your editor explains the reasoning behind bigger suggestions.'],
     ['How long does editing take?', 'Proofreading and formatting usually take three to seven days. A full edit takes two to four weeks depending on length. We agree the deadline at the start and can work to a launch date.'],
     ['How will I receive my edits?', 'You get your manuscript back in Word with tracked changes and comments, plus a clean copy and, for full edits, an editorial letter that summarises the main recommendations.'],
@@ -18,7 +20,7 @@ $FAQ = [
 $meta = [
     'lp' => true,
     'title' => 'Book Editing Services | Editing & Proofreading | AMZ United Press',
-    'description' => 'Professional book editing, proofreading and formatting by genre-matched editors. Tracked changes, your voice kept, written quote first. Get a free quote.',
+    'description' => 'Affordable book editing services: developmental, line and copy editing, proofreading and formatting by genre-matched editors. Get a free quote today.',
     'path' => '/lp/editing-services', 'nav' => '',
     'schema' => lp_schema('Book Editing Services', 'Professional book editing, proofreading and formatting for fiction and nonfiction manuscripts, by editors matched to the genre.', '/lp/editing-services', $FAQ, $pr['price']),
 ];
@@ -49,13 +51,13 @@ include dirname(__DIR__) . '/includes/header.php';
 <!-- 3. Three services as tiers -->
 <section class="lp-sec" aria-labelledby="tr-h">
   <div class="lp-w">
-    <div class="lp-head c"><p class="lp-kick">Choose your level</p><h2 class="lp-h2" id="tr-h">Editing, proofreading <em>&amp; formatting.</em></h2><p class="lp-lead">Not sure which you need? Send us a sample and we’ll recommend the right level, for free.</p></div>
+    <div class="lp-head c"><p class="lp-kick">Choose your level</p><h2 class="lp-h2" id="tr-h">Book editing, proofreading <em>&amp; formatting services.</em></h2><p class="lp-lead">Not sure which you need? Send us a sample and we’ll recommend the right level, for free.</p></div>
     <div class="lp-tiers">
       <div class="lp-tier"><h3><?= e($pr['name']) ?></h3><p>The final polish before you publish.</p><span class="lp-from">From</span><div class="lp-amt"><?= e($pr['price']) ?></div>
         <ul><?php foreach (['Spelling, grammar and punctuation', 'Consistency of names, dates and style', 'Formatting and typesetting slips', 'Tracked changes + clean copy', 'Ready in ' . $pr['time']] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
         <a class="btn btn-outline" href="#lp-form" data-lp-cta>Get a proofreading quote</a><a class="lp-link" href="<?= e(url('/services/' . $pr['slug'])) ?>">About proofreading</a></div>
       <div class="lp-tier feat"><span class="lp-tag">Most popular</span><h3><?= e($ed['name']) ?></h3><p>Big-picture and line-by-line editing.</p><span class="lp-from">From</span><div class="lp-amt"><?= e($ed['price']) ?></div>
-        <ul><?php foreach (['Structure, pacing and plot or argument', 'Line editing for clarity and flow', 'Character, voice and continuity checks', 'Editorial letter with key recommendations', 'Tracked changes, comments and a clean copy'] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
+        <ul><?php foreach (['Developmental & structural editing', 'Line editing for clarity and flow', 'Copy editing for grammar and consistency', 'Editorial letter with key recommendations', 'Tracked changes, comments and a clean copy'] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
         <a class="btn btn-primary" href="#lp-form" data-lp-cta>Get an editing quote <?= ic('arrow') ?></a><a class="lp-link" href="<?= e(url('/services/' . $ed['slug'])) ?>">About book editing</a></div>
       <div class="lp-tier"><h3><?= e($fm['name']) ?></h3><p>Files that look right on every device.</p><span class="lp-from">From</span><div class="lp-amt"><?= e($fm['price']) ?></div>
         <ul><?php foreach (['Kindle and EPUB ebook files', 'Print-ready PDF for paperback', 'Chapter styles, headers and front matter', 'Tested on phones, tablets and e-readers', 'Ready in ' . $fm['time']] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
@@ -84,7 +86,7 @@ include dirname(__DIR__) . '/includes/header.php';
 <!-- 5. Steps -->
 <section class="lp-sec" aria-labelledby="st-h">
   <div class="lp-w">
-    <div class="lp-head"><p class="lp-kick">How it works</p><h2 class="lp-h2" id="st-h">Five steps to a <em>publish-ready</em> manuscript.</h2></div>
+    <div class="lp-head"><p class="lp-kick">How it works</p><h2 class="lp-h2" id="st-h">Our book editing process: five steps to a <em>publish-ready</em> manuscript.</h2></div>
     <ol class="lp-steps" style="--n:5">
       <li><h3>Send a sample</h3><p>Share your manuscript or a few chapters and tell us your goals and deadline.</p><small>Day 1</small></li>
       <li><h3>Free assessment</h3><p>An editor reads your sample, recommends the right level of editing and sends a written quote.</p><small>1 business day</small></li>

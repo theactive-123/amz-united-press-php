@@ -346,3 +346,22 @@ a.lp-card:hover,.lp-card.hov:hover{border-color:var(--ink);transform:translateY(
 .lp-logos-belt img:hover{filter:none;opacity:1}
 .lp-ba[data-v=before] del{text-decoration:none;color:inherit}
 .lp-card p a{color:inherit;text-decoration-color:var(--orange);text-decoration-thickness:2px}
+
+/* ---------- hero E: marketing (orange) ---------- */
+.lph-mk{background:var(--xg);color:#141413;position:relative;overflow:hidden;isolation:isolate;padding-bottom:clamp(32px,4vw,48px)}
+.lph-mk::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(50% 70% at 100% 0%,rgba(255,255,255,.35),transparent 60%),repeating-linear-gradient(135deg,rgba(20,20,19,.035) 0 2px,transparent 2px 14px)}
+.lph-mk h1{font-family:var(--xs);font-weight:800;font-size:clamp(2.5rem,5.4vw,4.8rem);line-height:.98;letter-spacing:-.055em;margin:0 0 22px;color:#141413}
+.lph-mk h1 em{font-family:var(--xi);font-style:italic;font-weight:400;color:#fff;letter-spacing:-.02em;text-shadow:0 2px 0 rgba(20,20,19,.12)}
+.lph-mk .lp-kick{color:#141413}
+.lph-mk .lp-kick::before{background:#141413}
+.lph-mk .lp-lead{color:#2A1A08}
+.lph-mk .btn-primary{background:#141413!important;color:#fff!important;box-shadow:0 14px 28px -14px rgba(20,20,19,.8)!important}
+.lph-mk .lp-call>.ic{background:rgba(20,20,19,.12);color:#141413}
+.lph-mk .lp-assure .ic{background:#141413;color:#fff}
+.lph-mk .lph-grid{padding-bottom:clamp(28px,3vw,40px)}
+.lph-mk-channels{list-style:none;margin:0;padding:18px 0 0;border-top:1.5px solid rgba(20,20,19,.25);display:flex;flex-wrap:wrap;gap:8px}
+.lph-mk-channels li{font-family:var(--xm);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.55);border:1px solid rgba(20,20,19,.2);border-radius:999px;padding:7px 14px}
+.lp-pg .pain+.gain{margin-top:0}
+.lp-sec.dark .lp-card{background:#1E1D1B;border-color:#33312D;color:#fff}
+.lp-sec.dark .lp-card p{color:#C9C6BC}
+.lp-sec.dark a.lp-card:hover,.lp-sec.dark .lp-card.hov:hover{border-color:var(--orange)}

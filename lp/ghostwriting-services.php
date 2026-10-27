@@ -11,12 +11,14 @@ $FAQ = [
     ['How much of my time will it take?', 'Usually one to two hours a week. Most of that is interview time and reading the chapters your writer sends. You provide the stories, ideas and expertise; we do the writing.'],
     ['How long does ghostwriting a book take?', 'Most books take ' . $gw['time'] . '. Shorter ebooks can be quicker and longer or research-heavy books take more time. We agree a realistic schedule with you at the start.'],
     ['What kinds of books do you ghostwrite?', 'Memoirs, autobiographies, biographies, business and self-help books, novels across every major genre, children’s books and more. We match you with a ghostwriter who works in your genre.'],
+    ['Do you offer ebook ghostwriting?', 'Yes. Ebook ghostwriting is one of our most requested services, from lead-magnet guides and how-to books to short reads and series. Ebooks usually take six to ten weeks, and we can format and publish them to Amazon Kindle and other stores when the writing is done.'],
+    ['Where can I find a reliable ghostwriter for hire?', 'Look for a team that offers a written contract, a signed NDA, full transfer of copyright, a clear schedule and samples of their work. At AMZ United Press every project includes all of these, plus a project manager and in-house editing, so you are never relying on a single unknown freelancer.'],
     ['Is ghostwriting legal and ethical?', 'Yes. Ghostwriting is a long-established, entirely legal practice used by business leaders, public figures and first-time authors. The ideas and stories are yours; the ghostwriter is a professional you hire to put them into words.'],
 ];
 $meta = [
     'lp' => true,
     'title' => 'Ghostwriting Services | Hire a Ghostwriter | AMZ United Press',
-    'description' => 'Hire a professional ghostwriter who writes your book in your voice. Signed NDA, 100% rights and royalties, chapter-by-chapter approval. Get a free quote.',
+    'description' => 'Affordable ghostwriting services for books and ebooks. Hire a ghostwriter who writes in your voice, under NDA, with 100% rights and royalties. Free quote.',
     'path' => '/lp/ghostwriting-services', 'nav' => '',
     'schema' => lp_schema('Ghostwriting Services', 'Professional ghostwriting services: a dedicated ghostwriter interviews the author and writes the book in their voice, with full confidentiality and 100% ownership.', '/lp/ghostwriting-services', $FAQ, $gw['price']),
 ];
@@ -57,7 +59,7 @@ $t0 = data('testimonials')[0];
 <!-- 3. How it works -->
 <section class="lp-sec dark" aria-labelledby="hw-h">
   <div class="lp-w lp-split top">
-    <div class="lp-sticky"><p class="lp-kick">How ghostwriting works</p><h2 class="lp-h2" id="hw-h">You talk. <em>We write.</em> You approve.</h2><p class="lp-lead">A clear, collaborative process that keeps you in control without taking over your calendar.</p><?= lp_ctas('#lp-form', 'Book my free consultation', false) ?></div>
+    <div class="lp-sticky"><p class="lp-kick">How ghostwriting works</p><h2 class="lp-h2" id="hw-h">Our ghostwriting process: you talk, <em>we write,</em> you approve.</h2><p class="lp-lead">A clear, collaborative process that keeps you in control without taking over your calendar.</p><?= lp_ctas('#lp-form', 'Book my free consultation', false) ?></div>
     <ol class="lp-vsteps">
       <li><div><h3>Free, confidential consultation</h3><p>Tell us about your book and your goals. We sign an NDA, match you with a ghostwriter for your genre and send a written quote.</p></div></li>
       <li><div><h3>Discovery interviews</h3><p>In a few relaxed, recorded calls, your writer gathers your stories, ideas and the way you naturally speak.</p></div></li>
@@ -72,7 +74,7 @@ $t0 = data('testimonials')[0];
 <!-- 4. Genres -->
 <section class="lp-sec alt" aria-labelledby="gn-h">
   <div class="lp-w lp-split">
-    <div><p class="lp-kick">Every genre</p><h2 class="lp-h2" id="gn-h">A ghostwriter who knows <em>your kind of book.</em></h2><p class="lp-lead" style="margin:0">We match you with a writer who reads and writes in your genre, so the book meets readers’ expectations from page one.</p></div>
+    <div><p class="lp-kick">Every genre</p><h2 class="lp-h2" id="gn-h">A ghostwriter for hire who knows <em>your kind of book.</em></h2><p class="lp-lead" style="margin:0">We match you with a writer who reads and writes in your genre, so the book meets readers’ expectations from page one.</p></div>
     <div class="lp-chips">
       <?php foreach ([['Memoir', 'memoir-writing-services'], ['Autobiography', 'autobiography-writing-services'], ['Biography', 'biography-writing-services'], ['Business & leadership', 'nonfiction-writing-services'], ['Self-help', 'nonfiction-writing-services'], ['Novels', 'novel-ghostwriting-services'], ['Thriller & mystery', 'fiction-writing-services'], ['Romance', 'fiction-writing-services'], ['Fantasy & sci-fi', 'fiction-writing-services'], ['Children’s books', 'ebook-writing-services'], ['Ebooks & guides', 'ebook-writing-services'], ['Faith & inspiration', 'nonfiction-writing-services']] as $g): ?><a href="<?= e(url('/services/' . $g[1])) ?>"><?= e($g[0]) ?> <?= ic('arrow') ?></a><?php endforeach; ?>
     </div>
@@ -82,7 +84,7 @@ $t0 = data('testimonials')[0];
 <!-- 5. What you get -->
 <section class="lp-sec" aria-labelledby="wg-h">
   <div class="lp-w">
-    <div class="lp-head"><p class="lp-kick">What you get</p><h2 class="lp-h2" id="wg-h">Everything included in our <em>ghostwriting services.</em></h2></div>
+    <div class="lp-head"><p class="lp-kick">What you get</p><h2 class="lp-h2" id="wg-h">Everything included in our <em>affordable ghostwriting services.</em></h2></div>
     <div class="lp-cards">
       <div class="lp-card"><span class="lp-ico"><?= ic('users') ?></span><h3>A dedicated ghostwriter</h3><p>One professional writer for the whole book, matched to your genre and personality.</p></div>
       <div class="lp-card"><span class="lp-ico"><?= ic('headset') ?></span><h3>A project manager</h3><p>Your single point of contact for schedules, milestones and questions.</p></div>

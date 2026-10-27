@@ -6,6 +6,8 @@ $amz = sub_by_slug('amazon-publishing-services');
 $ebk = sub_by_slug('ebook-publishing-services');
 $FAQ = [
     ['How much do your book publishing services cost?', 'Amazon publishing starts from ' . $amz['price'] . ' and multi-store ebook publishing from ' . $ebk['price'] . '. The final price depends on what your book needs, for example whether it also needs editing, a cover or formatting. You get a written quote before we start, and there are no royalty splits or hidden fees.'],
+    ['What are self-publishing services?', 'Self-publishing services give you the professional help of a publisher while you stay the publisher of record. We prepare and upload your book, but it is published in your own accounts, under your name, and you keep full control of the price, the rights and every royalty.'],
+    ['Can you publish my ebook on Amazon?', 'Yes. Amazon publishing through Kindle Direct Publishing is our most popular service. We set up your Kindle ebook and paperback, research keywords and categories, write the description and submit everything for approval in your own KDP account.'],
     ['Do I keep my rights and royalties?', 'Yes, all of them. Your book is published under your own name and your own Amazon KDP and store accounts. We never take a percentage of your sales, and you can update, reprice or unpublish the book whenever you like.'],
     ['How long does it take to publish my book?', 'Once your files are ready, most books go live on Amazon within one to two weeks, and on the other major stores within two to three. If your book still needs editing, formatting or a cover, we include that in your timeline.'],
     ['Can you publish both an ebook and a paperback?', 'Yes. We prepare the Kindle ebook, the paperback and, if you want one, a hardcover, each with the right files, trim size and cover so they appear together on the same Amazon page.'],
@@ -17,7 +19,7 @@ $FAQ = [
 $meta = [
     'lp' => true,
     'title' => 'Book Publishing Services | Amazon KDP & Ebook | AMZ United Press',
-    'description' => 'Self-publish your book on Amazon, Apple Books, Kobo and more. We handle formatting, metadata and upload. You keep 100% of royalties. Get a free quote.',
+    'description' => 'Self-publishing services for authors: publish your book or ebook on Amazon KDP, Apple Books, Kobo and more. Keep 100% of your royalties. Free quote.',
     'path' => '/lp/publishing-services', 'nav' => '',
     'schema' => lp_schema('Book Publishing Services', 'Self-publishing services for authors: Amazon KDP publishing and multi-store ebook publishing, with formatting, metadata, ISBN guidance and upload handled.', '/lp/publishing-services', $FAQ, $amz['price']),
 ];
@@ -32,7 +34,7 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
   <div class="lp-w">
     <p class="lp-kick">Book publishing services</p>
     <h1 id="lp-h1">Self-publish your book on Amazon <em>and every major store.</em></h1>
-    <p class="lp-lead">AMZ United Press handles the whole publishing process for you: formatting, cover files, ISBN, metadata, categories and upload to Amazon KDP, Apple Books, Kobo and more. Your book goes live under your name, and you keep 100% of your royalties.</p>
+    <p class="lp-lead">AMZ United Press handles the whole publishing process for you: formatting, cover files, ISBN, metadata, categories and upload to Amazon Kindle Direct Publishing (KDP), Apple Books, Kobo and more. Your book goes live under your name, and you keep 100% of your royalties.</p>
     <?= lp_ctas() ?>
     <?= lp_assure(['Live in as little as 1–2 weeks', 'No royalty splits', 'Written quote first']) ?>
     <div class="lph-stage">
@@ -59,7 +61,7 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
 <!-- 3. Two ways to publish -->
 <section class="lp-sec" aria-labelledby="op-h">
   <div class="lp-w">
-    <div class="lp-head c"><p class="lp-kick">Choose your route</p><h2 class="lp-h2" id="op-h">Two ways to publish, <em>both done for you.</em></h2><p class="lp-lead">Start with Amazon, where most ebooks sell, or go wide across every major store from day one.</p></div>
+    <div class="lp-head c"><p class="lp-kick">Choose your route</p><h2 class="lp-h2" id="op-h">Two affordable self-publishing services, <em>both done for you.</em></h2><p class="lp-lead">Start with Amazon, where most ebooks sell, or go wide across every major store from day one.</p></div>
     <div class="lp-cards c2">
       <div class="lp-card hov"><span class="lp-ico"><?= ic('publish') ?></span><h3><?= e($amz['name']) ?></h3><p>Everything you need to publish on Amazon KDP: Kindle ebook and paperback set-up, categories, keywords, pricing and A+ ready files, all in your own account.</p>
         <ul class="lp-checks one" style="margin:6px 0 8px"><?php foreach (['Kindle ebook + paperback set-up', 'Keyword and category research', 'Book description that sells', 'Pricing and royalty guidance'] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
@@ -97,7 +99,7 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
 <!-- 5. Steps -->
 <section class="lp-sec" aria-labelledby="st-h">
   <div class="lp-w lp-split top">
-    <div><p class="lp-kick">How it works</p><h2 class="lp-h2" id="st-h">From manuscript to <em>“Buy now”</em> in six steps.</h2><p class="lp-lead">You approve every file and listing before it goes live. We do the technical work.</p><?= lp_ctas('#lp-form', 'Start publishing', false) ?></div>
+    <div><p class="lp-kick">How it works</p><h2 class="lp-h2" id="st-h">Our book publishing process: manuscript to <em>“Buy now”</em> in six steps.</h2><p class="lp-lead">You approve every file and listing before it goes live. We do the technical work.</p><?= lp_ctas('#lp-form', 'Start publishing', false) ?></div>
     <ol class="lp-vsteps">
       <li><div><h3>Free consultation</h3><p>We talk through your book, your goals and where you want to sell, then send a written quote.</p></div></li>
       <li><div><h3>File review</h3><p>We review your manuscript and cover and recommend any editing, design or formatting it needs.</p></div></li>
