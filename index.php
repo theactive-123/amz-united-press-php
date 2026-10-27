@@ -13,8 +13,8 @@ include __DIR__ . '/includes/header.php';
 ?>
 <div class="page active" data-page="home">
 
-  <!-- 1. Hero (temporarily hidden) -->
-  <section class="x-hero" aria-labelledby="home-h1" hidden style="display:none">
+  <!-- 1. Hero -->
+  <section class="x-hero" aria-labelledby="home-h1">
     <div class="x-hero-bg px" data-px="0.12"><img src="https://images.unsplash.com/photo-1676107779594-7a23bd99e07c?auto=format&fit=crop&w=1900&q=75" alt="" fetchpriority="high" decoding="async" onerror="this.classList.add('img-fail')"></div>
     <div class="x-w x-hero-in">
       <div class="x-hero-copy">
