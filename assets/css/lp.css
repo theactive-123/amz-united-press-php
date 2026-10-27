@@ -534,3 +534,47 @@ a.lp-card:hover,.lp-card.hov:hover{border-color:var(--ink);transform:translateY(
 .lp-dock .btn{border-radius:6px!important;box-shadow:none!important}
 .lp-dock .btn-primary{background:#F29102!important;color:#141413!important;border:2px solid #F29102}
 .lp-dock .btn-dark{border:2px solid #141413}
+
+/* ===================== QA fixes ===================== */
+/* text inside white cards/forms on dark sections stays ink */
+[data-page^=lp] .lp-final .lp-formwrap .form-title,[data-page^=lp] .lp-final .lp-formwrap h2,[data-page^=lp] .lp-final .lp-formwrap h3,[data-page^=lp] .lp-hero-dark .lp-formwrap .form-title,[data-page^=lp] .lp-final .lp-promises h3,[data-page^=lp] .lp-final .lp-promises>div{color:var(--lp-ink)}
+[data-page^=lp] .lp-final .lp-promises p{color:var(--lp-text-2)}
+[data-page^=lp] .lp-final .lp-lead{color:#D8D5CB}
+[data-page^=lp] .lp-final .lp-promises{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:28px}
+[data-page^=lp] .lp-final .lp-promises>div{padding:18px}
+[data-page^=lp] .lp-final .lp-promises h3{font-size:1rem;margin-top:10px}
+[data-page^=lp] .lp-final .lp-promises .lp-ico .ic{width:26px;height:26px}
+[data-page^=lp] .lp-card.feat .lp-more{color:var(--lp-orange)}
+/* hero inner grids keep the container's side padding */
+.lph-proof .lph-grid,.lph-story .lph-grid{padding-left:var(--xr,24px)!important;padding-right:var(--xr,24px)!important;padding-top:0;padding-bottom:0}
+/* offer sticker stays inside the viewport when the form is full width */
+@media (max-width:900px){.lp-offer{left:10px;top:-20px}.lph-grid>.lp-formwrap{margin-top:26px}}
+/* store logos: a calm static row instead of a faint marquee */
+.lp-logos{padding:22px 0}
+.lp-logos .lp-w{gap:24px}
+.lp-logos-row{-webkit-mask:none;mask:none;flex:1;overflow:visible}
+.lp-logos-belt{animation:none!important;flex:1;flex-wrap:wrap;justify-content:space-between;gap:18px 28px;padding:0}
+.lp-logos-belt[aria-hidden]{display:none}
+.lp-logos-belt img{height:30px;max-width:120px;object-fit:contain;filter:grayscale(1) contrast(1.1);opacity:.85}
+@media (max-width:700px){.lp-logos-belt{justify-content:flex-start;gap:14px 22px}.lp-logos-belt img{height:24px;max-width:92px}}
+/* grids: no orphans on tablet */
+@media (max-width:1100px){
+  .lp-covers{--n:3!important}
+  [data-page^=lp] .lp-cards.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  [data-page^=lp] .lp-tiers{grid-template-columns:repeat(3,minmax(0,1fr))}
+  [data-page^=lp] .lp-quotes{grid-template-columns:repeat(3,minmax(0,1fr))}
+  [data-page^=lp] .lp-tier{padding:24px 18px}
+  [data-page^=lp] .lp-tier .lp-amt{font-size:2.4rem}
+}
+@media (max-width:760px){
+  [data-page^=lp] .lp-tiers,[data-page^=lp] .lp-quotes,[data-page^=lp] .lp-cards.c3{grid-template-columns:1fr}
+  [data-page^=lp] .lp-final .lp-promises{grid-template-columns:1fr 1fr}
+}
+@media (max-width:620px){.lp-covers{--n:2!important}}
+/* step circles: ring matches the section surface */
+[data-page^=lp] .lp-steps li::before{box-shadow:0 0 0 8px #fff}
+[data-page^=lp] .lp-sec.alt .lp-steps li::before{box-shadow:0 0 0 8px var(--lp-kraft)}
+[data-page^=lp] .lp-sec.dark .lp-steps li::before{box-shadow:0 0 0 8px #141413}
+.lp-split .lp-covers{--n:3!important}

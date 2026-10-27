@@ -39,10 +39,10 @@ include dirname(__DIR__) . '/includes/header.php';
   <div class="lp-w"><ul class="lph-mk-channels" aria-label="Marketing channels"><?php foreach (['Amazon Ads', 'Amazon SEO', 'Editorial reviews', 'Goodreads', 'Facebook &amp; Instagram', 'TikTok &amp; BookTok', 'Email marketing', 'Press &amp; podcasts', 'Author website'] as $c): ?><li><?= $c ?></li><?php endforeach; ?></ul></div>
 </section>
 
-<?= lp_authors('Authors who trusted us with their books') ?>
+<?= lp_platform_strip('We market books sold on') ?>
 
 <!-- 2. The problem -->
-<section class="lp-sec" aria-labelledby="pb-h">
+<section class="lp-sec alt" aria-labelledby="pb-h">
   <div class="lp-w lp-split">
     <div><h2 class="lp-h2" id="pb-h">Great books don’t <em>sell themselves.</em></h2><p class="lp-lead" style="margin:0">Millions of titles compete for attention on Amazon alone. Without a plan, even a brilliant book can sit unseen on page twenty of the search results. Professional book promotion puts it in front of the readers most likely to love it.</p></div>
     <div class="rv lp-pg" style="grid-template-columns:1fr">
@@ -101,12 +101,22 @@ include dirname(__DIR__) . '/includes/header.php';
   </div>
 </section>
 
-<section class="lp-band" aria-label="Get started">
-  <div class="lp-w"><div><h2>Find out what would sell your book.</h2><p>Book a free strategy call with a book marketing expert.</p></div><?= lp_ctas('#lp-form2', 'Get My Free Plan', false) ?></div>
+<?= lp_strip('Want more readers this month? Get a free marketing plan.') ?>
+
+<!-- 5. Amazon focus -->
+<section class="lp-sec alt" aria-labelledby="az-h">
+  <div class="lp-w lp-split">
+    <div class="lp-covers" style="--n:3"><?= lp_covers(3, 7) ?></div>
+    <div><h2 class="lp-h2" id="az-h">Most books are sold on Amazon. <em>We make yours stand out.</em></h2><p class="lp-lead">Your Amazon page is your shop window. Before we spend a dollar on ads, we make sure it is ready to convert.</p>
+      <ul class="lp-checks"><?php foreach (['Keyword and category research', 'Description written to sell', 'A+ content and author page', 'Price and promotion strategy', 'Sponsored product ads', 'Review and rating growth'] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
+    </div>
+  </div>
 </section>
 
-<!-- 5. Process -->
-<section class="lp-sec alt" aria-labelledby="ps-h">
+<?= lp_authors('Authors who trusted us with their books') ?>
+
+<!-- 6. Process -->
+<section class="lp-sec" aria-labelledby="ps-h">
   <div class="lp-w lp-split top">
     <div class="lp-sticky"><h2 class="lp-h2" id="ps-h">A clear plan, <em>then steady results.</em></h2><p class="lp-lead">You approve the strategy and the budget. We do the work, track the numbers and keep improving.</p><?= lp_ctas('#lp-form', 'Start with a free call', false) ?></div>
     <ol class="lp-vsteps">
@@ -120,20 +130,8 @@ include dirname(__DIR__) . '/includes/header.php';
   </div>
 </section>
 
-<?= lp_strip('Want more readers this month? Get a free marketing plan.') ?>
-
-<!-- 6. Amazon focus -->
-<section class="lp-sec" aria-labelledby="az-h">
-  <div class="lp-w lp-split">
-    <div class="lp-covers" style="--n:3"><?= lp_covers(3, 7) ?></div>
-    <div><h2 class="lp-h2" id="az-h">Most books are sold on Amazon. <em>We make yours stand out.</em></h2><p class="lp-lead">Your Amazon page is your shop window. Before we spend a dollar on ads, we make sure it is ready to convert.</p>
-      <ul class="lp-checks"><?php foreach (['Keyword and category research', 'Description written to sell', 'A+ content and author page', 'Price and promotion strategy', 'Sponsored product ads', 'Review and rating growth'] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
-    </div>
-  </div>
-</section>
-
 <!-- 7. Compare -->
-<section class="lp-sec soft" aria-labelledby="cp-h">
+<section class="lp-sec alt" aria-labelledby="cp-h">
   <div class="lp-w">
     <div class="rv lp-head"><h2 class="lp-h2" id="cp-h">Why hire a book marketer <em>at AMZ United Press?</em></h2></div>
     <div class="rv lp-tablewrap"><table class="lp-table">
@@ -150,6 +148,8 @@ include dirname(__DIR__) . '/includes/header.php';
   </div>
 </section>
 
+<?= lp_strip('Book marketing that finds your readers.' . lp_offer_suffix()) ?>
+
 <!-- 8. Reviews -->
 <section class="lp-sec" aria-labelledby="rv-h">
   <div class="lp-w">
@@ -158,8 +158,6 @@ include dirname(__DIR__) . '/includes/header.php';
     <div class="lp-stats" style="margin-top:56px"><?= lp_stats() ?></div>
   </div>
 </section>
-
-<?= lp_strip('Book marketing that finds your readers.' . lp_offer_suffix()) ?>
 
 <!-- 9. FAQ -->
 <section class="lp-sec alt" aria-labelledby="fq-h">
@@ -176,5 +174,6 @@ include dirname(__DIR__) . '/includes/header.php';
     <?= lp_form('lp-form2', 'Get my free marketing plan', 'Takes about a minute. No obligation.', 4, 'Get My Free Plan') ?>
   </div>
 </section>
+
 </div>
 <?php include dirname(__DIR__) . '/includes/footer.php'; ?>

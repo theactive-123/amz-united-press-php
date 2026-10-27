@@ -45,10 +45,8 @@ include dirname(__DIR__) . '/includes/header.php';
 
 <?= lp_platform_strip('Our authors’ books are sold on') ?>
 
-<?= lp_authors() ?>
-
 <!-- 2. Sound familiar -->
-<section class="lp-sec" aria-labelledby="sf-h">
+<section class="lp-sec alt" aria-labelledby="sf-h">
   <div class="lp-w">
     <div class="rv lp-head c"><h2 class="lp-h2" id="sf-h">You’ve meant to write this book <em>for years.</em></h2><p class="lp-lead">You have the stories, the expertise or the idea. What you don’t have is hundreds of spare hours, or the patience to stare at a blank page. That’s what a ghostwriter is for.</p></div>
     <div class="rv lp-cards c3">
@@ -76,17 +74,7 @@ include dirname(__DIR__) . '/includes/header.php';
 
 <?= lp_strip('Talk to a ghostwriter today, free and confidential.') ?>
 
-<!-- 4. Genres -->
-<section class="lp-sec alt" aria-labelledby="gn-h">
-  <div class="lp-w lp-split">
-    <div><h2 class="lp-h2" id="gn-h">A ghostwriter for hire who knows <em>your kind of book.</em></h2><p class="lp-lead" style="margin:0">We match you with a writer who reads and writes in your genre, so the book meets readers’ expectations from page one.</p></div>
-    <div class="lp-chips">
-      <?php foreach ([['Memoir', 'memoir-writing-services'], ['Autobiography', 'autobiography-writing-services'], ['Biography', 'biography-writing-services'], ['Business & leadership', 'nonfiction-writing-services'], ['Self-help', 'nonfiction-writing-services'], ['Novels', 'novel-ghostwriting-services'], ['Thriller & mystery', 'fiction-writing-services'], ['Romance', 'fiction-writing-services'], ['Fantasy & sci-fi', 'fiction-writing-services'], ['Children’s books', 'ebook-writing-services'], ['Ebooks & guides', 'ebook-writing-services'], ['Faith & inspiration', 'nonfiction-writing-services']] as $g): ?><a href="<?= e(url('/services/' . $g[1])) ?>"><?= e($g[0]) ?> <?= ic('arrow') ?></a><?php endforeach; ?>
-    </div>
-  </div>
-</section>
-
-<!-- 5. What you get -->
+<!-- 4. What you get -->
 <section class="lp-sec" aria-labelledby="wg-h">
   <div class="lp-w">
     <div class="rv lp-head"><h2 class="lp-h2" id="wg-h">Everything included in our <em>affordable ghostwriting services.</em></h2></div>
@@ -103,12 +91,29 @@ include dirname(__DIR__) . '/includes/header.php';
   </div>
 </section>
 
-<section class="lp-band" aria-label="Get started">
-  <div class="lp-w"><div><h2>Your story deserves to be told well.</h2><p>Book a free, confidential call with a ghostwriter today.</p></div><?= lp_ctas('#lp-form2', 'Hire a Ghostwriter', false) ?></div>
+<!-- 5. Reviews + covers -->
+<section class="lp-sec alt" aria-labelledby="rv-h">
+  <div class="lp-w">
+    <div class="rv lp-head c"><h2 class="lp-h2" id="rv-h">“It sounds <em>exactly like me.</em>”</h2></div>
+    <div class="rv lp-quotes"><?= lp_quotes() ?></div>
+    <div class="lp-covers" style="--n:6;margin-top:56px"><?= lp_covers(6, 0) ?></div>
+  </div>
 </section>
 
-<!-- 6. Compare -->
-<section class="lp-sec soft" aria-labelledby="cp-h">
+<?= lp_authors() ?>
+
+<!-- 6. Genres -->
+<section class="lp-sec" aria-labelledby="gn-h">
+  <div class="lp-w lp-split">
+    <div><h2 class="lp-h2" id="gn-h">A ghostwriter for hire who knows <em>your kind of book.</em></h2><p class="lp-lead" style="margin:0">We match you with a writer who reads and writes in your genre, so the book meets readers’ expectations from page one.</p></div>
+    <div class="lp-chips">
+      <?php foreach ([['Memoir', 'memoir-writing-services'], ['Autobiography', 'autobiography-writing-services'], ['Biography', 'biography-writing-services'], ['Business & leadership', 'nonfiction-writing-services'], ['Self-help', 'nonfiction-writing-services'], ['Novels', 'novel-ghostwriting-services'], ['Thriller & mystery', 'fiction-writing-services'], ['Romance', 'fiction-writing-services'], ['Fantasy & sci-fi', 'fiction-writing-services'], ['Children’s books', 'ebook-writing-services'], ['Ebooks & guides', 'ebook-writing-services'], ['Faith & inspiration', 'nonfiction-writing-services']] as $g): ?><a href="<?= e(url('/services/' . $g[1])) ?>"><?= e($g[0]) ?> <?= ic('arrow') ?></a><?php endforeach; ?>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Compare -->
+<section class="lp-sec alt" aria-labelledby="cp-h">
   <div class="lp-w">
     <div class="rv lp-head"><h2 class="lp-h2" id="cp-h">Ghostwriting that’s <em>personal and affordable.</em></h2></div>
     <div class="rv lp-tablewrap"><table class="lp-table">
@@ -125,7 +130,9 @@ include dirname(__DIR__) . '/includes/header.php';
   </div>
 </section>
 
-<!-- 7. Confidentiality + proof -->
+<?= lp_strip('Hire a ghostwriter who writes like you.' . lp_offer_suffix()) ?>
+
+<!-- 8. Confidentiality + proof -->
 <section class="lp-sec dark" aria-labelledby="cf-h">
   <div class="lp-w">
     <div class="rv lp-head"><h2 class="lp-h2" id="cf-h">Your name on the cover. <em>Ours nowhere.</em></h2><p class="lp-lead" style="margin:0">Ghostwriting only works if you can trust the people behind it. These promises are in every contract.</p></div>
@@ -134,19 +141,8 @@ include dirname(__DIR__) . '/includes/header.php';
   </div>
 </section>
 
-<!-- 8. Reviews + covers -->
-<section class="lp-sec" aria-labelledby="rv-h">
-  <div class="lp-w">
-    <div class="rv lp-head c"><h2 class="lp-h2" id="rv-h">“It sounds <em>exactly like me.</em>”</h2></div>
-    <div class="rv lp-quotes"><?= lp_quotes() ?></div>
-    <div class="lp-covers" style="--n:5;margin-top:56px"><?= lp_covers(5, 0) ?></div>
-  </div>
-</section>
-
-<?= lp_strip('Hire a ghostwriter who writes like you.' . lp_offer_suffix()) ?>
-
 <!-- 9. FAQ -->
-<section class="lp-sec alt" aria-labelledby="fq-h">
+<section class="lp-sec" aria-labelledby="fq-h">
   <div class="lp-w" style="max-width:960px">
     <div class="rv lp-head c"><h2 class="lp-h2" id="fq-h">Hiring a ghostwriter: <em>your questions.</em></h2></div>
     <div class="faq lp-faq"><?= faq_html($FAQ, true) ?></div>
@@ -160,5 +156,6 @@ include dirname(__DIR__) . '/includes/header.php';
     <?= lp_form('lp-form2', 'Start my book', 'Takes about a minute. Completely confidential.', 0) ?>
   </div>
 </section>
+
 </div>
 <?php include dirname(__DIR__) . '/includes/footer.php'; ?>

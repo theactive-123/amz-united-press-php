@@ -46,8 +46,6 @@ include dirname(__DIR__) . '/includes/header.php';
   </div>
 </section>
 
-<?= lp_authors() ?>
-
 <!-- 2. Stats -->
 <section class="lp-sec alt" style="padding:48px 0" aria-label="AMZ United Press in numbers"><div class="lp-w"><div class="lp-stats"><?= lp_stats() ?></div></div></section>
 
@@ -69,6 +67,8 @@ include dirname(__DIR__) . '/includes/header.php';
   </div>
 </section>
 
+<?= lp_strip('Send a sample and get a free editor’s recommendation.') ?>
+
 <!-- 4. What editors fix -->
 <section class="lp-sec dark" aria-labelledby="fx-h">
   <div class="lp-w lp-split top">
@@ -86,10 +86,8 @@ include dirname(__DIR__) . '/includes/header.php';
   </div>
 </section>
 
-<?= lp_strip('Send a sample and get a free editor’s recommendation.') ?>
-
 <!-- 5. Steps -->
-<section class="lp-sec" aria-labelledby="st-h">
+<section class="lp-sec alt" aria-labelledby="st-h">
   <div class="lp-w">
     <div class="rv lp-head"><h2 class="lp-h2" id="st-h">Our book editing process: five steps to a <em>publish-ready</em> manuscript.</h2></div>
     <ol class="rv lp-steps" style="--n:5">
@@ -102,12 +100,8 @@ include dirname(__DIR__) . '/includes/header.php';
   </div>
 </section>
 
-<section class="lp-band" aria-label="Get started">
-  <div class="lp-w"><div><h2>Find out what your manuscript needs, free.</h2><p>Send a sample today and get an editor’s recommendation and written quote.</p></div><?= lp_ctas('#lp-form2', 'Send My Sample', false) ?></div>
-</section>
-
 <!-- 6. Promises + covers -->
-<section class="lp-sec soft" aria-labelledby="pm-h">
+<section class="lp-sec" aria-labelledby="pm-h">
   <div class="lp-w">
     <div class="rv lp-head"><h2 class="lp-h2" id="pm-h">Editors who care about <em>your book.</em></h2></div>
     <?= lp_promises() ?>
@@ -116,15 +110,17 @@ include dirname(__DIR__) . '/includes/header.php';
   </div>
 </section>
 
-<?= lp_strip('Editing, proofreading and formatting.' . lp_offer_suffix()) ?>
+<?= lp_authors() ?>
 
 <!-- 7. Reviews -->
-<section class="lp-sec" aria-labelledby="rv-h">
+<section class="lp-sec alt" aria-labelledby="rv-h">
   <div class="lp-w"><div class="rv lp-head c"><h2 class="lp-h2" id="rv-h">Clean, clear <em>and still mine.</em></h2></div><div class="rv lp-quotes"><?= lp_quotes() ?></div></div>
 </section>
 
+<?= lp_strip('Editing, proofreading and formatting.' . lp_offer_suffix()) ?>
+
 <!-- 8. FAQ -->
-<section class="lp-sec alt" aria-labelledby="fq-h">
+<section class="lp-sec" aria-labelledby="fq-h">
   <div class="lp-w lp-split top">
     <div class="lp-sticky"><h2 class="lp-h2" id="fq-h">Book editing <em>questions.</em></h2><p class="lp-lead">Still unsure which service you need? Call <a href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>" data-lp-call><?= e(site('phone')) ?></a> and talk to an editor.</p></div>
     <div class="faq lp-faq"><?= faq_html($FAQ, true) ?></div>
@@ -138,5 +134,6 @@ include dirname(__DIR__) . '/includes/header.php';
     <?= lp_form('lp-form2', 'Get my editing quote', 'Takes about a minute. We reply within one business day.', 1) ?>
   </div>
 </section>
+
 </div>
 <?php include dirname(__DIR__) . '/includes/footer.php'; ?>

@@ -47,21 +47,9 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
   <div class="lph-floor"></div>
 </section>
 
-<!-- 2. Where your book goes -->
-<section class="lp-sec dark" aria-labelledby="pl-h" style="padding-top:clamp(100px,10vw,140px)">
-  <div class="lp-w lp-split">
-    <div><h2 class="lp-h2" id="pl-h">One upload. <em>Readers everywhere.</em></h2><p class="lp-lead">We prepare your files to each store’s exact standards and publish them in your own accounts, so your ebook and paperback reach readers in every major market without you wrestling with dashboards, file errors or rejected uploads.</p><?= lp_ctas('#lp-form', 'Publish my book') ?></div>
-    <ul class="lp-checks">
-      <?php foreach (['Amazon Kindle (KDP)', 'Amazon paperback & hardcover', 'Apple Books', 'Barnes & Noble', 'Rakuten Kobo', 'Google Play Books', 'IngramSpark bookstores', 'Library platforms'] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?>
-    </ul>
-  </div>
-</section>
-
 <?= lp_platform_strip('Stores we publish to') ?>
 
-<?= lp_authors() ?>
-
-<!-- 3. Two ways to publish -->
+<!-- 2. Two ways to publish -->
 <section class="lp-sec" aria-labelledby="op-h">
   <div class="lp-w">
     <div class="rv lp-head c"><h2 class="lp-h2" id="op-h">Two affordable self-publishing services, <em>both done for you.</em></h2><p class="lp-lead">Start with Amazon, where most ebooks sell, or go wide across every major store from day one.</p></div>
@@ -80,8 +68,20 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
   </div>
 </section>
 
+<?= lp_strip('Publish on Amazon and every major store, with 100% of your royalties.') ?>
+
+<!-- 3. Where your book goes -->
+<section class="lp-sec alt" aria-labelledby="pl-h" style="padding-top:clamp(100px,10vw,140px)">
+  <div class="lp-w lp-split">
+    <div><h2 class="lp-h2" id="pl-h">One upload. <em>Readers everywhere.</em></h2><p class="lp-lead">We prepare your files to each store’s exact standards and publish them in your own accounts, so your ebook and paperback reach readers in every major market without you wrestling with dashboards, file errors or rejected uploads.</p><?= lp_ctas('#lp-form', 'Publish my book') ?></div>
+    <ul class="lp-checks">
+      <?php foreach (['Amazon Kindle (KDP)', 'Amazon paperback & hardcover', 'Apple Books', 'Barnes & Noble', 'Rakuten Kobo', 'Google Play Books', 'IngramSpark bookstores', 'Library platforms'] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?>
+    </ul>
+  </div>
+</section>
+
 <!-- 4. Everything handled -->
-<section class="lp-sec alt" aria-labelledby="in-h">
+<section class="lp-sec" aria-labelledby="in-h">
   <div class="lp-w lp-split top">
     <div class="lp-sticky"><h2 class="lp-h2" id="in-h">Every publishing task, <em>handled.</em></h2><p class="lp-lead">Self-publishing should mean you own your book, not that you do everything yourself. Here’s what our book publishing team takes care of.</p><a class="btn btn-primary" href="#lp-form" data-lp-cta>Get my quote <?= ic('arrow') ?></a></div>
     <ul class="lp-checks">
@@ -99,10 +99,10 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
   </div>
 </section>
 
-<?= lp_strip('Publish on Amazon and every major store, with 100% of your royalties.') ?>
+<?= lp_authors() ?>
 
 <!-- 5. Steps -->
-<section class="lp-sec" aria-labelledby="st-h">
+<section class="lp-sec alt" aria-labelledby="st-h">
   <div class="lp-w lp-split top">
     <div><h2 class="lp-h2" id="st-h">Our book publishing process: manuscript to <em>“Buy now”</em> in six steps.</h2><p class="lp-lead">You approve every file and listing before it goes live. We do the technical work.</p><?= lp_ctas('#lp-form', 'Start publishing', false) ?></div>
     <ol class="lp-vsteps">
@@ -117,7 +117,7 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
 </section>
 
 <!-- 6. Comparison -->
-<section class="lp-sec soft" aria-labelledby="cp-h">
+<section class="lp-sec" aria-labelledby="cp-h">
   <div class="lp-w">
     <div class="rv lp-head"><h2 class="lp-h2" id="cp-h">Publish with help, <em>without giving up control.</em></h2></div>
     <div class="rv lp-tablewrap"><table class="lp-table">
@@ -133,10 +133,10 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
   </div>
 </section>
 
-<?= lp_strip('Questions about publishing? Talk to our team now.') ?>
+<?= lp_strip('Your book could be on sale in two weeks.' . lp_offer_suffix()) ?>
 
 <!-- 7. Reviews -->
-<section class="lp-sec" aria-labelledby="rv-h">
+<section class="lp-sec alt" aria-labelledby="rv-h">
   <div class="lp-w">
     <div class="rv lp-head c"><h2 class="lp-h2" id="rv-h">Published, <em>and proud of it.</em></h2></div>
     <div class="rv lp-quotes"><?= lp_quotes() ?></div>
@@ -144,12 +144,8 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
   </div>
 </section>
 
-<section class="lp-band" aria-label="Get started">
-  <div class="lp-w"><div><h2>Your book could be on sale in two weeks.</h2><p>Send us your manuscript details for a free publishing quote.</p></div><?= lp_ctas('#lp-form2', 'Get My Free Quote', false) ?></div>
-</section>
-
 <!-- 8. FAQ -->
-<section class="lp-sec alt" aria-labelledby="fq-h">
+<section class="lp-sec" aria-labelledby="fq-h">
   <div class="lp-w" style="max-width:960px">
     <div class="rv lp-head c"><h2 class="lp-h2" id="fq-h">Book publishing <em>questions,</em> answered.</h2></div>
     <div class="faq lp-faq"><?= faq_html($FAQ, true) ?></div>
@@ -163,5 +159,6 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
     <?= lp_form('lp-form2', 'Publish my book', 'Takes about a minute. We reply within one business day.', 3) ?>
   </div>
 </section>
+
 </div>
 <?php include dirname(__DIR__) . '/includes/footer.php'; ?>
