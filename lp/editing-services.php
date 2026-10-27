@@ -25,115 +25,91 @@ $meta = [
     'schema' => lp_schema('Book Editing Services', 'Professional book editing, proofreading and formatting for fiction and nonfiction manuscripts, by editors matched to the genre.', '/lp/editing-services', $FAQ, $pr['price']),
 ];
 include dirname(__DIR__) . '/includes/header.php';
+$tier = function ($s, $sub, $items, $feat, $btn) {
+    return '<div class="tier' . ($feat ? ' feat' : '') . '">' . ($feat ? '<span class="tag">Most popular</span>' : '') . '<h3 class="h3">' . e($s['name']) . '</h3><p>' . e($sub) . '</p><span class="from">From</span><div class="amt">' . e($s['price']) . '</div>'
+         . lp_checks($items) . '<a class="btn ' . ($feat ? 'btn-primary' : 'btn-dark') . '" href="#lp-form" data-lp-cta>' . e($btn) . ' ' . ic('arrow') . '</a><a class="more" href="' . e(url('/services/' . $s['slug'])) . '">About ' . e(strtolower($s['t'])) . '</a></div>';
+};
 ?>
-<div class="page active" data-page="lp-editing">
+<div class="page" data-page="lp-editing">
 
-<!-- 1. Hero: copy + before/after sample, form on the right -->
-<section class="lph-proof lp-hero-dark" aria-labelledby="lp-h1">
-  <?= lp_mosaic() ?>
-  <div class="lp-w lph-grid">
-    <div>
-      <p class="lp-kick">Book editing services</p>
-      <h1 id="lp-h1">Professional book editing that <em>keeps your voice.</em></h1>
-      <p class="lp-lead">Your story is worth reading. Our professional book editors make sure nothing gets in its way: clearer sentences, tighter pacing, consistent details and zero typos, all with tracked changes so you stay in control of every word.</p>
-      <?= lp_ctas() ?>
-      <div class="lp-ba" data-lp-ba data-v="before" aria-label="Editing sample">
-        <div class="lp-ba-top"><b>Editing sample</b><div class="lp-ba-tg"><button type="button" data-v="before" aria-pressed="true">Before</button><button type="button" data-v="after" aria-pressed="false">After</button></div></div>
-        <p>She walked <del>very </del>slowly <del>in</del><ins>into</ins> the kitchen<del>,</del><ins>.</ins> <del>and she </del><ins>She </ins>noticed that the letter <del>that was </del>on the table <del>had been</del><ins>was</ins> <del>opened by someone</del><ins>already open</ins><del> already</del>, <del>which was strange</del><ins>and her stomach dropped</ins>.</p>
-      </div>
-    </div>
-    <?= lp_form('lp-form', 'Get your free editing quote', 'Tell us your word count and what kind of help you need.', 1) ?>
-  </div>
-</section>
+<?= lp_hero([
+    'eyebrow' => 'Book editing services',
+    'h1' => 'Professional book editing that <em>keeps your voice.</em>',
+    'lead' => 'Your story is worth reading. Our professional book editors make sure nothing gets in its way: clearer sentences, tighter pacing, consistent details and zero typos, all with tracked changes so you stay in control of every word.',
+    'ticks' => ['Genre-matched editor', 'Tracked changes', 'Free sample assessment'],
+    'extra' => '<div class="sample" data-lp-ba data-v="before" aria-label="Editing sample"><div class="sample-top"><b>Editing sample</b><div class="sample-tg"><button type="button" data-v="before" aria-pressed="true">Before</button><button type="button" data-v="after" aria-pressed="false">After</button></div></div>'
+        . '<p>She walked <del>very </del>slowly <del>in</del><ins>into</ins> the kitchen<del>,</del><ins>.</ins> <del>and she </del><ins>She </ins>noticed that the letter <del>that was </del>on the table <del>had been</del><ins>was</ins> <del>opened by someone</del><ins>already open</ins><del> already</del>, <del>which was strange</del><ins>and her stomach dropped</ins>.</p></div>',
+    'form' => ['Get your free editing quote', 'Tell us your word count and what kind of help you need.', 1],
+]) ?>
 
-<!-- 2. Stats -->
-<section class="lp-sec alt" style="padding:48px 0" aria-label="AMZ United Press in numbers"><div class="lp-w"><div class="lp-stats"><?= lp_stats() ?></div></div></section>
+<section class="sec-s bg-sand" aria-label="AMZ United Press in numbers"><div class="w"><?= lp_stats() ?></div></section>
 
-<!-- 3. Three services as tiers -->
-<section class="lp-sec" aria-labelledby="tr-h">
-  <div class="lp-w">
-    <div class="rv lp-head c"><h2 class="lp-h2" id="tr-h">Book editing, proofreading <em>&amp; formatting services.</em></h2><p class="lp-lead">Not sure which you need? Send us a sample and we’ll recommend the right level, for free.</p></div>
-    <div class="rv lp-tiers">
-      <div class="lp-tier"><h3><?= e($pr['name']) ?></h3><p>The final polish before you publish.</p><span class="lp-from">From</span><div class="lp-amt"><?= e($pr['price']) ?></div>
-        <ul><?php foreach (['Spelling, grammar and punctuation', 'Consistency of names, dates and style', 'Formatting and typesetting slips', 'Tracked changes + clean copy', 'Ready in ' . $pr['time']] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
-        <a class="btn btn-outline" href="#lp-form" data-lp-cta>Get a proofreading quote</a><a class="lp-link" href="<?= e(url('/services/' . $pr['slug'])) ?>">About proofreading</a></div>
-      <div class="lp-tier feat"><span class="lp-tag">Most popular</span><h3><?= e($ed['name']) ?></h3><p>Big-picture and line-by-line editing.</p><span class="lp-from">From</span><div class="lp-amt"><?= e($ed['price']) ?></div>
-        <ul><?php foreach (['Developmental & structural editing', 'Line editing for clarity and flow', 'Copy editing for grammar and consistency', 'Editorial letter with key recommendations', 'Tracked changes, comments and a clean copy'] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
-        <a class="btn btn-primary" href="#lp-form" data-lp-cta>Get an editing quote <?= ic('arrow') ?></a><a class="lp-link" href="<?= e(url('/services/' . $ed['slug'])) ?>">About book editing</a></div>
-      <div class="lp-tier"><h3><?= e($fm['name']) ?></h3><p>Files that look right on every device.</p><span class="lp-from">From</span><div class="lp-amt"><?= e($fm['price']) ?></div>
-        <ul><?php foreach (['Kindle and EPUB ebook files', 'Print-ready PDF for paperback', 'Chapter styles, headers and front matter', 'Tested on phones, tablets and e-readers', 'Ready in ' . $fm['time']] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
-        <a class="btn btn-outline" href="#lp-form" data-lp-cta>Get a formatting quote</a><a class="lp-link" href="<?= e(url('/services/' . $fm['slug'])) ?>">About book formatting</a></div>
+<section class="sec bg-white" aria-labelledby="tr-h">
+  <div class="w">
+    <?= lp_head('Choose your level', 'Book editing, proofreading <em>&amp; formatting services.</em>', 'Not sure which you need? Send us a sample and we’ll recommend the right level, for free.', true, 'tr-h') ?>
+    <div class="tiers rv">
+      <?= $tier($pr, 'The final polish before you publish.', ['Spelling, grammar and punctuation', 'Consistency of names, dates and style', 'Formatting and typesetting slips', 'Tracked changes + clean copy', 'Ready in ' . $pr['time']], false, 'Get a proofreading quote') ?>
+      <?= $tier($ed, 'Big-picture and line-by-line editing.', ['Developmental & structural editing', 'Line editing for clarity and flow', 'Copy editing for grammar and consistency', 'Editorial letter with recommendations', 'Tracked changes, comments and a clean copy'], true, 'Get an editing quote') ?>
+      <?= $tier($fm, 'Files that look right on every device.', ['Kindle and EPUB ebook files', 'Print-ready PDF for paperback', 'Chapter styles, headers and front matter', 'Tested on phones, tablets and e-readers', 'Ready in ' . $fm['time']], false, 'Get a formatting quote') ?>
     </div>
   </div>
 </section>
 
-<?= lp_strip('Send a sample and get a free editor’s recommendation.') ?>
+<?= lp_band('Find out what your manuscript needs, free.', 'Send a sample and get an editor’s recommendation and written quote.') ?>
 
-<!-- 4. What editors fix -->
-<section class="lp-sec dark" aria-labelledby="fx-h">
-  <div class="lp-w lp-split top">
-    <div class="lp-sticky"><h2 class="lp-h2" id="fx-h">The problems readers notice, <em>fixed before they do.</em></h2><p class="lp-lead">One-star reviews often mention the same things: typos, confusing passages and plot holes. Our editors catch them so your readers only notice the story.</p><?= lp_ctas('#lp-form', 'Fix my manuscript', false) ?></div>
-    <ul class="lp-checks">
-      <li><?= ic('check') ?><span><b>Typos &amp; grammar</b>Every spelling, punctuation and grammar slip, corrected.</span></li>
-      <li><?= ic('check') ?><span><b>Clunky sentences</b>Rewritten for rhythm and clarity, in your voice.</span></li>
-      <li><?= ic('check') ?><span><b>Pacing problems</b>Slow middles tightened, rushed endings given room.</span></li>
-      <li><?= ic('check') ?><span><b>Plot &amp; logic holes</b>Timelines, motives and facts checked for consistency.</span></li>
-      <li><?= ic('check') ?><span><b>Repetition</b>Overused words and repeated points trimmed away.</span></li>
-      <li><?= ic('check') ?><span><b>Inconsistent details</b>Names, spellings and style kept the same throughout.</span></li>
-      <li><?= ic('check') ?><span><b>Weak openings</b>First pages strengthened to hook readers from line one.</span></li>
-      <li><?= ic('check') ?><span><b>Formatting errors</b>Broken layouts and stray spacing cleaned before upload.</span></li>
-    </ul>
+<section class="sec bg-ink" aria-labelledby="fx-h">
+  <div class="w split split-57 top">
+    <div class="sticky"><span class="eyebrow">What we fix</span><h2 class="h2" id="fx-h">The problems readers notice, <em>fixed before they do.</em></h2><p class="lead">One-star reviews often mention the same things: typos, confusing passages and plot holes. Our editors catch them so your readers only notice the story.</p><?= lp_ctas('Fix my manuscript', '#lp-form', false) ?></div>
+    <?= lp_checks([
+        ['Typos & grammar', 'Every spelling, punctuation and grammar slip, corrected.'],
+        ['Clunky sentences', 'Rewritten for rhythm and clarity, in your voice.'],
+        ['Pacing problems', 'Slow middles tightened, rushed endings given room.'],
+        ['Plot & logic holes', 'Timelines, motives and facts checked for consistency.'],
+        ['Repetition', 'Overused words and repeated points trimmed away.'],
+        ['Inconsistent details', 'Names, spellings and style kept the same throughout.'],
+        ['Weak openings', 'First pages strengthened to hook readers from line one.'],
+        ['Formatting errors', 'Broken layouts and stray spacing cleaned before upload.'],
+    ], true) ?>
   </div>
 </section>
 
-<!-- 5. Steps -->
-<section class="lp-sec alt" aria-labelledby="st-h">
-  <div class="lp-w">
-    <div class="rv lp-head"><h2 class="lp-h2" id="st-h">Our book editing process: five steps to a <em>publish-ready</em> manuscript.</h2></div>
-    <ol class="rv lp-steps" style="--n:5">
-      <li><h3>Send a sample</h3><p>Share your manuscript or a few chapters and tell us your goals and deadline.</p><small>Day 1</small></li>
-      <li><h3>Free assessment</h3><p>An editor reads your sample, recommends the right level of editing and sends a written quote.</p><small>1 business day</small></li>
-      <li><h3>Editing</h3><p>Your genre-matched editor works through the manuscript with tracked changes and comments.</p><small>3 days – 4 weeks</small></li>
-      <li><h3>Your review</h3><p>You accept or reject each change, ask questions and get answers from your editor.</p><small>At your pace</small></li>
-      <li><h3>Final files</h3><p>We deliver the clean manuscript, ready for formatting, printing or upload.</p><small>Ready to publish</small></li>
-    </ol>
+<section class="sec bg-white" aria-labelledby="st-h">
+  <div class="w">
+    <?= lp_head('How it works', 'Our book editing process: five steps to a <em>publish-ready</em> manuscript.', '', false, 'st-h') ?>
+    <?= lp_steps([
+        ['Send a sample', 'Share your manuscript or a few chapters and tell us your goals and deadline.', 'Day 1'],
+        ['Free assessment', 'An editor reads your sample, recommends the right level of editing and sends a written quote.', '1 business day'],
+        ['Editing', 'Your genre-matched editor works through the manuscript with tracked changes and comments.', '3 days – 4 weeks'],
+        ['Your review', 'You accept or reject each change, ask questions and get answers from your editor.', 'At your pace'],
+        ['Final files', 'We deliver the clean manuscript, ready for formatting, printing or upload.', 'Ready to publish'],
+    ]) ?>
   </div>
 </section>
 
-<!-- 6. Promises + covers -->
-<section class="lp-sec" aria-labelledby="pm-h">
-  <div class="lp-w">
-    <div class="rv lp-head"><h2 class="lp-h2" id="pm-h">Editors who care about <em>your book.</em></h2></div>
-    <?= lp_promises() ?>
-    <div class="rv lp-head" style="margin:72px 0 32px"><h3 class="lp-h2" style="font-size:clamp(1.6rem,2.8vw,2.4rem)">Books our editors have worked on</h3></div>
-    <div class="lp-covers" style="--n:6"><?= lp_covers(6, 4) ?></div>
+<section class="sec bg-sand" aria-labelledby="bk-h">
+  <div class="w">
+    <?= lp_head('Our editors’ work', 'Books our editors have <em>polished.</em>', 'Fiction, memoir and nonfiction, edited, proofread and formatted for readers everywhere. [[/portfolio|See the portfolio]].', false, 'bk-h') ?>
+    <?= lp_books(6, 4) ?>
   </div>
 </section>
 
 <?= lp_authors() ?>
 
-<!-- 7. Reviews -->
-<section class="lp-sec alt" aria-labelledby="rv-h">
-  <div class="lp-w"><div class="rv lp-head c"><h2 class="lp-h2" id="rv-h">Clean, clear <em>and still mine.</em></h2></div><div class="rv lp-quotes"><?= lp_quotes() ?></div></div>
-</section>
-
-<?= lp_strip('Editing, proofreading and formatting.' . lp_offer_suffix()) ?>
-
-<!-- 8. FAQ -->
-<section class="lp-sec" aria-labelledby="fq-h">
-  <div class="lp-w lp-split top">
-    <div class="lp-sticky"><h2 class="lp-h2" id="fq-h">Book editing <em>questions.</em></h2><p class="lp-lead">Still unsure which service you need? Call <a href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>" data-lp-call><?= e(site('phone')) ?></a> and talk to an editor.</p></div>
-    <div class="faq lp-faq"><?= faq_html($FAQ, true) ?></div>
+<section class="sec bg-white" aria-labelledby="pm-h">
+  <div class="w split split-57">
+    <div><span class="eyebrow">Why AMZ United Press</span><h2 class="h2" id="pm-h">Editors who care about <em>your book.</em></h2><p class="lead">Your manuscript is only seen by the editors working on it, and every change is yours to accept or reject.</p></div>
+    <?= lp_promises() ?>
   </div>
 </section>
 
-<!-- 9. Final CTA -->
-<section class="lp-sec lp-final" aria-labelledby="fn-h">
-  <div class="lp-w lp-split">
-    <div><p class="lp-kick">Free sample assessment</p><h2 class="lp-h2" id="fn-h">Make every page <em>worth reading.</em></h2><p class="lp-lead">Tell us about your manuscript. An editor will recommend the right level of help and send a written quote within one business day.</p><?= lp_assure(['Genre-matched editor', 'Tracked changes', 'Written quote first', 'Confidential']) ?></div>
-    <?= lp_form('lp-form2', 'Get my editing quote', 'Takes about a minute. We reply within one business day.', 1) ?>
-  </div>
+<section class="sec bg-sand" aria-labelledby="rv-h">
+  <div class="w"><?= lp_head('Authors say', 'Clean, clear <em>and still mine.</em>', '', true, 'rv-h') ?><?= lp_quotes() ?></div>
 </section>
 
+<?= lp_band('Editing, proofreading and formatting.' . lp_offer_suffix(), 'Get your free sample assessment today.') ?>
+
+<?= lp_faq('bg-white', 'Book editing <em>questions.</em>', $FAQ) ?>
+
+<?= lp_final('Free sample assessment', 'Make every page <em>worth reading.</em>', 'Tell us about your manuscript. An editor will recommend the right level of help and send a written quote within one business day.', ['Genre-matched editor', 'Tracked changes', 'Confidential'], ['Get my editing quote', 'Takes about a minute. We reply within one business day.', 1]) ?>
 </div>
 <?php include dirname(__DIR__) . '/includes/footer.php'; ?>

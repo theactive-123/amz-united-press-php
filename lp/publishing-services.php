@@ -24,139 +24,106 @@ $meta = [
     'schema' => lp_schema('Book Publishing Services', 'Self-publishing services for authors: Amazon KDP publishing and multi-store ebook publishing, with formatting, metadata, ISBN guidance and upload handled.', '/lp/publishing-services', $FAQ, $amz['price']),
 ];
 include dirname(__DIR__) . '/includes/header.php';
-$w = data('work');
-$cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode', explode('/', $w[$i]['image']))))) . '" alt="' . e($w[$i]['t']) . '" style="--r:' . $r . 'deg" loading="eager">';
 ?>
-<div class="page active" data-page="lp-publishing">
+<div class="page" data-page="lp-publishing">
 
-<!-- 1. Hero: copy and a shelf of real books, form on the right -->
-<section class="lph-split lp-hero-dark" aria-labelledby="lp-h1">
-  <?= lp_mosaic() ?>
-  <div class="lp-w lph-grid">
-    <div>
-      <p class="lp-kick">Book publishing services</p>
-      <h1 id="lp-h1">Self-publish your book on Amazon <em>and every major store.</em></h1>
-      <p class="lp-lead">AMZ United Press handles the whole publishing process for you: formatting, cover files, ISBN, metadata, categories and upload to Amazon Kindle Direct Publishing (KDP), Apple Books, Kobo and more. Your book goes live under your name, and you keep 100% of your royalties.</p>
-      <?= lp_ctas() ?>
-      <?= lp_assure(['Live in as little as 1–2 weeks', 'No royalty splits', 'Written quote first']) ?>
-      <div class="lph-shelf" aria-hidden="true"><?= $cover(2, -4) . $cover(4, 2) . $cover(6, -2) . $cover(7, 3) ?></div>
+<?= lp_hero([
+    'eyebrow' => 'Book publishing services',
+    'h1' => 'Self-publish your book on Amazon <em>and every major store.</em>',
+    'lead' => 'AMZ United Press handles the whole publishing process for you: formatting, cover files, ISBN, metadata, categories and upload to Amazon Kindle Direct Publishing (KDP), Apple Books, Kobo and more. Your book goes live under your name, and you keep 100% of your royalties.',
+    'ticks' => ['Live in as little as 1–2 weeks', 'No royalty splits', 'Written quote first'],
+    'extra' => lp_hero_shelf(),
+    'form' => ['Get your free publishing quote', 'Tell us about your book and where you want to sell it.', 3],
+]) ?>
+
+<?= lp_trust('Stores we publish to') ?>
+
+<section class="sec bg-white" aria-labelledby="op-h">
+  <div class="w">
+    <?= lp_head('Choose your route', 'Two affordable self-publishing services, <em>both done for you.</em>', 'Start with Amazon, where most ebooks sell, or go wide across every major store from day one.', true, 'op-h') ?>
+    <div class="grid g2 rv">
+      <div class="card">
+        <span class="card-ic"><?= ic('publish') ?></span>
+        <h3 class="h3"><?= e($amz['name']) ?></h3>
+        <p>Everything you need to publish on Amazon KDP: Kindle ebook and paperback set-up, categories, keywords, pricing and A+ ready files, all in your own account.</p>
+        <?= lp_checks(['Kindle ebook + paperback set-up', 'Keyword and category research', 'A book description that sells', 'Pricing and royalty guidance']) ?>
+        <div class="card-foot"><span>Starting from</span><b><?= e($amz['price']) ?></b></div>
+        <div class="ctas"><a class="btn btn-primary" href="#lp-form" data-lp-cta>Publish on Amazon <?= ic('arrow') ?></a><a href="<?= e(url('/services/' . $amz['slug'])) ?>">Amazon publishing details</a></div>
+      </div>
+      <div class="card feat">
+        <span class="tag">Widest reach</span>
+        <span class="card-ic"><?= ic('globe') ?></span>
+        <h3 class="h3"><?= e($ebk['name']) ?></h3>
+        <p>Your ebook on Amazon plus Apple Books, Kobo, Barnes &amp; Noble, Google Play and library platforms, converted and checked for every device and store.</p>
+        <?= lp_checks(['EPUB and Kindle conversion', 'Multi-store metadata and upload', 'ISBN guidance and set-up', 'Listing checks on every store']) ?>
+        <div class="card-foot"><span>Starting from</span><b><?= e($ebk['price']) ?></b></div>
+        <div class="ctas"><a class="btn btn-primary" href="#lp-form" data-lp-cta>Publish everywhere <?= ic('arrow') ?></a><a href="<?= e(url('/services/' . $ebk['slug'])) ?>">Ebook publishing details</a></div>
+      </div>
     </div>
-    <?= lp_form('lp-form', 'Get your free publishing quote', 'Tell us about your book and where you want to sell it.', 3) ?>
   </div>
 </section>
 
-<?= lp_platform_strip('Stores we publish to') ?>
+<?= lp_band('Publish on Amazon and every major store, with 100% of your royalties.', 'Get a free, written publishing quote today.') ?>
 
-<!-- 2. Two ways to publish -->
-<section class="lp-sec" aria-labelledby="op-h">
-  <div class="lp-w">
-    <div class="rv lp-head c"><h2 class="lp-h2" id="op-h">Two affordable self-publishing services, <em>both done for you.</em></h2><p class="lp-lead">Start with Amazon, where most ebooks sell, or go wide across every major store from day one.</p></div>
-    <div class="rv lp-cards c2">
-      <div class="lp-card hov"><span class="lp-ico"><?= ic('publish') ?></span><h3><?= e($amz['name']) ?></h3><p>Everything you need to publish on Amazon KDP: Kindle ebook and paperback set-up, categories, keywords, pricing and A+ ready files, all in your own account.</p>
-        <ul class="lp-checks one" style="margin:6px 0 8px"><?php foreach (['Kindle ebook + paperback set-up', 'Keyword and category research', 'Book description that sells', 'Pricing and royalty guidance'] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
-        <div class="lp-price"><span>Starting from</span><b><?= e($amz['price']) ?></b></div>
-        <div class="lp-ctas"><a class="btn btn-primary" href="#lp-form" data-lp-cta>Publish on Amazon <?= ic('arrow') ?></a></div>
-        <a class="lp-more" href="<?= e(url('/services/' . $amz['slug'])) ?>">Amazon publishing details <?= ic('arrow') ?></a></div>
-      <div class="lp-card feat hov"><span class="lp-tag">Widest reach</span><span class="lp-ico"><?= ic('globe') ?></span><h3><?= e($ebk['name']) ?></h3><p>Your ebook on Amazon plus Apple Books, Kobo, Barnes &amp; Noble, Google Play and library platforms, converted and checked for every device and store.</p>
-        <ul class="lp-checks one" style="margin:6px 0 8px"><?php foreach (['EPUB and Kindle conversion', 'Multi-store metadata and upload', 'ISBN guidance and set-up', 'Listing checks on every store'] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
-        <div class="lp-price"><span>Starting from</span><b><?= e($ebk['price']) ?></b></div>
-        <div class="lp-ctas"><a class="btn btn-primary" href="#lp-form" data-lp-cta>Publish everywhere <?= ic('arrow') ?></a></div>
-        <a class="lp-more" href="<?= e(url('/services/' . $ebk['slug'])) ?>">Ebook publishing details <?= ic('arrow') ?></a></div>
-    </div>
-  </div>
-</section>
-
-<?= lp_strip('Publish on Amazon and every major store, with 100% of your royalties.') ?>
-
-<!-- 3. Where your book goes -->
-<section class="lp-sec alt" aria-labelledby="pl-h" style="padding-top:clamp(100px,10vw,140px)">
-  <div class="lp-w lp-split">
-    <div><h2 class="lp-h2" id="pl-h">One upload. <em>Readers everywhere.</em></h2><p class="lp-lead">We prepare your files to each store’s exact standards and publish them in your own accounts, so your ebook and paperback reach readers in every major market without you wrestling with dashboards, file errors or rejected uploads.</p><?= lp_ctas('#lp-form', 'Publish my book') ?></div>
-    <ul class="lp-checks">
-      <?php foreach (['Amazon Kindle (KDP)', 'Amazon paperback & hardcover', 'Apple Books', 'Barnes & Noble', 'Rakuten Kobo', 'Google Play Books', 'IngramSpark bookstores', 'Library platforms'] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?>
-    </ul>
-  </div>
-</section>
-
-<!-- 4. Everything handled -->
-<section class="lp-sec" aria-labelledby="in-h">
-  <div class="lp-w lp-split top">
-    <div class="lp-sticky"><h2 class="lp-h2" id="in-h">Every publishing task, <em>handled.</em></h2><p class="lp-lead">Self-publishing should mean you own your book, not that you do everything yourself. Here’s what our book publishing team takes care of.</p><a class="btn btn-primary" href="#lp-form" data-lp-cta>Get my quote <?= ic('arrow') ?></a></div>
-    <ul class="lp-checks">
-      <li><?= ic('check') ?><span><b>Manuscript review</b>We check your files and flag anything that would cause a store to reject them.</span></li>
-      <li><?= ic('check') ?><span><b>Ebook &amp; print formatting</b>Clean Kindle, EPUB and print-ready PDF files that look right on every device.</span></li>
-      <li><?= ic('check') ?><span><b>Cover files</b>Ebook, paperback and hardcover covers sized to each platform’s specs.</span></li>
-      <li><?= ic('check') ?><span><b>ISBN &amp; copyright</b>Free or owned ISBNs explained, plus copyright page set-up.</span></li>
-      <li><?= ic('check') ?><span><b>Keywords &amp; categories</b>Research that helps readers find your book in search.</span></li>
-      <li><?= ic('check') ?><span><b>Book description</b>A store description written to turn browsers into buyers.</span></li>
-      <li><?= ic('check') ?><span><b>Pricing strategy</b>Price points and royalty options explained in plain English.</span></li>
-      <li><?= ic('check') ?><span><b>Upload &amp; approval</b>We submit, fix any issues and confirm every listing is live.</span></li>
-      <li><?= ic('check') ?><span><b>Author Central page</b>Your author profile set up so readers can follow you.</span></li>
-      <li><?= ic('check') ?><span><b>Launch support</b>Optional marketing, reviews outreach and ads to start sales.</span></li>
-    </ul>
+<section class="sec bg-sand" aria-labelledby="in-h">
+  <div class="w split split-57 top">
+    <div class="sticky"><span class="eyebrow">What’s included</span><h2 class="h2" id="in-h">Every publishing task, <em>handled.</em></h2><p class="lead">Self-publishing should mean you own your book, not that you do everything yourself. We prepare your files to each store’s exact standards and publish them in your own accounts.</p><?= lp_ctas('Get my quote', '#lp-form', false) ?></div>
+    <?= lp_checks([
+        ['Manuscript review', 'We check your files and flag anything a store would reject.'],
+        ['Ebook & print formatting', 'Clean Kindle, EPUB and print-ready PDF files.'],
+        ['Cover files', 'Ebook, paperback and hardcover covers sized to each platform.'],
+        ['ISBN & copyright', 'Free or owned ISBNs explained, plus copyright page set-up.'],
+        ['Keywords & categories', 'Research that helps readers find your book in search.'],
+        ['Book description', 'A store description written to turn browsers into buyers.'],
+        ['Pricing strategy', 'Price points and royalty options in plain English.'],
+        ['Upload & approval', 'We submit, fix any issues and confirm every listing is live.'],
+        ['Author Central page', 'Your author profile set up so readers can follow you.'],
+        ['Launch support', 'Optional marketing, review outreach and ads to start sales.'],
+    ], true) ?>
   </div>
 </section>
 
 <?= lp_authors() ?>
 
-<!-- 5. Steps -->
-<section class="lp-sec alt" aria-labelledby="st-h">
-  <div class="lp-w lp-split top">
-    <div><h2 class="lp-h2" id="st-h">Our book publishing process: manuscript to <em>“Buy now”</em> in six steps.</h2><p class="lp-lead">You approve every file and listing before it goes live. We do the technical work.</p><?= lp_ctas('#lp-form', 'Start publishing', false) ?></div>
-    <ol class="lp-vsteps">
-      <li><div><h3>Free consultation</h3><p>We talk through your book, your goals and where you want to sell, then send a written quote.</p></div></li>
-      <li><div><h3>File review</h3><p>We review your manuscript and cover and recommend any editing, design or formatting it needs.</p></div></li>
-      <li><div><h3>Formatting &amp; cover files</h3><p>Your ebook and print files are prepared to each store’s specifications and sent for your approval.</p></div></li>
-      <li><div><h3>Metadata &amp; pricing</h3><p>We write your description, research keywords and categories, and agree your price and royalty options.</p></div></li>
-      <li><div><h3>Upload &amp; go live</h3><p>We publish in your own accounts, resolve any store queries and confirm every listing is correct.</p></div></li>
-      <li><div><h3>Launch &amp; earn</h3><p>Your book is on sale, the royalties go straight to you, and optional marketing helps readers find it.</p></div></li>
-    </ol>
+<section class="sec bg-white" aria-labelledby="st-h">
+  <div class="w split split-57 top">
+    <div class="sticky"><span class="eyebrow">How it works</span><h2 class="h2" id="st-h">Our book publishing process: manuscript to <em>“Buy now”</em> in six steps.</h2><p class="lead">You approve every file and listing before it goes live. We do the technical work.</p><?= lp_ctas('Start publishing', '#lp-form', false) ?></div>
+    <?= lp_steps([
+        ['Free consultation', 'We talk through your book, your goals and where you want to sell, then send a written quote.'],
+        ['File review', 'We review your manuscript and cover and recommend any editing, design or formatting it needs.'],
+        ['Formatting & cover files', 'Your ebook and print files are prepared to each store’s specifications and sent for your approval.'],
+        ['Metadata & pricing', 'We write your description, research keywords and categories, and agree your price and royalty options.'],
+        ['Upload & go live', 'We publish in your own accounts, resolve any store queries and confirm every listing is correct.'],
+        ['Launch & earn', 'Your book is on sale, the royalties go straight to you, and optional marketing helps readers find it.'],
+    ]) ?>
   </div>
 </section>
 
-<!-- 6. Comparison -->
-<section class="lp-sec" aria-labelledby="cp-h">
-  <div class="lp-w">
-    <div class="rv lp-head"><h2 class="lp-h2" id="cp-h">Publish with help, <em>without giving up control.</em></h2></div>
-    <div class="rv lp-tablewrap"><table class="lp-table">
-      <thead><tr><th scope="col"></th><th scope="col">Traditional publishers</th><th scope="col">Doing it alone</th><th scope="col" class="us">AMZ United Press</th></tr></thead>
-      <tbody>
-        <tr><th scope="row">Your royalties</th><td>Typically a small share</td><td>100%</td><td class="us y">✓ 100%</td></tr>
-        <tr><th scope="row">Rights &amp; creative control</th><td>Often signed over</td><td>Yours</td><td class="us y">✓ Yours, always</td></tr>
-        <tr><th scope="row">Time to publication</th><td>Often 12–24 months</td><td>Weeks of trial and error</td><td class="us">1–3 weeks once files are ready</td></tr>
-        <tr><th scope="row">Formatting, files &amp; metadata</th><td>Included</td><td class="n">You learn it all</td><td class="us y">✓ Done for you</td></tr>
-        <tr><th scope="row">Upfront cost</th><td>None, but hard to get accepted</td><td>Your time</td><td class="us">From <?= e($amz['price']) ?>, quoted in writing</td></tr>
-      </tbody>
-    </table></div>
+<section class="sec bg-sand" aria-labelledby="cp-h">
+  <div class="w">
+    <?= lp_head('Know your options', 'Publish with help, <em>without giving up control.</em>', '', false, 'cp-h') ?>
+    <?= lp_table(['Traditional publishers', 'Doing it alone', 'AMZ United Press'], [
+        ['Your royalties', 'Typically a small share', '100%', '✓ 100%'],
+        ['Rights & creative control', 'Often signed over', 'Yours', '✓ Yours, always'],
+        ['Time to publication', 'Often 12–24 months', 'Weeks of trial and error', '1–3 weeks once files are ready'],
+        ['Formatting, files & metadata', 'Included', '— You learn it all', '✓ Done for you'],
+        ['Upfront cost', 'None, but hard to get accepted', 'Your time', 'From ' . $amz['price'] . ', quoted in writing'],
+    ]) ?>
   </div>
 </section>
 
-<?= lp_strip('Your book could be on sale in two weeks.' . lp_offer_suffix()) ?>
+<?= lp_band('Your book could be on sale in two weeks.' . lp_offer_suffix(), 'Send us your manuscript details for a free publishing quote.') ?>
 
-<!-- 7. Reviews -->
-<section class="lp-sec alt" aria-labelledby="rv-h">
-  <div class="lp-w">
-    <div class="rv lp-head c"><h2 class="lp-h2" id="rv-h">Published, <em>and proud of it.</em></h2></div>
-    <div class="rv lp-quotes"><?= lp_quotes() ?></div>
-    <div class="lp-stats" style="margin-top:56px"><?= lp_stats() ?></div>
+<section class="sec bg-white" aria-labelledby="rv-h">
+  <div class="w">
+    <?= lp_head('Authors say', 'Published, <em>and proud of it.</em>', '', true, 'rv-h') ?>
+    <?= lp_quotes() ?>
+    <div class="mt"><?= lp_stats() ?></div>
   </div>
 </section>
 
-<!-- 8. FAQ -->
-<section class="lp-sec" aria-labelledby="fq-h">
-  <div class="lp-w" style="max-width:960px">
-    <div class="rv lp-head c"><h2 class="lp-h2" id="fq-h">Book publishing <em>questions,</em> answered.</h2></div>
-    <div class="faq lp-faq"><?= faq_html($FAQ, true) ?></div>
-  </div>
-</section>
+<?= lp_faq('bg-sand', 'Book publishing <em>questions,</em> answered.', $FAQ) ?>
 
-<!-- 9. Final CTA -->
-<section class="lp-sec lp-final" aria-labelledby="fn-h">
-  <div class="lp-w lp-split">
-    <div><p class="lp-kick">Ready when you are</p><h2 class="lp-h2" id="fn-h">Let’s get your book <em>on the shelf.</em></h2><p class="lp-lead">Tell us about your book and where you want to sell it. You’ll get honest advice and a written quote within one business day.</p><?= lp_promises() ?></div>
-    <?= lp_form('lp-form2', 'Publish my book', 'Takes about a minute. We reply within one business day.', 3) ?>
-  </div>
-</section>
-
+<?= lp_final('Ready when you are', 'Let’s get your book <em>on the shelf.</em>', 'Tell us about your book and where you want to sell it. You’ll get honest advice and a written quote within one business day.', ['No royalty splits', 'Your own accounts', 'Written quote first'], ['Publish my book', 'Takes about a minute. We reply within one business day.', 3]) ?>
 </div>
 <?php include dirname(__DIR__) . '/includes/footer.php'; ?>

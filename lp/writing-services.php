@@ -20,7 +20,6 @@ $meta = [
     'schema' => lp_schema('Book Writing Services', 'Professional book and ebook writing services for fiction, nonfiction, memoir, biography and autobiography, written in the author’s voice.', '/lp/writing-services', $FAQ, '$1,800'),
 ];
 include dirname(__DIR__) . '/includes/header.php';
-
 $picks = [
     ['ghostwriting-services', 'Your ideas, expertise or story, written into a full-length book by a professional ghostwriter who learns exactly how you speak.', ['Recorded interviews and voice guide', 'Chapter-by-chapter approval', 'Signed NDA, full confidentiality', 'Your name on the cover']],
     ['ebook-writing-services', 'Lead-magnet ebooks, guides and short reads written to be finished, shared and acted on, ready for Kindle and every other store.', ['Topic and reader research', 'Outline before drafting', 'Formatted for Kindle and EPUB', 'Fast six-to-ten-week delivery']],
@@ -32,142 +31,100 @@ $picks = [
     ['autobiography-writing-services', 'Your whole life story in your own first-person voice, from early memories to today, organised so every chapter earns its place.', ['Life timeline workshop', 'First-person voice in your words', 'Help choosing what to include', 'Print and ebook editions']],
 ];
 ?>
-<div class="page active" data-page="lp-writing">
+<div class="page" data-page="lp-writing">
 
-<!-- 1. Hero: dark split with the form -->
-<section class="lph-split lp-hero-dark" aria-labelledby="lp-h1">
-  <?= lp_mosaic() ?>
-  <div class="lp-w lph-grid">
-    <div>
-      <div class="lph-badges"><span>Fiction</span><span>Nonfiction</span><span>Memoir</span><span>Biography</span><span>Ebooks</span></div>
-      <h1 id="lp-h1">Professional book writing services, <em>in your voice.</em></h1>
-      <p class="lp-lead">You have the idea. Our professional book writers turn it into a finished, publish-ready manuscript, interviewing you, learning how you speak and writing chapter by chapter while you approve every step. Your name goes on the cover. Every right and royalty stays with you.</p>
-      <?= lp_ctas() ?>
-      <?= lp_assure(['Free consultation', 'Written quote first', 'Signed NDA', '100% rights & royalties']) ?>
-      <?php $fc = array_slice(glob(ROOT . '/assets/img/client-images/*.{png,jpg,jpeg,webp}', GLOB_BRACE) ?: [], 0, 5); ?>
-      <div class="lph-faces"><span><?php foreach ($fc as $f): ?><img src="<?= e(asset('img/client-images/' . rawurlencode(basename($f)))) ?>" alt="" width="46" height="46"><?php endforeach; ?></span><p><b><?= e(data('stats')[0][0] . data('stats')[0][1]) ?> books published</b> for authors like these, under their own names.</p></div>
-    </div>
-    <?= lp_form('lp-form', 'Get your free writing quote', 'Tell us about your book. A real person replies within one business day.', 0) ?>
-  </div>
-</section>
+<?= lp_hero([
+    'tags' => ['Fiction', 'Nonfiction', 'Memoir', 'Biography', 'Ebooks'],
+    'eyebrow' => 'Book writing services',
+    'h1' => 'Professional book writing services, <em>in your voice.</em>',
+    'lead' => 'You have the idea. Our professional book writers turn it into a finished, publish-ready manuscript: they interview you, learn how you speak and write chapter by chapter while you approve every step. Your name goes on the cover, and every right and royalty stays with you.',
+    'ticks' => ['Free consultation', 'Written quote first', 'Signed NDA'],
+    'extra' => lp_hero_faces(),
+    'form' => ['Get your free writing quote', 'Tell us about your book. A real person replies within one business day.', 0],
+]) ?>
 
-<?= lp_platform_strip('We write, then publish to') ?>
+<?= lp_trust('We write, then publish to') ?>
 
-<!-- 2. Problem / solution -->
-<section class="lp-sec alt" aria-labelledby="pg-h">
-  <div class="lp-w">
-    <div class="rv lp-head c"><p class="lp-kick">Sound familiar?</p><h2 class="lp-h2" id="pg-h">The book is in your head. <em>Getting it out</em> is the hard part.</h2><p class="lp-lead">Most books never get written, not because the idea isn’t good, but because writing a book takes hundreds of focused hours. That’s exactly what our ebook and book writing services take off your plate.</p></div>
-    <div class="rv lp-pg">
-      <div class="pain"><h3>Writing it alone</h3><ul>
-        <li><i>✕</i>Months of evenings and weekends that never quite add up to a finished draft</li>
-        <li><i>✕</i>A blank page, a loose outline and no one to tell you if it’s working</li>
-        <li><i>✕</i>Chapters that don’t flow, and a voice that changes from page to page</li>
-        <li><i>✕</i>No clear path from manuscript to a book people can actually buy</li>
-      </ul></div>
-      <div class="gain"><h3>With AMZ United Press</h3><ul>
-        <li><i>✓</i>A professional writer matched to your genre, working to an agreed schedule</li>
-        <li><i>✓</i>A chapter plan you approve before a single page is drafted</li>
-        <li><i>✓</i>One consistent voice, yours, checked against your interviews and notes</li>
-        <li><i>✓</i>Editing, cover design and publishing available whenever you are ready</li>
-      </ul></div>
-    </div>
-  </div>
-</section>
+<?= lp_vs('bg-sand', 'Sound familiar?', 'The book is in your head. <em>Getting it out</em> is the hard part.', 'Most books never get written, not because the idea isn’t good, but because writing a book takes hundreds of focused hours. That’s exactly what our ebook and book writing services take off your plate.',
+    ['Writing it alone', ['Months of evenings and weekends that never add up to a finished draft', 'A blank page, a loose outline and no one to tell you if it’s working', 'Chapters that don’t flow, and a voice that changes from page to page', 'No clear path from manuscript to a book people can buy']],
+    ['With AMZ United Press', ['A professional writer matched to your genre, on an agreed schedule', 'A chapter plan you approve before a single page is drafted', 'One consistent voice, yours, checked against your interviews', 'Editing, cover design and publishing whenever you are ready']]) ?>
 
-<!-- 3. Service picker -->
-<section class="lp-sec" aria-labelledby="pk-h">
-  <div class="lp-w">
-    <div class="rv lp-head"><h2 class="lp-h2" id="pk-h">Writing services for <em>every kind</em> of book.</h2><p class="lp-lead" style="margin:0">Pick the book you want to write to see how we help and where pricing starts.</p></div>
-    <div class="lp-pick" data-lp-pick>
-      <div class="lp-pick-list" role="tablist" aria-label="Writing services">
+<section class="sec bg-white" aria-labelledby="pk-h">
+  <div class="w">
+    <?= lp_head('Choose your book', 'Writing services for <em>every kind</em> of book.', 'Pick the book you want to write to see how we help and where pricing starts.', false, 'pk-h') ?>
+    <div class="pick rv" data-lp-pick>
+      <div class="pick-list" role="tablist" aria-label="Writing services">
         <?php foreach ($picks as $i => $p): $s = sub_by_slug($p[0]); ?>
         <button type="button" role="tab" id="pk-t<?= $i ?>" aria-controls="pk-p<?= $i ?>" aria-selected="<?= $i ? 'false' : 'true' ?>" tabindex="<?= $i ? -1 : 0 ?>"><?= e($s['name']) ?><?= ic('arrow') ?></button>
         <?php endforeach; ?>
       </div>
       <?php foreach ($picks as $i => $p): $s = sub_by_slug($p[0]); ?>
-      <div class="lp-pick-panel" role="tabpanel" id="pk-p<?= $i ?>" aria-labelledby="pk-t<?= $i ?>"<?= $i ? ' hidden' : '' ?>>
-        <h3><?= e($s['name']) ?></h3>
+      <div class="pick-panel" role="tabpanel" id="pk-p<?= $i ?>" aria-labelledby="pk-t<?= $i ?>"<?= $i ? ' hidden' : '' ?>>
+        <h3 class="h2"><?= e($s['name']) ?></h3>
         <p><?= e($p[1]) ?></p>
-        <ul><?php foreach ($p[2] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
-        <div class="lp-pick-meta"><span>From <?= e($s['price']) ?></span><span>Typical time <?= e($s['time']) ?></span><span>Written quote first</span></div>
-        <div class="lp-ctas"><a class="btn btn-primary" href="#lp-form" data-lp-cta>Get a <?= e(strtolower($s['t'])) ?> quote <?= ic('arrow') ?></a><a class="lp-link" href="<?= e(url('/services/' . $s['slug'])) ?>">Read more about <?= e(strtolower($s['name'])) ?></a></div>
+        <?= lp_checks($p[2], true) ?>
+        <div class="pick-meta"><span>From <?= e($s['price']) ?></span><span>Typical time <?= e($s['time']) ?></span><span>Written quote first</span></div>
+        <div class="ctas"><a class="btn btn-primary" href="#lp-form" data-lp-cta>Get a <?= e(strtolower($s['t'])) ?> quote <?= ic('arrow') ?></a><a href="<?= e(url('/services/' . $s['slug'])) ?>">Read more about <?= e(strtolower($s['name'])) ?></a></div>
       </div>
       <?php endforeach; ?>
     </div>
   </div>
 </section>
 
-<?= lp_strip('Not sure which writing service fits your book? Ask a writer.') ?>
+<?= lp_band('Not sure which writing service fits your book?', 'Talk to a writer for free and get honest advice.') ?>
 
-<!-- 4. Proof: covers + stats -->
-<section class="lp-sec alt" aria-labelledby="cv-h">
-  <div class="lp-w">
-    <div class="rv lp-head"><h2 class="lp-h2" id="cv-h">Books we’ve helped <em>bring to life.</em></h2><p class="lp-lead" style="margin:0">A few titles from authors we have written, edited, designed and published for. <a href="<?= e(url('/portfolio')) ?>">See the full portfolio</a>.</p></div>
-    <div class="lp-covers" style="--n:6"><?= lp_covers(6, 2) ?></div>
-    <div class="lp-stats" style="margin-top:64px"><?= lp_stats() ?></div>
+<section class="sec bg-sand" aria-labelledby="cv-h">
+  <div class="w">
+    <?= lp_head('Our authors’ books', 'Books we’ve helped <em>bring to life.</em>', 'A few titles from authors we have written, edited, designed and published for. [[/portfolio|See the full portfolio]].', false, 'cv-h') ?>
+    <?= lp_books(6, 2) ?>
+    <div class="mt"><?= lp_stats() ?></div>
   </div>
 </section>
 
 <?= lp_authors() ?>
 
-<!-- 5. Process -->
-<section class="lp-sec" aria-labelledby="st-h">
-  <div class="lp-w">
-    <div class="rv lp-head"><h2 class="lp-h2" id="st-h">From first call to finished manuscript in <em>four steps.</em></h2></div>
-    <ol class="rv lp-steps" style="--n:4">
-      <li><h3>Free consultation</h3><p>Tell us about your book, your readers and your goals. We match you with a writer who knows your genre and send a written quote.</p><small>1–3 days</small></li>
-      <li><h3>Interviews &amp; outline</h3><p>Your writer interviews you, gathers your notes and research, and builds a chapter-by-chapter outline for your approval.</p><small>1–2 weeks</small></li>
-      <li><h3>Writing &amp; review</h3><p>Chapters arrive in stages. You read, comment and request changes, so the book stays true to you the whole way through.</p><small>4–14 weeks</small></li>
-      <li><h3>Final manuscript</h3><p>We polish, proofread and deliver the finished manuscript in Word and PDF, with full rights transferred to you.</p><small>1–2 weeks</small></li>
-    </ol>
-    <div style="margin-top:48px"><?= lp_ctas('#lp-form', 'Start with a free consultation') ?></div>
+<section class="sec bg-white" aria-labelledby="st-h">
+  <div class="w">
+    <?= lp_head('How it works', 'From first call to finished manuscript in <em>four steps.</em>', '', false, 'st-h') ?>
+    <?= lp_steps([
+        ['Free consultation', 'Tell us about your book, your readers and your goals. We match you with a writer who knows your genre and send a written quote.', '1–3 days'],
+        ['Interviews & outline', 'Your writer interviews you, gathers your notes and research, and builds a chapter-by-chapter outline for your approval.', '1–2 weeks'],
+        ['Writing & review', 'Chapters arrive in stages. You read, comment and request changes, so the book stays true to you the whole way through.', '4–14 weeks'],
+        ['Final manuscript', 'We polish, proofread and deliver the finished manuscript in Word and PDF, with full rights transferred to you.', '1–2 weeks'],
+    ]) ?>
+    <div class="mt"><?= lp_ctas('Start with a free consultation') ?></div>
   </div>
 </section>
 
-<!-- 6. Comparison -->
-<section class="lp-sec alt" aria-labelledby="cp-h">
-  <div class="lp-w">
-    <div class="rv lp-head"><h2 class="lp-h2" id="cp-h">Why authors choose our <em>book writers.</em></h2></div>
-    <div class="rv lp-tablewrap"><table class="lp-table">
-      <thead><tr><th scope="col"></th><th scope="col">Writing it yourself</th><th scope="col">Freelance marketplaces</th><th scope="col" class="us">AMZ United Press</th></tr></thead>
-      <tbody>
-        <tr><th scope="row">Time to a finished draft</th><td>Often a year or more</td><td>Varies with the freelancer</td><td class="us">6–20 weeks, agreed upfront</td></tr>
-        <tr><th scope="row">Writer matched to your genre</th><td class="n">—</td><td>You vet them yourself</td><td class="us y">✓ Matched for you</td></tr>
-        <tr><th scope="row">Chapter-by-chapter approval</th><td class="n">—</td><td>Sometimes</td><td class="us y">✓ Always</td></tr>
-        <tr><th scope="row">Editing, cover &amp; publishing</th><td>Find each one separately</td><td>Usually not included</td><td class="us y">✓ Under one roof</td></tr>
-        <tr><th scope="row">Price</th><td>Your time</td><td>Often renegotiated mid-project</td><td class="us">Written quote, no surprises</td></tr>
-        <tr><th scope="row">Rights &amp; royalties</th><td>Yours</td><td>Depends on the contract</td><td class="us y">✓ 100% yours, signed NDA</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-</section>
-
-<?= lp_strip('Ready to finish your book?' . lp_offer_suffix()) ?>
-
-<!-- 7. Promises + quotes -->
-<section class="lp-sec" aria-labelledby="pr-h">
-  <div class="lp-w">
-    <div class="rv lp-head"><h2 class="lp-h2" id="pr-h">Your book. Your name. <em>Your royalties.</em></h2></div>
+<section class="sec bg-ink" aria-labelledby="pr-h">
+  <div class="w split split-57">
+    <div><span class="eyebrow">Our promise</span><h2 class="h2" id="pr-h">Your book. Your name. <em>Your royalties.</em></h2><p class="lead">Every writing project comes with the same four guarantees, written into your contract before we start.</p></div>
     <?= lp_promises() ?>
-    <div class="rv lp-quotes" style="margin-top:40px"><?= lp_quotes() ?></div>
   </div>
 </section>
 
-<!-- 8. FAQ -->
-<section class="lp-sec alt" aria-labelledby="fq-h">
-  <div class="lp-w lp-split top">
-    <div class="lp-sticky"><h2 class="lp-h2" id="fq-h">Questions about our <em>book writing services.</em></h2><p class="lp-lead">Can’t see yours? Call us on <a href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>" data-lp-call><?= e(site('phone')) ?></a> or ask in the form.</p><a class="btn btn-primary" href="#lp-form2" data-lp-cta>Ask a writer <?= ic('arrow') ?></a></div>
-    <div class="faq lp-faq"><?= faq_html($FAQ, true) ?></div>
+<section class="sec bg-sand" aria-labelledby="cp-h">
+  <div class="w">
+    <?= lp_head('Compare your options', 'Why authors choose our <em>book writers.</em>', '', false, 'cp-h') ?>
+    <?= lp_table(['Writing it yourself', 'Freelance marketplaces', 'AMZ United Press'], [
+        ['Time to a finished draft', 'Often a year or more', 'Varies with the freelancer', '6–20 weeks, agreed upfront'],
+        ['Writer matched to your genre', '—', 'You vet them yourself', '✓ Matched for you'],
+        ['Chapter-by-chapter approval', '—', 'Sometimes', '✓ Always'],
+        ['Editing, cover & publishing', 'Find each one separately', 'Usually not included', '✓ Under one roof'],
+        ['Price', 'Your time', 'Often renegotiated mid-project', 'Written quote, no surprises'],
+        ['Rights & royalties', 'Yours', 'Depends on the contract', '✓ 100% yours, signed NDA'],
+    ]) ?>
   </div>
 </section>
 
-<!-- 9. Final CTA with form -->
-<section class="lp-sec lp-final" aria-labelledby="fn-h">
-  <div class="lp-w lp-split">
-    <div><p class="lp-kick">Free consultation</p><h2 class="lp-h2" id="fn-h">Let’s write <em>your book.</em></h2><p class="lp-lead">Tell us what you want to write. We’ll match you with the right writer, answer your questions and send a written quote. No pressure and no obligation.</p><?= lp_ctas('#lp-form2', 'Get a Free Quote') ?><?= lp_assure() ?></div>
-    <?= lp_form('lp-form2', 'Start your book today', 'Takes about a minute. We reply within one business day.', 0) ?>
-  </div>
+<?= lp_band('Ready to finish your book?' . lp_offer_suffix(), 'Book a free consultation and get a written quote within one business day.') ?>
+
+<section class="sec bg-white" aria-labelledby="rv-h">
+  <div class="w"><?= lp_head('Authors say', 'Kind words from <em>our authors.</em>', '', true, 'rv-h') ?><?= lp_quotes() ?></div>
 </section>
 
+<?= lp_faq('bg-sand', 'Questions about our <em>book writing services.</em>', $FAQ) ?>
+
+<?= lp_final('Free consultation', 'Let’s write <em>your book.</em>', 'Tell us what you want to write. We’ll match you with the right writer, answer your questions and send a written quote. No pressure and no obligation.', ['Free consultation', 'Written quote first', '100% rights & royalties'], ['Start your book today', 'Takes about a minute. We reply within one business day.', 0]) ?>
 </div>
 <?php include dirname(__DIR__) . '/includes/footer.php'; ?>

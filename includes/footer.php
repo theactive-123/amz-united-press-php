@@ -1,17 +1,17 @@
 </main>
 
 <?php if (!empty($meta['lp'])): ?>
-<footer class="site-footer lp-foot">
-  <div class="wrap">
-    <div class="lp-foot-in">
-      <a class="foot-logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo-light.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>" loading="lazy"></a>
-      <ul class="foot-contact">
-        <li><a href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>"><?= ic('phone') ?><?= e(site('phone')) ?></a></li>
-        <li><a href="mailto:<?= e(site('email')) ?>"><?= ic('mail') ?><?= e(site('email')) ?></a></li>
-        <li><?= ic('clock') ?><?= e(site('hours')) ?></li>
-      </ul>
+<footer class="lpf">
+  <div class="w">
+    <div class="lpf-in">
+      <a class="logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo-light.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>" loading="lazy"></a>
+      <div class="lpf-contact">
+        <a href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>" data-lp-call><?= ic('phone') ?><?= e(site('phone')) ?></a>
+        <a href="mailto:<?= e(site('email')) ?>"><?= ic('mail') ?><?= e(site('email')) ?></a>
+        <span><?= ic('clock') ?><?= e(site('hours')) ?></span>
+      </div>
     </div>
-    <div class="foot-bottom"><span>© <?= date('Y') ?> <?= e(site('name')) ?>. All rights reserved.</span><span><a href="<?= e(url('/privacy')) ?>">Privacy Policy</a> &nbsp;·&nbsp; <a href="<?= e(url('/terms')) ?>">Terms &amp; Conditions</a></span></div>
+    <div class="lpf-bottom"><span>© <?= date('Y') ?> <?= e(site('name')) ?>. All rights reserved.</span><span><a href="<?= e(url('/privacy')) ?>">Privacy Policy</a> &nbsp;·&nbsp; <a href="<?= e(url('/terms')) ?>">Terms &amp; Conditions</a></span></div>
   </div>
 </footer>
 <?php else: ?>
@@ -43,7 +43,7 @@
 </footer>
 <?php endif; ?>
 
-<div class="dock<?= !empty($meta['lp']) ? ' lp-dock' : '' ?>"><a class="btn btn-dark" href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>"<?= !empty($meta['lp']) ? ' data-lp-call' : '' ?>><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>Call us</a><?php if (!empty($meta['lp'])): ?><a class="btn btn-primary" href="#lp-form" data-lp-cta>Free quote</a><?php else: ?><button type="button" class="btn btn-primary" data-quote>Free quote</button><?php endif; ?></div>
+<div class="dock"><a class="btn btn-dark" href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>"<?= !empty($meta['lp']) ? ' data-lp-call' : '' ?>><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>Call us</a><?php if (!empty($meta['lp'])): ?><a class="btn btn-primary" href="#lp-form" data-lp-cta>Free quote</a><?php else: ?><button type="button" class="btn btn-primary" data-quote>Free quote</button><?php endif; ?></div>
 
 <!-- Pop-ups -->
 <dialog id="workDialog" aria-labelledby="dlgTitle"><div class="modal-in" id="dlgBody"></div></dialog>

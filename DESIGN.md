@@ -2,7 +2,7 @@
 
 > Look like a working publishing house, not a template: real authors, real books, print-shop craft.
 
-Scope: the five ad landing pages in `/lp/` (styles in `assets/css/lp.css`). The logo, the brand orange and the ink black stay exactly as they are. This file is not served on the web (`.htaccess` blocks it).
+Scope: the five ad landing pages in `/lp/`. They load only `fonts.css` and the standalone `assets/css/lp.css`, and every section is rendered by a component in `includes/lp.php`. The sections are hero, trust bar, before/after panels, cards, steps, books, author marquee, CTA band, tiers, table, quotes, FAQ and final form. All of them share one 1200px container, one gutter and one section-spacing scale. Full-bleed sections are the hero, trust bar, CTA bands, author marquee and the ink sections; their content always sits inside the container. The logo, the brand orange and the ink black stay as they are. This file is not served on the web (`.htaccess` blocks it).
 
 ## 1. Visual Theme & Atmosphere
 

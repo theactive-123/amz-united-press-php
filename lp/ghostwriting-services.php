@@ -24,138 +24,109 @@ $meta = [
 ];
 include dirname(__DIR__) . '/includes/header.php';
 ?>
-<div class="page active" data-page="lp-ghost">
+<div class="page" data-page="lp-ghost">
 
-<!-- 1. Hero: story-led, light -->
-<section class="lph-story lp-hero-dark" aria-labelledby="lp-h1">
-  <?= lp_mosaic() ?>
-  <div class="lp-w lph-grid">
-    <div>
-      <p class="lp-kick">Professional ghostwriting services</p>
-      <h1 id="lp-h1">You tell the story. <em>We write the book.</em></h1>
-      <p class="lp-lead">Hire a professional ghostwriter who interviews you, learns exactly how you speak and writes your book chapter by chapter, in your voice. You approve every page, your name goes on the cover, and every right and royalty stays with you. Confidential from the very first call.</p>
-      <?= lp_ctas() ?>
-      <?= lp_assure(['Signed NDA', 'Your name on the cover', '100% royalties']) ?>
-      <?php $fc = array_slice(glob(ROOT . '/assets/img/client-images/*.{png,jpg,jpeg,webp}', GLOB_BRACE) ?: [], 0, 5); ?>
-      <div class="lph-faces"><span><?php foreach ($fc as $f): ?><img src="<?= e(asset('img/client-images/' . rawurlencode(basename($f)))) ?>" alt="" width="46" height="46"><?php endforeach; ?></span><p><b><?= e(data('stats')[0][0] . data('stats')[0][1]) ?> books published</b> for authors like these, under their own names.</p></div>
-    </div>
-    <?= lp_form('lp-form', 'Talk to a ghostwriter', 'Free, confidential consultation. We reply within one business day.', 0) ?>
+<?= lp_hero([
+    'eyebrow' => 'Professional ghostwriting services',
+    'h1' => 'You tell the story. <em>We write the book.</em>',
+    'lead' => 'Hire a professional ghostwriter who interviews you, learns exactly how you speak and writes your book chapter by chapter, in your voice. You approve every page, your name goes on the cover, and every right and royalty stays with you. Confidential from the very first call.',
+    'ticks' => ['Signed NDA', 'Your name on the cover', '100% royalties'],
+    'extra' => lp_hero_faces(),
+    'form' => ['Talk to a ghostwriter', 'Free, confidential consultation. We reply within one business day.', 0],
+]) ?>
+
+<?= lp_trust('Our authors’ books are sold on') ?>
+
+<section class="sec bg-sand" aria-labelledby="sf-h">
+  <div class="w">
+    <?= lp_head('Sound familiar?', 'You’ve meant to write this book <em>for years.</em>', 'You have the stories, the expertise or the idea. What you don’t have is hundreds of spare hours, or the patience to stare at a blank page. That’s what a ghostwriter is for.', true, 'sf-h') ?>
+    <?= lp_cards([
+        ['clock', '“I don’t have the time.”', 'Founders, doctors and busy professionals spend one or two hours a week talking to their writer. We do the hundreds of hours of writing.'],
+        ['pen', '“I’m not a writer.”', 'You don’t need to be. You need a great story or valuable knowledge. Our ghostwriters turn conversation into polished, readable chapters.'],
+        ['edit', '“I started, then stalled.”', 'Send us your notes and half-finished draft. Your writer will build a plan around what you have and carry the book to the finish line.'],
+    ], 3) ?>
   </div>
 </section>
 
-<?= lp_platform_strip('Our authors’ books are sold on') ?>
-
-<!-- 2. Sound familiar -->
-<section class="lp-sec alt" aria-labelledby="sf-h">
-  <div class="lp-w">
-    <div class="rv lp-head c"><h2 class="lp-h2" id="sf-h">You’ve meant to write this book <em>for years.</em></h2><p class="lp-lead">You have the stories, the expertise or the idea. What you don’t have is hundreds of spare hours, or the patience to stare at a blank page. That’s what a ghostwriter is for.</p></div>
-    <div class="rv lp-cards c3">
-      <div class="lp-card"><span class="lp-ico"><?= ic('clock') ?></span><h3>“I don’t have the time.”</h3><p>Founders, doctors and busy professionals spend one or two hours a week talking to their writer. We do the hundreds of hours of writing.</p></div>
-      <div class="lp-card"><span class="lp-ico"><?= ic('pen') ?></span><h3>“I’m not a writer.”</h3><p>You don’t need to be. You need a great story or valuable knowledge. Our ghostwriters turn conversation into polished, readable chapters.</p></div>
-      <div class="lp-card"><span class="lp-ico"><?= ic('edit') ?></span><h3>“I started, then stalled.”</h3><p>Send us your notes and half-finished draft. Your writer will build a plan around what you have and carry the book to the finish line.</p></div>
-    </div>
+<section class="sec bg-ink" aria-labelledby="hw-h">
+  <div class="w split split-57 top">
+    <div class="sticky"><span class="eyebrow">How ghostwriting works</span><h2 class="h2" id="hw-h">Our ghostwriting process: you talk, <em>we write,</em> you approve.</h2><p class="lead">A clear, collaborative process that keeps you in control without taking over your calendar.</p><?= lp_ctas('Book my free consultation', '#lp-form', false) ?></div>
+    <?= lp_steps([
+        ['Free, confidential consultation', 'Tell us about your book and your goals. We sign an NDA, match you with a ghostwriter for your genre and send a written quote.'],
+        ['Discovery interviews', 'In a few relaxed, recorded calls, your writer gathers your stories, ideas and the way you naturally speak.'],
+        ['Outline & voice guide', 'You approve a chapter-by-chapter outline and a short voice guide before any drafting begins.'],
+        ['Chapter-by-chapter writing', 'Your ghostwriter drafts in stages. You read, comment and request changes, so nothing surprises you at the end.'],
+        ['Editing & polish', 'A separate editor and proofreader refine the full manuscript for flow, accuracy and consistency.'],
+        ['Your finished book', 'You receive the final manuscript with full copyright, ready for cover design and publishing whenever you are.'],
+    ]) ?>
   </div>
 </section>
 
-<!-- 3. How it works -->
-<section class="lp-sec dark" aria-labelledby="hw-h">
-  <div class="lp-w lp-split top">
-    <div class="lp-sticky"><h2 class="lp-h2" id="hw-h">Our ghostwriting process: you talk, <em>we write,</em> you approve.</h2><p class="lp-lead">A clear, collaborative process that keeps you in control without taking over your calendar.</p><?= lp_ctas('#lp-form', 'Book my free consultation', false) ?></div>
-    <ol class="lp-vsteps">
-      <li><div><h3>Free, confidential consultation</h3><p>Tell us about your book and your goals. We sign an NDA, match you with a ghostwriter for your genre and send a written quote.</p></div></li>
-      <li><div><h3>Discovery interviews</h3><p>In a few relaxed, recorded calls, your writer gathers your stories, ideas and the way you naturally speak.</p></div></li>
-      <li><div><h3>Outline &amp; voice guide</h3><p>You approve a chapter-by-chapter outline and a short voice guide before any drafting begins.</p></div></li>
-      <li><div><h3>Chapter-by-chapter writing</h3><p>Your ghostwriter drafts in stages. You read, comment and request changes, so nothing surprises you at the end.</p></div></li>
-      <li><div><h3>Editing &amp; polish</h3><p>A separate editor and proofreader refine the full manuscript for flow, accuracy and consistency.</p></div></li>
-      <li><div><h3>Your finished book</h3><p>You receive the final manuscript with full copyright, ready for cover design and publishing whenever you are.</p></div></li>
-    </ol>
+<?= lp_band('Talk to a ghostwriter today, free and confidential.', 'A real person replies within one business day.') ?>
+
+<section class="sec bg-white" aria-labelledby="wg-h">
+  <div class="w">
+    <?= lp_head('What you get', 'Everything included in our <em>affordable ghostwriting services.</em>', 'One price, written down before we start, covering the whole journey from first interview to finished manuscript.', false, 'wg-h') ?>
+    <?= lp_cards([
+        ['users', 'A dedicated ghostwriter', 'One professional writer for the whole book, matched to your genre and personality.'],
+        ['headset', 'A project manager', 'Your single point of contact for schedules, milestones and questions.'],
+        ['layout', 'Outline & voice guide', 'A detailed chapter plan and voice profile, approved by you before writing starts.'],
+        ['edit', 'Revisions included', 'Chapter feedback and revisions within the agreed scope, until it reads like you.'],
+        ['check', 'Professional editing', 'A separate editor and proofreader polish the finished manuscript.'],
+        ['lock', 'Signed NDA', 'Complete confidentiality. Your story and your identity stay private.'],
+        ['shield', 'Full copyright', '100% ownership of the manuscript and every royalty, transferred to you.'],
+        ['publish', 'Optional publishing', '[[book-cover-design-services|Cover design]], formatting and [[amazon-publishing-services|Amazon publishing]] when you are ready.'],
+    ], 4) ?>
   </div>
 </section>
 
-<?= lp_strip('Talk to a ghostwriter today, free and confidential.') ?>
-
-<!-- 4. What you get -->
-<section class="lp-sec" aria-labelledby="wg-h">
-  <div class="lp-w">
-    <div class="rv lp-head"><h2 class="lp-h2" id="wg-h">Everything included in our <em>affordable ghostwriting services.</em></h2></div>
-    <div class="rv lp-cards">
-      <div class="lp-card"><span class="lp-ico"><?= ic('users') ?></span><h3>A dedicated ghostwriter</h3><p>One professional writer for the whole book, matched to your genre and personality.</p></div>
-      <div class="lp-card"><span class="lp-ico"><?= ic('headset') ?></span><h3>A project manager</h3><p>Your single point of contact for schedules, milestones and questions.</p></div>
-      <div class="lp-card"><span class="lp-ico"><?= ic('layout') ?></span><h3>Outline &amp; voice guide</h3><p>A detailed chapter plan and voice profile, approved by you before writing starts.</p></div>
-      <div class="lp-card"><span class="lp-ico"><?= ic('edit') ?></span><h3>Revisions included</h3><p>Chapter feedback and revisions within the agreed scope, until it reads like you.</p></div>
-      <div class="lp-card"><span class="lp-ico"><?= ic('check') ?></span><h3>Professional editing</h3><p>A separate editor and proofreader polish the finished manuscript.</p></div>
-      <div class="lp-card"><span class="lp-ico"><?= ic('lock') ?></span><h3>Signed NDA</h3><p>Complete confidentiality. Your story and your identity stay private.</p></div>
-      <div class="lp-card"><span class="lp-ico"><?= ic('shield') ?></span><h3>Full copyright</h3><p>100% ownership of the manuscript and every royalty, transferred to you.</p></div>
-      <div class="lp-card"><span class="lp-ico"><?= ic('publish') ?></span><h3>Optional publishing</h3><p><a href="<?= e(url('/services/book-cover-design-services')) ?>">Cover design</a>, formatting and <a href="<?= e(url('/services/amazon-publishing-services')) ?>">Amazon publishing</a> when you are ready.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 5. Reviews + covers -->
-<section class="lp-sec alt" aria-labelledby="rv-h">
-  <div class="lp-w">
-    <div class="rv lp-head c"><h2 class="lp-h2" id="rv-h">“It sounds <em>exactly like me.</em>”</h2></div>
-    <div class="rv lp-quotes"><?= lp_quotes() ?></div>
-    <div class="lp-covers" style="--n:6;margin-top:56px"><?= lp_covers(6, 0) ?></div>
+<section class="sec bg-sand" aria-labelledby="bk-h">
+  <div class="w">
+    <?= lp_head('Authors say', '“It sounds <em>exactly like me.</em>”', '', true, 'bk-h') ?>
+    <?= lp_quotes() ?>
+    <div class="mt"><?= lp_books(6, 0) ?></div>
   </div>
 </section>
 
 <?= lp_authors() ?>
 
-<!-- 6. Genres -->
-<section class="lp-sec" aria-labelledby="gn-h">
-  <div class="lp-w lp-split">
-    <div><h2 class="lp-h2" id="gn-h">A ghostwriter for hire who knows <em>your kind of book.</em></h2><p class="lp-lead" style="margin:0">We match you with a writer who reads and writes in your genre, so the book meets readers’ expectations from page one.</p></div>
-    <div class="lp-chips">
+<section class="sec bg-white" aria-labelledby="gn-h">
+  <div class="w split">
+    <div><span class="eyebrow">Every genre</span><h2 class="h2" id="gn-h">A ghostwriter for hire who knows <em>your kind of book.</em></h2><p class="lead">We match you with a writer who reads and writes in your genre, so the book meets readers’ expectations from page one.</p></div>
+    <div class="chips rv">
       <?php foreach ([['Memoir', 'memoir-writing-services'], ['Autobiography', 'autobiography-writing-services'], ['Biography', 'biography-writing-services'], ['Business & leadership', 'nonfiction-writing-services'], ['Self-help', 'nonfiction-writing-services'], ['Novels', 'novel-ghostwriting-services'], ['Thriller & mystery', 'fiction-writing-services'], ['Romance', 'fiction-writing-services'], ['Fantasy & sci-fi', 'fiction-writing-services'], ['Children’s books', 'ebook-writing-services'], ['Ebooks & guides', 'ebook-writing-services'], ['Faith & inspiration', 'nonfiction-writing-services']] as $g): ?><a href="<?= e(url('/services/' . $g[1])) ?>"><?= e($g[0]) ?> <?= ic('arrow') ?></a><?php endforeach; ?>
     </div>
   </div>
 </section>
 
-<!-- 7. Compare -->
-<section class="lp-sec alt" aria-labelledby="cp-h">
-  <div class="lp-w">
-    <div class="rv lp-head"><h2 class="lp-h2" id="cp-h">Ghostwriting that’s <em>personal and affordable.</em></h2></div>
-    <div class="rv lp-tablewrap"><table class="lp-table">
-      <thead><tr><th scope="col"></th><th scope="col">Large ghostwriting agencies</th><th scope="col">Freelance marketplaces</th><th scope="col" class="us">AMZ United Press</th></tr></thead>
-      <tbody>
-        <tr><th scope="row">Typical cost</th><td>Often $20,000+</td><td>Typically $5,000–$25,000</td><td class="us">From <?= e($gw['price']) ?>, quoted in writing</td></tr>
-        <tr><th scope="row">Timeline</th><td>Typically 6–12 months</td><td>Often 4–8 months</td><td class="us"><?= e($gw['time']) ?></td></tr>
-        <tr><th scope="row">Writer matched to your genre</th><td>Usually</td><td>You vet them yourself</td><td class="us y">✓ Matched for you</td></tr>
-        <tr><th scope="row">Chapter-by-chapter approval</th><td>Sometimes</td><td>Depends on the writer</td><td class="us y">✓ Always</td></tr>
-        <tr><th scope="row">Editing, cover &amp; publishing</th><td>Extra cost</td><td class="n">Not included</td><td class="us y">✓ Available in-house</td></tr>
-        <tr><th scope="row">NDA &amp; full ownership</th><td>Usually</td><td>Depends on the contract</td><td class="us y">✓ Always</td></tr>
-      </tbody>
-    </table></div>
+<section class="sec bg-sand" aria-labelledby="cp-h">
+  <div class="w">
+    <?= lp_head('Compare', 'Ghostwriting that’s <em>personal and affordable.</em>', '', false, 'cp-h') ?>
+    <?= lp_table(['Large ghostwriting agencies', 'Freelance marketplaces', 'AMZ United Press'], [
+        ['Typical cost', 'Often $20,000+', 'Typically $5,000–$25,000', 'From ' . $gw['price'] . ', quoted in writing'],
+        ['Timeline', 'Typically 6–12 months', 'Often 4–8 months', $gw['time']],
+        ['Writer matched to your genre', 'Usually', 'You vet them yourself', '✓ Matched for you'],
+        ['Chapter-by-chapter approval', 'Sometimes', 'Depends on the writer', '✓ Always'],
+        ['Editing, cover & publishing', 'Extra cost', '— Not included', '✓ Available in-house'],
+        ['NDA & full ownership', 'Usually', 'Depends on the contract', '✓ Always'],
+    ]) ?>
   </div>
 </section>
 
-<?= lp_strip('Hire a ghostwriter who writes like you.' . lp_offer_suffix()) ?>
+<?= lp_band('Hire a ghostwriter who writes like you.' . lp_offer_suffix(), 'Free, confidential consultation and a written quote.') ?>
 
-<!-- 8. Confidentiality + proof -->
-<section class="lp-sec dark" aria-labelledby="cf-h">
-  <div class="lp-w">
-    <div class="rv lp-head"><h2 class="lp-h2" id="cf-h">Your name on the cover. <em>Ours nowhere.</em></h2><p class="lp-lead" style="margin:0">Ghostwriting only works if you can trust the people behind it. These promises are in every contract.</p></div>
-    <?= lp_promises() ?>
-    <div class="lp-stats" style="margin-top:56px"><?= lp_stats() ?></div>
+<section class="sec bg-ink" aria-labelledby="cf-h">
+  <div class="w">
+    <div class="split split-57">
+      <div><span class="eyebrow">Confidential by default</span><h2 class="h2" id="cf-h">Your name on the cover. <em>Ours nowhere.</em></h2><p class="lead">Ghostwriting only works if you can trust the people behind it. These promises are in every contract.</p></div>
+      <?= lp_promises() ?>
+    </div>
+    <div class="mt"><?= lp_stats() ?></div>
   </div>
 </section>
 
-<!-- 9. FAQ -->
-<section class="lp-sec" aria-labelledby="fq-h">
-  <div class="lp-w" style="max-width:960px">
-    <div class="rv lp-head c"><h2 class="lp-h2" id="fq-h">Hiring a ghostwriter: <em>your questions.</em></h2></div>
-    <div class="faq lp-faq"><?= faq_html($FAQ, true) ?></div>
-  </div>
-</section>
+<?= lp_faq('bg-white', 'Hiring a ghostwriter: <em>your questions.</em>', $FAQ) ?>
 
-<!-- 10. Final CTA -->
-<section class="lp-sec lp-final" aria-labelledby="fn-h">
-  <div class="lp-w lp-split">
-    <div><p class="lp-kick">Free &amp; confidential</p><h2 class="lp-h2" id="fn-h">Let’s write <em>your story.</em></h2><p class="lp-lead">Tell us a little about the book you want to write. A real person replies within one business day with next steps, a matched ghostwriter and a written quote.</p><?= lp_ctas('#lp-form2', 'Hire a Ghostwriter') ?><?= lp_assure() ?></div>
-    <?= lp_form('lp-form2', 'Start my book', 'Takes about a minute. Completely confidential.', 0) ?>
-  </div>
-</section>
-
+<?= lp_final('Free & confidential', 'Let’s write <em>your story.</em>', 'Tell us a little about the book you want to write. A real person replies within one business day with next steps, a matched ghostwriter and a written quote.', ['Signed NDA', 'Written quote first', '100% rights & royalties'], ['Start my book', 'Takes about a minute. Completely confidential.', 0]) ?>
 </div>
 <?php include dirname(__DIR__) . '/includes/footer.php'; ?>
