@@ -43,6 +43,11 @@ RewriteRule ^services/book-marketing/?$ services/book-marketing-services [R=301,
 # --- Clean service URLs: /services/ghostwriting-services -> service.php?slug=ghostwriting-services ---
 RewriteRule ^services/([a-z0-9-]+)/?$ service.php?slug=$1 [L,QSA]
 
+# --- Ad landing pages: /lp/writing-services -> lp/writing-services.php ---
+RewriteRule ^lp/?$ services [R=302,L]
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^lp/([a-z0-9-]+)$ lp/$1.php [L]
+
 # --- Extensionless pages: /pricing -> pricing.php ---
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

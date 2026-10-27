@@ -54,6 +54,7 @@ header('X-Content-Type-Options: nosniff');
 <link rel="stylesheet" href="<?= e(asset('css/home.css')) ?>">
 <link rel="stylesheet" href="<?= e(asset('css/pages.css')) ?>">
 <link rel="stylesheet" href="<?= e(asset('css/site.css')) ?>">
+<?php if (!empty($meta['lp'])): ?><link rel="stylesheet" href="<?= e(asset('css/lp.css')) ?>"><?php endif; ?>
 <script>document.documentElement.classList.add('js');</script>
 
 <?php foreach ($schemas as $s): ?>
@@ -74,6 +75,18 @@ $tel = preg_replace('/[^\d+]/', '', site('phone'));
 $resources = [['/portfolio', 'Portfolio', 'portfolio'], ['/how-it-works', 'How It Works', 'how-it-works'], ['/faq', 'FAQs', 'faq'], ['/pricing', 'Pricing', 'pricing'], ['/about', 'About Us', 'about'], ['/contact', 'Contact Us', 'contact']];
 $curCat = $meta['cat'] ?? '';
 ?>
+<?php if (!empty($meta['lp'])): ?>
+<header class="site-header hdr hdr-lp">
+  <div class="hdr-in">
+    <a class="logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>"></a>
+    <p class="hdr-lp-note"><?= ic('shield') ?>You keep 100% of your rights &amp; royalties</p>
+    <div class="hdr-acts hdr-lp-acts">
+      <a class="hdr-phone" href="tel:<?= e($tel) ?>" data-lp-call><?= ic('phone') ?><span><?= e(site('phone')) ?></span></a>
+      <a class="btn btn-primary" href="#lp-form" data-lp-cta>Get a Free Quote</a>
+    </div>
+  </div>
+</header>
+<?php else: ?>
 <header class="site-header hdr">
   <div class="hdr-in">
     <a class="logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>"></a>
@@ -114,4 +127,5 @@ $curCat = $meta['cat'] ?? '';
     <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg></button>
   </div>
 </header>
+<?php endif; ?>
 <main id="main" tabindex="-1">

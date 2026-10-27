@@ -1,5 +1,20 @@
 </main>
 
+<?php if (!empty($meta['lp'])): ?>
+<footer class="site-footer lp-foot">
+  <div class="wrap">
+    <div class="lp-foot-in">
+      <a class="foot-logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo-light.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>" loading="lazy"></a>
+      <ul class="foot-contact">
+        <li><a href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>"><?= ic('phone') ?><?= e(site('phone')) ?></a></li>
+        <li><a href="mailto:<?= e(site('email')) ?>"><?= ic('mail') ?><?= e(site('email')) ?></a></li>
+        <li><?= ic('clock') ?><?= e(site('hours')) ?></li>
+      </ul>
+    </div>
+    <div class="foot-bottom"><span>© <?= date('Y') ?> <?= e(site('name')) ?>. All rights reserved.</span><span><a href="<?= e(url('/privacy')) ?>">Privacy Policy</a> &nbsp;·&nbsp; <a href="<?= e(url('/terms')) ?>">Terms &amp; Conditions</a></span></div>
+  </div>
+</footer>
+<?php else: ?>
 <footer class="site-footer">
   <div class="wrap">
     <div class="foot-grid foot-grid-x">
@@ -26,8 +41,9 @@
     <div class="foot-bottom"><span>© <span id="yr"><?= date('Y') ?></span> <?= e(site('name')) ?>. All rights reserved.</span><span><a href="<?= e(url('/privacy')) ?>">Privacy Policy</a> &nbsp;·&nbsp; <a href="<?= e(url('/terms')) ?>">Terms &amp; Conditions</a></span></div>
   </div>
 </footer>
+<?php endif; ?>
 
-<div class="dock"><a class="btn btn-dark" href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>Call us</a><button type="button" class="btn btn-primary" data-quote>Free quote</button></div>
+<div class="dock"><a class="btn btn-dark" href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>"<?= !empty($meta['lp']) ? ' data-lp-call' : '' ?>><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>Call us</a><?php if (!empty($meta['lp'])): ?><a class="btn btn-primary" href="#lp-form" data-lp-cta>Free quote</a><?php else: ?><button type="button" class="btn btn-primary" data-quote>Free quote</button><?php endif; ?></div>
 
 <!-- Pop-ups -->
 <dialog id="workDialog" aria-labelledby="dlgTitle"><div class="modal-in" id="dlgBody"></div></dialog>
@@ -39,5 +55,6 @@
 <script src="<?= e(asset('js/covers.js')) ?>"></script>
 <script src="<?= e(asset('js/main.js')) ?>"></script>
 <script src="<?= e(asset('js/forms.js')) ?>"></script>
+<?php if (!empty($meta['lp'])): ?><script src="<?= e(asset('js/lp.js')) ?>"></script><?php endif; ?>
 </body>
 </html>

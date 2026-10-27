@@ -35,11 +35,17 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST') {
 
 /* ---- read and clean the input ---- */
 $clean = fn($v, int $max) => mb_substr(trim(preg_replace('/[\r\n\t]+/', ' ', (string)$v)), 0, $max);
-$source  = in_array($_POST['source'] ?? '', ['home', 'contact', 'quote', 'service'], true) ? $_POST['source'] : 'contact';
+$source  = in_array($_POST['source'] ?? '', ['home', 'contact', 'quote', 'service', 'landing'], true) ? $_POST['source'] : 'contact';
 $name    = $clean($_POST['name'] ?? '', 100);
 $email   = $clean($_POST['email'] ?? '', 150);
 $help    = $clean($_POST['help'] ?? '', 120);
 $project = mb_substr(trim(str_replace("\r", '', (string)($_POST['project'] ?? ''))), 0, 3000);
+// Ad tracking: landing page and UTM tags (added to the form by forms.js)
+$track = [];
+foreach (['landing_page', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'] as $k) {
+    $v = $clean($_POST[$k] ?? '', 200);
+    if ($v !== '') $track[$k] = $v;
+}
 $old     = ['name' => $name, 'email' => $email, 'help' => $help, 'project' => $project];
 
 /* ---- protection: security token, hidden trap field, speed, rate limit ---- */
@@ -67,10 +73,10 @@ if ($errors) respond(false, 'Please fix the highlighted fields.', $errors, 422, 
 /* ---- build the emails ---- */
 $when = date('D j M Y, g:i a T');
 $page = $clean($_SERVER['HTTP_REFERER'] ?? '', 200);
-$text = "New message from the AMZ United Press website\n\nName: $name\nEmail: $email\nNeeds help with: $help\nSent from: $source form" . ($page ? " ($page)" : '') . "\nWhen: $when\n\nProject details:\n" . ($project !== '' ? $project : '(none)') . "\n";
+$text = "New message from the AMZ United Press website\n\nName: $name\nEmail: $email\nNeeds help with: $help\nSent from: $source form" . ($page ? " ($page)" : '') . "\nWhen: $when\n" . implode('', array_map(fn($k, $v) => "$k: $v\n", array_keys($track), $track)) . "\nProject details:\n" . ($project !== '' ? $project : '(none)') . "\n";
 $html = '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;color:#141413"><h2 style="margin:0 0 12px">New message from the website</h2>'
       . '<table cellpadding="6" style="border-collapse:collapse"><tr><td><b>Name</b></td><td>' . e($name) . '</td></tr><tr><td><b>Email</b></td><td><a href="mailto:' . e($email) . '">' . e($email) . '</a></td></tr>'
-      . '<tr><td><b>Needs help with</b></td><td>' . e($help) . '</td></tr><tr><td><b>Form</b></td><td>' . e($source) . '</td></tr><tr><td><b>When</b></td><td>' . e($when) . '</td></tr></table>'
+      . '<tr><td><b>Needs help with</b></td><td>' . e($help) . '</td></tr><tr><td><b>Form</b></td><td>' . e($source) . '</td></tr><tr><td><b>When</b></td><td>' . e($when) . '</td></tr>' . implode('', array_map(fn($k, $v) => '<tr><td><b>' . e($k) . '</b></td><td>' . e($v) . '</td></tr>', array_keys($track), $track)) . '</table>'
       . '<p><b>Project details</b></p><p style="background:#f6f4ee;padding:12px;border-radius:6px;white-space:pre-wrap">' . ($project !== '' ? e($project) : '(none)') . '</p></div>';
 
 $m = cfg('mail');
@@ -86,7 +92,7 @@ if ($sent && !empty($m['auto_reply'])) {
 
 /* ---- keep a copy (so nothing is lost if email is down) ---- */
 if (cfg('security.log_submissions', true)) {
-    $line = json_encode(['time' => date('c'), 'ip' => $ip, 'source' => $source, 'name' => $name, 'email' => $email, 'help' => $help, 'project' => $project, 'emailed' => $sent, 'error' => $err], JSON_UNESCAPED_UNICODE) . "\n";
+    $line = json_encode(['time' => date('c'), 'ip' => $ip, 'source' => $source, 'name' => $name, 'email' => $email, 'help' => $help, 'project' => $project, 'track' => $track, 'emailed' => $sent, 'error' => $err], JSON_UNESCAPED_UNICODE) . "\n";
     @file_put_contents(ROOT . '/storage/submissions.log', $line, FILE_APPEND | LOCK_EX);
 }
 if (!$sent) {
