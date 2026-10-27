@@ -29,22 +29,20 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
 ?>
 <div class="page active" data-page="lp-publishing">
 
-<!-- 1. Hero: centred, with the form on a book "stage" -->
-<section class="lph-center lp-hero-dark" aria-labelledby="lp-h1">
+<!-- 1. Hero: copy and a shelf of real books, form on the right -->
+<section class="lph-split lp-hero-dark" aria-labelledby="lp-h1">
   <?= lp_mosaic() ?>
-  <div class="lp-w">
-    <p class="lp-kick">Book publishing services</p>
-    <h1 id="lp-h1">Self-publish your book on Amazon <em>and every major store.</em></h1>
-    <p class="lp-lead">AMZ United Press handles the whole publishing process for you: formatting, cover files, ISBN, metadata, categories and upload to Amazon Kindle Direct Publishing (KDP), Apple Books, Kobo and more. Your book goes live under your name, and you keep 100% of your royalties.</p>
-    <?= lp_ctas() ?>
-    <?= lp_assure(['Live in as little as 1–2 weeks', 'No royalty splits', 'Written quote first']) ?>
-    <div class="lph-stage">
-      <div class="lph-books" aria-hidden="true"><?= $cover(2, -6) . $cover(4, 3) ?></div>
-      <?= lp_form('lp-form', 'Get your free publishing quote', 'Tell us about your book and where you want to sell it.', 3) ?>
-      <div class="lph-books r" aria-hidden="true"><?= $cover(6, -3) . $cover(7, 6) ?></div>
+  <div class="lp-w lph-grid">
+    <div>
+      <p class="lp-kick">Book publishing services</p>
+      <h1 id="lp-h1">Self-publish your book on Amazon <em>and every major store.</em></h1>
+      <p class="lp-lead">AMZ United Press handles the whole publishing process for you: formatting, cover files, ISBN, metadata, categories and upload to Amazon Kindle Direct Publishing (KDP), Apple Books, Kobo and more. Your book goes live under your name, and you keep 100% of your royalties.</p>
+      <?= lp_ctas() ?>
+      <?= lp_assure(['Live in as little as 1–2 weeks', 'No royalty splits', 'Written quote first']) ?>
+      <div class="lph-shelf" aria-hidden="true"><?= $cover(2, -4) . $cover(4, 2) . $cover(6, -2) . $cover(7, 3) ?></div>
     </div>
+    <?= lp_form('lp-form', 'Get your free publishing quote', 'Tell us about your book and where you want to sell it.', 3) ?>
   </div>
-  <div class="lph-floor"></div>
 </section>
 
 <?= lp_platform_strip('Stores we publish to') ?>

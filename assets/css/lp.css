@@ -578,3 +578,64 @@ a.lp-card:hover,.lp-card.hov:hover{border-color:var(--ink);transform:translateY(
 [data-page^=lp] .lp-sec.alt .lp-steps li::before{box-shadow:0 0 0 8px var(--lp-kraft)}
 [data-page^=lp] .lp-sec.dark .lp-steps li::before{box-shadow:0 0 0 8px #141413}
 .lp-split .lp-covers{--n:3!important}
+/* mobile tap targets >= 44px */
+@media (max-width:760px){
+  [data-page^=lp] .lp-more,[data-page^=lp] .lp-tier a.lp-link,[data-page^=lp] .lp-pick-panel a.lp-link{display:inline-flex;align-items:center;min-height:44px}
+  [data-page^=lp] .lp-tier a.lp-link{display:flex;justify-content:center}
+  [data-page^=lp] .lp-ba-tg button{min-height:44px;padding:0 18px}
+  [data-page^=lp] .lp-call{min-height:48px}
+  .lp-strip-tel{min-height:48px}
+}
+
+/* ===================== QA pass 2 ===================== */
+/* landing footer: no giant watermark word */
+.lp-foot::after{display:none!important}
+.lp-foot{padding-top:48px!important}
+
+/* publishing hero shelf of real books */
+.lph-shelf{display:flex;gap:14px;align-items:flex-end;margin-top:30px;padding-top:24px;border-top:1px solid rgba(255,255,255,.2)}
+.lph-shelf img{width:78px;border-radius:2px 4px 4px 2px;box-shadow:10px 14px 18px -10px rgba(0,0,0,.7);transform:rotate(var(--r,0deg))}
+
+/* store logos: one tidy row on desktop */
+@media (min-width:1101px){.lp-logos-belt{flex-wrap:nowrap;gap:22px}.lp-logos-belt img:nth-child(n+10){display:none}.lp-logos-belt img{height:26px;max-width:104px}}
+
+/* CTA strips: heading and buttons on one line on desktop */
+@media (min-width:1001px){.lp-strip .lp-w,.lp-band .lp-w{flex-wrap:nowrap}.lp-strip h2,.lp-band h2{max-width:34rem}.lp-strip-btns{flex:none}}
+
+/* mobile hero: headline, then the form, then the extras */
+@media (max-width:900px){
+  .lp-hero-dark .lph-grid,.lph-mk .lph-grid{display:flex;flex-direction:column;align-items:stretch;gap:0}
+  .lp-hero-dark .lph-grid>div:first-child,.lph-mk .lph-grid>div:first-child{display:contents}
+  .lph-grid .lph-badges{display:none}
+  .lph-grid>div>.lp-kick{order:1}
+  .lph-grid>div>h1{order:2}
+  .lph-grid>div>.lp-lead{order:3;margin-bottom:22px}
+  .lph-grid>.lp-formwrap{order:4;margin:18px 0 26px}
+  .lph-grid>div>.lp-ctas{order:5}
+  .lph-grid>div>.lp-assure{order:6}
+  .lph-grid>div>.lph-faces,.lph-grid>div>.lph-shelf{order:7}
+  .lph-grid>div>.lp-ba{order:8}
+  .lph-shelf img{width:64px}
+}
+/* offer sticker: top-right corner on small screens so it never covers text */
+@media (max-width:620px){
+  .lp-offer{left:auto;right:-6px;top:-24px;width:82px;padding:9px 6px 15px}
+  .lp-offer b{font-size:1.35rem}
+  .lp-formwrap .form-title{padding-left:0!important;padding-right:76px;min-height:0}
+  .lp-formwrap .form-sub{padding-left:0;padding-right:0}
+  .lph-faces{flex-wrap:wrap}
+  .lph-faces img{width:40px;height:40px}
+}
+/* mobile: compact horizontal cards instead of tall stacks */
+@media (max-width:620px){
+  [data-page^=lp] .lp-cards .lp-card{display:grid;grid-template-columns:34px minmax(0,1fr);column-gap:14px;row-gap:4px;padding:18px 16px;align-items:start}
+  [data-page^=lp] .lp-cards .lp-card>.lp-ico{grid-row:1/span 2}
+  [data-page^=lp] .lp-cards .lp-card>.lp-ico .ic{width:28px;height:28px}
+  [data-page^=lp] .lp-cards .lp-card>h3{margin:0;font-size:1.08rem}
+  [data-page^=lp] .lp-cards .lp-card>*:not(.lp-ico):not(h3){grid-column:2}
+  [data-page^=lp] .lp-cards .lp-card>.lp-tag{position:absolute}
+  [data-page^=lp] .lp-cards.c2 .lp-card{display:flex}
+  .lp-covers>.lp-cover:nth-child(n+5){display:none}
+  [data-page^=lp] .lp-sec{padding:56px 0}
+  [data-page^=lp] .lp-head{margin-bottom:32px}
+}
