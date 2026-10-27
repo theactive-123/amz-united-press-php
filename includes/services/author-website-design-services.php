@@ -1,0 +1,105 @@
+<?php
+/** Author Website Design Services — service page content. */
+return [
+    'slug'  => 'author-website-design-services',
+    'cat'   => 'other',
+    't'     => 'Author Website Design',
+    'name'  => 'Author Website Design Services',
+    'price' => '$600',
+    'time'  => '2–4 weeks',
+    'kw'    => 'author website design services',
+    'title' => 'Author Website Design Services | AMZ United Press',
+    'desc'  => 'Author website design services that showcase your books, grow your mailing list and work on every screen. Live in 2–4 weeks. Get your free written quote.',
+    'short' => 'Custom, mobile-friendly author websites that showcase your books, build your mailing list and are easy for you to update.',
+    'h1'    => 'Professional Author Website Design Services',
+    'lead'  => 'Readers, reviewers and event organizers will search for you online, and what they find shapes what they think of your books. Our author website design services give you a home base that looks the part and works hard. AMZ United Press designs and builds sites that reflect your genre, show off every title and make it simple for visitors to buy, subscribe or get in touch.',
+    'intro' => [
+        'h2'   => 'Author Website Design Services That Put Your Books First',
+        'p'    => [
+            'Building a site yourself sounds simple until you’re three weekends in, wrestling with themes, plugins and menus instead of writing. A professional author website saves you that time and gives you something better than a template with your name dropped in. At AMZ United Press, we design around your books and your readers: the colors and type that suit your genre, the pages your visitors actually need and a layout that steers them toward the actions that matter most to you.',
+            'Design is only the start. Because we also write, market and produce media for authors, your site can launch with everything it needs from one team. That means fewer hand-offs, one consistent look and a single project manager keeping it all on schedule. It also means your website, your books and your marketing all tell the same story, which is exactly what helps a reader remember your name. You can see examples of finished projects on [[/portfolio|our portfolio page]]. When you work with us:',
+        ],
+        'list' => [
+            'Our website content writers can craft SEO-friendly page copy',
+            'Your site becomes a launchpad for book promotion and reader outreach',
+            'Book trailers can be embedded right on your homepage',
+            'A blog setup lets you share news and improve search visibility',
+        ],
+    ],
+    'types' => [
+        'h2'    => 'Custom Web Design for Authors',
+        'p'     => 'Every author website we build is designed from your brief, not pulled from a shelf. These are the features our author website design services cover, so you can choose what you need today and add more as your career grows.',
+        'items' => [
+            ['Custom Author Branding', 'A look built around you and your genre – colors, fonts, imagery and a simple logo or wordmark. We make sure your site feels like it belongs beside your covers, so readers recognize you instantly wherever they meet your work.'],
+            ['Responsive Designs for Every Screen', 'Most visitors arrive on a phone, so we design mobile-first and test on tablets and desktops too. Menus, buttons and book pages stay easy to read and tap, whatever device your readers happen to be holding.'],
+            ['E-Commerce Integration', 'Sell signed copies, special editions, merchandise or digital downloads straight from your site. We connect trusted payment providers, set up products and shipping options, and keep checkout short, clear and secure.'],
+            ['Event and Book Launch Pages', 'Dedicated pages for a new release, tour or online event, with countdowns, preorder links, livestream details and downloadable extras. They give your launch a focused place to send readers from social posts and newsletters.'],
+            ['Author Blog Setup', 'A clean, easy-to-use blog where you can write, schedule and format posts in minutes. We set up categories, comments and sharing buttons, so you can keep readers updated without needing technical help.'],
+            ['Email List Building and Newsletters', 'Sign-up forms connected to popular email platforms, placed where readers will actually notice them. We can add a reader magnet download too, helping you build a list you own and can contact directly.'],
+            ['SEO for Authors', 'Clean code, fast-loading pages, sensible headings, page titles and meta descriptions, plus a sitemap submitted to search engines. These basics help readers find you when they search your name, your books or your genre.'],
+            ['Social Media and Platform Integration', 'Links and feeds for your social accounts, Goodreads profile and retailer pages, so your site becomes the hub that ties everything together. Readers can follow, review and buy without hunting around the web.'],
+        ],
+    ],
+    'process' => [
+        'h2'    => 'Our Author Website Design Process',
+        'p'     => 'A clear process keeps your site on budget and on time. Here’s how we take you from a first conversation to a live author website you can confidently manage yourself.',
+        'steps' => [
+            ['Personalized Consultation', 'We talk about your books, readers, goals and budget, and look at author sites you admire. By the end, we know what your website needs to do and what success will look like for you.'],
+            ['Strategic Content Planning', 'We map out your pages – home, about, books, blog, contact and any extras – and decide what each one should achieve. We also list the text, photos and links needed, so nothing holds up the build later.'],
+            ['Custom Design Blueprint', 'Our designer creates a visual mockup of your homepage and a key inner page, showing layout, colors and type. You give feedback and we refine it until the direction feels right before any building begins.'],
+            ['Responsive Website Development', 'We build your site on a reliable, easy-to-update platform, adding your books, forms, store and integrations. Every page is tested on phones, tablets and desktops so it looks and works as intended everywhere.'],
+            ['SEO for Visibility', 'We set page titles, meta descriptions, headings and image alt text, improve loading speed and connect search tools. These foundations give search engines a clear picture of who you are and what you write.'],
+            ['Feedback and Revisions', 'You explore the finished site on a private preview link and send notes. We make the agreed changes and check them with you, so nothing goes live until you’re happy with how every page looks and reads.'],
+            ['Launch and Training', 'We connect your domain, set up security and backups and take the site live. Then we walk you through updating pages, adding books and writing posts, with a short guide you can keep for later.'],
+            ['Post-Launch Support', 'After launch we keep an eye on your site, fix any issues that crop up and answer questions as you settle in. Ongoing care is available too, so you’re never left alone with a technical problem.'],
+        ],
+    ],
+    'cta1' => 'Ready for an author website that impresses readers? Let’s design yours together.',
+    'about' => [
+        'h3' => 'Expert Author Website Designers',
+        'p'  => [
+            'The design team at AMZ United Press builds websites specifically for writers. We know what a book page needs, where a sign-up form performs best and how a site can support a launch. Each project is led by a designer who works directly with you, supported by developers who keep everything fast, secure and simple to maintain.',
+            'Because we work across writing, editing, publishing and marketing, we understand how your website fits into your whole author career. Your dedicated project manager coordinates copy, images and trailers, keeps the build on schedule and gives you one point of contact. A real person replies to your messages within one business day.',
+        ],
+    ],
+    'why' => [
+        'h3'    => 'Why Authors Pick Our Website Design Team',
+        'p'     => 'There are plenty of web designers out there. Here’s why authors trust AMZ United Press with the place readers go to find out who they are.',
+        'items' => [
+            ['Designs Tailored to You', 'Your website should match your genre, your personality and your readers. We design from your brief rather than a stock theme, so whether you’re launching a debut or managing a long backlist, the result feels unmistakably yours.'],
+            ['Easy-to-Update Platforms', 'You shouldn’t need a developer to add a new book or fix a typo. We build on familiar platforms such as WordPress, set up simple editing tools and show you how to use them, so you can manage everyday updates yourself.'],
+            ['Quality at an Honest Price', 'Author websites start from $600, and you get a written quote before work begins. There are no hidden fees or surprise invoices. You know exactly what’s included, from design and build to launch support.'],
+            ['Optimized and Responsive', 'Every site is built to load quickly, read clearly on any screen and give search engines the signals they need. Good performance helps visitors stay longer, and it gives your pages a better chance of showing up in search results.'],
+            ['Your Site, Your Ownership', 'You own your domain, your content and your website files – always. We set accounts up in your name and hand over every login. If you ever need help with updates or troubleshooting, our support team is a message away.'],
+        ],
+    ],
+    'compare' => [
+        'h3'   => 'Author Website Design That Fits Your Budget',
+        'p'    => 'Here’s how working with us typically compares with the two routes authors most often consider for a professional website.',
+        'rows' => ['Cost', 'Timeline', 'Quality', 'Collaboration'],
+        'old'  => [
+            ['General design agencies', ['Often $2,000–$5,000+', 'Typically 6–12 weeks', 'Polished, but basic SEO and few author features', 'Support usually needs a separate contract']],
+            ['Freelance web designers', ['Typically $500–$1,500', 'Depends on availability', 'Flexible, but SEO is often limited', 'Ongoing support can be unreliable']],
+        ],
+        'ours' => ['AMZ United Press', ['From $600, quoted in writing', '2–4 weeks', 'Fully custom and search-optimized', 'Support included, you approve every page']],
+    ],
+    'faq' => [
+        ['How much does a new author website cost?', 'Author websites start from $600. The final price depends on the number of pages, features such as a store or event pages, and whether you need copywriting or a blog setup. You’ll receive a written quote before we begin, with no hidden fees. You can compare typical packages on [[/pricing|our pricing page]].'],
+        ['How long does it take to build an author website?', 'Most author websites are ready in 2–4 weeks. Larger sites with stores, many books or custom features can take longer, and timelines also depend on how quickly content and feedback come in. We agree a schedule at the start and update you at every stage, so you always know where things stand.'],
+        ['What are the benefits of hiring a professional author website designer?', 'You get a site that looks credible, works on every device and is set up properly for search from day one. You also save the hours you’d spend learning themes and plugins, which means more time for writing. And a designer who knows publishing will include the features readers expect, from book pages to sign-up forms.'],
+        ['What should an author website include?', 'At minimum, an about page with your bio and photo, a page for each book with covers, descriptions and buy links, a contact page and links to your social profiles. Many authors also add a blog, a newsletter sign-up, an events page and a press kit. We’ll help you decide what makes sense right now.'],
+        ['How much input do I have in the process?', 'As much as you like. You’ll share your vision during the consultation, review the design mockup, comment on the content and test the finished site before launch. Nothing goes live without your approval, and your project manager checks in at each stage so your feedback shapes the result.'],
+        ['Who writes the content for the site?', 'You can supply your own text, or our [[website-content-writing-services|website content writing services]] can write it for you – bio, book descriptions, FAQs and more. Many authors choose a mix: they provide the raw material and we polish it into clear, search-friendly copy that sounds like them.'],
+        ['Where should my website be hosted?', 'We recommend a reputable managed host with good uptime, automatic backups and responsive support. The right choice depends on your budget and the features you need. We’ll suggest a few suitable options, help you set up the account in your own name and handle the technical setup for you.'],
+        ['Do you only create WordPress websites?', 'No. WordPress is a popular choice for authors because it’s flexible and easy to update, but we also work with platforms such as Squarespace and Wix. During the consultation we’ll recommend the platform that best fits your goals, budget and comfort with technology.'],
+    ],
+    'faq_cta' => 'Have a question about your website? Ask us.',
+    'beyond' => [
+        'h2'    => 'Helping Authors Beyond Website Design',
+        'slugs' => ['ebook-writing-services', 'book-editing-services', 'proofreading-services', 'book-formatting-services', 'ebook-publishing-services', 'audiobook-services'],
+    ],
+    'cta2' => [
+        'h3' => 'Tired of Searching for a Website Designer Near You?',
+        'p'  => 'Tell us about your books and the site you have in mind. We’ll send a written quote and a suggested plan, and a real person replies within one business day.',
+    ],
+];

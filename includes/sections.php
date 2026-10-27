@@ -20,14 +20,14 @@ function render_service_tabs(): string {
     $icons = [
         'write' => '<path d="m4 20 1-4.2L16.2 4.6l3.2 3.2L8.2 19z"/><path d="m14 6.8 3.2 3.2"/>',
         'edit' => '<path d="M4 5h16v11H9l-5 4z"/><path d="m8.5 10.5 2.2 2.2 4.3-4.4"/>',
-        'design' => '<circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2"/><circle cx="12" cy="7.6" r="1.2"/><circle cx="15.6" cy="10" r="1.2"/><path d="M12 21c-1.5 0-2-1.5-1-2.5s0-2.5-1.5-2.5"/>',
         'publish' => '<path d="m3 11 18-8-8 18-2.2-7.8z"/>',
+        'other' => '<circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2"/><circle cx="12" cy="7.6" r="1.2"/><circle cx="15.6" cy="10" r="1.2"/><path d="M12 21c-1.5 0-2-1.5-1-2.5s0-2.5-1.5-2.5"/>',
     ];
     $ph = [
         'write' => ['Crafting Stories at the Writing Desk.png', 'Crafting stories at a writing desk'],
         'edit' => ['Cozy Manuscript Editing Workspace.png', 'Manuscript editing workspace'],
-        'design' => ['Cinematic Book Design Workspace.png', 'Book design workspace'],
         'publish' => ['Self-Publishing Dashboard Workspace.png', 'Self-publishing dashboard workspace'],
+        'other' => ['Cinematic Book Design Workspace.png', 'Book design and marketing workspace'],
     ];
     $tabs = '<div class="xs-tabs" role="tablist" aria-label="Service categories">';
     $panels = '<div class="xs-stage">';
@@ -35,8 +35,8 @@ function render_service_tabs(): string {
         $subs = subs_of($c['k']);
         $tabs .= '<button type="button" role="tab" class="xs-tab" id="xt' . $i . '" aria-controls="xpn' . $i . '" aria-selected="' . ($i === 0 ? 'true' : 'false') . '" tabindex="' . ($i === 0 ? 0 : -1) . '"><svg viewBox="0 0 24 24" aria-hidden="true">' . $icons[$c['k']] . '</svg><span class="xs-n">0' . ($i + 1) . '</span><b>' . e($c['t']) . '</b></button>';
         $panels .= '<div class="xs-panel" role="tabpanel" id="xpn' . $i . '" aria-labelledby="xt' . $i . '"' . ($i ? ' hidden' : '') . '><div class="xs-photo x-frame">' . '<img src="' . e(asset('img/Fourparts/' . rawurlencode($ph[$c['k']][0]))) . '" alt="' . e($ph[$c['k']][1]) . '" loading="lazy" decoding="async">' . '</div><div class="xs-body"><h3>' . e($c['t']) . '</h3><p>' . e($c['d']) . '</p><ul class="xs-subs">';
-        foreach ($subs as $s) $panels .= '<li><a href="' . e(url('/services/' . $s['slug'])) . '"><span>' . e($s['t']) . '</span>' . ic('arrow') . '</a></li>';
-        $panels .= '</ul><a class="x-link" href="' . e(url('/services#cat-' . $c['k'])) . '">Explore ' . e(strtolower($c['t'])) . ' ' . ic('arrow') . '</a></div></div>';
+        foreach ($subs as $s) $panels .= '<li><a href="' . e(url('/services/' . $s['slug'])) . '"><span>' . e($s['name']) . '</span>' . ic('arrow') . '</a></li>';
+        $panels .= '</ul><a class="x-link" href="' . e(url('/services#cat-' . $c['k'])) . '">Explore all ' . e(strtolower($c['t'])) . ' ' . ic('arrow') . '</a></div></div>';
     }
     return $tabs . '</div>' . $panels . '</div>';
 }

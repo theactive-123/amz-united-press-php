@@ -2,26 +2,28 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <div class="foot-grid">
+    <div class="foot-grid foot-grid-x">
       <div>
         <a class="foot-logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo-light.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>" loading="lazy"></a>
-        <p style="margin-top:24px;max-width:24em">Ebook writing, editing, design and publishing for authors and founders.</p>
+        <p style="margin-top:24px;max-width:24em">Ghostwriting, ebook writing, editing, publishing and book marketing services for authors and businesses. You keep 100% of your rights and royalties.</p>
+        <ul class="foot-contact">
+          <li><a href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>"><?= ic('phone') ?><?= e(site('phone')) ?></a></li>
+          <li><a href="mailto:<?= e(site('email')) ?>"><?= ic('mail') ?><?= e(site('email')) ?></a></li>
+          <li><?= ic('clock') ?><?= e(site('hours')) ?></li>
+          <li><?= ic('pin') ?><?= e(site('address')) ?></li>
+        </ul>
       </div>
-      <div><h4>Services</h4><ul>
-        <?php foreach (data('subs') as $s): ?><li><a href="<?= e(url('/services/' . $s['slug'])) ?>"><?= e($s['t']) ?></a></li><?php endforeach; ?>
-        <li><a href="<?= e(url('/services')) ?>"><strong>All services</strong></a></li>
+      <?php foreach (data('cats') as $c): if ($c['k'] === 'edit') continue; ?>
+      <div><h4><?= e($c['t']) ?></h4><ul>
+        <?php foreach (subs_of($c['k']) as $s): ?><li><a href="<?= e(url('/services/' . $s['slug'])) ?>"><?= e($s['name']) ?></a></li><?php endforeach; ?>
+        <?php if ($c['k'] === 'publish'): ?></ul><h4 class="foot-h-gap"><?= e(cat_by_key('edit')['t']) ?></h4><ul><?php foreach (subs_of('edit') as $s): ?><li><a href="<?= e(url('/services/' . $s['slug'])) ?>"><?= e($s['name']) ?></a></li><?php endforeach; ?><?php endif; ?>
       </ul></div>
-      <div><h4>Company</h4><ul>
-        <li><a href="<?= e(url('/about')) ?>">About</a></li><li><a href="<?= e(url('/how-it-works')) ?>">How it works</a></li><li><a href="<?= e(url('/portfolio')) ?>">Portfolio</a></li><li><a href="<?= e(url('/pricing')) ?>">Pricing</a></li><li><a href="<?= e(url('/faq')) ?>">FAQ</a></li>
-      </ul></div>
-      <div><h4>Contact</h4><ul>
-        <li><a href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>"><?= e(site('phone')) ?></a></li>
-        <li><a href="mailto:<?= e(site('email')) ?>"><?= e(site('email')) ?></a></li>
-        <li><?= e(site('hours')) ?></li>
-        <li><?= e(site('address')) ?></li>
+      <?php endforeach; ?>
+      <div><h4>Resources</h4><ul>
+        <li><a href="<?= e(url('/portfolio')) ?>">Portfolio</a></li><li><a href="<?= e(url('/how-it-works')) ?>">How It Works</a></li><li><a href="<?= e(url('/faq')) ?>">FAQs</a></li><li><a href="<?= e(url('/pricing')) ?>">Pricing</a></li><li><a href="<?= e(url('/about')) ?>">About Us</a></li><li><a href="<?= e(url('/contact')) ?>">Contact Us</a></li><li><a href="<?= e(url('/services')) ?>">All Services</a></li>
       </ul></div>
     </div>
-    <div class="foot-bottom"><span>© <span id="yr"><?= date('Y') ?></span> <?= e(site('name')) ?>. All rights reserved.</span><span><a href="<?= e(url('/privacy')) ?>">Privacy</a> &nbsp;·&nbsp; <a href="<?= e(url('/terms')) ?>">Terms</a></span></div>
+    <div class="foot-bottom"><span>© <span id="yr"><?= date('Y') ?></span> <?= e(site('name')) ?>. All rights reserved.</span><span><a href="<?= e(url('/privacy')) ?>">Privacy Policy</a> &nbsp;·&nbsp; <a href="<?= e(url('/terms')) ?>">Terms &amp; Conditions</a></span></div>
   </div>
 </footer>
 

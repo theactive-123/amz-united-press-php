@@ -30,7 +30,17 @@ RewriteRule ^ /%1%2 [R=301,L]
 # --- Sitemap ---
 RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
-# --- Clean service URLs: /services/ghostwriting -> service.php?slug=ghostwriting ---
+# --- Old service addresses -> new pages (permanent redirects keep search rankings) ---
+RewriteRule ^services/ghostwriting/?$ services/ghostwriting-services [R=301,L]
+RewriteRule ^services/book-outlining/?$ services/ebook-writing-services [R=301,L]
+RewriteRule ^services/(developmental-editing|copyediting)/?$ services/book-editing-services [R=301,L]
+RewriteRule ^services/proofreading/?$ services/proofreading-services [R=301,L]
+RewriteRule ^services/cover-design/?$ services/book-cover-design-services [R=301,L]
+RewriteRule ^services/(interior-layout|ebook-formatting)/?$ services/book-formatting-services [R=301,L]
+RewriteRule ^services/publishing-distribution/?$ services/ebook-publishing-services [R=301,L]
+RewriteRule ^services/book-marketing/?$ services/book-marketing-services [R=301,L]
+
+# --- Clean service URLs: /services/ghostwriting-services -> service.php?slug=ghostwriting-services ---
 RewriteRule ^services/([a-z0-9-]+)/?$ service.php?slug=$1 [L,QSA]
 
 # --- Extensionless pages: /pricing -> pricing.php ---

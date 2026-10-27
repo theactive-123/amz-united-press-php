@@ -112,8 +112,8 @@ function segKeys(box){
   });
 }
 var AUDC={
-  author:{lead:'Finally finish the book you’ve been carrying around. We write, edit, design and publish it, and you stay the author, with every right and every royalty.',pop:[['ghostwriting','Ghostwriting'],['developmental-editing','Developmental editing'],['cover-design','Cover design']]},
-  biz:{lead:'Turn your expertise into a book that opens doors: thought-leadership titles, lead-magnet ebooks and company stories your customers will actually read.',pop:[['ghostwriting','Ghostwriting'],['marketing-launch','Book marketing & launch'],['publishing-distribution','Publishing & distribution']]}
+  author:{lead:'New writer or published author, AMZ United Press gives you every self-publishing service in one place: ghostwriting, editing, cover design, formatting, Amazon publishing and book marketing. You stay the author, with 100% of your rights and royalties.',pop:[['ghostwriting-services','Ghostwriting'],['book-editing-services','Book editing'],['amazon-publishing-services','Amazon publishing']]},
+  biz:{lead:'Turn your expertise into a book that builds authority and brings in clients. Our ebook writers draft thought-leadership titles, lead-magnet ebooks and company stories, then we publish and promote them for you.',pop:[['ebook-writing-services','Ebook writing'],['book-marketing-services','Book marketing'],['ebook-publishing-services','Ebook publishing']]}
 };
 function setAud(k){
   $$('[data-aud]').forEach(function(b){b.setAttribute('aria-checked',b.getAttribute('data-aud')===k)});
@@ -225,7 +225,7 @@ function setNav(open){
   if(!nav||!burger)return;
   nav.classList.toggle('open',open);burger.setAttribute('aria-expanded',open);burger.setAttribute('aria-label',open?'Close menu':'Open menu');
   burger.innerHTML='<svg class="ic" aria-hidden="true"><use href="#i-'+(open?'close':'menu')+'"/></svg>';
-  if(open){var t=Math.round($('.head-pill').getBoundingClientRect().bottom)+10;nav.style.top=t+'px';nav.style.maxHeight=(innerHeight-t-90)+'px'}
+  if(open){var t=Math.round($('.hdr-in').getBoundingClientRect().bottom);nav.style.top=t+'px';nav.style.maxHeight=(innerHeight-t)+'px'}
 }
 if(burger)burger.addEventListener('click',function(){setNav(!nav.classList.contains('open'))});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav&&nav.classList.contains('open')){setNav(false);burger.focus()}});
@@ -240,12 +240,27 @@ document.addEventListener('click',function(e){
   var j=e.target.closest('[data-jump]');
   if(j){var t=document.getElementById(j.getAttribute('data-jump'));if(t)t.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'});$$('[data-jump]',j.closest('.lg-toc')).forEach(function(x){x.classList.toggle('on',x===j)})}
 });
-/* Services dropdown: opens on hover (CSS). Close it after a click, re-arm when the pointer comes back. */
-(function(){var li=$('.has-sub');if(!li)return;
-  li.addEventListener('click',function(e){if(e.target.closest('.mega a'))li.classList.add('shut')});
-  li.addEventListener('mouseleave',function(){li.classList.remove('shut')});
-  li.firstElementChild.addEventListener('mouseenter',function(){li.classList.remove('shut')});
-})();
+/* Header dropdowns: hover/focus opens them on desktop (CSS); the arrow buttons (and "Resources") toggle them by tap or keyboard. */
+$$('.hdr-dd').forEach(function(li){
+  var tog=$('.dd-tog',li),top=$('.hdr-top-btn',li);
+  function set(open){$$('.hdr-dd.open').forEach(function(o){if(o!==li){o.classList.remove('open');$('.dd-tog',o).setAttribute('aria-expanded','false')}});li.classList.toggle('open',open);tog.setAttribute('aria-expanded',open)}
+  tog.addEventListener('click',function(){set(!li.classList.contains('open'))});
+  if(top)top.addEventListener('click',function(){set(!li.classList.contains('open'))});
+  li.addEventListener('mouseleave',function(){if(matchMedia('(min-width:1181px)').matches)set(false)});
+});
+document.addEventListener('click',function(e){if(!e.target.closest('.hdr-dd'))$$('.hdr-dd.open').forEach(function(o){o.classList.remove('open');$('.dd-tog',o).setAttribute('aria-expanded','false')})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')$$('.hdr-dd.open').forEach(function(o){o.classList.remove('open');$('.dd-tog',o).setAttribute('aria-expanded','false')})});
+/* Live Chat: opens whichever chat widget is installed (Tawk.to, LiveChat, Tidio, Crisp, Zendesk); otherwise the quote form. */
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-chat]');if(!b)return;e.preventDefault();setNav(false);
+  var w=window;
+  if(w.Tawk_API&&w.Tawk_API.maximize)return w.Tawk_API.maximize();
+  if(w.LiveChatWidget&&w.LiveChatWidget.call)return w.LiveChatWidget.call('maximize');
+  if(w.tidioChatApi&&w.tidioChatApi.open)return w.tidioChatApi.open();
+  if(w.$crisp&&w.$crisp.push)return w.$crisp.push(['do','chat:open']);
+  if(w.zE)return w.zE('messenger','open');
+  openQuote('I’d like to chat about my book.');
+});
 
 /* ---- init ---- */
 document.documentElement.classList.add('js');
