@@ -9,7 +9,7 @@ $meta = array_merge(['title' => site('name'), 'description' => '', 'path' => '/'
 $canonical = abs_url($meta['path'] === '/' ? '/' : $meta['path']);
 $ogImage   = str_starts_with($meta['image'], 'http') ? $meta['image'] : abs_url($meta['image']);
 $schemas   = array_merge([
-    ['@context' => 'https://schema.org', '@type' => 'Organization', 'name' => site('name'), 'url' => abs_url('/'), 'logo' => abs_url('/assets/img/logo.png'), 'description' => 'Ebook writing, editing, cover design and publishing for authors and founders.'],
+    ['@context' => 'https://schema.org', '@type' => 'Organization', 'name' => site('name'), 'url' => abs_url('/'), 'logo' => abs_url('/assets/img/logo.png'), 'description' => 'Ghostwriting, ebook writing, book editing, cover design, publishing and book marketing services for authors and businesses.', 'telephone' => site('phone'), 'email' => site('email')],
     ['@context' => 'https://schema.org', '@type' => 'WebSite', 'name' => site('name'), 'url' => abs_url('/')],
 ], $meta['schema']);
 header('X-Content-Type-Options: nosniff');
@@ -53,6 +53,7 @@ header('X-Content-Type-Options: nosniff');
 <link rel="stylesheet" href="<?= e(asset('css/theme.css')) ?>">
 <link rel="stylesheet" href="<?= e(asset('css/home.css')) ?>">
 <link rel="stylesheet" href="<?= e(asset('css/pages.css')) ?>">
+<link rel="stylesheet" href="<?= e(asset('css/site.css')) ?>">
 <script>document.documentElement.classList.add('js');</script>
 
 <?php foreach ($schemas as $s): ?>
@@ -68,28 +69,48 @@ header('X-Content-Type-Options: nosniff');
 <div class="progress" id="progress" aria-hidden="true"></div>
 <?php readfile(__DIR__ . '/../partials/sprite.svg'); ?>
 
-<header class="site-header">
-  <div class="head-pill">
+<?php
+$tel = preg_replace('/[^\d+]/', '', site('phone'));
+$resources = [['/portfolio', 'Portfolio', 'portfolio'], ['/how-it-works', 'How It Works', 'how-it-works'], ['/faq', 'FAQs', 'faq'], ['/pricing', 'Pricing', 'pricing'], ['/about', 'About Us', 'about'], ['/contact', 'Contact Us', 'contact']];
+$curCat = $meta['cat'] ?? '';
+?>
+<header class="site-header hdr">
+  <div class="hdr-in">
     <a class="logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>"></a>
-    <nav class="nav" id="nav" aria-label="Main">
-      <ul>
-        <li class="has-sub">
-          <a href="<?= e(url('/services')) ?>"<?= $meta['nav'] === 'services' ? ' aria-current="page"' : '' ?>>Services</a>
-          <div class="mega" id="mega"><div class="wrap"><div class="mega-in">
-            <?php foreach (data('cats') as $c): ?>
-            <div><a class="mh" href="<?= e(url('/services#cat-' . $c['k'])) ?>"><?= e($c['t']) ?></a><ul>
-              <?php foreach (subs_of($c['k']) as $s): ?><li><a href="<?= e(url('/services/' . $s['slug'])) ?>"><?= e($s['t']) ?></a></li><?php endforeach; ?>
-            </ul></div>
-            <?php endforeach; ?>
-          </div><div class="mfoot"><span>Not sure which service you need?</span><a href="<?= e(url('/services')) ?>">View all services <?= ic('arrow') ?></a></div></div></div>
-        </li>
-        <?php foreach ([['portfolio','Portfolio'],['how-it-works','How it works'],['pricing','Pricing'],['about','About'],['contact','Contact']] as $n): ?>
-        <li><a href="<?= e(url('/' . $n[0])) ?>"<?= $meta['nav'] === $n[0] ? ' aria-current="page"' : '' ?>><?= e($n[1]) ?></a></li>
-        <?php endforeach; ?>
-      </ul>
-      <button type="button" class="btn btn-primary m-cta" data-quote>Get a free quote</button>
-    </nav>
-    <button type="button" class="btn btn-primary btn-sm head-btn" data-quote>Request a quote</button>
+    <div class="hdr-right">
+      <nav class="hdr-nav" id="nav" aria-label="Main">
+        <ul class="hdr-menu">
+          <li><a class="hdr-top" href="<?= e(url('/')) ?>"<?= $meta['nav'] === 'home' ? ' aria-current="page"' : '' ?>>Home</a></li>
+          <?php foreach (data('cats') as $c): ?>
+          <li class="hdr-dd">
+            <a class="hdr-top" href="<?= e(url('/services#cat-' . $c['k'])) ?>"<?= $curCat === $c['k'] ? ' aria-current="true"' : '' ?>><?= e($c['t']) ?></a>
+            <button type="button" class="dd-tog" aria-expanded="false" aria-label="Show <?= e($c['t']) ?>"><?= ic('arrow') ?></button>
+            <ul class="dd">
+              <?php foreach (subs_of($c['k']) as $s): ?><li><a href="<?= e(url('/services/' . $s['slug'])) ?>"<?= ($meta['path'] ?? '') === '/services/' . $s['slug'] ? ' aria-current="page"' : '' ?>><?= e($s['t']) ?></a></li><?php endforeach; ?>
+            </ul>
+          </li>
+          <?php endforeach; ?>
+          <li class="hdr-dd hdr-dd-end">
+            <button type="button" class="hdr-top hdr-top-btn"<?= in_array($meta['nav'], array_column($resources, 2), true) ? ' data-current' : '' ?>>Resources</button>
+            <button type="button" class="dd-tog" aria-expanded="false" aria-label="Show Resources"><?= ic('arrow') ?></button>
+            <ul class="dd">
+              <?php foreach ($resources as $i => $r): ?><li<?= $i === 4 ? ' class="dd-sep"' : '' ?>><a href="<?= e(url($r[0])) ?>"<?= $meta['nav'] === $r[2] ? ' aria-current="page"' : '' ?>><?= e($r[1]) ?></a></li><?php endforeach; ?>
+            </ul>
+          </li>
+        </ul>
+        <div class="hdr-acts hdr-acts-m">
+          <a class="btn btn-outline" href="tel:<?= e($tel) ?>"><?= ic('phone') ?><?= e(site('phone')) ?></a>
+          <button type="button" class="btn btn-primary" data-quote>Get a Quote</button>
+        </div>
+      </nav>
+      <div class="hdr-acts">
+        <a class="hdr-phone" href="tel:<?= e($tel) ?>"><?= ic('phone') ?><span><?= e(site('phone')) ?></span></a>
+        <button type="button" class="btn btn-dark" data-quote="I’d like to book a call to discuss my book.">Book a Call</button>
+        <button type="button" class="btn btn-primary" data-quote>Get a Quote</button>
+        <button type="button" class="btn btn-outline" data-chat>Live Chat</button>
+      </div>
+    </div>
+    <a class="hdr-call-m" href="tel:<?= e($tel) ?>" aria-label="Call <?= e(site('phone')) ?>"><?= ic('phone') ?></a>
     <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg></button>
   </div>
 </header>

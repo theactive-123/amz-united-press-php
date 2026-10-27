@@ -1,0 +1,106 @@
+<?php
+/** Website Content Writing Services — service page content. */
+return [
+    'slug'  => 'website-content-writing-services',
+    'cat'   => 'other',
+    't'     => 'Website Content Writing',
+    'name'  => 'Website Content Writing Services',
+    'price' => '$300',
+    'time'  => '1–2 weeks',
+    'kw'    => 'website content writing services',
+    'title' => 'Website Content Writing Services | AMZ United Press',
+    'desc'  => 'Website content writing services for authors: clear, SEO-ready copy for your home, book and bio pages, delivered in 1–2 weeks. Request your written quote.',
+    'short' => 'Clear, SEO-ready web copy for your home, book, bio and FAQ pages, written in your voice to turn visitors into readers.',
+    'h1'    => 'Website Content Writing Services That Win Over Readers',
+    'lead'  => 'An author website can look beautiful and still struggle to be found – or fail to convince the people who do arrive. Our website content writing services fix the words. AMZ United Press writes clear, search-friendly copy for every page of your site, so new visitors quickly understand your books, warm to you as a writer and know exactly where to click next.',
+    'intro' => [
+        'h2'   => 'Website Content Writing Services From Writers Who Know Books',
+        'p'    => [
+            'Your website is often the first place a curious reader meets you, and they decide in seconds whether to stay. The copy has to sound like you, explain your books without spoiling them and make buying or signing up feel natural. Our web content writers spend their working lives around manuscripts, so they know how to describe a story, frame a series and tell an author’s journey with warmth. Every page is written for busy people scrolling on a phone, with short paragraphs and clear headings.',
+            'Good web copy also needs to be found. We research the phrases your readers actually type, then work them into page titles, headings and meta descriptions where they read naturally. The result is a site that pulls its weight with readers and with search engines alike. Writing is only part of the picture, too: we can pair your new copy with a short [[video-book-trailer-services|book video trailer]] for your home page, or fresh posts from our [[blog-writing-services|blog writing team]] to keep the site active.',
+        ],
+        'list' => [
+            'Copy for every key page, written in your own voice',
+            'Keyword research, titles and meta descriptions included',
+            'Edited and proofread by a second professional',
+            'Ready to paste into WordPress, Wix or Squarespace',
+        ],
+    ],
+    'types' => [
+        'h2'    => 'Affordable Website Content Writing for Every Page',
+        'p'     => 'Most author sites rely on a handful of pages to do the heavy lifting. Our website content writing services cover each of them, written with a specific job in mind so nothing on your site is filler.',
+        'items' => [
+            ['Homepage', 'A short, confident introduction to you and your books, with a clear headline and an obvious next step. We aim to tell a first-time visitor, within a few seconds, what you write and why they’ll enjoy it.'],
+            ['Book Descriptions', 'Hooky, spoiler-free descriptions that capture the premise, mood and stakes of each title, finished with a clear prompt to buy or sample. We keep your voice intact and make every book page easy to skim.'],
+            ['Testimonials and Reviews', 'We gather and arrange genuine praise from readers, reviewers and fellow authors into tidy, trustworthy sections. Real words from real readers do a lot of persuading, so we make sure they’re easy to spot.'],
+            ['Personalized Author Bio', 'Long, medium and short versions of your bio for your site, press kit and back cover. We tell your story with warmth and focus, so readers feel they know you a little before they open your book.'],
+            ['FAQs', 'Plain-English answers to the questions readers actually ask – reading order, formats, signed copies, events or your writing process. A good FAQ page saves you emails and helps visitors feel looked after.'],
+            ['Blog Writing', 'Regular posts that give readers a reason to return and give search engines fresh pages to index. We plan topics around your books and genre, then write each post in the same voice as the rest of your site.'],
+            ['Media & Press Kit', 'A ready-to-use press page with bios, book summaries, cover images, interview topics and contact details. It gives journalists, podcasters and event organizers everything they need to feature you quickly.'],
+            ['Author Newsletter', 'Welcome emails, launch announcements, sneak peeks and regular updates for your mailing list. We write emails people look forward to opening, so your subscribers stay engaged between books.'],
+        ],
+    ],
+    'process' => [
+        'h2'    => 'Our Author Website Content Writing Process',
+        'p'     => 'Web copy goes smoothly when the plan comes before the writing. Here’s how our website content writing services move from a first conversation to finished pages on your live site.',
+        'steps' => [
+            ['Initial Consultation', 'We talk about your books, your readers and what you want visitors to do, whether that’s buying, joining your list or booking you to speak. We also ask about sites you admire, which tells us a lot about tone.'],
+            ['Market Study', 'We look at how authors in your genre present themselves online and what readers in that space expect. If you already have a site, we review its pages too, so we can keep what works and fix what doesn’t.'],
+            ['Keyword Research', 'Each page is given a main search phrase and a few related terms, chosen so pages support each other rather than compete. You see the plan before we write, so you know what every page is meant to be found for.'],
+            ['Content Planning', 'We agree on the list of pages and give each one a single main job, such as building trust or selling a book. Then we outline the sections, headings and calls to action so the copy has a clear structure.'],
+            ['Drafting High-Quality Content', 'Your writer drafts every page in your voice, with short paragraphs, clear subheadings and specific next steps. Page titles, meta descriptions and image alt text are written at the same time, not added as an afterthought.'],
+            ['Editing and Proofreading', 'A second professional edits the full set of pages for clarity, consistency and accuracy, then proofreads every line. Names, series order and links are double-checked, because small slips on a website are very visible.'],
+            ['Client Review and Feedback', 'You read the pages in a shared document and leave comments wherever you like. We revise until each page reads right to you, and we explain any choices we’ve made for search or readability.'],
+            ['Final Delivery and Integration', 'You receive clean, organized copy ready for your builder or developer. If you’d like, we place the text on your site ourselves, check how it looks on phones and desktops, and confirm everything is live.'],
+        ],
+    ],
+    'cta1' => 'Hire a website content writer who makes your books easy to love.',
+    'about' => [
+        'h3' => 'Meet Our Website Content Writers',
+        'p'  => [
+            'The web content writers at AMZ United Press are experienced writers and editors who understand books, readers and how people behave online. We pair you with someone who knows your genre, and every page they write is checked by a second editor before it reaches you. That way you get copy that’s both persuasive and accurate.',
+            'A dedicated project manager keeps your pages moving, answers your questions and makes sure deadlines are met. Because we also design websites, produce trailers and run marketing campaigns, your writer can coordinate with the rest of the team when you need more than words. You can see the range of our work on [[/portfolio|our portfolio page]].',
+        ],
+    ],
+    'why' => [
+        'h3'    => 'Why Authors Trust Our Website Content Writers',
+        'p'     => 'Plenty of writers can fill a web page. Here’s why authors choose AMZ United Press when they want copy that sounds like them and helps readers find their books.',
+        'items' => [
+            ['Your Authentic Voice', 'Before we write, we study your books, emails and any copy you already have. Your pages will sound like you on a good day – your humor, your warmth, your way of putting things – with your genre’s tone in mind throughout.'],
+            ['Tailored, Never Templated', 'No two authors have the same story, so we don’t recycle page templates. Every homepage, bio and book description is written from scratch around your titles, your readers and the specific job that page needs to do.'],
+            ['SEO and Creativity in Balance', 'Search phrases go where they help, not where they clutter. We blend solid keyword research with lively, original writing, so your pages give search engines clear signals while still reading like something a real person wrote.'],
+            ['Quality at a Fair Price', 'Website copy starts from $300, and you’ll see a written quote before any work begins. You pay for the pages you need, with no hidden extras, and you can add more pages later as your catalog grows.'],
+            ['Quick Turnaround Times', 'Most website content projects are finished in 1–2 weeks. We agree a schedule at the start, keep you updated as pages are completed and tell you right away if anything might affect the date, so your plans stay on track.'],
+            ['Results You Can Check', 'We’d rather show than boast. Ask to see samples relevant to your genre, read the draft of your first page before committing to the rest, and judge the work on its own merits. Every page is yours to approve.'],
+        ],
+    ],
+    'compare' => [
+        'h3'   => 'Website Content Writing, Done Thoroughly',
+        'p'    => 'Here’s how working with us typically compares with the two options authors most often consider for their website copy.',
+        'rows' => ['Cost', 'Timeline', 'Quality', 'Collaboration'],
+        'old'  => [
+            ['General writing companies', ['Often $500–$2,000 per site', 'Typically 2–4 weeks', 'Template-based, basic SEO', 'Limited ability to match your voice']],
+            ['Freelance web writers', ['Typically $50–$250 per page', 'Depends on availability', 'Varies; mobile formatting often missed', 'Depends on the freelancer']],
+        ],
+        'ours' => ['AMZ United Press', ['From $300, quoted in writing', '1–2 weeks', 'In-depth SEO, reads well on every device', 'You approve every page']],
+    ],
+    'faq' => [
+        ['What kind of content do you write?', 'For author websites we write homepages, book descriptions, author bios, FAQ pages, press kits, newsletter emails and blog posts. We can also write landing pages for launches and reader magnets. If you’re unsure what your site needs, we’ll review it and suggest a sensible set of pages before quoting.'],
+        ['How do I know if your services are right for me?', 'If you have a website that isn’t attracting visitors, a site with thin or outdated copy, or a new site that needs words before it launches, we can help. We work with first-time authors and experienced ones alike, as well as small businesses that publish books. A short call usually makes the fit clear.'],
+        ['How much does your website content writing service cost?', 'Website content projects start from $300. The total depends on how many pages you need, their length and how much research is involved. You’ll get a written quote before we start, with no hidden extras. Typical packages are listed on [[/pricing|our pricing page]].'],
+        ['How long does it take to create website content?', 'Most projects take 1–2 weeks from the initial consultation to final delivery. Larger sites, or projects waiting on materials such as reviews or bios, can take a little longer. We agree a schedule with you at the start and keep you posted as each page is finished.'],
+        ['Can I provide feedback and ask for revisions?', 'Yes, and we encourage it. You’ll review every page in a shared document and can comment on anything from a single word to the overall tone. We revise within the agreed scope until the copy reads right to you, and we explain any choices we’ve made for search or readability.'],
+        ['Do you guarantee original content?', 'Yes. Every page is written from scratch for your site and checked with plagiarism software before delivery. Once paid for, the copy belongs to you outright, and we never reuse it for anyone else. If we quote a review or testimonial, it comes from material you’ve supplied and approved.'],
+        ['What if I’m not satisfied with the content?', 'Tell us what isn’t working and we’ll fix it. Most concerns are about tone or emphasis, and they’re resolved in a round of revisions. Your project manager stays in touch throughout, so problems are caught early rather than at the end. You approve every page before it goes live.'],
+        ['Can you build the website as well as write it?', 'Yes. Our [[author-website-design-services|author website design services]] cover layout, setup and launch, and planning words and design together usually produces a better site. If you already have a developer, we’ll simply hand over organized copy ready to drop into place.'],
+    ],
+    'faq_cta' => 'Have a question about your site? Just ask.',
+    'beyond' => [
+        'h2'    => 'Writing to Publishing: We Go Beyond Website Content',
+        'slugs' => ['ebook-writing-services', 'book-editing-services', 'proofreading-services', 'book-formatting-services', 'ebook-publishing-services', 'audiobook-services'],
+    ],
+    'cta2' => [
+        'h3' => 'Expert Website Content Writers Ready When You Are',
+        'p'  => 'Tell us about your books and your website, and we’ll suggest the pages you need with a written quote. A real person replies within one business day.',
+    ],
+];

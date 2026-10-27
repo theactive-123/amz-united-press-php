@@ -47,8 +47,8 @@ function photos(): array {
         'cat' => [
             'write'   => ['1586943759341-be5595944989', 'A typewriter with a sheet reading Write something'],
             'edit'    => ['1580127645995-d43fe9598711', 'A pen editing handwritten pages'],
-            'design'  => ['1572044162444-ad60f128bdea', 'Colour swatches and a tablet on a designer’s desk'],
             'publish' => ['1637942695886-69c5094fb1bb', 'A person reading an ebook on a phone'],
+            'other'   => ['1572044162444-ad60f128bdea', 'Colour swatches and a tablet on a designer’s desk'],
         ],
         'journey' => [
             ['1551836022-d5d88e9218df', 'Two people talking over a notebook'],
@@ -76,6 +76,28 @@ function photos(): array {
 function subs_of(string $cat): array { return array_values(array_filter(data('subs'), fn($s) => $s['cat'] === $cat)); }
 function sub_by_slug(string $slug): ?array { foreach (data('subs') as $s) if ($s['slug'] === $slug) return $s; return null; }
 function cat_by_key(string $key): ?array { foreach (data('cats') as $c) if ($c['k'] === $key) return $c; return null; }
+/** Which option of the form's "What do you need help with?" menu fits a service. */
+function help_for(array $s): int {
+    $map = ['book-cover-design-services' => 2, 'audiobook-services' => 5, 'video-book-trailer-services' => 5, 'author-website-design-services' => 5,
+            'blog-writing-services' => 6, 'article-writing-services' => 6, 'website-content-writing-services' => 6];
+    return $map[$s['slug']] ?? (int)(cat_by_key($s['cat'])['help'] ?? 0);
+}
+
+/**
+ * Escape copy and turn internal-link tokens into links:
+ *   [[book-editing-services|book editing]] -> /services/book-editing-services
+ *   [[/pricing|our prices]]                -> /pricing
+ */
+function rich(string $t): string {
+    return preg_replace_callback('/\[\[([^|\]]+)\|([^\]]+)\]\]/', function ($m) {
+        $path = html_entity_decode($m[1], ENT_QUOTES, 'UTF-8');
+        $path = str_starts_with($path, '/') ? $path : '/services/' . $path;
+        return '<a href="' . e(url($path)) . '">' . $m[2] . '</a>';
+    }, e($t));
+}
+/** The same copy as plain text (for meta tags and JSON-LD). */
+function plain(string $t): string { return preg_replace('/\[\[[^|\]]+\|([^\]]+)\]\]/', '$1', $t); }
+
 function min_price(array $subs): int {
     return min(array_map(fn($s) => (int)preg_replace('/\D/', '', $s['price']), $subs));
 }
@@ -84,7 +106,7 @@ function min_price(array $subs): int {
 function faq_html(array $items, bool $openFirst = false): string {
     $h = '';
     foreach ($items as $i => $f) {
-        $h .= '<details' . ($openFirst && $i === 0 ? ' open' : '') . '><summary>' . e($f[0]) . '</summary><div class="ans"><p>' . e($f[1]) . '</p></div></details>';
+        $h .= '<details' . ($openFirst && $i === 0 ? ' open' : '') . '><summary>' . e($f[0]) . '</summary><div class="ans"><p>' . rich($f[1]) . '</p></div></details>';
     }
     return $h;
 }
@@ -119,7 +141,7 @@ function breadcrumb_schema(array $trail): array {
 }
 function faq_schema(array $items): array {
     return ['@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => array_map(fn($f) => [
-        '@type' => 'Question', 'name' => $f[0], 'acceptedAnswer' => ['@type' => 'Answer', 'text' => $f[1]],
+        '@type' => 'Question', 'name' => $f[0], 'acceptedAnswer' => ['@type' => 'Answer', 'text' => plain($f[1])],
     ], $items)];
 }
 

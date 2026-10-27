@@ -16,7 +16,8 @@ A multi-page, server-rendered PHP site (PHP 8.0+, Apache with mod_rewrite). All 
 ├── forms/submit.php                        ← the ONE handler every form posts to
 ├── includes/
 │   ├── config.php      ← SMTP email settings, secret key, site URL  (EDIT THIS)
-│   ├── data.php        ← all site text: services, prices, FAQ, team, contact details (EDIT THIS)
+│   ├── data.php        ← site text: menus, prices, FAQ, team, contact details (EDIT THIS)
+│   ├── services/       ← one content file per service page (EDIT THIS)
 │   ├── header.php      ← global <head> (SEO, icons), logo, navigation
 │   ├── footer.php      ← global footer, quote pop-up, scripts
 │   ├── functions.php, forms.php, sections.php, Mailer.php, bootstrap.php
@@ -56,7 +57,9 @@ Sub-folder install (e.g. `/demo`): set `base_path` in `config.php` to `/demo` an
 - Social preview image: `assets/img/og-image.jpg` (1200×630)
 - Photos are Unsplash placeholders listed in `photos()` in `includes/functions.php`. Replace with your own licensed photos before launch.
 - Set `show_placeholder_notes` to `false` in `data.php` to hide the grey "placeholder" notes.
-- To add a service, add an entry to `subs` in `data.php`. Its page and sitemap entry appear automatically.
+- Service pages: each of the 21 services has its own content file in `includes/services/{slug}.php` (title, meta description, hero, sections, FAQs). To add a service, copy one of these files, then add its slug to the right menu list under `cats` in `data.php`. Its page, menu link, footer link and sitemap entry appear automatically.
+- Inside service copy, `[[book-editing-services|book editing]]` becomes an internal link to that service, and `[[/pricing|our prices]]` links to a page.
+- The header's **Live Chat** button opens Tawk.to, LiveChat, Tidio, Crisp or Zendesk if one is installed (paste its embed code before `</body>` in `includes/footer.php`); otherwise it opens the quote form.
 
 ## 4. Run on your own computer
 

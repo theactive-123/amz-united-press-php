@@ -2,7 +2,7 @@
 require __DIR__ . '/includes/bootstrap.php';
 $meta = [
     'title' => 'Ebook Cover & Book Portfolio by Genre | AMZ United Press',
-    'description' => 'Explore our book portfolio, authors and review counts.',
+    'description' => 'Browse books our ghostwriters, editors and cover designers helped bring to life, across fiction, nonfiction, memoir and more. See authors and reviews.',
     'path' => '/portfolio', 'nav' => 'portfolio',
     'schema' => [breadcrumb_schema([['Home', '/'], ['Portfolio', null]])],
 ];
