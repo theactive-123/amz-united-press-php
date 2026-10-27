@@ -277,3 +277,7 @@ h1,h2,h3,.x-h2,.page-hero h1,.svh h1{overflow-wrap:break-word;hyphens:manual}
 @media (max-width:900px){.x-faq-photo{display:none}}
 /* footer word-mark: never clipped at the bottom */
 .site-footer::after{padding-bottom:.14em;overflow:hidden;max-width:100%}
+/* FAQ toggle: swap + for − instead of rotating (a rotated circle pokes past its row) */
+.faq details[open] summary::after{content:"−";transform:none!important}
+/* services page: category intro sits at the top and stays in view beside its list */
+@media (min-width:941px){.cat{align-items:start!important}.cat-intro{position:sticky;top:120px;align-self:start}}
