@@ -29,7 +29,8 @@ include dirname(__DIR__) . '/includes/header.php';
 <div class="page active" data-page="lp-editing">
 
 <!-- 1. Hero: copy + before/after sample, form on the right -->
-<section class="lph-proof" aria-labelledby="lp-h1">
+<section class="lph-proof lp-hero-dark" aria-labelledby="lp-h1">
+  <?= lp_mosaic() ?>
   <div class="lp-w lph-grid">
     <div>
       <p class="lp-kick">Book editing services</p>
@@ -45,14 +46,16 @@ include dirname(__DIR__) . '/includes/header.php';
   </div>
 </section>
 
+<?= lp_authors() ?>
+
 <!-- 2. Stats -->
 <section class="lp-sec alt" style="padding:48px 0" aria-label="AMZ United Press in numbers"><div class="lp-w"><div class="lp-stats"><?= lp_stats() ?></div></div></section>
 
 <!-- 3. Three services as tiers -->
 <section class="lp-sec" aria-labelledby="tr-h">
   <div class="lp-w">
-    <div class="lp-head c"><p class="lp-kick">Choose your level</p><h2 class="lp-h2" id="tr-h">Book editing, proofreading <em>&amp; formatting services.</em></h2><p class="lp-lead">Not sure which you need? Send us a sample and we’ll recommend the right level, for free.</p></div>
-    <div class="lp-tiers">
+    <div class="rv lp-head c"><h2 class="lp-h2" id="tr-h">Book editing, proofreading <em>&amp; formatting services.</em></h2><p class="lp-lead">Not sure which you need? Send us a sample and we’ll recommend the right level, for free.</p></div>
+    <div class="rv lp-tiers">
       <div class="lp-tier"><h3><?= e($pr['name']) ?></h3><p>The final polish before you publish.</p><span class="lp-from">From</span><div class="lp-amt"><?= e($pr['price']) ?></div>
         <ul><?php foreach (['Spelling, grammar and punctuation', 'Consistency of names, dates and style', 'Formatting and typesetting slips', 'Tracked changes + clean copy', 'Ready in ' . $pr['time']] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
         <a class="btn btn-outline" href="#lp-form" data-lp-cta>Get a proofreading quote</a><a class="lp-link" href="<?= e(url('/services/' . $pr['slug'])) ?>">About proofreading</a></div>
@@ -69,7 +72,7 @@ include dirname(__DIR__) . '/includes/header.php';
 <!-- 4. What editors fix -->
 <section class="lp-sec dark" aria-labelledby="fx-h">
   <div class="lp-w lp-split top">
-    <div class="lp-sticky"><p class="lp-kick">What we fix</p><h2 class="lp-h2" id="fx-h">The problems readers notice, <em>fixed before they do.</em></h2><p class="lp-lead">One-star reviews often mention the same things: typos, confusing passages and plot holes. Our editors catch them so your readers only notice the story.</p><?= lp_ctas('#lp-form', 'Fix my manuscript', false) ?></div>
+    <div class="lp-sticky"><h2 class="lp-h2" id="fx-h">The problems readers notice, <em>fixed before they do.</em></h2><p class="lp-lead">One-star reviews often mention the same things: typos, confusing passages and plot holes. Our editors catch them so your readers only notice the story.</p><?= lp_ctas('#lp-form', 'Fix my manuscript', false) ?></div>
     <ul class="lp-checks">
       <li><?= ic('check') ?><span><b>Typos &amp; grammar</b>Every spelling, punctuation and grammar slip, corrected.</span></li>
       <li><?= ic('check') ?><span><b>Clunky sentences</b>Rewritten for rhythm and clarity, in your voice.</span></li>
@@ -83,11 +86,13 @@ include dirname(__DIR__) . '/includes/header.php';
   </div>
 </section>
 
+<?= lp_strip('Send a sample and get a free editor’s recommendation.') ?>
+
 <!-- 5. Steps -->
 <section class="lp-sec" aria-labelledby="st-h">
   <div class="lp-w">
-    <div class="lp-head"><p class="lp-kick">How it works</p><h2 class="lp-h2" id="st-h">Our book editing process: five steps to a <em>publish-ready</em> manuscript.</h2></div>
-    <ol class="lp-steps" style="--n:5">
+    <div class="rv lp-head"><h2 class="lp-h2" id="st-h">Our book editing process: five steps to a <em>publish-ready</em> manuscript.</h2></div>
+    <ol class="rv lp-steps" style="--n:5">
       <li><h3>Send a sample</h3><p>Share your manuscript or a few chapters and tell us your goals and deadline.</p><small>Day 1</small></li>
       <li><h3>Free assessment</h3><p>An editor reads your sample, recommends the right level of editing and sends a written quote.</p><small>1 business day</small></li>
       <li><h3>Editing</h3><p>Your genre-matched editor works through the manuscript with tracked changes and comments.</p><small>3 days – 4 weeks</small></li>
@@ -104,22 +109,24 @@ include dirname(__DIR__) . '/includes/header.php';
 <!-- 6. Promises + covers -->
 <section class="lp-sec soft" aria-labelledby="pm-h">
   <div class="lp-w">
-    <div class="lp-head"><p class="lp-kick">Why AMZ United Press</p><h2 class="lp-h2" id="pm-h">Editors who care about <em>your book.</em></h2></div>
+    <div class="rv lp-head"><h2 class="lp-h2" id="pm-h">Editors who care about <em>your book.</em></h2></div>
     <?= lp_promises() ?>
-    <div class="lp-head" style="margin:72px 0 32px"><h3 class="lp-h2" style="font-size:clamp(1.6rem,2.8vw,2.4rem)">Books our editors have worked on</h3></div>
+    <div class="rv lp-head" style="margin:72px 0 32px"><h3 class="lp-h2" style="font-size:clamp(1.6rem,2.8vw,2.4rem)">Books our editors have worked on</h3></div>
     <div class="lp-covers" style="--n:6"><?= lp_covers(6, 4) ?></div>
   </div>
 </section>
 
+<?= lp_strip('Editing, proofreading and formatting.' . lp_offer_suffix()) ?>
+
 <!-- 7. Reviews -->
 <section class="lp-sec" aria-labelledby="rv-h">
-  <div class="lp-w"><div class="lp-head c"><p class="lp-kick">Authors say</p><h2 class="lp-h2" id="rv-h">Clean, clear <em>and still mine.</em></h2></div><div class="lp-quotes"><?= lp_quotes() ?></div></div>
+  <div class="lp-w"><div class="rv lp-head c"><h2 class="lp-h2" id="rv-h">Clean, clear <em>and still mine.</em></h2></div><div class="rv lp-quotes"><?= lp_quotes() ?></div></div>
 </section>
 
 <!-- 8. FAQ -->
 <section class="lp-sec alt" aria-labelledby="fq-h">
   <div class="lp-w lp-split top">
-    <div class="lp-sticky"><p class="lp-kick">FAQs</p><h2 class="lp-h2" id="fq-h">Book editing <em>questions.</em></h2><p class="lp-lead">Still unsure which service you need? Call <a href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>" data-lp-call><?= e(site('phone')) ?></a> and talk to an editor.</p></div>
+    <div class="lp-sticky"><h2 class="lp-h2" id="fq-h">Book editing <em>questions.</em></h2><p class="lp-lead">Still unsure which service you need? Call <a href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>" data-lp-call><?= e(site('phone')) ?></a> and talk to an editor.</p></div>
     <div class="faq lp-faq"><?= faq_html($FAQ, true) ?></div>
   </div>
 </section>

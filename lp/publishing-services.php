@@ -30,7 +30,8 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
 <div class="page active" data-page="lp-publishing">
 
 <!-- 1. Hero: centred, with the form on a book "stage" -->
-<section class="lph-center" aria-labelledby="lp-h1">
+<section class="lph-center lp-hero-dark" aria-labelledby="lp-h1">
+  <?= lp_mosaic() ?>
   <div class="lp-w">
     <p class="lp-kick">Book publishing services</p>
     <h1 id="lp-h1">Self-publish your book on Amazon <em>and every major store.</em></h1>
@@ -49,7 +50,7 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
 <!-- 2. Where your book goes -->
 <section class="lp-sec dark" aria-labelledby="pl-h" style="padding-top:clamp(100px,10vw,140px)">
   <div class="lp-w lp-split">
-    <div><p class="lp-kick">Global distribution</p><h2 class="lp-h2" id="pl-h">One upload. <em>Readers everywhere.</em></h2><p class="lp-lead">We prepare your files to each store’s exact standards and publish them in your own accounts, so your ebook and paperback reach readers in every major market without you wrestling with dashboards, file errors or rejected uploads.</p><?= lp_ctas('#lp-form', 'Publish my book') ?></div>
+    <div><h2 class="lp-h2" id="pl-h">One upload. <em>Readers everywhere.</em></h2><p class="lp-lead">We prepare your files to each store’s exact standards and publish them in your own accounts, so your ebook and paperback reach readers in every major market without you wrestling with dashboards, file errors or rejected uploads.</p><?= lp_ctas('#lp-form', 'Publish my book') ?></div>
     <ul class="lp-checks">
       <?php foreach (['Amazon Kindle (KDP)', 'Amazon paperback & hardcover', 'Apple Books', 'Barnes & Noble', 'Rakuten Kobo', 'Google Play Books', 'IngramSpark bookstores', 'Library platforms'] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?>
     </ul>
@@ -58,11 +59,13 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
 
 <?= lp_platform_strip('Stores we publish to') ?>
 
+<?= lp_authors() ?>
+
 <!-- 3. Two ways to publish -->
 <section class="lp-sec" aria-labelledby="op-h">
   <div class="lp-w">
-    <div class="lp-head c"><p class="lp-kick">Choose your route</p><h2 class="lp-h2" id="op-h">Two affordable self-publishing services, <em>both done for you.</em></h2><p class="lp-lead">Start with Amazon, where most ebooks sell, or go wide across every major store from day one.</p></div>
-    <div class="lp-cards c2">
+    <div class="rv lp-head c"><h2 class="lp-h2" id="op-h">Two affordable self-publishing services, <em>both done for you.</em></h2><p class="lp-lead">Start with Amazon, where most ebooks sell, or go wide across every major store from day one.</p></div>
+    <div class="rv lp-cards c2">
       <div class="lp-card hov"><span class="lp-ico"><?= ic('publish') ?></span><h3><?= e($amz['name']) ?></h3><p>Everything you need to publish on Amazon KDP: Kindle ebook and paperback set-up, categories, keywords, pricing and A+ ready files, all in your own account.</p>
         <ul class="lp-checks one" style="margin:6px 0 8px"><?php foreach (['Kindle ebook + paperback set-up', 'Keyword and category research', 'Book description that sells', 'Pricing and royalty guidance'] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
         <div class="lp-price"><span>Starting from</span><b><?= e($amz['price']) ?></b></div>
@@ -80,7 +83,7 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
 <!-- 4. Everything handled -->
 <section class="lp-sec alt" aria-labelledby="in-h">
   <div class="lp-w lp-split top">
-    <div class="lp-sticky"><p class="lp-kick">What’s included</p><h2 class="lp-h2" id="in-h">Every publishing task, <em>handled.</em></h2><p class="lp-lead">Self-publishing should mean you own your book, not that you do everything yourself. Here’s what our book publishing team takes care of.</p><a class="btn btn-primary" href="#lp-form" data-lp-cta>Get my quote <?= ic('arrow') ?></a></div>
+    <div class="lp-sticky"><h2 class="lp-h2" id="in-h">Every publishing task, <em>handled.</em></h2><p class="lp-lead">Self-publishing should mean you own your book, not that you do everything yourself. Here’s what our book publishing team takes care of.</p><a class="btn btn-primary" href="#lp-form" data-lp-cta>Get my quote <?= ic('arrow') ?></a></div>
     <ul class="lp-checks">
       <li><?= ic('check') ?><span><b>Manuscript review</b>We check your files and flag anything that would cause a store to reject them.</span></li>
       <li><?= ic('check') ?><span><b>Ebook &amp; print formatting</b>Clean Kindle, EPUB and print-ready PDF files that look right on every device.</span></li>
@@ -96,10 +99,12 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
   </div>
 </section>
 
+<?= lp_strip('Publish on Amazon and every major store, with 100% of your royalties.') ?>
+
 <!-- 5. Steps -->
 <section class="lp-sec" aria-labelledby="st-h">
   <div class="lp-w lp-split top">
-    <div><p class="lp-kick">How it works</p><h2 class="lp-h2" id="st-h">Our book publishing process: manuscript to <em>“Buy now”</em> in six steps.</h2><p class="lp-lead">You approve every file and listing before it goes live. We do the technical work.</p><?= lp_ctas('#lp-form', 'Start publishing', false) ?></div>
+    <div><h2 class="lp-h2" id="st-h">Our book publishing process: manuscript to <em>“Buy now”</em> in six steps.</h2><p class="lp-lead">You approve every file and listing before it goes live. We do the technical work.</p><?= lp_ctas('#lp-form', 'Start publishing', false) ?></div>
     <ol class="lp-vsteps">
       <li><div><h3>Free consultation</h3><p>We talk through your book, your goals and where you want to sell, then send a written quote.</p></div></li>
       <li><div><h3>File review</h3><p>We review your manuscript and cover and recommend any editing, design or formatting it needs.</p></div></li>
@@ -114,8 +119,8 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
 <!-- 6. Comparison -->
 <section class="lp-sec soft" aria-labelledby="cp-h">
   <div class="lp-w">
-    <div class="lp-head"><p class="lp-kick">Know your options</p><h2 class="lp-h2" id="cp-h">Publish with help, <em>without giving up control.</em></h2></div>
-    <div class="lp-tablewrap"><table class="lp-table">
+    <div class="rv lp-head"><h2 class="lp-h2" id="cp-h">Publish with help, <em>without giving up control.</em></h2></div>
+    <div class="rv lp-tablewrap"><table class="lp-table">
       <thead><tr><th scope="col"></th><th scope="col">Traditional publishers</th><th scope="col">Doing it alone</th><th scope="col" class="us">AMZ United Press</th></tr></thead>
       <tbody>
         <tr><th scope="row">Your royalties</th><td>Typically a small share</td><td>100%</td><td class="us y">✓ 100%</td></tr>
@@ -128,11 +133,13 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
   </div>
 </section>
 
+<?= lp_strip('Questions about publishing? Talk to our team now.') ?>
+
 <!-- 7. Reviews -->
 <section class="lp-sec" aria-labelledby="rv-h">
   <div class="lp-w">
-    <div class="lp-head c"><p class="lp-kick">Authors say</p><h2 class="lp-h2" id="rv-h">Published, <em>and proud of it.</em></h2></div>
-    <div class="lp-quotes"><?= lp_quotes() ?></div>
+    <div class="rv lp-head c"><h2 class="lp-h2" id="rv-h">Published, <em>and proud of it.</em></h2></div>
+    <div class="rv lp-quotes"><?= lp_quotes() ?></div>
     <div class="lp-stats" style="margin-top:56px"><?= lp_stats() ?></div>
   </div>
 </section>
@@ -144,7 +151,7 @@ $cover = fn($i, $r) => '<img src="' . e(url(implode('/', array_map('rawurlencode
 <!-- 8. FAQ -->
 <section class="lp-sec alt" aria-labelledby="fq-h">
   <div class="lp-w" style="max-width:960px">
-    <div class="lp-head c"><p class="lp-kick">FAQs</p><h2 class="lp-h2" id="fq-h">Book publishing <em>questions,</em> answered.</h2></div>
+    <div class="rv lp-head c"><h2 class="lp-h2" id="fq-h">Book publishing <em>questions,</em> answered.</h2></div>
     <div class="faq lp-faq"><?= faq_html($FAQ, true) ?></div>
   </div>
 </section>

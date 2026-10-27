@@ -39,11 +39,13 @@ include dirname(__DIR__) . '/includes/header.php';
   <div class="lp-w"><ul class="lph-mk-channels" aria-label="Marketing channels"><?php foreach (['Amazon Ads', 'Amazon SEO', 'Editorial reviews', 'Goodreads', 'Facebook &amp; Instagram', 'TikTok &amp; BookTok', 'Email marketing', 'Press &amp; podcasts', 'Author website'] as $c): ?><li><?= $c ?></li><?php endforeach; ?></ul></div>
 </section>
 
+<?= lp_authors('Authors who trusted us with their books') ?>
+
 <!-- 2. The problem -->
 <section class="lp-sec" aria-labelledby="pb-h">
   <div class="lp-w lp-split">
-    <div><p class="lp-kick">Why marketing matters</p><h2 class="lp-h2" id="pb-h">Great books don’t <em>sell themselves.</em></h2><p class="lp-lead" style="margin:0">Millions of titles compete for attention on Amazon alone. Without a plan, even a brilliant book can sit unseen on page twenty of the search results. Professional book promotion puts it in front of the readers most likely to love it.</p></div>
-    <div class="lp-pg" style="grid-template-columns:1fr">
+    <div><h2 class="lp-h2" id="pb-h">Great books don’t <em>sell themselves.</em></h2><p class="lp-lead" style="margin:0">Millions of titles compete for attention on Amazon alone. Without a plan, even a brilliant book can sit unseen on page twenty of the search results. Professional book promotion puts it in front of the readers most likely to love it.</p></div>
+    <div class="rv lp-pg" style="grid-template-columns:1fr">
       <div class="pain"><h3>Without a marketing plan</h3><ul>
         <li><i>✕</i>Launch week comes and goes with a handful of sales</li>
         <li><i>✕</i>Too few reviews for new readers to take a chance</li>
@@ -61,8 +63,8 @@ include dirname(__DIR__) . '/includes/header.php';
 <!-- 3. Channels -->
 <section class="lp-sec dark" aria-labelledby="ch-h">
   <div class="lp-w">
-    <div class="lp-head"><p class="lp-kick">What we do</p><h2 class="lp-h2" id="ch-h">Book promotion services across <em>every channel</em> that sells books.</h2><p class="lp-lead" style="margin:0">Pick the channels that fit your genre and budget, or let our book marketers recommend the mix most likely to work for your readers.</p></div>
-    <div class="lp-cards c3">
+    <div class="rv lp-head"><h2 class="lp-h2" id="ch-h">Book promotion services across <em>every channel</em> that sells books.</h2><p class="lp-lead" style="margin:0">Pick the channels that fit your genre and budget, or let our book marketers recommend the mix most likely to work for your readers.</p></div>
+    <div class="rv lp-cards c3">
       <?php foreach ([
         ['tag', 'Amazon optimisation', 'Keywords, categories, a description that converts and A+ content, so your listing ranks and persuades.'],
         ['publish', 'Amazon & BookBub ads', 'Targeted ad campaigns built around your genre’s readers, with daily budgets you set and control.'],
@@ -83,8 +85,8 @@ include dirname(__DIR__) . '/includes/header.php';
 <!-- 4. Choose your goal -->
 <section class="lp-sec" aria-labelledby="gl-h">
   <div class="lp-w">
-    <div class="lp-head c"><p class="lp-kick">Choose your goal</p><h2 class="lp-h2" id="gl-h">Marketing built around <em>where your book is now.</em></h2><p class="lp-lead">Every campaign starts with a free strategy call. Here are the three plans authors choose most.</p></div>
-    <div class="lp-tiers">
+    <div class="rv lp-head c"><h2 class="lp-h2" id="gl-h">Marketing built around <em>where your book is now.</em></h2><p class="lp-lead">Every campaign starts with a free strategy call. Here are the three plans authors choose most.</p></div>
+    <div class="rv lp-tiers">
       <div class="lp-tier"><h3>Launch a new book</h3><p>For books releasing in the next few months.</p><span class="lp-from">From</span><div class="lp-amt"><?= e($mk['price']) ?></div>
         <ul><?php foreach (['Launch plan and timeline', 'Amazon listing optimisation', 'Advance reader copy campaign', 'Launch-week Amazon ads', 'Email and social countdown'] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
         <a class="btn btn-outline" href="#lp-form" data-lp-cta>Plan my launch</a></div>
@@ -106,7 +108,7 @@ include dirname(__DIR__) . '/includes/header.php';
 <!-- 5. Process -->
 <section class="lp-sec alt" aria-labelledby="ps-h">
   <div class="lp-w lp-split top">
-    <div class="lp-sticky"><p class="lp-kick">Our book marketing process</p><h2 class="lp-h2" id="ps-h">A clear plan, <em>then steady results.</em></h2><p class="lp-lead">You approve the strategy and the budget. We do the work, track the numbers and keep improving.</p><?= lp_ctas('#lp-form', 'Start with a free call', false) ?></div>
+    <div class="lp-sticky"><h2 class="lp-h2" id="ps-h">A clear plan, <em>then steady results.</em></h2><p class="lp-lead">You approve the strategy and the budget. We do the work, track the numbers and keep improving.</p><?= lp_ctas('#lp-form', 'Start with a free call', false) ?></div>
     <ol class="lp-vsteps">
       <li><div><h3>Free strategy call</h3><p>We learn about your book, your readers, your goals and your budget.</p></div></li>
       <li><div><h3>Book &amp; market audit</h3><p>We review your cover, listing and reviews and study the best-selling books in your category.</p></div></li>
@@ -118,11 +120,13 @@ include dirname(__DIR__) . '/includes/header.php';
   </div>
 </section>
 
+<?= lp_strip('Want more readers this month? Get a free marketing plan.') ?>
+
 <!-- 6. Amazon focus -->
 <section class="lp-sec" aria-labelledby="az-h">
   <div class="lp-w lp-split">
     <div class="lp-covers" style="--n:3"><?= lp_covers(3, 7) ?></div>
-    <div><p class="lp-kick">Amazon book marketing</p><h2 class="lp-h2" id="az-h">Most books are sold on Amazon. <em>We make yours stand out.</em></h2><p class="lp-lead">Your Amazon page is your shop window. Before we spend a dollar on ads, we make sure it is ready to convert.</p>
+    <div><h2 class="lp-h2" id="az-h">Most books are sold on Amazon. <em>We make yours stand out.</em></h2><p class="lp-lead">Your Amazon page is your shop window. Before we spend a dollar on ads, we make sure it is ready to convert.</p>
       <ul class="lp-checks"><?php foreach (['Keyword and category research', 'Description written to sell', 'A+ content and author page', 'Price and promotion strategy', 'Sponsored product ads', 'Review and rating growth'] as $x): ?><li><?= ic('check') ?><?= e($x) ?></li><?php endforeach; ?></ul>
     </div>
   </div>
@@ -131,8 +135,8 @@ include dirname(__DIR__) . '/includes/header.php';
 <!-- 7. Compare -->
 <section class="lp-sec soft" aria-labelledby="cp-h">
   <div class="lp-w">
-    <div class="lp-head"><p class="lp-kick">Compare</p><h2 class="lp-h2" id="cp-h">Why hire a book marketer <em>at AMZ United Press?</em></h2></div>
-    <div class="lp-tablewrap"><table class="lp-table">
+    <div class="rv lp-head"><h2 class="lp-h2" id="cp-h">Why hire a book marketer <em>at AMZ United Press?</em></h2></div>
+    <div class="rv lp-tablewrap"><table class="lp-table">
       <thead><tr><th scope="col"></th><th scope="col">Marketing it yourself</th><th scope="col">Large PR agencies</th><th scope="col" class="us">AMZ United Press</th></tr></thead>
       <tbody>
         <tr><th scope="row">Cost</th><td>Your time, plus trial-and-error ad spend</td><td>Often thousands per month</td><td class="us">From <?= e($mk['price']) ?>, quoted in writing</td></tr>
@@ -149,16 +153,18 @@ include dirname(__DIR__) . '/includes/header.php';
 <!-- 8. Reviews -->
 <section class="lp-sec" aria-labelledby="rv-h">
   <div class="lp-w">
-    <div class="lp-head c"><p class="lp-kick">Authors say</p><h2 class="lp-h2" id="rv-h">Authors who <em>found their readers.</em></h2></div>
-    <div class="lp-quotes"><?= lp_quotes() ?></div>
+    <div class="rv lp-head c"><h2 class="lp-h2" id="rv-h">Authors who <em>found their readers.</em></h2></div>
+    <div class="rv lp-quotes"><?= lp_quotes() ?></div>
     <div class="lp-stats" style="margin-top:56px"><?= lp_stats() ?></div>
   </div>
 </section>
 
+<?= lp_strip('Book marketing that finds your readers.' . lp_offer_suffix()) ?>
+
 <!-- 9. FAQ -->
 <section class="lp-sec alt" aria-labelledby="fq-h">
   <div class="lp-w lp-split top">
-    <div class="lp-sticky"><p class="lp-kick">FAQs</p><h2 class="lp-h2" id="fq-h">Book marketing <em>questions,</em> answered.</h2><p class="lp-lead">Want to talk it through? Call <a href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>" data-lp-call><?= e(site('phone')) ?></a>.</p><a class="btn btn-primary" href="#lp-form2" data-lp-cta>Ask a book marketer <?= ic('arrow') ?></a></div>
+    <div class="lp-sticky"><h2 class="lp-h2" id="fq-h">Book marketing <em>questions,</em> answered.</h2><p class="lp-lead">Want to talk it through? Call <a href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>" data-lp-call><?= e(site('phone')) ?></a>.</p><a class="btn btn-primary" href="#lp-form2" data-lp-cta>Ask a book marketer <?= ic('arrow') ?></a></div>
     <div class="faq lp-faq"><?= faq_html($FAQ, true) ?></div>
   </div>
 </section>

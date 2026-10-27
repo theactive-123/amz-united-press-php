@@ -43,7 +43,7 @@
 </footer>
 <?php endif; ?>
 
-<div class="dock"><a class="btn btn-dark" href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>"<?= !empty($meta['lp']) ? ' data-lp-call' : '' ?>><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>Call us</a><?php if (!empty($meta['lp'])): ?><a class="btn btn-primary" href="#lp-form" data-lp-cta>Free quote</a><?php else: ?><button type="button" class="btn btn-primary" data-quote>Free quote</button><?php endif; ?></div>
+<div class="dock<?= !empty($meta['lp']) ? ' lp-dock' : '' ?>"><a class="btn btn-dark" href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>"<?= !empty($meta['lp']) ? ' data-lp-call' : '' ?>><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>Call us</a><?php if (!empty($meta['lp'])): ?><a class="btn btn-primary" href="#lp-form" data-lp-cta>Free quote</a><?php else: ?><button type="button" class="btn btn-primary" data-quote>Free quote</button><?php endif; ?></div>
 
 <!-- Pop-ups -->
 <dialog id="workDialog" aria-labelledby="dlgTitle"><div class="modal-in" id="dlgBody"></div></dialog>

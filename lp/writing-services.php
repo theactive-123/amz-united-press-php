@@ -35,7 +35,8 @@ $picks = [
 <div class="page active" data-page="lp-writing">
 
 <!-- 1. Hero: dark split with the form -->
-<section class="lph-split" aria-labelledby="lp-h1">
+<section class="lph-split lp-hero-dark" aria-labelledby="lp-h1">
+  <?= lp_mosaic() ?>
   <div class="lp-w lph-grid">
     <div>
       <div class="lph-badges"><span>Fiction</span><span>Nonfiction</span><span>Memoir</span><span>Biography</span><span>Ebooks</span></div>
@@ -43,6 +44,8 @@ $picks = [
       <p class="lp-lead">You have the idea. Our professional book writers turn it into a finished, publish-ready manuscript, interviewing you, learning how you speak and writing chapter by chapter while you approve every step. Your name goes on the cover. Every right and royalty stays with you.</p>
       <?= lp_ctas() ?>
       <?= lp_assure(['Free consultation', 'Written quote first', 'Signed NDA', '100% rights & royalties']) ?>
+      <?php $fc = array_slice(glob(ROOT . '/assets/img/client-images/*.{png,jpg,jpeg,webp}', GLOB_BRACE) ?: [], 0, 5); ?>
+      <div class="lph-faces"><span><?php foreach ($fc as $f): ?><img src="<?= e(asset('img/client-images/' . rawurlencode(basename($f)))) ?>" alt="" width="46" height="46"><?php endforeach; ?></span><p><b><?= e(data('stats')[0][0] . data('stats')[0][1]) ?> books published</b> for authors like these, under their own names.</p></div>
     </div>
     <?= lp_form('lp-form', 'Get your free writing quote', 'Tell us about your book. A real person replies within one business day.', 0) ?>
   </div>
@@ -50,11 +53,13 @@ $picks = [
 
 <?= lp_platform_strip('We write, then publish to') ?>
 
+<?= lp_authors() ?>
+
 <!-- 2. Problem / solution -->
 <section class="lp-sec" aria-labelledby="pg-h">
   <div class="lp-w">
-    <div class="lp-head c"><p class="lp-kick">Sound familiar?</p><h2 class="lp-h2" id="pg-h">The book is in your head. <em>Getting it out</em> is the hard part.</h2><p class="lp-lead">Most books never get written, not because the idea isn’t good, but because writing a book takes hundreds of focused hours. That’s exactly what our ebook and book writing services take off your plate.</p></div>
-    <div class="lp-pg">
+    <div class="rv lp-head c"><p class="lp-kick">Sound familiar?</p><h2 class="lp-h2" id="pg-h">The book is in your head. <em>Getting it out</em> is the hard part.</h2><p class="lp-lead">Most books never get written, not because the idea isn’t good, but because writing a book takes hundreds of focused hours. That’s exactly what our ebook and book writing services take off your plate.</p></div>
+    <div class="rv lp-pg">
       <div class="pain"><h3>Writing it alone</h3><ul>
         <li><i>✕</i>Months of evenings and weekends that never quite add up to a finished draft</li>
         <li><i>✕</i>A blank page, a loose outline and no one to tell you if it’s working</li>
@@ -74,7 +79,7 @@ $picks = [
 <!-- 3. Service picker -->
 <section class="lp-sec alt" aria-labelledby="pk-h">
   <div class="lp-w">
-    <div class="lp-head"><p class="lp-kick">Choose your book</p><h2 class="lp-h2" id="pk-h">Writing services for <em>every kind</em> of book.</h2><p class="lp-lead" style="margin:0">Pick the book you want to write to see how we help and where pricing starts.</p></div>
+    <div class="rv lp-head"><h2 class="lp-h2" id="pk-h">Writing services for <em>every kind</em> of book.</h2><p class="lp-lead" style="margin:0">Pick the book you want to write to see how we help and where pricing starts.</p></div>
     <div class="lp-pick" data-lp-pick>
       <div class="lp-pick-list" role="tablist" aria-label="Writing services">
         <?php foreach ($picks as $i => $p): $s = sub_by_slug($p[0]); ?>
@@ -97,8 +102,8 @@ $picks = [
 <!-- 4. Process -->
 <section class="lp-sec dark" aria-labelledby="st-h">
   <div class="lp-w">
-    <div class="lp-head"><p class="lp-kick">How it works</p><h2 class="lp-h2" id="st-h">From first call to finished manuscript in <em>four steps.</em></h2></div>
-    <ol class="lp-steps" style="--n:4">
+    <div class="rv lp-head"><h2 class="lp-h2" id="st-h">From first call to finished manuscript in <em>four steps.</em></h2></div>
+    <ol class="rv lp-steps" style="--n:4">
       <li><h3>Free consultation</h3><p>Tell us about your book, your readers and your goals. We match you with a writer who knows your genre and send a written quote.</p><small>1–3 days</small></li>
       <li><h3>Interviews &amp; outline</h3><p>Your writer interviews you, gathers your notes and research, and builds a chapter-by-chapter outline for your approval.</p><small>1–2 weeks</small></li>
       <li><h3>Writing &amp; review</h3><p>Chapters arrive in stages. You read, comment and request changes, so the book stays true to you the whole way through.</p><small>4–14 weeks</small></li>
@@ -111,7 +116,7 @@ $picks = [
 <!-- 5. Proof: covers + stats -->
 <section class="lp-sec" aria-labelledby="cv-h">
   <div class="lp-w">
-    <div class="lp-head"><p class="lp-kick">Our authors’ books</p><h2 class="lp-h2" id="cv-h">Books we’ve helped <em>bring to life.</em></h2><p class="lp-lead" style="margin:0">A few titles from authors we have written, edited, designed and published for. <a href="<?= e(url('/portfolio')) ?>">See the full portfolio</a>.</p></div>
+    <div class="rv lp-head"><h2 class="lp-h2" id="cv-h">Books we’ve helped <em>bring to life.</em></h2><p class="lp-lead" style="margin:0">A few titles from authors we have written, edited, designed and published for. <a href="<?= e(url('/portfolio')) ?>">See the full portfolio</a>.</p></div>
     <div class="lp-covers" style="--n:5"><?= lp_covers(5, 2) ?></div>
     <div class="lp-stats" style="margin-top:64px"><?= lp_stats() ?></div>
   </div>
@@ -121,11 +126,13 @@ $picks = [
   <div class="lp-w"><div><h2>Your book could be finished this season.</h2><p>Book a free consultation and get a written quote within one business day.</p></div><?= lp_ctas('#lp-form', 'Get My Free Quote', false) ?></div>
 </section>
 
+<?= lp_strip('Not sure which writing service fits your book? Ask a writer.') ?>
+
 <!-- 6. Comparison -->
 <section class="lp-sec alt" aria-labelledby="cp-h">
   <div class="lp-w">
-    <div class="lp-head"><p class="lp-kick">Compare your options</p><h2 class="lp-h2" id="cp-h">Why authors choose our <em>book writers.</em></h2></div>
-    <div class="lp-tablewrap"><table class="lp-table">
+    <div class="rv lp-head"><h2 class="lp-h2" id="cp-h">Why authors choose our <em>book writers.</em></h2></div>
+    <div class="rv lp-tablewrap"><table class="lp-table">
       <thead><tr><th scope="col"></th><th scope="col">Writing it yourself</th><th scope="col">Freelance marketplaces</th><th scope="col" class="us">AMZ United Press</th></tr></thead>
       <tbody>
         <tr><th scope="row">Time to a finished draft</th><td>Often a year or more</td><td>Varies with the freelancer</td><td class="us">6–20 weeks, agreed upfront</td></tr>
@@ -142,16 +149,18 @@ $picks = [
 <!-- 7. Promises + quotes -->
 <section class="lp-sec" aria-labelledby="pr-h">
   <div class="lp-w">
-    <div class="lp-head"><p class="lp-kick">Our promise</p><h2 class="lp-h2" id="pr-h">Your book. Your name. <em>Your royalties.</em></h2></div>
+    <div class="rv lp-head"><h2 class="lp-h2" id="pr-h">Your book. Your name. <em>Your royalties.</em></h2></div>
     <?= lp_promises() ?>
-    <div class="lp-quotes" style="margin-top:40px"><?= lp_quotes() ?></div>
+    <div class="rv lp-quotes" style="margin-top:40px"><?= lp_quotes() ?></div>
   </div>
 </section>
+
+<?= lp_strip('Ready to finish your book?' . lp_offer_suffix()) ?>
 
 <!-- 8. FAQ -->
 <section class="lp-sec soft" aria-labelledby="fq-h">
   <div class="lp-w lp-split top">
-    <div class="lp-sticky"><p class="lp-kick">FAQs</p><h2 class="lp-h2" id="fq-h">Questions about our <em>book writing services.</em></h2><p class="lp-lead">Can’t see yours? Call us on <a href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>" data-lp-call><?= e(site('phone')) ?></a> or ask in the form.</p><a class="btn btn-primary" href="#lp-form2" data-lp-cta>Ask a writer <?= ic('arrow') ?></a></div>
+    <div class="lp-sticky"><h2 class="lp-h2" id="fq-h">Questions about our <em>book writing services.</em></h2><p class="lp-lead">Can’t see yours? Call us on <a href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>" data-lp-call><?= e(site('phone')) ?></a> or ask in the form.</p><a class="btn btn-primary" href="#lp-form2" data-lp-cta>Ask a writer <?= ic('arrow') ?></a></div>
     <div class="faq lp-faq"><?= faq_html($FAQ, true) ?></div>
   </div>
 </section>

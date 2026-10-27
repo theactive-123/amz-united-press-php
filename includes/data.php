@@ -17,6 +17,9 @@ $D = [
         'address' => '240 Publishing Lane, Suite 200, Austin, TX 78701',
         'hours' => 'Mon–Fri, 9am–6pm CT',
         'show_placeholder_notes' => false,
+        // Offer sticker on the landing pages (/lp/). Set 'on' => false to hide it everywhere.
+        // 'ends' is optional, e.g. '30 November' -> shows "Ends 30 November"; empty shows the 'note' text.
+        'offer' => ['on' => true, 'top' => 'Super sale', 'big' => '50% OFF', 'note' => 'Limited-time offer', 'ends' => ''],
     ],
 
     // Portfolio books and review counts supplied for the website.
