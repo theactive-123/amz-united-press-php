@@ -19,7 +19,13 @@ function url(string $path = '/'): string {
     $base = rtrim((string)cfg('base_path', ''), '/');
     return $base . ($path === '' ? '/' : $path);
 }
-function asset(string $path): string { return url('/assets/' . ltrim($path, '/')); }
+/** Asset URL. CSS and JS get ?v=<last modified time> so browsers and server caches fetch the new file after every deploy. */
+function asset(string $path): string {
+    $path = ltrim($path, '/');
+    $u = url('/assets/' . $path);
+    if (preg_match('/\.(css|js)$/', $path) && is_file($f = dirname(__DIR__) . '/assets/' . $path)) $u .= '?v=' . filemtime($f);
+    return $u;
+}
 
 /** Full address of the site, e.g. https://www.example.com (no trailing slash). */
 function site_url(): string {
