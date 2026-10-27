@@ -406,7 +406,7 @@ sup.mk{font-family:var(--mono);font-size:.56em;font-weight:500;color:#C0281F;mar
 .cat-nav a:hover{background:var(--orange);border-color:var(--orange);color:var(--ink)}
 .cat{border-bottom:1px solid var(--ink);padding:84px 0}
 .cat-intro .art{background:var(--orange);padding:28px 20px 12px;max-width:240px}
-.sub-list{border-top:2px solid var(--ink)}
+/* .sub-list{border-top:2px solid var(--ink)} */
 .sub-row{padding:28px 4px;border-bottom:1px solid var(--ink)}
 .sub-row:hover{background:var(--paper)}
 .sub-row .num{font-style:italic;color:var(--grey)}
