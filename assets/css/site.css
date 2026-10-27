@@ -249,3 +249,31 @@
 @media (max-width:560px){.pr-cats{grid-template-columns:1fr}}
 .hm-band.hm-band-dark .btn-outline{border-color:#fff;color:#fff}
 .hm-band.hm-band-dark .btn-outline:hover{background:#fff;color:#141413}
+
+/* =========================== Responsive QA fixes =========================== */
+/* nothing bleeds past the screen edge: hero and intro images stay inside their columns */
+.banner-right-image{width:100%!important;margin-left:0!important;max-width:100%}
+@media (min-width:941px){.x-man-photo{width:100%!important;margin-left:0!important}}
+.x-man{overflow-x:clip}
+/* long words never overflow: headings wrap inside the screen */
+h1,h2,h3,.x-h2,.page-hero h1,.svh h1{overflow-wrap:break-word;hyphens:manual}
+@media (max-width:900px){.x-hero h1.hm-h1{font-size:clamp(2.2rem,6.8vw,3.6rem)}}
+@media (max-width:600px){
+  .x-hero h1.hm-h1{font-size:clamp(1.85rem,8.8vw,2.6rem);line-height:1.08}
+  [data-page=home] .x-h2.hm-h2{font-size:clamp(1.75rem,8vw,2.4rem)}
+  .x-big{font-size:1.18rem!important;line-height:1.5!important}
+  /* trusted strip: label above the photos instead of a squeezed column */
+  .trusted-strip{grid-template-columns:1fr!important;padding:28px 0!important}
+  .trusted-label{padding:0 20px 18px!important}
+  .trusted-label h2{font-size:1.8rem!important}
+  .trusted-label p{font-size:.95rem!important;max-width:none}
+  .trusted-eyebrow{font-size:.66rem!important}
+  /* genres: two compact columns */
+  .hm-genre-list{grid-template-columns:1fr 1fr!important;gap:0 14px}
+  .hm-genre-list a{font-size:.95rem;padding:13px 0}
+  .page-hero h1{font-size:clamp(1.9rem,8.6vw,2.6rem)}
+  .svh h1{font-size:clamp(1.9rem,8.6vw,2.6rem)}
+}
+@media (max-width:900px){.x-faq-photo{display:none}}
+/* footer word-mark: never clipped at the bottom */
+.site-footer::after{padding-bottom:.14em;overflow:hidden;max-width:100%}
