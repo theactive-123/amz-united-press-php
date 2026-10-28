@@ -56,6 +56,5 @@
 <script src="<?= e(asset('js/main.js')) ?>"></script>
 <script src="<?= e(asset('js/forms.js')) ?>"></script>
 <?php if (!empty($meta['lp'])): ?><script src="<?= e(asset('js/lp.js')) ?>"></script><?php endif; ?>
-<?php if (!empty($meta['inner']) || !empty($meta['lp'])): ?><script src="<?= e(asset('js/inner.js')) ?>"></script><?php endif; ?>
 </body>
 </html>
