@@ -66,8 +66,8 @@ function render_plans(): string {
     $h = '';
     foreach (data('prices') as $i => $p) {
         $cls = $p['f'] ? ' hot' : ($i === 2 ? ' dark' : '');
-        $h .= '<article class="xp-plan rv' . $cls . '"><div class="xp-top"><span class="xp-n" aria-hidden="true">0' . ($i + 1) . '</span>' . ($p['f'] ? '<span class="xp-tag">Most chosen</span>' : '') . '</div>'
-            . '<h3>' . e($p['t']) . '</h3><p class="xp-s">' . e($p['s']) . '</p><div class="xp-price"><small>From</small><b>' . e(preg_replace('/^From\s*/', '', $p['p'])) . '</b></div><ul>';
+        $h .= '<article class="xp-plan rv' . $cls . '"><div class="xp-top"><span class="xp-n" aria-hidden="true">0' . ($i + 1) . '</span>' . ($p['f'] ? '<span class="xp-tag">Most popular</span>' : '') . '</div>'
+            . '<h3>' . e($p['t']) . '</h3>' . ($p['s'] !== '' ? '<p class="xp-s">' . e($p['s']) . '</p>' : '') . '<div class="xp-price">' . (str_starts_with($p['p'], 'From') ? '<small>From</small>' : '') . '<b>' . e(preg_replace('/^From\s*/', '', $p['p'])) . '</b></div><ul>';
         foreach ($p['l'] as $x) $h .= '<li>' . ic('check') . e($x) . '</li>';
         $h .= '</ul><button type="button" class="btn xp-btn" data-quote="Interested in: ' . e($p['t']) . '">' . e($p['b']) . '</button></article>';
     }

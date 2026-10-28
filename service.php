@@ -49,7 +49,7 @@ $plans = [
     'blog-writing-services'            => ['bg' => $F . 'Crafting Stories at the Writing Desk.png', 'vis' => 'doc',    'proc' => 'rows',  'proof' => 'none',    'order' => ['intro', 'sig', 'types', 'cta', 'proc', 'faq', 'more']],
     'website-content-writing-services' => ['bg' => $J . 'Remote Project Discussion on Google Meet.png', 'vis' => 'browser', 'proc' => 'track', 'proof' => 'none', 'order' => ['sig', 'intro', 'types', 'cta', 'proc', 'faq', 'more']],
     'book-cover-design-services'       => ['bg' => $F . 'Cinematic Book Design Workspace.png',      'vis' => 'fan',    'proc' => 'rows',  'proof' => 'shelf',   'order' => ['sig', 'proof', 'get', 'intro', 'types', 'cta', 'proc', 'faq', 'more']],
-    'video-book-trailer-services'      => ['bg' => $SF,                                             'vis' => 'screen', 'proc' => 'track', 'proof' => 'shelf',   'order' => ['sig', 'intro', 'types', 'cta', 'proc', 'faq', 'more']],
+    'video-book-trailer-services'      => ['bg' => $SF,                                             'vis' => $SF, 'proc' => 'track', 'proof' => 'shelf',   'order' => ['sig', 'intro', 'types', 'cta', 'proc', 'faq', 'more']],
     'author-website-design-services'   => ['bg' => $J . 'Cozy InDesign Book Layout Workspace.png',  'vis' => 'browser', 'proc' => 'rows', 'proof' => 'clients', 'order' => ['sig', 'intro', 'types', 'cta', 'proc', 'proof', 'faq', 'more']],
     'article-writing-services'         => ['bg' => $J . 'Book Project Proposal Workspace.png',      'vis' => 'doc',    'proc' => 'track', 'proof' => 'none',    'order' => ['sig', 'intro', 'types', 'cta', 'proc', 'faq', 'more']],
 ];

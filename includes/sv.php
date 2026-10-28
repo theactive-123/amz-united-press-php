@@ -76,7 +76,6 @@ function sv_hero_art(string $kind, int $s): string {
         case 'page':    $h .= '<span class="svx-page"><b>Chapter One</b><span class="svx-type">The morning she finally wrote it down, the kitchen was still dark</span><i></i><i></i><i></i><i></i><i class="s"></i></span>' . sv_book($s, 'b'); break;
         case 'marks':   $h .= '<span class="svx-page marks"><b>Page 214</b><span>Their <s>was</s> <u>were</u> three letters on the table, <s>and</s> each one addressed to <s>a</s> someone who had never <s>lived</s> <u>lived</u> there.</span><i></i><i></i><i class="s"></i></span>' . sv_book($s, 'b'); break;
         case 'wave':    $h .= '<span class="svx-sq"><img src="' . e(sv_cover($s)) . '" alt=""></span><span class="svx-wave">' . str_repeat('<i></i>', 28) . '</span>'; break;
-        case 'screen':  $h .= '<span class="svx-screen"><img src="' . e(sv_cover($s)) . '" alt=""><span class="svx-play">' . sv_i('play') . '</span><span class="svx-bar"><i></i></span></span>'; break;
         case 'browser': $h .= '<span class="svx-browser"><span class="svx-dots"><i></i><i></i><i></i><em>yourname.com</em></span><span class="svx-site"><img src="' . e(sv_cover($s)) . '" alt=""><span><b>New release</b><i></i><i></i><i class="s"></i><u>Buy the book</u></span></span></span>'; break;
         case 'doc':     $h .= '<span class="svx-browser doc"><span class="svx-dots"><i></i><i></i><i></i><em>blog / new-post</em></span><span class="svx-post"><b>How to plan a book launch in 30 days</b><i></i><i></i><i></i><i class="s"></i><i></i><i class="s"></i></span></span>'; break;
         default:        $h .= '<figure class="x-frame svx-photo">' . sv_img($kind, '', true) . '</figure>';
@@ -180,13 +179,13 @@ function sv_process(array $d, string $mode, string $quote, int $help): string {
 /** Call-to-action banner: copy + buttons, fanned covers, author faces and a rotating promise badge. */
 function sv_cta(string $titleHtml, string $sub, string $quote, int $help, string $variant = 'orange', int $seed = 0, string $tag = 'h2', string $id = ''): string {
     $tel = preg_replace('/[^\d+]/', '', site('phone'));
-    $ring = '<svg class="svx-ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="svr' . $seed . $variant . '" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs><text><textPath href="#svr' . $seed . $variant . '">100% your rights · 100% your royalties · </textPath></text></svg>';
+    $long = mb_strlen(strip_tags($titleHtml)) > 64 ? ' long' : '';
     return '<section class="svx-cta-sec ' . e($variant) . '"' . ($id ? ' aria-labelledby="' . e($id) . '"' : ' aria-label="Get started"') . '><div class="x-w"><div class="svx-cta rv">'
-         . '<div class="svx-cta-copy"><' . $tag . ($id ? ' id="' . e($id) . '"' : '') . ' class="svx-cta-h">' . $titleHtml . '</' . $tag . '>' . ($sub !== '' ? '<p>' . $sub . '</p>' : '')
+         . '<div class="svx-cta-copy"><' . $tag . ($id ? ' id="' . e($id) . '"' : '') . ' class="svx-cta-h' . $long . '">' . $titleHtml . '</' . $tag . '>' . ($sub !== '' ? '<p>' . $sub . '</p>' : '')
          . '<div class="svx-cta-btns"><button type="button" class="btn ' . ($variant === 'orange' ? 'btn-dark' : 'btn-primary') . '" data-quote="' . e($quote) . '" data-help="' . $help . '">Get a Free Quote</button><button type="button" class="btn btn-outline" data-chat>Live Chat</button></div>'
          . '<a class="svx-cta-tel" href="tel:' . e($tel) . '">' . sv_i('phone') . 'Or call ' . e(site('phone')) . '</a></div>'
-         . '<div class="svx-cta-art" aria-hidden="true">' . sv_book($seed, 'k1') . sv_book($seed + 2, 'k2') . sv_book($seed + 4, 'k3')
-         . '<span class="svx-cta-faces">' . sv_faces(4) . '<b>Join ' . e(data('stats')[1][0] . data('stats')[1][1]) . ' authors</b></span><span class="svx-ring-wrap">' . $ring . '<i>' . sv_i('book') . '</i></span></div>'
+         . '<div class="svx-cta-art" aria-hidden="true"><div class="svx-cta-fan">' . sv_book($seed, 'k1') . sv_book($seed + 2, 'k2') . sv_book($seed + 4, 'k3') . '</div>'
+         . '<div class="svx-cta-pills"><span class="svx-cta-faces">' . sv_faces(4) . '<b>Join ' . e(data('stats')[1][0] . data('stats')[1][1]) . ' authors</b></span><span class="svx-cta-badge">' . sv_i('check') . '100% rights &amp; royalties</span></div></div>'
          . '</div></div></section>';
 }
 
@@ -376,7 +375,7 @@ function sv_sig(string $slug, int $s): string {
     case 'video-book-trailer-services':
         $fr = [['0:00', 'Hook', 'A single line of text over a dark frame.'], ['0:06', 'World', 'The setting, in slow, moody shots.'], ['0:15', 'Conflict', 'Music rises. The stakes in three words.'], ['0:24', 'Cover', 'Your cover, title and where to buy.']];
         $tabs = []; $i = 0;
-        foreach ($fr as $f) { $tabs[$f[0] . ' ' . $f[1]] = '<div class="svx-frameview"><span class="svx-screen big"><img src="' . e(sv_cover($s + $i)) . '" alt=""><span class="svx-cap">' . e($f[1]) . '</span><span class="svx-bar"><i style="width:' . (($i + 1) * 25) . '%"></i></span></span><p><b>' . e($f[0]) . ' · ' . e($f[1]) . '</b>' . e($f[2]) . '</p></div>'; $i++; }
+        foreach ($fr as $f) { $tabs[$f[0] . ' ' . $f[1]] = '<div class="svx-frameview"><figure class="svx-still"><img src="' . e(sv_cover($s + $i)) . '" alt=""><span class="svx-cap">' . e($f[1]) . '</span><span class="svx-frame-n">Frame ' . ($i + 1) . ' / 4</span></figure><p><b>' . e($f[0]) . ' · ' . e($f[1]) . '</b>' . e($f[2]) . '</p></div>'; $i++; }
         return sv_sig_wrap('play', 'Storyboard', 'Thirty seconds, <em>planned</em>.', 'A sample storyboard for a short trailer. Every shot is planned with you before anything is edited.', sv_switch($tabs, 'Storyboard frame', 'svx-board', 3200), true);
 
     case 'author-website-design-services':

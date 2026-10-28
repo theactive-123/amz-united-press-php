@@ -122,7 +122,6 @@ $curCat = $meta['cat'] ?? '';
       </nav>
       <div class="hdr-acts">
         <a class="hdr-phone" href="tel:<?= e($tel) ?>"><?= ic('phone') ?><span><?= e(site('phone')) ?></span></a>
-        <button type="button" class="btn btn-dark" data-quote="I’d like to book a call to discuss my book.">Book a Call</button>
         <button type="button" class="btn btn-primary" data-quote>Get a Quote</button>
         <button type="button" class="btn btn-outline" data-chat>Live Chat</button>
       </div>
