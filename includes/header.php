@@ -57,6 +57,7 @@ header('X-Content-Type-Options: nosniff');
 <link rel="stylesheet" href="<?= e(asset('css/home.css')) ?>">
 <link rel="stylesheet" href="<?= e(asset('css/pages.css')) ?>">
 <link rel="stylesheet" href="<?= e(asset('css/site.css')) ?>">
+<?php if (!empty($meta['inner'])): ?><link rel="stylesheet" href="<?= e(asset('css/inner.css')) ?>"><?php endif; ?>
 <?php endif; ?>
 <script>document.documentElement.classList.add('js');</script>
 
