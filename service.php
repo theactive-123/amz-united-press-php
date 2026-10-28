@@ -20,134 +20,59 @@ $meta = [
         faq_schema($d['faq']),
     ],
 ];
+$meta['sv'] = true;
 include __DIR__ . '/includes/header.php';
-$ctaBtns = '<div class="sv-btns"><button type="button" class="btn btn-primary" data-quote="Interested in: ' . e($d['t']) . '" data-help="' . $help . '">Get a Quote</button>'
-         . '<button type="button" class="btn btn-outline" data-chat>Live Chat</button>'
-         . '<a class="sv-tel" href="tel:' . e($tel) . '">' . ic('phone') . e(site('phone')) . '</a></div>';
+require_once __DIR__ . '/includes/sv.php';
+
+$seed  = crc32($d['slug']) % 11;
+$quote = 'Interested in: ' . $d['t'];
+$F = 'Fourparts/'; $J = 'From first idea to finished book/';
+
+/* Each service has its own hero object, section order and signature section.
+   intro: [layout, image]; types: rows|picker; proc: pin|rows|track; proof: shelf|clients|stores|none */
+$plans = [
+    'ghostwriting-services'            => ['art' => 'page',    'intro' => ['left', $F . 'Crafting Stories at the Writing Desk.png'], 'proc' => 'pin',   'proof' => 'clients', 'order' => ['intro', 'sig', 'types', 'band', 'proc', 'proof', 'faq', 'more']],
+    'ebook-writing-services'           => ['art' => 'kindle',  'intro' => ['editorial'],                                        'proc' => 'track', 'proof' => 'shelf',   'order' => ['sig', 'intro', 'types', 'proc', 'band', 'proof', 'faq', 'more']],
+    'fiction-writing-services'         => ['art' => 'fan',     'intro' => ['right', 'Cinematic Sci-Fi Book Cover Showcase.png'],  'proc' => 'rows',  'proof' => 'shelf',   'order' => ['sig', 'intro', 'proof', 'proc', 'band', 'faq', 'more']],
+    'nonfiction-writing-services'      => ['art' => $J . 'Book Project Proposal Workspace.png', 'intro' => ['editorial'],         'proc' => 'pin',   'proof' => 'clients', 'order' => ['intro', 'sig', 'proc', 'band', 'proof', 'faq', 'more']],
+    'memoir-writing-services'          => ['art' => $F . 'Crafting Stories at the Writing Desk.png', 'intro' => ['editorial'],    'proc' => 'rows',  'proof' => 'clients', 'order' => ['sig', 'intro', 'proof', 'proc', 'band', 'faq', 'more']],
+    'novel-ghostwriting-services'      => ['art' => 'books',   'intro' => ['left', $F . 'Cinematic Book Design Workspace.png'],  'proc' => 'track', 'proof' => 'shelf',   'order' => ['intro', 'sig', 'proc', 'proof', 'band', 'faq', 'more']],
+    'biography-writing-services'       => ['art' => $J . 'Remote Project Discussion on Google Meet.png', 'intro' => ['right', $J . 'Book Project Proposal Workspace.png'], 'proc' => 'rows', 'proof' => 'clients', 'order' => ['intro', 'sig', 'band', 'proc', 'proof', 'faq', 'more']],
+    'autobiography-writing-services'   => ['art' => 'page',    'intro' => ['editorial'],                                        'proc' => 'track', 'proof' => 'clients', 'order' => ['sig', 'intro', 'proc', 'band', 'proof', 'faq', 'more']],
+    'ebook-publishing-services'        => ['art' => 'kindle',  'intro' => ['left', $F . 'Self-Publishing Dashboard Workspace.png'], 'proc' => 'rows', 'proof' => 'stores', 'order' => ['proof', 'sig', 'intro', 'types', 'proc', 'band', 'faq', 'more']],
+    'amazon-publishing-services'       => ['art' => $J . 'Author Workspace with KDP Publishing Dashboard.png', 'intro' => ['editorial'], 'proc' => 'pin', 'proof' => 'shelf', 'order' => ['intro', 'sig', 'proc', 'band', 'proof', 'faq', 'more']],
+    'book-editing-services'            => ['art' => $F . 'Cozy Manuscript Editing Workspace.png', 'intro' => ['editorial'],        'proc' => 'rows',  'proof' => 'clients', 'order' => ['sig', 'intro', 'types', 'proc', 'band', 'proof', 'faq', 'more']],
+    'proofreading-services'            => ['art' => 'marks',   'intro' => ['right', $F . 'Cozy Manuscript Editing Workspace.png'], 'proc' => 'track', 'proof' => 'none',   'order' => ['sig', 'intro', 'types', 'band', 'proc', 'faq', 'more']],
+    'book-formatting-services'         => ['art' => $J . 'Cozy InDesign Book Layout Workspace.png', 'intro' => ['editorial'],      'proc' => 'rows',  'proof' => 'shelf',   'order' => ['intro', 'sig', 'types', 'proc', 'proof', 'band', 'faq', 'more']],
+    'book-marketing-services'          => ['art' => 'books',   'intro' => ['left', $F . 'Self-Publishing Dashboard Workspace.png'], 'proc' => 'pin',  'proof' => 'stores',  'order' => ['intro', 'sig', 'types', 'proc', 'band', 'proof', 'faq', 'more']],
+    'audiobook-services'               => ['art' => 'wave',    'intro' => ['editorial'],                                        'proc' => 'track', 'proof' => 'none',    'order' => ['sig', 'intro', 'types', 'proc', 'band', 'faq', 'more']],
+    'blog-writing-services'            => ['art' => 'doc',     'intro' => ['right', $F . 'Crafting Stories at the Writing Desk.png'], 'proc' => 'rows', 'proof' => 'none', 'order' => ['intro', 'sig', 'types', 'band', 'proc', 'faq', 'more']],
+    'website-content-writing-services' => ['art' => 'browser', 'intro' => ['editorial'],                                        'proc' => 'track', 'proof' => 'none',    'order' => ['sig', 'intro', 'types', 'proc', 'band', 'faq', 'more']],
+    'book-cover-design-services'       => ['art' => 'fan',     'intro' => ['left', $F . 'Cinematic Book Design Workspace.png'], 'proc' => 'rows',  'proof' => 'shelf',   'order' => ['sig', 'proof', 'intro', 'types', 'proc', 'band', 'faq', 'more']],
+    'video-book-trailer-services'      => ['art' => 'screen',  'intro' => ['editorial'],                                        'proc' => 'track', 'proof' => 'shelf',   'order' => ['sig', 'intro', 'types', 'proc', 'band', 'faq', 'more']],
+    'author-website-design-services'   => ['art' => 'browser', 'intro' => ['right', $J . 'Cozy InDesign Book Layout Workspace.png'], 'proc' => 'rows', 'proof' => 'clients', 'order' => ['intro', 'sig', 'types', 'band', 'proc', 'proof', 'faq', 'more']],
+    'article-writing-services'         => ['art' => 'doc',     'intro' => ['editorial'],                                        'proc' => 'track', 'proof' => 'none',    'order' => ['sig', 'intro', 'types', 'proc', 'band', 'faq', 'more']],
+];
+$P = $plans[$d['slug']] ?? ['art' => 'books', 'intro' => ['editorial'], 'proc' => 'rows', 'proof' => 'none', 'order' => ['intro', 'sig', 'types', 'proc', 'band', 'faq', 'more']];
+if ($P['proc'] === 'pin' && count($d['process']['steps']) > 8) $P['proc'] = 'track';
+$typesMode = !empty($d['types']) && count($d['types']['items']) > 8 ? 'picker' : 'rows';
+$bandDark = in_array($d['cat'], ['edit', 'other'], true);
+
+$blocks = [
+    'intro' => fn() => sv_intro($d, $P['intro'][0], $P['intro'][1] ?? ''),
+    'sig'   => fn() => sv_sig($d['slug'], $seed),
+    'types' => fn() => sv_types($d, $typesMode),
+    'proc'  => fn() => sv_process($d, $P['proc'], $quote, $help),
+    'band'  => fn() => sv_band($d['cta1'], $quote, $help, $bandDark),
+    'proof' => fn() => sv_proof($P['proof']),
+    'faq'   => fn() => sv_faq($d),
+    'more'  => fn() => sv_more($d, $beyond),
+];
 ?>
-<div class="page active" data-page="service">
-
-<!-- 1. Hero + sign-up form -->
-<section class="svh" aria-labelledby="svh-h1">
-  <div class="wrap svh-grid">
-    <div class="svh-copy">
-      <p class="crumbs"><a href="<?= e(url('/')) ?>">Home</a> / <a href="<?= e(url('/services#cat-' . $cat['k'])) ?>"><?= e($cat['t']) ?></a> / <?= e($d['t']) ?></p>
-      <h1 id="svh-h1"><?= e($d['h1']) ?></h1>
-      <p class="lead"><?= rich($d['lead']) ?></p>
-      <?= $ctaBtns ?>
-      <div class="chips"><span class="chip">From <?= e($d['price']) ?></span><span class="chip">Typical time <?= e($d['time']) ?></span><span class="chip">Written quote first</span></div>
-    </div>
-    <div class="svh-form"><?= render_form('svc', 'Sign Up Now!', 'Tell us about your project. A real person replies within one business day.', 'service', 'Get My Free Quote', $help) ?></div>
-  </div>
-</section>
-
-<!-- 2. Intro -->
-<section class="sv-sec" aria-labelledby="sv-intro">
-  <div class="wrap sv-intro">
-    <div>
-      <span class="eyebrow"><?= e($d['name']) ?></span>
-      <h2 id="sv-intro"><?= e($d['intro']['h2']) ?></h2>
-    </div>
-    <div>
-      <?php foreach ($d['intro']['p'] as $p): ?><p><?= rich($p) ?></p><?php endforeach; ?>
-      <ul class="checks"><?php foreach ($d['intro']['list'] as $x): ?><li><span class="tick"><?= ic('check') ?></span><?= e($x) ?></li><?php endforeach; ?></ul>
-    </div>
-  </div>
-</section>
-
-<?php if (!empty($d['types'])): ?>
-<!-- 3. Genres / features -->
-<section class="sv-sec sv-alt" aria-labelledby="sv-types">
-  <div class="wrap">
-    <div class="sv-head"><h2 id="sv-types"><?= e($d['types']['h2']) ?></h2><p><?= rich($d['types']['p']) ?></p></div>
-    <div class="sv-cards">
-      <?php foreach ($d['types']['items'] as $i => $x): ?>
-      <article class="sv-card"><span class="sv-n"><?= str_pad((string)($i + 1), 2, '0', STR_PAD_LEFT) ?></span><h3><?= e($x[0]) ?></h3><p><?= rich($x[1]) ?></p></article>
-      <?php endforeach; ?>
-    </div>
-  </div>
-</section>
-<?php endif; ?>
-
-<!-- 4. Process -->
-<section class="sv-sec" aria-labelledby="sv-proc">
-  <div class="wrap">
-    <div class="sv-head"><h2 id="sv-proc"><?= e($d['process']['h2']) ?></h2><p><?= rich($d['process']['p']) ?></p></div>
-    <ol class="sv-steps">
-      <?php foreach ($d['process']['steps'] as $i => $x): ?>
-      <li><span class="sv-step-n">Step <?= str_pad((string)($i + 1), 2, '0', STR_PAD_LEFT) ?></span><h3><?= e($x[0]) ?></h3><p><?= rich($x[1]) ?></p></li>
-      <?php endforeach; ?>
-    </ol>
-  </div>
-</section>
-
-<!-- 5. Mid-page call to action -->
-<section class="sv-band" aria-label="Get started">
-  <div class="wrap sv-band-in"><h2><?= e($d['cta1']) ?></h2><?= $ctaBtns ?></div>
-</section>
-
-<!-- 6. About + why choose us -->
-<section class="sv-sec" aria-labelledby="sv-about">
-  <div class="wrap">
-    <div class="sv-about">
-      <div><span class="eyebrow">About us</span><h2 id="sv-about"><?= e($d['about']['h3']) ?></h2></div>
-      <div><?php foreach ($d['about']['p'] as $p): ?><p><?= rich($p) ?></p><?php endforeach; ?></div>
-    </div>
-    <div class="sv-why">
-      <div class="sv-head"><h2><?= e($d['why']['h3']) ?></h2><p><?= rich($d['why']['p']) ?></p></div>
-      <div class="sv-why-grid">
-        <?php foreach ($d['why']['items'] as $x): ?><article class="sv-why-card"><span class="tick"><?= ic('check') ?></span><h3><?= e($x[0]) ?></h3><p><?= rich($x[1]) ?></p></article><?php endforeach; ?>
-      </div>
-      <div class="sv-stats" role="list"><?= render_stats() ?></div>
-    </div>
-  </div>
-</section>
-
-<?php if (!empty($d['compare'])): $cmp = $d['compare']; ?>
-<!-- 7. Old way vs our way -->
-<section class="sv-sec sv-alt" aria-labelledby="sv-cmp">
-  <div class="wrap">
-    <div class="sv-head"><h2 id="sv-cmp"><?= e($cmp['h3']) ?></h2><p><?= rich($cmp['p']) ?></p></div>
-    <div class="sv-cmp">
-      <div class="sv-cmp-old"><h3>The usual way</h3>
-        <?php foreach ($cmp['old'] as $o): ?>
-        <div class="sv-cmp-col"><h4><?= e($o[0]) ?></h4><dl><?php foreach ($cmp['rows'] as $k => $r): ?><div><dt><?= e($r) ?></dt><dd><?= e($o[1][$k] ?? '') ?></dd></div><?php endforeach; ?></dl></div>
-        <?php endforeach; ?>
-      </div>
-      <span class="sv-vs" aria-hidden="true">VS</span>
-      <div class="sv-cmp-ours"><h3>Our way</h3>
-        <div class="sv-cmp-col"><h4><?= e($cmp['ours'][0]) ?></h4><dl><?php foreach ($cmp['rows'] as $k => $r): ?><div><dt><?= e($r) ?></dt><dd><?= e($cmp['ours'][1][$k] ?? '') ?></dd></div><?php endforeach; ?></dl></div>
-        <button type="button" class="btn btn-primary" data-quote="Interested in: <?= e($d['t']) ?>" data-help="<?= $help ?>">Get a Quote</button>
-      </div>
-    </div>
-  </div>
-</section>
-<?php endif; ?>
-
-<!-- 8. FAQs -->
-<section class="sv-sec" aria-labelledby="sv-faq">
-  <div class="wrap sv-faq">
-    <div><span class="eyebrow">FAQs</span><h2 id="sv-faq">Frequently Asked Questions</h2><p>Straight answers about our <?= e(strtolower($d['name'])) ?>. Can’t see your question? <a href="<?= e(url('/contact')) ?>">Ask us directly</a>.</p>
-      <div class="sv-faq-cta"><h3><?= e($d['faq_cta']) ?></h3><button type="button" class="btn btn-primary" data-quote="Interested in: <?= e($d['t']) ?>" data-help="<?= $help ?>">Get a Quote</button></div></div>
-    <div class="faq"><?= faq_html($d['faq'], true) ?></div>
-  </div>
-</section>
-
-<!-- 9. Other services -->
-<?php if ($beyond): ?>
-<section class="sv-sec sv-alt" aria-labelledby="sv-more">
-  <div class="wrap">
-    <div class="sv-head"><h2 id="sv-more"><?= e($d['beyond']['h2']) ?></h2></div>
-    <div class="sv-more">
-      <?php foreach ($beyond as $x): ?><a class="sv-more-card" href="<?= e(url('/services/' . $x['slug'])) ?>"><small><?= e(cat_by_key($x['cat'])['t']) ?></small><h3><?= e($x['name']) ?></h3><p><?= e(plain($x['short'])) ?></p><span class="x-link">Learn more <?= ic('arrow') ?></span></a><?php endforeach; ?>
-    </div>
-  </div>
-</section>
-<?php endif; ?>
-
-<!-- 10. Closing call to action -->
-<section class="sv-band sv-band-end" aria-labelledby="sv-end">
-  <div class="wrap sv-band-in"><div><h2 id="sv-end"><?= e($d['cta2']['h3']) ?></h2><p><?= rich($d['cta2']['p']) ?></p></div><?= $ctaBtns ?></div>
-</section>
+<div class="page active svx svx-<?= e($d['cat']) ?>" data-page="service">
+<?= sv_hero($d, $cat, $P['art'], $seed, $quote, $help) ?>
+<?php foreach ($P['order'] as $b) echo $blocks[$b](); ?>
+<?= sv_close($d, $help) ?>
 </div>
+<script src="<?= e(asset('js/sv.js')) ?>" defer></script>
 <?php include __DIR__ . '/includes/footer.php'; ?>

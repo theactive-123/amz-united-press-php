@@ -202,8 +202,8 @@ function initHome(){
   stg.addEventListener('pointerleave',function(){bk.style.removeProperty('--ry');bk.style.removeProperty('--rx')});
   $('#st-go').addEventListener('click',function(){openQuote('Cover idea: “'+((ST.t||'').trim()||'Untitled')+'” by '+((ST.by||'').trim()||'(my name)')+' — genre: '+ST.g,2)});
   $$('[data-aud]').forEach(function(b){b.addEventListener('click',function(){setAud(b.getAttribute('data-aud'))})});
-  segKeys($('.seg[aria-label="I am a…"]'));setAud('author');
-  if(!RM){var W=['write','edit','design','publish','launch'],wi=0,rot=$('#rot');setInterval(function(){if(document.hidden)return;wi=(wi+1)%W.length;var n=rot.cloneNode(false);n.textContent=W[wi];rot.parentNode.replaceChild(n,rot);rot=n;n.id='rot'},2400)}
+  var segA=$('.seg[aria-label="I am a…"]');if(segA&&$('#hero-lead')){segKeys(segA);setAud('author')}
+  if(!RM&&$('#rot')){var W=['write','edit','design','publish','launch'],wi=0,rot=$('#rot');setInterval(function(){if(document.hidden)return;wi=(wi+1)%W.length;var n=rot.cloneNode(false);n.textContent=W[wi];rot.parentNode.replaceChild(n,rot);rot=n;n.id='rot'},2400)}
   /* services: four tabs, each with its own photo (markup is printed by PHP) */
   var toc=$('#xp');
   if(toc){
