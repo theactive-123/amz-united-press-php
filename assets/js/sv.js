@@ -19,7 +19,7 @@
     function start() { if (stopped || timer || RM || !auto) return; sw.classList.add('auto'); sw.style.setProperty('--dur', auto + 'ms'); show(cur); timer = setInterval(tick, auto); }
     function stop() { clearInterval(timer); timer = null; }
     if (auto && 'IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) { es.forEach(function (e) { e.isIntersecting ? start() : stop(); }); }, { threshold: .35 }).observe(sw);
+      new IntersectionObserver(function (es) { es.forEach(function (e) { e.isIntersecting ? start() : stop(); }); }, { threshold: .25 }).observe(sw.closest('section') || sw);
       sw.addEventListener('focusin', function () { stopped = true; stop(); sw.classList.remove('auto'); });
     }
   });

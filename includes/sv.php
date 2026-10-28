@@ -84,38 +84,50 @@ function sv_hero_art(string $kind, int $s): string {
     return $h . '</div>';
 }
 
-function sv_hero(array $d, array $cat, string $art, int $seed, string $quote, int $help): string {
-    $kick = ['write' => 'pen', 'publish' => 'send', 'edit' => 'edit', 'other' => 'spark'][$d['cat']] ?? 'book';
-    return '<section class="svx-hero" aria-labelledby="svh-h1"><div class="x-w svx-hero-in">'
+/** Real author photos (client images), for proof rows and CTA banners. */
+function sv_faces(int $n = 5): string {
+    $imgs = glob(__DIR__ . '/../assets/img/client-images/*.{png,jpg,jpeg,webp,avif}', GLOB_BRACE) ?: []; natsort($imgs);
+    $h = '';
+    foreach (array_slice(array_values($imgs), 0, $n) as $f) $h .= '<img src="' . e(asset('img/client-images/' . rawurlencode(basename($f)))) . '" alt="" loading="lazy" decoding="async" width="48" height="48">';
+    return $h;
+}
+function sv_proofline(string $text = ''): string {
+    $st = data('stats');
+    $text = $text ?: '<b>' . e($st[0][0] . $st[0][1]) . ' books</b> published for <b>' . e($st[1][0] . $st[1][1]) . ' authors</b>, under their own names.';
+    return '<div class="svx-proofline"><span class="svx-faces" aria-hidden="true">' . sv_faces(5) . '</span><p>' . $text . '</p></div>';
+}
+
+/** Hero: background photo, copy, author proof and the lead form. */
+function sv_hero(array $d, array $cat, string $bg, string $quote, int $help): string {
+    $tel = preg_replace('/[^\d+]/', '', site('phone'));
+    return '<section class="svx-hero has-form" aria-labelledby="svh-h1"><div class="svx-hero-bg" aria-hidden="true">' . sv_img($bg, '', true) . '</div><div class="x-w svx-hero-in">'
          . '<div class="svx-hero-copy">'
          . '<p class="svx-crumbs"><a href="' . e(url('/')) . '">Home</a> <span aria-hidden="true">/</span> <a href="' . e(url('/services#cat-' . $cat['k'])) . '">' . e($cat['t']) . '</a> <span aria-hidden="true">/</span> ' . e($d['t']) . '</p>'
          . '<h1 id="svh-h1" class="ent" style="--d:1">' . e($d['h1']) . '</h1>'
          . '<p class="svx-lead ent" style="--d:2">' . rich($d['lead']) . '</p>'
-         . '<div class="ent" style="--d:3">' . sv_actions($quote, $help) . '</div>'
-         . '</div>' . sv_hero_art($art, $seed) . '</div>'
-         . '<span class="svx-hero-kick" aria-hidden="true">' . sv_i($kick) . '</span></section>';
+         . '<div class="svx-hero-links ent" style="--d:3"><a class="svx-tel" href="tel:' . e($tel) . '"><span>' . sv_i('phone') . '</span><span><small>Talk to a ' . e(strtolower(rtrim($d['t'], 's'))) . ' specialist</small><b>' . e(site('phone')) . '</b></span></a><button type="button" class="svx-chat" data-chat>' . sv_i('chat') . 'Live chat</button></div>'
+         . '<div class="ent" style="--d:4">' . sv_proofline() . '</div>'
+         . '</div><div class="svx-hero-form ent" style="--d:2">' . render_form('svc', 'Sign Up Now!', 'Tell us about your project. A real person replies within one business day.', 'service', 'Get My Free Quote', $help) . '</div></div></section>';
 }
 
 /* ======================================================================
    Shared sections
    ====================================================================== */
 
-/** Intro: split with a photo, or editorial (text only). $list shows up to four outcomes. */
-function sv_intro(array $d, string $layout, string $img = ''): string {
+/** Intro: one big visual (photo or a book object on a stage) beside a short, balanced text column. */
+function sv_intro(array $d, string $vis, bool $flip, int $seed): string {
     $in = $d['intro'];
-    $list = '<ul class="x-commit">';
-    foreach (array_slice($in['list'], 0, 4) as $x) $list .= '<li class="rv"><b>' . sv_i('check') . '</b><span>' . e($x) . '</span></li>';
+    $list = '<ul class="svx-ticks">';
+    foreach (array_slice($in['list'], 0, 4) as $x) $list .= '<li>' . sv_i('check') . '<span>' . e($x) . '</span></li>';
     $list .= '</ul>';
-    $p = '';
-    foreach ($in['p'] as $i => $x) $p .= '<p' . ($i === 0 ? ' class="svx-big"' : '') . '>' . rich($x) . '</p>';
-    $head = sv_kick('book', $d['name']) . '<h2 class="x-h2 svx-h2 rv" id="sv-intro">' . sv_em($in['h2']) . '</h2>';
-    if ($layout === 'editorial') {
-        return '<section class="svx-sec svx-intro ed" aria-labelledby="sv-intro"><div class="x-w">' . $head
-             . '<div class="svx-ed-grid"><div class="svx-ed-p">' . $p . '</div>' . $list . '</div></div></section>';
-    }
-    return '<section class="svx-sec svx-intro' . ($layout === 'right' ? ' flip' : '') . '" aria-labelledby="sv-intro"><div class="x-w svx-split">'
-         . '<figure class="x-frame svx-intro-img rv">' . sv_img($img, '') . '</figure>'
-         . '<div>' . $head . $p . $list . '</div></div></section>';
+    $isPhoto = str_contains($vis, '/') || str_ends_with($vis, '.png');
+    $visual = $isPhoto
+        ? '<figure class="x-frame svx-vis-photo">' . sv_img($vis, '') . '</figure>' . sv_book($seed + 1, 'svx-vis-book')
+        : '<div class="svx-stage">' . sv_hero_art($vis, $seed) . '</div>';
+    return '<section class="svx-sec svx-intro' . ($flip ? ' flip' : '') . '" aria-labelledby="sv-intro"><div class="x-w svx-intro-in">'
+         . '<div class="svx-vis rv" aria-hidden="true">' . $visual . '</div>'
+         . '<div class="svx-intro-copy">' . sv_kick('book', $d['name']) . '<h2 class="svx-h3 rv" id="sv-intro">' . sv_em($in['h2']) . '</h2>'
+         . '<p class="svx-big">' . rich($in['p'][0]) . '</p>' . (isset($in['p'][1]) ? '<p>' . rich($in['p'][1]) . '</p>' : '') . $list . '</div></div></section>';
 }
 
 /** What we cover: numbered rule rows (short lists) or a picker (long lists). */
@@ -165,10 +177,17 @@ function sv_process(array $d, string $mode, string $quote, int $help): string {
          . '<button type="button" class="btn btn-primary" data-quote="' . e($quote) . '" data-help="' . $help . '">Start with step one</button></div><ol class="svx-steps">' . $items . '</ol></div></section>';
 }
 
-/** Orange or dark full-width call-to-action band. */
-function sv_band(string $title, string $quote, int $help, bool $dark = false): string {
-    return '<section class="hm-band' . ($dark ? ' hm-band-dark' : '') . '" aria-label="Get started"><div class="x-w hm-band-in"><div><h2>' . e($title) . '</h2></div>'
-         . '<div class="hm-band-btns"><button type="button" class="btn ' . ($dark ? 'btn-primary' : 'btn-dark') . '" data-quote="' . e($quote) . '" data-help="' . $help . '">Get a Quote</button><button type="button" class="btn btn-outline" data-chat>Live Chat</button></div></div></section>';
+/** Call-to-action banner: copy + buttons, fanned covers, author faces and a rotating promise badge. */
+function sv_cta(string $titleHtml, string $sub, string $quote, int $help, string $variant = 'orange', int $seed = 0, string $tag = 'h2', string $id = ''): string {
+    $tel = preg_replace('/[^\d+]/', '', site('phone'));
+    $ring = '<svg class="svx-ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="svr' . $seed . $variant . '" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs><text><textPath href="#svr' . $seed . $variant . '">100% your rights · 100% your royalties · </textPath></text></svg>';
+    return '<section class="svx-cta-sec ' . e($variant) . '"' . ($id ? ' aria-labelledby="' . e($id) . '"' : ' aria-label="Get started"') . '><div class="x-w"><div class="svx-cta rv">'
+         . '<div class="svx-cta-copy"><' . $tag . ($id ? ' id="' . e($id) . '"' : '') . ' class="svx-cta-h">' . $titleHtml . '</' . $tag . '>' . ($sub !== '' ? '<p>' . $sub . '</p>' : '')
+         . '<div class="svx-cta-btns"><button type="button" class="btn ' . ($variant === 'orange' ? 'btn-dark' : 'btn-primary') . '" data-quote="' . e($quote) . '" data-help="' . $help . '">Get a Free Quote</button><button type="button" class="btn btn-outline" data-chat>Live Chat</button></div>'
+         . '<a class="svx-cta-tel" href="tel:' . e($tel) . '">' . sv_i('phone') . 'Or call ' . e(site('phone')) . '</a></div>'
+         . '<div class="svx-cta-art" aria-hidden="true">' . sv_book($seed, 'k1') . sv_book($seed + 2, 'k2') . sv_book($seed + 4, 'k3')
+         . '<span class="svx-cta-faces">' . sv_faces(4) . '<b>Join ' . e(data('stats')[1][0] . data('stats')[1][1]) . ' authors</b></span><span class="svx-ring-wrap">' . $ring . '<i>' . sv_i('book') . '</i></span></div>'
+         . '</div></div></section>';
 }
 
 /** Proof: the homepage cover shelf, the client photo strip or the store logos. */
@@ -213,13 +232,9 @@ function sv_more(array $d, array $beyond): string {
     return '<section class="svx-sec svx-more" aria-labelledby="sv-more"><div class="x-w">' . sv_kick('spark', 'Keep going') . '<h2 class="x-h2 svx-h2 rv" id="sv-more">' . sv_em($d['beyond']['h2']) . '</h2><ul class="svx-more-list">' . $li . '</ul></div></section>';
 }
 
-/** Closing section with the lead form (homepage .x-close). */
-function sv_close(array $d, int $help): string {
-    return '<section class="x-close svx-close" id="contact" aria-labelledby="sv-end"><div class="x-w x-close-grid"><div>'
-         . sv_kick('mail', 'Start your project') . '<h2 id="sv-end" class="x-h2 rv">' . sv_em($d['cta2']['h3']) . '</h2><p class="x-sub">' . rich($d['cta2']['p']) . '</p>'
-         . '<a class="phone-big" href="tel:' . e(preg_replace('/[^\d+]/', '', site('phone'))) . '">' . e(site('phone')) . '</a>'
-         . '<ul class="checks"><li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Free consultation</li><li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Scope, timeline and price in writing</li><li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>You keep 100% of your rights</li></ul></div>'
-         . '<div class="postcard">' . render_form('svc', 'Sign Up Now!', 'Tell us about your project. A real person replies within one business day.', 'service', 'Get My Free Quote', $help) . '</div></div></section>';
+/** Closing banner (the lead form already sits in the hero). */
+function sv_close(array $d, string $quote, int $help, int $seed): string {
+    return sv_cta(sv_em($d['cta2']['h3']), rich($d['cta2']['p']), $quote, $help, 'dark', $seed + 5, 'h2', 'sv-end');
 }
 
 /* ======================================================================
@@ -239,7 +254,8 @@ function sv_switch(array $tabs, string $label, string $cls = '', int $auto = 0):
 }
 
 function sv_sig_wrap(string $icon, string $kick, string $title, string $sub, string $body, bool $dark = false, string $cls = ''): string {
-    return '<section class="svx-sec svx-sig ' . ($dark ? 'dark ' : '') . e($cls) . '" aria-labelledby="sv-sig"><div class="x-w">' . sv_kick($icon, $kick)
+    $split = !str_contains($cls, 'wide');
+    return '<section class="svx-sec svx-sig ' . ($dark ? 'dark ' : '') . ($split ? 'sx-split ' : '') . e($cls) . '" aria-labelledby="sv-sig"><div class="x-w">' . sv_kick($icon, $kick)
          . '<h2 class="x-h2 svx-h2 rv" id="sv-sig">' . $title . '</h2><p class="x-sub">' . e($sub) . '</p>' . $body . '</div></section>';
 }
 
@@ -291,7 +307,7 @@ function sv_sig(string $slug, int $s): string {
         $q = ['What did your childhood home smell like?', 'Who taught you something you only understood years later?', 'When did your life split into a before and an after?', 'What have you never told anyone, and are you ready to?', 'What do you want your grandchildren to know about you?', 'Which day would you live again, exactly as it was?'];
         $cards = '';
         foreach ($q as $i => $x) $cards .= '<li class="rv" style="--d:' . ($i % 3) . '"><span class="svx-mono">Question ' . ($i + 1) . '</span><p>' . e($x) . '</p></li>';
-        return sv_sig_wrap('chat', 'Where memoirs begin', 'It starts with a <em>conversation</em>.', 'These are the kinds of questions our memoir writers ask in your first interviews. Your answers become the scenes of your book.', '<ul class="svx-qcards">' . $cards . '</ul>', true);
+        return sv_sig_wrap('chat', 'Where memoirs begin', 'It starts with a <em>conversation</em>.', 'These are the kinds of questions our memoir writers ask in your first interviews. Your answers become the scenes of your book.', '<ul class="svx-qcards">' . $cards . '</ul>', true, 'wide');
 
     case 'biography-writing-services':
         $src = ['Interviews' => ['Family, friends and colleagues', 'We record and transcribe every conversation, so quotes are accurate and nothing is lost.'], 'Letters & diaries' => ['Private papers', 'Handwritten letters, journals and notes, read carefully and handled with permission.'], 'Photographs' => ['Family albums', 'Dates, places and faces that anchor each chapter in a real moment.'], 'Records' => ['Public archives', 'Birth, military, property and newspaper records checked against what people remember.']];
@@ -392,21 +408,41 @@ function sv_sig(string $slug, int $s): string {
    Resource pages
    ====================================================================== */
 
-/** Clean dark hero for resource pages. $h1 may contain one <em> accent. */
-function sv_page_hero(string $crumb, string $h1, string $lead, string $art = '', string $extra = ''): string {
-    return '<section class="svx-hero svx-ph" aria-labelledby="pg-h1"><div class="x-w svx-hero-in' . ($art === '' ? ' solo' : '') . '"><div class="svx-hero-copy">'
+/** Resource-page hero: background photo, copy, proof and a lead form. */
+function sv_page_hero(string $crumb, string $h1, string $lead, string $bg, string $formId, string $source, string $formTitle = 'Get your free quote', string $extra = ''): string {
+    $tel = preg_replace('/[^\d+]/', '', site('phone'));
+    return '<section class="svx-hero has-form svx-ph" aria-labelledby="pg-h1"><div class="svx-hero-bg" aria-hidden="true">' . sv_img($bg, '', true) . '</div><div class="x-w svx-hero-in"><div class="svx-hero-copy">'
          . '<p class="svx-crumbs"><a href="' . e(url('/')) . '">Home</a> <span aria-hidden="true">/</span> ' . e($crumb) . '</p>'
          . '<h1 id="pg-h1" class="ent" style="--d:1">' . $h1 . '</h1><p class="svx-lead ent" style="--d:2">' . e($lead) . '</p>'
-         . ($extra !== '' ? '<div class="ent" style="--d:3">' . $extra . '</div>' : '') . '</div>' . ($art !== '' ? sv_hero_art($art, 3) : '') . '</div></section>';
+         . ($extra !== '' ? '<div class="ent" style="--d:3">' . $extra . '</div>' : '')
+         . '<div class="svx-hero-links ent" style="--d:3"><a class="svx-tel" href="tel:' . e($tel) . '"><span>' . sv_i('phone') . '</span><span><small>Prefer to talk?</small><b>' . e(site('phone')) . '</b></span></a><button type="button" class="svx-chat" data-chat>' . sv_i('chat') . 'Live chat</button></div>'
+         . '<div class="ent" style="--d:4">' . sv_proofline() . '</div></div>'
+         . '<div class="svx-hero-form ent" style="--d:2">' . render_form($formId, $formTitle, 'Takes about a minute. We reply within one business day.', $source) . '</div></div></section>';
 }
 
-/** Closing section with a lead form for resource pages. */
-function sv_close_form(string $kick, string $titleHtml, string $sub, string $id, string $formTitle, string $formSub, string $source, string $btn = 'Send my request', array $links = [['/contact', 'Contact page']]): string {
+/** Closing banner for resource pages. $links keeps useful internal links visible. */
+function sv_close_form(string $titleHtml, string $sub, string $quote, int $seed = 2, array $links = [['/contact', 'Contact page']]): string {
     $alt = '';
     foreach ($links as $l) $alt .= '<a class="x-link" href="' . e(url($l[0])) . '">' . e($l[1]) . ' <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>';
-    return '<section class="x-close svx-close" id="contact" aria-labelledby="' . e($id) . '-end"><div class="x-w x-close-grid"><div>'
-         . sv_kick('mail', $kick) . '<h2 id="' . e($id) . '-end" class="x-h2 rv">' . $titleHtml . '</h2><p class="x-sub">' . e($sub) . '</p>'
-         . '<a class="phone-big" href="tel:' . e(preg_replace('/[^\d+]/', '', site('phone'))) . '">' . e(site('phone')) . '</a>'
-         . '<ul class="checks"><li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Free consultation</li><li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Scope, timeline and price in writing</li><li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Nothing starts until you say yes</li></ul>' . ($alt ? '<p class="svx-links">' . $alt . '</p>' : '') . '</div>'
-         . '<div class="postcard">' . render_form($id, $formTitle, $formSub, $source, $btn) . '</div></div></section>';
+    return sv_cta($titleHtml, e($sub), $quote, -1, 'dark', $seed, 'h2', 'pg-end') . ($alt ? '<div class="svx-after-links"><div class="x-w svx-links">' . $alt . '</div></div>' : '');
+}
+
+/** "What you get": a bento of deliverables for the services authors ask about most. */
+function sv_get(string $slug, int $seed): string {
+    $G = [
+        'ghostwriting-services' => ['Your finished book', 'A complete manuscript written in your voice, ready for editing and publishing.', [['chat', 'Recorded interviews', 'Every conversation kept, so nothing you say is lost.'], ['list', 'Chapter outline', 'A plan you approve before the writing starts.'], ['pen', 'Drafts by chapter', 'Read and steer the book as it grows.'], ['eye', 'Signed NDA', 'Your name on the cover. Our writers stay invisible.']]],
+        'ebook-writing-services' => ['A ready-to-sell ebook', 'Written, edited and formatted so it reads well on Kindle, phones and tablets.', [['list', 'Clear structure', 'Chapters built around what your reader needs.'], ['pen', 'Your voice', 'Drafted from your notes, calls or existing content.'], ['layout', 'Ebook files', 'EPUB and Kindle-ready formatting on request.'], ['send', 'Publishing help', 'Listing and upload if you want us to take it live.']]],
+        'amazon-publishing-services' => ['Your book, live on Amazon', 'Kindle and paperback listings set up under your own KDP account.', [['layout', 'Clean files', 'Kindle ebook and print interior that pass review.'], ['search', 'Keywords & categories', 'Researched so readers can find the book.'], ['edit', 'Product page copy', 'Title, subtitle and description that sell.'], ['chart', 'After launch', 'We show you sales reports, pricing and updates.']]],
+        'ebook-publishing-services' => ['One book, every store', 'Kindle, Apple Books, Kobo, Barnes & Noble and Google Play from one set of files.', [['layout', 'Validated EPUB', 'Files that open cleanly on every device.'], ['globe', 'Store accounts', 'Set up in your name, with your bank details.'], ['edit', 'Metadata', 'Descriptions, categories and pricing per store.'], ['check', 'Launch check', 'Every listing reviewed before it goes live.']]],
+        'book-editing-services' => ['A manuscript you can trust', 'Tracked changes and clear notes, so you stay in control of every edit.', [['list', 'Editorial letter', 'The big picture: structure, pacing and character.'], ['edit', 'Tracked changes', 'Accept or reject every suggestion yourself.'], ['pen', 'Style sheet', 'Names, spellings and choices kept consistent.'], ['eye', 'Final proofread', 'One more pass before the book goes out.']]],
+        'book-cover-design-services' => ['A cover readers click', 'Designed for your genre, sharp as a tiny thumbnail and as a full print wrap.', [['eye', 'Concepts to choose from', 'Different directions before we refine one.'], ['layout', 'Ebook & print files', 'Kindle cover plus a full paperback wrap.'], ['mic', 'Audiobook square', 'A matching cover for audio stores.'], ['spark', 'Promo images', 'Social graphics that match your cover.']]],
+        'book-marketing-services' => ['A launch with a plan', 'Clear actions, a budget you approve and honest weekly reporting.', [['search', 'Store optimisation', 'Keywords, categories and a sharper description.'], ['chart', 'Ads you control', 'Amazon and social campaigns within your budget.'], ['chat', 'Reader reviews', 'Advance readers and honest review outreach.'], ['mail', 'Author platform', 'Newsletter and social profiles that keep readers.']]],
+    ];
+    if (!isset($G[$slug])) return '';
+    [$t, $p, $items] = $G[$slug];
+    $tiles = '';
+    foreach ($items as $i => $x) $tiles .= '<li class="rv" style="--d:' . $i . '"><span class="svx-get-ic">' . sv_i($x[0]) . '</span><b>' . e($x[1]) . '</b><p>' . e($x[2]) . '</p></li>';
+    return '<section class="svx-sec svx-get" aria-labelledby="sv-get"><div class="x-w">' . sv_kick('check', 'What you get') . '<h2 class="x-h2 svx-h2 rv" id="sv-get">Everything you need, <em>delivered</em>.</h2>'
+         . '<div class="svx-get-grid"><article class="svx-get-hero rv"><div><span class="svx-mono">The result</span><b>' . e($t) . '</b><p>' . e($p) . '</p></div><span class="svx-get-books" aria-hidden="true">' . sv_book($seed, 'g1') . sv_book($seed + 3, 'g2') . '</span></article>'
+         . '<ul class="svx-get-list">' . $tiles . '</ul></div></div></section>';
 }

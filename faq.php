@@ -12,7 +12,7 @@ include __DIR__ . '/includes/header.php';
 $groups = data('faq');
 ?>
 <div class="page active svx" data-page="faq">
-<?= sv_page_hero('FAQ', 'Your questions, answered <em>plainly</em>.', 'Straight answers to the questions authors ask us most.') ?>
+<?= sv_page_hero('FAQ', 'Your questions, answered <em>plainly</em>.', 'Straight answers to the questions authors ask us most.', 'From first idea to finished book/Remote Project Discussion on Google Meet.png', 'hero', 'faq', 'Ask us anything') ?>
 <section class="svx-sec svx-faqpage" aria-label="Questions by topic"><div class="x-w svx-faqpage-in" id="faq-groups">
   <nav class="svx-topics" aria-label="FAQ topics"><span class="svx-mono">Topics</span><?php $n = 0; foreach ($groups as $g => $items): $n++; ?><a href="#faq-g<?= $n ?>"><span><?= e($g) ?></span><small><?= count($items) ?></small></a><?php endforeach; ?></nav>
   <div>
@@ -21,7 +21,7 @@ $groups = data('faq');
   <?php endforeach; ?>
   </div>
 </div></section>
-<?= sv_close_form('Ask us', 'Still have a <em>question</em>?', 'Ask us. A real person will answer.', 'faqp', 'Ask a question', 'We reply within one business day.', 'faq', 'Ask a question') ?>
+<?= sv_close_form('Still have a <em>question</em>?', 'Ask us. A real person will answer.', 'Ask us', 5) ?>
 </div>
 <script src="<?= e(asset('js/sv.js')) ?>" defer></script>
 <?php include __DIR__ . '/includes/footer.php'; ?>

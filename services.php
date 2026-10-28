@@ -16,7 +16,7 @@ foreach (data('cats') as $c) $nav .= '<a href="' . e(url('/services#cat-' . $c['
 $nav .= '</div>';
 ?>
 <div class="page active svx" data-page="services">
-<?= sv_page_hero('Services', 'Self-publishing services for <em>authors</em>, under one roof.', 'Writing, publishing, editing and promotion: ' . count(data('subs')) . ' services from one team at AMZ United Press. Choose one, combine several, or let us manage your whole book from first idea to launch.', 'fan', $nav) ?>
+<?= sv_page_hero('Services', 'Self-publishing services for <em>authors</em>, under one roof.', 'Writing, publishing, editing and promotion: ' . count(data('subs')) . ' services from one team at AMZ United Press. Choose one, combine several, or let us manage your whole book from first idea to launch.', 'Fourparts/Cinematic Book Design Workspace.png', 'hero', 'services', 'Get free advice', $nav) ?>
 <section id="svc-all" aria-label="All services">
 <?php foreach (data('cats') as $i => $c): $subs = subs_of($c['k']); ?>
   <section class="svx-sec svx-cat<?= $i % 2 ? ' alt' : '' ?>" id="cat-<?= e($c['k']) ?>" aria-labelledby="h-<?= e($c['k']) ?>">
@@ -37,7 +37,7 @@ $nav .= '</div>';
 <?php endforeach; ?>
 </section>
 <?= sv_proof('clients') ?>
-<?= sv_close_form('Not sure where to start?', 'Not sure which service you <em>need</em>?', 'Most authors aren’t at first. Tell us where you are and we’ll recommend the simplest route.', 'svcs', 'Get free advice', 'Takes about a minute. We reply within one business day.', 'services', 'Get free advice', [['/pricing', 'How pricing works'], ['/contact', 'Contact page']]) ?>
+<?= sv_close_form('Not sure which service you <em>need</em>?', 'Most authors aren’t at first. Tell us where you are and we’ll recommend the simplest route.', 'Not sure where to start?', 2, [['/pricing', 'How pricing works'], ['/contact', 'Contact page']]) ?>
 </div>
 <script src="<?= e(asset('js/sv.js')) ?>" defer></script>
 <?php include __DIR__ . '/includes/footer.php'; ?>

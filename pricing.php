@@ -12,7 +12,7 @@ include __DIR__ . '/includes/header.php';
 $factors = [['Length', 'The number of words or pages in your book.'], ['Services', 'Which of writing, editing, design and publishing you need.'], ['Starting point', 'An idea, rough notes or a completed draft.'], ['Timeline', 'How soon you’d like your book to be published.']];
 ?>
 <div class="page active svx" data-page="pricing">
-<?= sv_page_hero('Pricing', 'Clear, written pricing. <em>No surprises.</em>', 'Every book is different, so we give you a written quote before any work begins. Here’s how we work out the price.', '', sv_actions('Pricing question', -1, 'Get my written quote')) ?>
+<?= sv_page_hero('Pricing', 'Clear, written pricing. <em>No surprises.</em>', 'Every book is different, so we give you a written quote before any work begins. Here’s how we work out the price.', 'From first idea to finished book/Book Project Proposal Workspace.png', 'hero', 'pricing', 'Get my written quote') ?>
 <section class="svx-sec svx-factors" aria-labelledby="pr-f"><div class="x-w">
   <?= sv_kick('list', 'What affects your quote') ?><h2 class="x-h2 svx-h2 rv" id="pr-f">Four things shape the <em>price</em>.</h2>
   <ol class="svx-fourcol"><?php foreach ($factors as $i => $f): ?><li class="rv"><span class="svx-big-n">0<?= $i + 1 ?></span><h3><?= e($f[0]) ?></h3><p><?= e($f[1]) ?></p></li><?php endforeach; ?></ol>
@@ -38,7 +38,7 @@ $factors = [['Length', 'The number of words or pages in your book.'], ['Services
   <?= sv_kick('q', 'Pricing questions') ?><h2 class="x-h2 rv" id="pr-faq">Before you <em>ask</em>…</h2>
   <p class="svx-faq-p">Most projects are paid in two or three stages, and we offer a full refund of any stage we have not started.</p></div>
   <div class="faq" data-faq="pricing"><?= faq_html(data('faq')['Cost & timing'], true) ?></div></div></section>
-<?= sv_close_form('Request a quote', 'Request your free <em>quote</em>.', 'Tell us about your book and we’ll reply with next steps.', 'price', 'Tell us about your book', 'Takes about a minute. We reply within one business day.', 'pricing', 'Request a quote') ?>
+<?= sv_close_form('Request your free <em>quote</em>.', 'Tell us about your book and we’ll reply with next steps.', 'Request a quote', 3) ?>
 </div>
 <script src="<?= e(asset('js/sv.js')) ?>" defer></script>
 <?php include __DIR__ . '/includes/footer.php'; ?>

@@ -11,7 +11,7 @@ $meta = [
 include __DIR__ . '/includes/header.php';
 ?>
 <div class="page active svx" data-page="portfolio">
-<?= sv_page_hero('Portfolio', 'Covers and books across every <em>genre</em>.', 'Select any cover to see the author and review count.', 'fan') ?>
+<?= sv_page_hero('Portfolio', 'Covers and books across every <em>genre</em>.', 'Select any cover to see the author and review count.', 'Cinematic Sci-Fi Book Cover Showcase.png', 'hero', 'portfolio', 'Start your book') ?>
   <section class="x-shelf list-ch svx-shelf" aria-label="Book portfolio">
     <div class="list-track" id="list-track" data-works="home" role="region" aria-roledescription="carousel" aria-label="Book covers across all genres" tabindex="0"></div>
     <div class="x-w list-foot">
@@ -20,7 +20,7 @@ include __DIR__ . '/includes/header.php';
   </section>
 <section class="svx-figs" aria-label="AMZ United Press in numbers"><div class="x-w"><div class="hm-stats" role="list"><?= render_stats() ?></div></div></section>
 <?= sv_proof('clients') ?>
-<?= sv_close_form('Your book next', 'Want to see your book <em>here</em>?', 'Tell us about it. Free advice, no obligation.', 'port', 'Tell us about your book', 'Takes about a minute. We reply within one business day.', 'portfolio', 'Get started') ?>
+<?= sv_close_form('Want to see your book <em>here</em>?', 'Tell us about it. Free advice, no obligation.', 'Your book next', 7) ?>
 </div>
 <script src="<?= e(asset('js/sv.js')) ?>" defer></script>
 <?php include __DIR__ . '/includes/footer.php'; ?>

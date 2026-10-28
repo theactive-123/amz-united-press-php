@@ -12,7 +12,7 @@ include __DIR__ . '/includes/header.php';
 $c = photos()['consult'];
 ?>
 <div class="page active svx" data-page="how-it-works">
-<?= sv_page_hero('How it works', 'A clear path from idea to <em>published</em> book.', 'Four steps, each explained in plain English. You’ll know what happens next at every stage.', 'From first idea to finished book/Remote Project Discussion on Google Meet.png', sv_actions('Starting a book', -1, 'Start the conversation')) ?>
+<?= sv_page_hero('How it works', 'A clear path from idea to <em>published</em> book.', 'Four steps, each explained in plain English. You’ll know what happens next at every stage.', 'From first idea to finished book/Cozy InDesign Book Layout Workspace.png', 'hero', 'how-it-works', 'Start step one') ?>
 <section class="svx-sec svx-hiw" aria-label="The four steps"><div class="x-w" id="process-detail">
 <?php foreach (data('steps') as $i => $s): ?>
   <article class="svx-hstep rv">
@@ -32,7 +32,7 @@ $c = photos()['consult'];
       <?php endforeach; ?>
     </ul></div>
 </div></section>
-<?= sv_close_form('Step one', 'Ready for step <em>one</em>?', 'It takes about a minute and costs nothing.', 'hiw', 'Start the conversation', 'Takes about a minute. We reply within one business day.', 'how-it-works', 'Start the conversation') ?>
+<?= sv_close_form('Ready for step <em>one</em>?', 'It takes about a minute and costs nothing.', 'Step one', 6) ?>
 </div>
 <script src="<?= e(asset('js/sv.js')) ?>" defer></script>
 <?php include __DIR__ . '/includes/footer.php'; ?>

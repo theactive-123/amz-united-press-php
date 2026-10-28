@@ -12,7 +12,7 @@ include __DIR__ . '/includes/header.php';
 $t = photos()['team'];
 ?>
 <div class="page active svx" data-page="about">
-<?= sv_page_hero('About', 'We help good ideas become <em>well-made</em> books.', 'AMZ United Press is an ebook writing, editing and publishing service for authors of every experience level.', 'Fourparts/Crafting Stories at the Writing Desk.png', sv_actions('About your book', -1, 'Talk to our team')) ?>
+<?= sv_page_hero('About', 'We help good ideas become <em>well-made</em> books.', 'AMZ United Press is an ebook writing, editing and publishing service for authors of every experience level.', 'Fourparts/Crafting Stories at the Writing Desk.png', 'hero', 'about', 'Talk to our team') ?>
 <section class="svx-sec svx-story" aria-labelledby="ab-story"><div class="x-w">
   <?= sv_kick('book', 'Our story') ?><h2 class="x-h2 svx-h2 rv" id="ab-story">Handing over a book is a big decision. We take it <em>seriously.</em></h2>
   <div class="svx-ed-grid">
@@ -32,7 +32,7 @@ $t = photos()['team'];
   <ul class="svx-index" id="team"><?php foreach (data('team') as $j => $r): ?><li class="rv"><div class="svx-index-row"><span class="svx-rn"><?= e($r[0]) ?></span><span><h3><?= e($r[1]) ?></h3><p><?= e($r[2]) ?></p></span></div></li><?php endforeach; ?></ul>
 </div></section>
 <?= sv_proof('clients') ?>
-<?= sv_close_form('Get started', 'Let’s talk about your <em>book.</em>', 'Free advice, no obligation.', 'about', 'Tell us about your book', 'Takes about a minute. We reply within one business day.', 'about', 'Get started') ?>
+<?= sv_close_form('Let’s talk about your <em>book.</em>', 'Free advice, no obligation.', 'Get started', 4) ?>
 </div>
 <script src="<?= e(asset('js/sv.js')) ?>" defer></script>
 <?php include __DIR__ . '/includes/footer.php'; ?>

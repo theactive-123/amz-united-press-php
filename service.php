@@ -26,57 +26,58 @@ require_once __DIR__ . '/includes/sv.php';
 
 $seed  = crc32($d['slug']) % 11;
 $quote = 'Interested in: ' . $d['t'];
-$F = 'Fourparts/'; $J = 'From first idea to finished book/';
+$F = 'Fourparts/'; $J = 'From first idea to finished book/'; $SF = 'Cinematic Sci-Fi Book Cover Showcase.png';
 
-/* Each service has its own hero object, section order and signature section.
-   intro: [layout, image]; types: rows|picker; proc: pin|rows|track; proof: shelf|clients|stores|none */
+/* Each service: hero background, intro visual (photo or book object), its own order of sections.
+   proc: pin|rows|track · proof: shelf|clients|stores|none · get = "what you get" bento (key services) */
 $plans = [
-    'ghostwriting-services'            => ['art' => 'page',    'intro' => ['left', $F . 'Crafting Stories at the Writing Desk.png'], 'proc' => 'pin',   'proof' => 'clients', 'order' => ['intro', 'sig', 'types', 'band', 'proc', 'proof', 'faq', 'more']],
-    'ebook-writing-services'           => ['art' => 'kindle',  'intro' => ['editorial'],                                        'proc' => 'track', 'proof' => 'shelf',   'order' => ['sig', 'intro', 'types', 'proc', 'band', 'proof', 'faq', 'more']],
-    'fiction-writing-services'         => ['art' => 'fan',     'intro' => ['right', 'Cinematic Sci-Fi Book Cover Showcase.png'],  'proc' => 'rows',  'proof' => 'shelf',   'order' => ['sig', 'intro', 'proof', 'proc', 'band', 'faq', 'more']],
-    'nonfiction-writing-services'      => ['art' => $J . 'Book Project Proposal Workspace.png', 'intro' => ['editorial'],         'proc' => 'pin',   'proof' => 'clients', 'order' => ['intro', 'sig', 'proc', 'band', 'proof', 'faq', 'more']],
-    'memoir-writing-services'          => ['art' => $F . 'Crafting Stories at the Writing Desk.png', 'intro' => ['editorial'],    'proc' => 'rows',  'proof' => 'clients', 'order' => ['sig', 'intro', 'proof', 'proc', 'band', 'faq', 'more']],
-    'novel-ghostwriting-services'      => ['art' => 'books',   'intro' => ['left', $F . 'Cinematic Book Design Workspace.png'],  'proc' => 'track', 'proof' => 'shelf',   'order' => ['intro', 'sig', 'proc', 'proof', 'band', 'faq', 'more']],
-    'biography-writing-services'       => ['art' => $J . 'Remote Project Discussion on Google Meet.png', 'intro' => ['right', $J . 'Book Project Proposal Workspace.png'], 'proc' => 'rows', 'proof' => 'clients', 'order' => ['intro', 'sig', 'band', 'proc', 'proof', 'faq', 'more']],
-    'autobiography-writing-services'   => ['art' => 'page',    'intro' => ['editorial'],                                        'proc' => 'track', 'proof' => 'clients', 'order' => ['sig', 'intro', 'proc', 'band', 'proof', 'faq', 'more']],
-    'ebook-publishing-services'        => ['art' => 'kindle',  'intro' => ['left', $F . 'Self-Publishing Dashboard Workspace.png'], 'proc' => 'rows', 'proof' => 'stores', 'order' => ['proof', 'sig', 'intro', 'types', 'proc', 'band', 'faq', 'more']],
-    'amazon-publishing-services'       => ['art' => $J . 'Author Workspace with KDP Publishing Dashboard.png', 'intro' => ['editorial'], 'proc' => 'pin', 'proof' => 'shelf', 'order' => ['intro', 'sig', 'proc', 'band', 'proof', 'faq', 'more']],
-    'book-editing-services'            => ['art' => $F . 'Cozy Manuscript Editing Workspace.png', 'intro' => ['editorial'],        'proc' => 'rows',  'proof' => 'clients', 'order' => ['sig', 'intro', 'types', 'proc', 'band', 'proof', 'faq', 'more']],
-    'proofreading-services'            => ['art' => 'marks',   'intro' => ['right', $F . 'Cozy Manuscript Editing Workspace.png'], 'proc' => 'track', 'proof' => 'none',   'order' => ['sig', 'intro', 'types', 'band', 'proc', 'faq', 'more']],
-    'book-formatting-services'         => ['art' => $J . 'Cozy InDesign Book Layout Workspace.png', 'intro' => ['editorial'],      'proc' => 'rows',  'proof' => 'shelf',   'order' => ['intro', 'sig', 'types', 'proc', 'proof', 'band', 'faq', 'more']],
-    'book-marketing-services'          => ['art' => 'books',   'intro' => ['left', $F . 'Self-Publishing Dashboard Workspace.png'], 'proc' => 'pin',  'proof' => 'stores',  'order' => ['intro', 'sig', 'types', 'proc', 'band', 'proof', 'faq', 'more']],
-    'audiobook-services'               => ['art' => 'wave',    'intro' => ['editorial'],                                        'proc' => 'track', 'proof' => 'none',    'order' => ['sig', 'intro', 'types', 'proc', 'band', 'faq', 'more']],
-    'blog-writing-services'            => ['art' => 'doc',     'intro' => ['right', $F . 'Crafting Stories at the Writing Desk.png'], 'proc' => 'rows', 'proof' => 'none', 'order' => ['intro', 'sig', 'types', 'band', 'proc', 'faq', 'more']],
-    'website-content-writing-services' => ['art' => 'browser', 'intro' => ['editorial'],                                        'proc' => 'track', 'proof' => 'none',    'order' => ['sig', 'intro', 'types', 'proc', 'band', 'faq', 'more']],
-    'book-cover-design-services'       => ['art' => 'fan',     'intro' => ['left', $F . 'Cinematic Book Design Workspace.png'], 'proc' => 'rows',  'proof' => 'shelf',   'order' => ['sig', 'proof', 'intro', 'types', 'proc', 'band', 'faq', 'more']],
-    'video-book-trailer-services'      => ['art' => 'screen',  'intro' => ['editorial'],                                        'proc' => 'track', 'proof' => 'shelf',   'order' => ['sig', 'intro', 'types', 'proc', 'band', 'faq', 'more']],
-    'author-website-design-services'   => ['art' => 'browser', 'intro' => ['right', $J . 'Cozy InDesign Book Layout Workspace.png'], 'proc' => 'rows', 'proof' => 'clients', 'order' => ['intro', 'sig', 'types', 'band', 'proc', 'proof', 'faq', 'more']],
-    'article-writing-services'         => ['art' => 'doc',     'intro' => ['editorial'],                                        'proc' => 'track', 'proof' => 'none',    'order' => ['sig', 'intro', 'types', 'proc', 'band', 'faq', 'more']],
+    'ghostwriting-services'            => ['bg' => $F . 'Crafting Stories at the Writing Desk.png', 'vis' => 'page',   'proc' => 'pin',   'proof' => 'clients', 'order' => ['sig', 'intro', 'get', 'cta', 'types', 'proc', 'proof', 'faq', 'more']],
+    'ebook-writing-services'           => ['bg' => $J . 'Book Project Proposal Workspace.png',      'vis' => 'kindle', 'proc' => 'track', 'proof' => 'shelf',   'order' => ['sig', 'get', 'intro', 'types', 'cta', 'proc', 'proof', 'faq', 'more']],
+    'fiction-writing-services'         => ['bg' => $SF,                                             'vis' => 'fan',    'proc' => 'rows',  'proof' => 'shelf',   'order' => ['sig', 'intro', 'proof', 'cta', 'proc', 'faq', 'more']],
+    'nonfiction-writing-services'      => ['bg' => $J . 'Book Project Proposal Workspace.png',      'vis' => $F . 'Crafting Stories at the Writing Desk.png', 'proc' => 'pin', 'proof' => 'clients', 'order' => ['intro', 'sig', 'cta', 'proc', 'proof', 'faq', 'more']],
+    'memoir-writing-services'          => ['bg' => $F . 'Crafting Stories at the Writing Desk.png', 'vis' => $J . 'Remote Project Discussion on Google Meet.png', 'proc' => 'rows', 'proof' => 'clients', 'order' => ['sig', 'intro', 'proof', 'cta', 'proc', 'faq', 'more']],
+    'novel-ghostwriting-services'      => ['bg' => $SF,                                             'vis' => 'books',  'proc' => 'track', 'proof' => 'shelf',   'order' => ['intro', 'sig', 'proof', 'cta', 'proc', 'faq', 'more']],
+    'biography-writing-services'       => ['bg' => $J . 'Remote Project Discussion on Google Meet.png', 'vis' => $J . 'Book Project Proposal Workspace.png', 'proc' => 'rows', 'proof' => 'clients', 'order' => ['intro', 'sig', 'cta', 'proc', 'proof', 'faq', 'more']],
+    'autobiography-writing-services'   => ['bg' => $F . 'Crafting Stories at the Writing Desk.png', 'vis' => 'page',   'proc' => 'track', 'proof' => 'clients', 'order' => ['sig', 'intro', 'cta', 'proc', 'proof', 'faq', 'more']],
+    'ebook-publishing-services'        => ['bg' => $F . 'Self-Publishing Dashboard Workspace.png',  'vis' => 'kindle', 'proc' => 'rows',  'proof' => 'stores',  'order' => ['proof', 'sig', 'get', 'intro', 'types', 'cta', 'proc', 'faq', 'more']],
+    'amazon-publishing-services'       => ['bg' => $J . 'Author Workspace with KDP Publishing Dashboard.png', 'vis' => $F . 'Self-Publishing Dashboard Workspace.png', 'proc' => 'pin', 'proof' => 'shelf', 'order' => ['sig', 'intro', 'get', 'cta', 'proc', 'proof', 'faq', 'more']],
+    'book-editing-services'            => ['bg' => $F . 'Cozy Manuscript Editing Workspace.png',    'vis' => $F . 'Cozy Manuscript Editing Workspace.png', 'proc' => 'rows', 'proof' => 'clients', 'order' => ['sig', 'get', 'intro', 'types', 'cta', 'proc', 'proof', 'faq', 'more']],
+    'proofreading-services'            => ['bg' => $J . 'Book Project Proposal Workspace.png',      'vis' => 'marks',  'proc' => 'track', 'proof' => 'none',    'order' => ['sig', 'intro', 'types', 'cta', 'proc', 'faq', 'more']],
+    'book-formatting-services'         => ['bg' => $J . 'Cozy InDesign Book Layout Workspace.png',  'vis' => 'kindle', 'proc' => 'rows',  'proof' => 'shelf',   'order' => ['sig', 'intro', 'types', 'cta', 'proc', 'proof', 'faq', 'more']],
+    'book-marketing-services'          => ['bg' => $F . 'Self-Publishing Dashboard Workspace.png',  'vis' => 'books',  'proc' => 'pin',   'proof' => 'stores',  'order' => ['sig', 'get', 'intro', 'types', 'cta', 'proc', 'proof', 'faq', 'more']],
+    'audiobook-services'               => ['bg' => $F . 'Cinematic Book Design Workspace.png',      'vis' => 'wave',   'proc' => 'track', 'proof' => 'none',    'order' => ['sig', 'intro', 'types', 'cta', 'proc', 'faq', 'more']],
+    'blog-writing-services'            => ['bg' => $F . 'Crafting Stories at the Writing Desk.png', 'vis' => 'doc',    'proc' => 'rows',  'proof' => 'none',    'order' => ['intro', 'sig', 'types', 'cta', 'proc', 'faq', 'more']],
+    'website-content-writing-services' => ['bg' => $J . 'Remote Project Discussion on Google Meet.png', 'vis' => 'browser', 'proc' => 'track', 'proof' => 'none', 'order' => ['sig', 'intro', 'types', 'cta', 'proc', 'faq', 'more']],
+    'book-cover-design-services'       => ['bg' => $F . 'Cinematic Book Design Workspace.png',      'vis' => 'fan',    'proc' => 'rows',  'proof' => 'shelf',   'order' => ['sig', 'proof', 'get', 'intro', 'types', 'cta', 'proc', 'faq', 'more']],
+    'video-book-trailer-services'      => ['bg' => $SF,                                             'vis' => 'screen', 'proc' => 'track', 'proof' => 'shelf',   'order' => ['sig', 'intro', 'types', 'cta', 'proc', 'faq', 'more']],
+    'author-website-design-services'   => ['bg' => $J . 'Cozy InDesign Book Layout Workspace.png',  'vis' => 'browser', 'proc' => 'rows', 'proof' => 'clients', 'order' => ['sig', 'intro', 'types', 'cta', 'proc', 'proof', 'faq', 'more']],
+    'article-writing-services'         => ['bg' => $J . 'Book Project Proposal Workspace.png',      'vis' => 'doc',    'proc' => 'track', 'proof' => 'none',    'order' => ['sig', 'intro', 'types', 'cta', 'proc', 'faq', 'more']],
 ];
-$P = $plans[$d['slug']] ?? ['art' => 'books', 'intro' => ['editorial'], 'proc' => 'rows', 'proof' => 'none', 'order' => ['intro', 'sig', 'types', 'proc', 'band', 'faq', 'more']];
+$P = $plans[$d['slug']] ?? ['bg' => $F . 'Crafting Stories at the Writing Desk.png', 'vis' => 'books', 'proc' => 'rows', 'proof' => 'none', 'order' => ['intro', 'sig', 'types', 'cta', 'proc', 'faq', 'more']];
 if ($P['proc'] === 'pin' && count($d['process']['steps']) > 8) $P['proc'] = 'track';
 // Services linked from copy we no longer show (about / why / compare) join the related list, so internal links are kept.
 $have = array_merge([$d['slug']], array_column($beyond, 'slug'));
 preg_match_all('/\[\[([a-z0-9-]+)\|/', json_encode([$d['about'] ?? null, $d['why'] ?? null, $d['compare'] ?? null]), $m);
 foreach (array_unique($m[1]) as $sl) if (!in_array($sl, $have, true) && ($x = sub_by_slug($sl))) { $beyond[] = $x; $have[] = $sl; }
 $typesMode = !empty($d['types']) && count($d['types']['items']) > 8 ? 'picker' : 'rows';
-$bandDark = in_array($d['cat'], ['edit', 'other'], true);
+$flip = (bool)($seed % 2);
 
 $blocks = [
-    'intro' => fn() => sv_intro($d, $P['intro'][0], $P['intro'][1] ?? ''),
+    'intro' => fn() => sv_intro($d, $P['vis'], $flip, $seed),
     'sig'   => fn() => sv_sig($d['slug'], $seed),
+    'get'   => fn() => sv_get($d['slug'], $seed),
     'types' => fn() => sv_types($d, $typesMode),
     'proc'  => fn() => sv_process($d, $P['proc'], $quote, $help),
-    'band'  => fn() => sv_band($d['cta1'], $quote, $help, $bandDark),
+    'cta'   => fn() => sv_cta(sv_em($d['cta1']), '', $quote, $help, 'orange', $seed),
     'proof' => fn() => sv_proof($P['proof']),
     'faq'   => fn() => sv_faq($d),
     'more'  => fn() => sv_more($d, $beyond),
 ];
 ?>
 <div class="page active svx svx-<?= e($d['cat']) ?>" data-page="service">
-<?= sv_hero($d, $cat, $P['art'], $seed, $quote, $help) ?>
+<?= sv_hero($d, $cat, $P['bg'], $quote, $help) ?>
 <?php foreach ($P['order'] as $b) echo $blocks[$b](); ?>
-<?= sv_close($d, $help) ?>
+<?= sv_close($d, $quote, $help, $seed) ?>
 </div>
 <script src="<?= e(asset('js/sv.js')) ?>" defer></script>
 <?php include __DIR__ . '/includes/footer.php'; ?>
