@@ -201,7 +201,7 @@ function sv_faq(array $d): string {
          . sv_kick('q', 'Questions') . '<h2 class="x-h2 rv" id="sv-faq">Frequently asked <em>questions</em>.</h2>'
          . '<p class="svx-faq-p">Straight answers about our ' . e(strtolower($d['name'])) . '. Can’t see your question? <a href="' . e(url('/contact')) . '">Ask us directly</a>.</p>'
          . '<p class="svx-faq-cta">' . e($d['faq_cta']) . '</p>'
-         . '<p><a class="x-link" href="' . e(url('/faq')) . '">All questions <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p></div>'
+         . '<p class="svx-links"><a class="x-link" href="' . e(url('/faq')) . '">All questions <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="x-link" href="' . e(url('/pricing')) . '">Pricing <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="x-link" href="' . e(url('/portfolio')) . '">Portfolio <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p></div>'
          . '<div class="faq" data-faq="svc">' . faq_html($d['faq'], true) . '</div></div></section>';
 }
 
@@ -386,4 +386,27 @@ function sv_sig(string $slug, int $s): string {
         return sv_sig_wrap('search', 'Built to be found', 'Written for readers. Ready for <em>search</em>.', 'Type a headline to preview how it could appear in search results. We write titles, summaries and articles that earn the click.', $body);
     }
     return '';
+}
+
+/* ======================================================================
+   Resource pages
+   ====================================================================== */
+
+/** Clean dark hero for resource pages. $h1 may contain one <em> accent. */
+function sv_page_hero(string $crumb, string $h1, string $lead, string $art = '', string $extra = ''): string {
+    return '<section class="svx-hero svx-ph" aria-labelledby="pg-h1"><div class="x-w svx-hero-in' . ($art === '' ? ' solo' : '') . '"><div class="svx-hero-copy">'
+         . '<p class="svx-crumbs"><a href="' . e(url('/')) . '">Home</a> <span aria-hidden="true">/</span> ' . e($crumb) . '</p>'
+         . '<h1 id="pg-h1" class="ent" style="--d:1">' . $h1 . '</h1><p class="svx-lead ent" style="--d:2">' . e($lead) . '</p>'
+         . ($extra !== '' ? '<div class="ent" style="--d:3">' . $extra . '</div>' : '') . '</div>' . ($art !== '' ? sv_hero_art($art, 3) : '') . '</div></section>';
+}
+
+/** Closing section with a lead form for resource pages. */
+function sv_close_form(string $kick, string $titleHtml, string $sub, string $id, string $formTitle, string $formSub, string $source, string $btn = 'Send my request', array $links = [['/contact', 'Contact page']]): string {
+    $alt = '';
+    foreach ($links as $l) $alt .= '<a class="x-link" href="' . e(url($l[0])) . '">' . e($l[1]) . ' <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>';
+    return '<section class="x-close svx-close" id="contact" aria-labelledby="' . e($id) . '-end"><div class="x-w x-close-grid"><div>'
+         . sv_kick('mail', $kick) . '<h2 id="' . e($id) . '-end" class="x-h2 rv">' . $titleHtml . '</h2><p class="x-sub">' . e($sub) . '</p>'
+         . '<a class="phone-big" href="tel:' . e(preg_replace('/[^\d+]/', '', site('phone'))) . '">' . e(site('phone')) . '</a>'
+         . '<ul class="checks"><li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Free consultation</li><li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Scope, timeline and price in writing</li><li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Nothing starts until you say yes</li></ul>' . ($alt ? '<p class="svx-links">' . $alt . '</p>' : '') . '</div>'
+         . '<div class="postcard">' . render_form($id, $formTitle, $formSub, $source, $btn) . '</div></div></section>';
 }

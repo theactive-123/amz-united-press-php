@@ -55,6 +55,10 @@ $plans = [
 ];
 $P = $plans[$d['slug']] ?? ['art' => 'books', 'intro' => ['editorial'], 'proc' => 'rows', 'proof' => 'none', 'order' => ['intro', 'sig', 'types', 'proc', 'band', 'faq', 'more']];
 if ($P['proc'] === 'pin' && count($d['process']['steps']) > 8) $P['proc'] = 'track';
+// Services linked from copy we no longer show (about / why / compare) join the related list, so internal links are kept.
+$have = array_merge([$d['slug']], array_column($beyond, 'slug'));
+preg_match_all('/\[\[([a-z0-9-]+)\|/', json_encode([$d['about'] ?? null, $d['why'] ?? null, $d['compare'] ?? null]), $m);
+foreach (array_unique($m[1]) as $sl) if (!in_array($sl, $have, true) && ($x = sub_by_slug($sl))) { $beyond[] = $x; $have[] = $sl; }
 $typesMode = !empty($d['types']) && count($d['types']['items']) > 8 ? 'picker' : 'rows';
 $bandDark = in_array($d['cat'], ['edit', 'other'], true);
 
