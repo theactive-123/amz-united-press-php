@@ -65,12 +65,12 @@ include __DIR__ . '/includes/header.php';
       <div class="x-man-text">
         <p class="x-kick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="m8.5 10.5 2.2 2.2 4.3-4.4"/></svg>Services for writers</p>
         <h2 class="x-h2 hm-h2 rv" id="m-h">Write, edit, publish and <em>promote</em> your ebook with an expert team.</h2>
-        <p class="scrub x-big">Every author you admire once sat in front of a blank page and wondered whether the book would ever get finished. What carried them through was help: an editor who saw the potential, a designer who made it look the part, someone who knew how publishing really works. AMZ United Press brings that whole team to your side, whether you are writing your first ebook or your fifth.</p>
+        <p class="scrub x-big">Bring your ebook to life with expert writing, editing, design and publishing. AMZ United Press supports you from your first draft to your final launch.</p>
         <ul class="x-commit" aria-label="What we help you achieve">
-          <li class="rv"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 4h4.5v16H4.5zM10.5 4H15v16h-4.5z"/></svg></b><span>Finally become a published author, with a book you are proud of.</span></li>
-          <li class="rv"><b><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></b><span>Reach more readers and build an audience that comes back for the next one.</span></li>
-          <li class="rv"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12.5V3.5h9l9 9-9 9z"/><circle cx="7.5" cy="8" r="1.2"/></svg></b><span>Turn your writing into income, with 100% of your royalties kept by you.</span></li>
-          <li class="rv"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7"/></svg></b><span>A written quote before any work begins, and nothing starts until you say yes.</span></li>
+          <li class="rv"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 4h4.5v16H4.5zM10.5 4H15v16h-4.5z"/></svg></b><span>Publish a book you are proud of.</span></li>
+          <li class="rv"><b><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></b><span>Reach more readers and grow your audience.</span></li>
+          <li class="rv"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12.5V3.5h9l9 9-9 9z"/><circle cx="7.5" cy="8" r="1.2"/></svg></b><span>Earn from your writing. Keep 100% of your royalties.</span></li>
+          <li class="rv"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7"/></svg></b><span>Get a clear quote. Work starts with your approval.</span></li>
         </ul>
       </div>
     </div>

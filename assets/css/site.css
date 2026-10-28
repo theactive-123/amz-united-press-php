@@ -281,3 +281,14 @@ h1,h2,h3,.x-h2,.page-hero h1,.svh h1{overflow-wrap:break-word;hyphens:manual}
 .faq details[open] summary::after{content:"−";transform:none!important}
 /* services page: category intro sits at the top and stays in view beside its list */
 @media (min-width:941px){.cat{align-items:start!important}.cat-intro{position:sticky;top:120px;align-self:start}}
+
+/* Home services: smaller copy and larger artwork within the page gutters. */
+[data-page=home] .x-man .x-h2.hm-h2{font-size:clamp(2rem,3.2vw,3rem);line-height:1.06;max-width:15em}
+[data-page=home] .x-man .x-big{font-size:clamp(1.15rem,1.5vw,1.4rem);line-height:1.5;letter-spacing:-.02em;max-width:30em;margin-bottom:32px}
+[data-page=home] .x-man-text{min-width:0}
+[data-page=home] .x-man-photo .x-frame{overflow:visible;aspect-ratio:auto}
+[data-page=home] .x-man-photo .x-frame>img{display:block;width:100%;max-width:100%;height:auto;object-fit:contain}
+@media(min-width:941px){
+  [data-page=home] .x-man-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,3vw,48px);align-items:center}
+  [data-page=home] .x-man-photo{width:100%;max-width:100%;margin:0;justify-self:end}
+}
