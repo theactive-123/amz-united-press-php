@@ -64,7 +64,7 @@ function lp_offer_suffix(): string {
 /** The landing-page form (posts like every other form, tagged "landing"). */
 function lp_form(string $id, string $heading, string $sub, int $help, string $btn = 'Get My Free Quote'): string {
     $badge = lp_offer_badge();
-    return '<div class="fw' . ($badge ? ' has-offer' : '') . '" id="' . e($id) . '">' . $badge . render_form($id, $heading, $sub, 'landing', $btn, $help) . '</div>';
+    return '<div class="fw' . ($badge ? ' has-offer' : '') . '" id="' . e($id) . '" data-steps>' . $badge . render_form($id, $heading, $sub, 'landing', $btn, $help) . '</div>';
 }
 
 /* ---------- sections ---------- */
@@ -178,7 +178,7 @@ function lp_books(int $n = 6, int $offset = 0): string {
 
 function lp_stats(): string {
     $h = '<div class="stats rv">';
-    foreach (data('stats') as $s) $h .= '<div class="stat"><b>' . (int)$s[0] . e($s[1]) . '</b><span>' . e($s[2]) . '</span></div>';
+    foreach (data('stats') as $s) $h .= '<div class="stat"><b><span data-count="' . (int)$s[0] . '">' . (int)$s[0] . '</span>' . e($s[1]) . '</b><span>' . e($s[2]) . '</span></div>';
     return $h . '</div>';
 }
 
