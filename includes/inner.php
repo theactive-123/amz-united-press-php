@@ -148,7 +148,7 @@ function ix_journey(): string {
 }
 
 /** Multi-step lead form: the normal form (same fields, endpoint and validation), enhanced into steps by inner.js. */
-function ix_form(string $id, string $heading, string $sub, string $source, ?int $help = null, string $btn = 'Get My Free Quote'): string {
+function ix_form(string $id, string $heading, string $sub, string $source, int $help, string $btn = 'Get My Free Quote'): string {
     $o = site('offer');
     $badge = !empty($o['on']) ? '<span class="ix-offer" role="note">' . e($o['big']) . '<small>' . e(!empty($o['ends']) ? 'Ends ' . $o['ends'] : ($o['note'] ?? '')) . '</small></span>' : '';
     return '<div class="ix-msf" id="' . e($id) . '-wrap" data-steps>' . $badge . render_form($id, $heading, $sub, $source, $btn, $help) . '</div>';
@@ -181,37 +181,4 @@ function ix_ctas(string $label = 'Get a Free Quote', string $pref = '', int $hel
 /** FAQ accordion (keeps the existing <details> markup from faq_html, enhanced by inner.js). */
 function ix_faq_list(array $items): string {
     return '<div class="faq ix-faq" data-ix-faq>' . faq_html($items, true) . '</div>';
-}
-
-/**
- * Hero for the resource pages. Same breadcrumb trail, H1 and lead as page_hero(),
- * with page-specific artwork ($side) instead of a background photo.
- */
-function ix_page_hero(array $crumbs, string $h1Html, string $lead, string $side, string $extra = ''): string {
-    $c = '<a href="' . e(url('/')) . '">Home</a>';
-    foreach ($crumbs as $cr) $c .= ' <span aria-hidden="true">/</span> ' . (is_array($cr) ? '<a href="' . e(url($cr[1])) . '">' . e($cr[0]) . '</a>' : e($cr));
-    return '<section class="ix-hero ix-ph" aria-labelledby="pg-h1"><span class="ix-hero-grid" aria-hidden="true"></span><div class="ix-w ix-hero-in">'
-         . '<div class="ix-hero-copy"><p class="ix-crumbs">' . $c . '</p><h1 id="pg-h1" class="ix-h1 ix-rise">' . $h1Html . '</h1>'
-         . '<p class="ix-hero-lead ix-rise" style="--d:120ms">' . e($lead) . '</p>' . ($extra !== '' ? '<div class="ix-rise" style="--d:220ms">' . $extra . '</div>' : '') . '</div>'
-         . '<div class="ix-ph-side">' . $side . '</div></div></section>';
-}
-
-/** Small floating UI card used in hero artwork. */
-function ix_float(string $icon, string $title, string $sub, string $pos): string {
-    return '<span class="ix-float ' . e($pos) . '">' . ix_icon($icon) . '<span><b>' . e($title) . '</b><small>' . e($sub) . '</small></span></span>';
-}
-
-/** Closing call to action for resource pages. Same text and link targets as cta_band(). */
-function ix_band(string $title, string $text, string $label, string $href = '/contact', string $label2 = '', string $href2 = '', int $seed = 0): string {
-    $b2 = $label2 ? '<a class="ix-btn ix-btn-ghost on-orange" href="' . e(url($href2)) . '">' . e($label2) . '</a>' : '<button type="button" class="ix-btn ix-btn-ghost on-orange" data-chat>' . ix_icon('chat') . 'Live Chat</button>';
-    $tel = preg_replace('/[^\d+]/', '', site('phone'));
-    return '<section class="ix-sec-s ix-end" aria-label="Get started"><div class="ix-w"><div class="ix-cta-orange ix-rv"><span class="ix-cta-rings" aria-hidden="true"></span>'
-         . '<div class="ix-cta-copy"><h2 class="ix-h2">' . e($title) . '</h2><p>' . e($text) . '</p><div class="ix-ctas"><a class="ix-btn ix-btn-dark" href="' . e(url($href)) . '">' . e($label) . ix_icon('arrow') . '</a>' . $b2
-         . '<a class="ix-call" href="tel:' . e($tel) . '"><span>' . ix_icon('phone') . '</span><span><small>Call us now</small><b>' . e(site('phone')) . '</b></span></a></div></div>'
-         . '<div class="ix-cta-stack" aria-hidden="true">' . ix_kindle($seed + 4, 'k') . ix_book($seed + 6, 's1') . '</div></div></div></section>';
-}
-
-/** Image from assets/img (path segments are URL-encoded). */
-function ix_img(string $rel, string $alt = '', int $w = 900, bool $eager = false): string {
-    return '<img src="' . e(url('/assets/img/' . implode('/', array_map('rawurlencode', explode('/', $rel))))) . '" alt="' . e($alt) . '"' . ($eager ? '' : ' loading="lazy"') . ' decoding="async" width="' . $w . '" height="' . $w . '">';
 }
