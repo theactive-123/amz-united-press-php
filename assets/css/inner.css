@@ -689,7 +689,7 @@
   .ix-msf .form-title{padding-right:82px}
   .ix-msf .form-sub{padding-right:0}
   .ix-offer{width:74px;height:74px;font-size:.95rem;right:10px}
-  .ix-steps-head ol{display:flex;gap:12px}.ix-steps-head li.now{flex:1}.ix-steps-head li span{display:none;white-space:nowrap}
+  .ix-steps-head li span{display:none}
   .ix-steps-head li.now span{display:inline}
   .ix-chips-opt{grid-template-columns:1fr}
   .ix-intro-art{padding:0 24px 40px 0}
