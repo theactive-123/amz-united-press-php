@@ -12,7 +12,7 @@ return [
     'desc'  => 'Book marketing services that put your title in front of the right readers – clear plans, honest reporting and no fake promises. Ask for your free quote today.',
     'short' => 'Honest, reader-focused book marketing that grows your visibility through social media, outreach, reviews, email and a stronger author brand.',
     'h1'    => 'Book Marketing Services That Help Readers Find You',
-    'lead'  => 'Finishing a book is a big win. Getting strangers to notice it is a different job – and most authors would rather hand it off. Our book marketing services give you a clear plan, a small team that does the legwork and plain reports on what’s working. Not published yet? Start with [[amazon-publishing-services|Amazon publishing support]] and we’ll plan the launch together.',
+    'lead'  => 'Finishing a book is a big win. Getting strangers to notice it is a different job – and most authors would rather hand it off. Our book marketing services give you a clear plan, a small team that does the legwork and plain reports on what’s working. Not published yet? Start with [[publishing-services|Amazon publishing support]] and we’ll plan the launch together.',
     'intro' => [
         'h2'   => 'How Our Book Marketing Services Help Indie Authors',
         'p'    => [
@@ -88,14 +88,14 @@ return [
         ['Can I hire someone to market my book?', 'Yes. You can hire a freelancer or a full team like ours. With AMZ United Press you get a project manager, a written plan and specialists for each channel. You keep control of your accounts, your rights and 100% of your royalties, and you approve every major decision before we act on it.'],
         ['How do you market a book launch?', 'Ideally, start eight to twelve weeks before release. Set up pre-orders, build a small launch team of early readers, line up reviews, schedule social posts and prepare ads for launch week. A focused push in the first few weeks gives retailers early signs that your book deserves to be shown to more shoppers.'],
         ['How do books get popular?', 'Most popular books combine a strong story or message, a professional cover and steady promotion that gets them in front of the right readers. Word of mouth then does the heavy lifting. Timing and luck play a part too, which is why we focus on the parts you can control and never promise a bestseller.'],
-        ['How do you market a self-published book?', 'Treat it like a small business. Make sure the book is edited and well presented, then build your author platform, collect genuine reviews and run modest, well-targeted ads. Our book marketing services handle this work for you, and we can also help with [[ebook-publishing-services|ebook publishing]] if you haven’t released it yet.'],
+        ['How do you market a self-published book?', 'Treat it like a small business. Make sure the book is edited and well presented, then build your author platform, collect genuine reviews and run modest, well-targeted ads. Our book marketing services handle this work for you, and we can also help with [[publishing-services|ebook publishing]] if you haven’t released it yet.'],
         ['Can I use your book marketing without your publishing services?', 'Absolutely. Our marketing works for any published book, no matter who helped you publish it. We simply need your listing details and, where relevant, access to your ad and social accounts. You can add other services later if you need them, but there’s never any obligation.'],
         ['How much do book marketing services cost?', 'Campaigns start from $500, and the final price depends on how many channels you need and how long the campaign runs. Ad spend is separate and paid directly to the platforms. You’ll get a written quote before anything starts, and you can see typical ranges on [[/pricing|our pricing page]].'],
     ],
     'faq_cta' => 'Ready to get your book noticed?',
     'beyond' => [
         'h2'    => 'We Go Beyond Book Marketing',
-        'slugs' => ['ghostwriting-services', 'book-editing-services', 'book-formatting-services', 'ebook-publishing-services', 'audiobook-services', 'article-writing-services'],
+        'slugs' => ['ghostwriting-services', 'book-editing-services', 'book-formatting-services', 'publishing-services', 'audiobook-services', 'article-writing-services'],
     ],
     'cta2' => [
         'h3' => 'Let’s Put Your Book Where Readers Will See It',

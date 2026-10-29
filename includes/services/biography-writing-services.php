@@ -74,7 +74,7 @@ return [
     'faq_cta' => 'Get a biographer to tell the story.',
     'beyond' => [
         'h2'    => 'We Go Beyond Writing Biographies',
-        'slugs' => ['book-formatting-services', 'ebook-publishing-services', 'book-marketing-services', 'audiobook-services', 'amazon-publishing-services', 'video-book-trailer-services'],
+        'slugs' => ['book-formatting-services', 'publishing-services', 'book-marketing-services', 'audiobook-services', 'video-book-trailer-services', 'book-cover-design-services'],
     ],
     'cta2' => [
         'h3' => 'Hire a Biographer to Bring a Life Story to Light',

@@ -2,8 +2,9 @@
 require dirname(__DIR__) . '/includes/bootstrap.php';
 require dirname(__DIR__) . '/includes/lp.php';
 
-$amz = sub_by_slug('amazon-publishing-services');
-$ebk = sub_by_slug('ebook-publishing-services');
+// Both routes are covered on one page: /services/publishing-services.
+$amz = ['name' => 'Amazon Publishing Services', 'price' => '$349', 'slug' => 'publishing-services'];
+$ebk = ['name' => 'Ebook Publishing Services', 'price' => '$399', 'slug' => 'publishing-services'];
 $FAQ = [
     ['How much do your book publishing services cost?', 'Amazon publishing starts from ' . $amz['price'] . ' and multi-store ebook publishing from ' . $ebk['price'] . '. The final price depends on what your book needs, for example whether it also needs editing, a cover or formatting. You get a written quote before we start, and there are no royalty splits or hidden fees.'],
     ['What are self-publishing services?', 'Self-publishing services give you the professional help of a publisher while you stay the publisher of record. We prepare and upload your book, but it is published in your own accounts, under your name, and you keep full control of the price, the rights and every royalty.'],

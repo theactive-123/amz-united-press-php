@@ -57,7 +57,7 @@ return [
         'h3' => 'Audiobook Producers Who Care About Every Word',
         'p'  => [
             'The AMZ United Press audio team includes producers, sound engineers, proof-listeners and a network of experienced narrators across many voices, accents and styles. They know a cozy mystery needs a very different delivery from a leadership guide, and they cast and direct each project with that in mind. One project manager keeps everything on schedule and stays your main point of contact.',
-            'We’re careful with the details because listeners are. Your audio is checked by more than one set of ears, and you hear and approve it before release. If you also need help getting the print or digital edition ready, our [[ebook-publishing-services|ebook publishing team]] can work alongside the audio crew, so every format launches with the same polish.',
+            'We’re careful with the details because listeners are. Your audio is checked by more than one set of ears, and you hear and approve it before release. If you also need help getting the print or digital edition ready, our [[publishing-services|ebook publishing team]] can work alongside the audio crew, so every format launches with the same polish.',
         ],
     ],
     'why' => [

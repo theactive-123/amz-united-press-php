@@ -95,7 +95,7 @@ return [
     'faq_cta' => 'Need an article writer? Let’s talk.',
     'beyond' => [
         'h2'    => 'Our Services Go Beyond Article Writing',
-        'slugs' => ['book-editing-services', 'proofreading-services', 'book-formatting-services', 'ebook-publishing-services', 'video-book-trailer-services', 'author-website-design-services'],
+        'slugs' => ['book-editing-services', 'proofreading-services', 'book-formatting-services', 'publishing-services', 'video-book-trailer-services', 'author-website-design-services'],
     ],
     'cta2' => [
         'h3' => 'Looking for Someone to Write Your Articles?',

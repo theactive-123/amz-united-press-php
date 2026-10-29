@@ -75,7 +75,7 @@ include dirname(__DIR__) . '/includes/header.php';
         ['check', 'Professional editing', 'A separate editor and proofreader polish the finished manuscript.'],
         ['lock', 'Signed NDA', 'Complete confidentiality. Your story and your identity stay private.'],
         ['shield', 'Full copyright', '100% ownership of the manuscript and every royalty, transferred to you.'],
-        ['publish', 'Optional publishing', '[[book-cover-design-services|Cover design]], formatting and [[amazon-publishing-services|Amazon publishing]] when you are ready.'],
+        ['publish', 'Optional publishing', '[[book-cover-design-services|Cover design]], formatting and [[publishing-services|Amazon publishing]] when you are ready.'],
     ], 4) ?>
   </div>
 </section>

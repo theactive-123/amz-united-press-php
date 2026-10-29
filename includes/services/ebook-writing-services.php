@@ -17,7 +17,7 @@ return [
         'h2'   => 'Custom Ebook Writing Services, Made to Order',
         'p'    => [
             'Readers buy and download digital books every day, and for independent authors an ebook is often the format that does the most work. It costs nothing to print, it can be updated, and it reaches readers in any country the moment it goes live. If your book only exists in your head or as scattered notes, you’re leaving that audience untouched. At AMZ United Press, we hand the writing to a professional ebook writer who knows your niche, so you can stay focused on your expertise or your next idea.',
-            'You stay involved from the first call to the final file. We agree on the outline together, you review chapters as they’re drafted, and we revise until the book reads the way you want. Once the manuscript is approved, we format it for every major device and store, and if you’d like, we can take care of [[ebook-publishing-services|ebook publishing]] under your own account. You keep 100% of your rights and royalties.',
+            'You stay involved from the first call to the final file. We agree on the outline together, you review chapters as they’re drafted, and we revise until the book reads the way you want. Once the manuscript is approved, we format it for every major device and store, and if you’d like, we can take care of [[publishing-services|ebook publishing]] under your own account. You keep 100% of your rights and royalties.',
         ],
         'list' => [
             'Written in your voice, with your goals in mind',
@@ -81,7 +81,7 @@ return [
             ['Revisions Built In', 'Feedback is part of the process, not an afterthought. You review the outline and each batch of chapters, and we revise within the agreed scope until you’re happy with the manuscript. Your quote explains exactly how revisions work, so there’s no confusion later.'],
             ['Original, Quality Writing', 'Every ebook is written from scratch for you and checked for originality before delivery. Nothing is recycled from other projects or spun from existing content. That protects your reputation and gives readers something genuinely worth their time and attention.'],
             ['Reliable Turnaround', 'Most ebooks are completed in 6–10 weeks, depending on length and research. We agree on milestones at the start and your project manager keeps them on track. If something needs to shift, we tell you early and explain why, rather than letting deadlines quietly slide.'],
-            ['Ready-to-Use Ebooks', 'Your ebook arrives ready for its job. For business titles, we can add calls to action, links and sign-up prompts that turn readers into leads. For books you plan to sell, we prepare files that meet the requirements of [[amazon-publishing-services|Amazon publishing]] and other major stores.'],
+            ['Ready-to-Use Ebooks', 'Your ebook arrives ready for its job. For business titles, we can add calls to action, links and sign-up prompts that turn readers into leads. For books you plan to sell, we prepare files that meet the requirements of [[publishing-services|Amazon publishing]] and other major stores.'],
             ['Clear, Sensible Pricing', 'Ebook writing starts from $1,800, and every project gets a written quote before work begins. The quote covers word count, deliverables and milestones, with no hidden fees. You can compare package options on [[/pricing|our pricing page]] and choose only the services you need.'],
         ],
     ],

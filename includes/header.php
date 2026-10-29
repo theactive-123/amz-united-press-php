@@ -98,7 +98,9 @@ $curCat = $meta['cat'] ?? '';
       <nav class="hdr-nav" id="nav" aria-label="Main">
         <ul class="hdr-menu">
           <li><a class="hdr-top" href="<?= e(url('/')) ?>"<?= $meta['nav'] === 'home' ? ' aria-current="page"' : '' ?>>Home</a></li>
-          <?php foreach (data('cats') as $c): ?>
+          <?php foreach (data('cats') as $c): $cs = subs_of($c['k']); if (count($cs) === 1): $one = '/services/' . $cs[0]['slug']; ?>
+          <li><a class="hdr-top" href="<?= e(url($one)) ?>"<?= ($meta['path'] ?? '') === $one ? ' aria-current="page"' : '' ?>><?= e($c['t']) ?></a></li>
+          <?php continue; endif; ?>
           <li class="hdr-dd">
             <a class="hdr-top" href="<?= e(url('/services#cat-' . $c['k'])) ?>"<?= $curCat === $c['k'] ? ' aria-current="true"' : '' ?>><?= e($c['t']) ?></a>
             <button type="button" class="dd-tog" aria-expanded="false" aria-label="Show <?= e($c['t']) ?>"><?= ic('arrow') ?></button>

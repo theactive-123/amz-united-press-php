@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . '/includes/bootstrap.php';
 $slug = preg_replace('/[^a-z0-9-]/', '', strtolower($_GET['slug'] ?? ''));
+if (in_array($slug, ['ebook-publishing-services', 'amazon-publishing-services'], true)) { header('Location: ' . url('/services/publishing-services'), true, 301); exit; }
 $d = sub_by_slug($slug);
 if (!$d) { http_response_code(404); include __DIR__ . '/404.php'; exit; }
 $cat    = cat_by_key($d['cat']);
@@ -12,7 +13,7 @@ $meta = [
     'description' => $d['desc'],
     'path' => '/services/' . $d['slug'], 'nav' => 'services', 'cat' => $d['cat'],
     'schema' => [
-        breadcrumb_schema([['Home', '/'], ['Services', '/services'], [$cat['t'], '/services#cat-' . $cat['k']], [$d['name'], null]]),
+        breadcrumb_schema([['Home', '/'], ['Services', '/services'], ...($d['name'] === $cat['t'] ? [[$d['name'], null]] : [[$cat['t'], '/services#cat-' . $cat['k']], [$d['name'], null]])]),
         ['@context' => 'https://schema.org', '@type' => 'Service', 'name' => $d['name'], 'description' => plain($d['short']), 'serviceType' => $d['name'],
          'url' => abs_url('/services/' . $d['slug']), 'areaServed' => 'Worldwide',
          'provider' => ['@type' => 'Organization', 'name' => site('name'), 'url' => abs_url('/'), 'telephone' => site('phone'), 'email' => site('email')],
@@ -39,8 +40,7 @@ $plans = [
     'novel-ghostwriting-services'      => ['bg' => $SF,                                             'vis' => 'books',  'proc' => 'track', 'proof' => 'shelf',   'order' => ['intro', 'sig', 'proof', 'cta', 'proc', 'faq', 'more']],
     'biography-writing-services'       => ['bg' => $J . 'Remote Project Discussion on Google Meet.png', 'vis' => $J . 'Book Project Proposal Workspace.png', 'proc' => 'rows', 'proof' => 'clients', 'order' => ['intro', 'sig', 'cta', 'proc', 'proof', 'faq', 'more']],
     'autobiography-writing-services'   => ['bg' => $F . 'Crafting Stories at the Writing Desk.png', 'vis' => 'page',   'proc' => 'track', 'proof' => 'clients', 'order' => ['sig', 'intro', 'cta', 'proc', 'proof', 'faq', 'more']],
-    'ebook-publishing-services'        => ['bg' => $F . 'Self-Publishing Dashboard Workspace.png',  'vis' => 'kindle', 'proc' => 'rows',  'proof' => 'stores',  'order' => ['proof', 'sig', 'get', 'intro', 'types', 'cta', 'proc', 'faq', 'more']],
-    'amazon-publishing-services'       => ['bg' => $J . 'Author Workspace with KDP Publishing Dashboard.png', 'vis' => $F . 'Self-Publishing Dashboard Workspace.png', 'proc' => 'pin', 'proof' => 'shelf', 'order' => ['sig', 'intro', 'get', 'cta', 'proc', 'proof', 'faq', 'more']],
+    'publishing-services'              => ['bg' => $J . 'Author Workspace with KDP Publishing Dashboard.png', 'vis' => $F . 'Self-Publishing Dashboard Workspace.png', 'proc' => 'pin', 'proof' => 'shelf', 'order' => ['sig', 'proof', 'sig2', 'intro', 'get', 'types', 'cta', 'proc', 'faq', 'more']],
     'book-editing-services'            => ['bg' => $F . 'Cozy Manuscript Editing Workspace.png',    'vis' => $F . 'Cozy Manuscript Editing Workspace.png', 'proc' => 'rows', 'proof' => 'clients', 'order' => ['sig', 'get', 'intro', 'types', 'cta', 'proc', 'proof', 'faq', 'more']],
     'proofreading-services'            => ['bg' => $J . 'Book Project Proposal Workspace.png',      'vis' => 'marks',  'proc' => 'track', 'proof' => 'none',    'order' => ['sig', 'intro', 'types', 'cta', 'proc', 'faq', 'more']],
     'book-formatting-services'         => ['bg' => $J . 'Cozy InDesign Book Layout Workspace.png',  'vis' => 'kindle', 'proc' => 'rows',  'proof' => 'shelf',   'order' => ['sig', 'intro', 'types', 'cta', 'proc', 'proof', 'faq', 'more']],
@@ -65,6 +65,7 @@ $flip = (bool)($seed % 2);
 $blocks = [
     'intro' => fn() => sv_intro($d, $P['vis'], $flip, $seed),
     'sig'   => fn() => sv_sig($d['slug'], $seed),
+    'sig2'  => fn() => str_replace('sv-sig', 'sv-sig2', sv_sig($d['slug'] . '#2', $seed)),
     'get'   => fn() => sv_get($d['slug'], $seed),
     'types' => fn() => sv_types($d, $typesMode),
     'proc'  => fn() => sv_process($d, $P['proc'], $quote, $help),

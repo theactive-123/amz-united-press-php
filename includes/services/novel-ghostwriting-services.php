@@ -70,7 +70,7 @@ return [
     'faq_cta' => 'Ready to start your novel? Let’s talk.',
     'beyond' => [
         'h2'    => 'We Go Beyond Novel Ghostwriting',
-        'slugs' => ['ebook-writing-services', 'audiobook-services', 'amazon-publishing-services', 'author-website-design-services', 'video-book-trailer-services', 'website-content-writing-services'],
+        'slugs' => ['ebook-writing-services', 'audiobook-services', 'publishing-services', 'author-website-design-services', 'video-book-trailer-services', 'website-content-writing-services'],
     ],
     'cta2' => [
         'h3' => 'Start Your Novel With a Ghostwriter Today',

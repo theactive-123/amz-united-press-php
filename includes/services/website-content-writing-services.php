@@ -97,7 +97,7 @@ return [
     'faq_cta' => 'Have a question about your site? Just ask.',
     'beyond' => [
         'h2'    => 'Writing to Publishing: We Go Beyond Website Content',
-        'slugs' => ['ebook-writing-services', 'book-editing-services', 'proofreading-services', 'book-formatting-services', 'ebook-publishing-services', 'audiobook-services'],
+        'slugs' => ['ebook-writing-services', 'book-editing-services', 'proofreading-services', 'book-formatting-services', 'publishing-services', 'audiobook-services'],
     ],
     'cta2' => [
         'h3' => 'Expert Website Content Writers Ready When You Are',

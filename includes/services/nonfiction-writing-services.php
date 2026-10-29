@@ -36,7 +36,7 @@ return [
             ['First Chapter Approval', 'Before writing the whole book, we draft one chapter and send it to you. It’s your chance to check the tone, depth and style. We adjust anything that doesn’t feel right, then continue drafting the remaining chapters with that agreed approach.'],
             ['Editing and Proofreading', 'Once the full manuscript is complete, a separate editor reviews it for structure, clarity and accuracy, and checks that claims are supported. A proofreader then reads it line by line to catch typos and inconsistencies before the book is called final.'],
             ['Formatting and Design', 'We format the interior for ebook and print, including headings, tables, charts and any references or notes. If you want one, our designers also create a cover that signals your subject clearly and looks professional at thumbnail size.'],
-            ['Publishing and Promotion', 'When you’re ready, we can handle [[ebook-publishing-services|ebook publishing]] and print setup under your own account, so the sales belong to you. If you’d like help reaching readers, we can also plan a launch campaign that suits your goals and budget.'],
+            ['Publishing and Promotion', 'When you’re ready, we can handle [[publishing-services|ebook publishing]] and print setup under your own account, so the sales belong to you. If you’d like help reaching readers, we can also plan a launch campaign that suits your goals and budget.'],
         ],
     ],
     'cta1' => 'Hire nonfiction writers who shape what you know into a credible, readable book.',

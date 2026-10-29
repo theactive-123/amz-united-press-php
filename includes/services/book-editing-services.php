@@ -17,7 +17,7 @@ return [
         'h2'   => 'Book Editing Services That Prepare You to Publish',
         'p'    => [
             'Maybe this is your first manuscript and you’re not sure whether it works. Maybe you’ve published before and want a sharper eye on the next one. Either way, an editor is the person who reads your book the way a stranger will – and tells you honestly where it shines and where it drags. At AMZ United Press, our editors work with your style, not against it. The aim is to strengthen what makes your writing yours, so readers stay with you to the last page.',
-            'Editing is often only one part of getting a book ready. Once the edit is done, we can pass your manuscript to our [[proofreading-services|professional book proofreaders]] for a final error check, then to our formatters for clean print and ebook files. When you’re ready to release it, our [[ebook-publishing-services|ebook publishing team]] can take it to the major stores. You choose which steps you need, and each one is priced in writing before we start.',
+            'Editing is often only one part of getting a book ready. Once the edit is done, we can pass your manuscript to our [[proofreading-services|professional book proofreaders]] for a final error check, then to our formatters for clean print and ebook files. When you’re ready to release it, our [[publishing-services|ebook publishing team]] can take it to the major stores. You choose which steps you need, and each one is priced in writing before we start.',
         ],
         'list' => [
             'Editors matched to your genre and goals',

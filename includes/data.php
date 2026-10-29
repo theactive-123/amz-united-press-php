@@ -158,7 +158,7 @@ $D = [
             't' => 'Publishing Services',
             'help' => 3,
             'd' => 'Ebook publishing and Amazon KDP publishing handled for you, from file preparation and metadata to a live listing, with every right and royalty kept in your name.',
-            'slugs' => ['ebook-publishing-services', 'amazon-publishing-services'],
+            'slugs' => ['publishing-services'],
         ],
         [
             'k' => 'edit',

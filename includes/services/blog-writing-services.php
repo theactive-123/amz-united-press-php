@@ -103,7 +103,7 @@ return [
     'faq_cta' => 'Still have questions? Ask a real person.',
     'beyond' => [
         'h2'    => 'We Go Beyond Blog Writing',
-        'slugs' => ['ghostwriting-services', 'ebook-writing-services', 'ebook-publishing-services', 'proofreading-services', 'book-cover-design-services', 'video-book-trailer-services'],
+        'slugs' => ['ghostwriting-services', 'ebook-writing-services', 'publishing-services', 'proofreading-services', 'book-cover-design-services', 'video-book-trailer-services'],
     ],
     'cta2' => [
         'h3' => 'Need Blog Posts That Bring Readers to Your Books?',

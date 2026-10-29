@@ -37,7 +37,7 @@ RewriteRule ^services/(developmental-editing|copyediting)/?$ services/book-editi
 RewriteRule ^services/proofreading/?$ services/proofreading-services [R=301,L]
 RewriteRule ^services/cover-design/?$ services/book-cover-design-services [R=301,L]
 RewriteRule ^services/(interior-layout|ebook-formatting)/?$ services/book-formatting-services [R=301,L]
-RewriteRule ^services/publishing-distribution/?$ services/ebook-publishing-services [R=301,L]
+RewriteRule ^services/(publishing-distribution|ebook-publishing-services|amazon-publishing-services)/?$ services/publishing-services [R=301,L]
 RewriteRule ^services/book-marketing/?$ services/book-marketing-services [R=301,L]
 
 # --- Clean service URLs: /services/ghostwriting-services -> service.php?slug=ghostwriting-services ---

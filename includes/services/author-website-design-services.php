@@ -96,7 +96,7 @@ return [
     'faq_cta' => 'Have a question about your website? Ask us.',
     'beyond' => [
         'h2'    => 'Helping Authors Beyond Website Design',
-        'slugs' => ['ebook-writing-services', 'book-editing-services', 'proofreading-services', 'book-formatting-services', 'ebook-publishing-services', 'audiobook-services'],
+        'slugs' => ['ebook-writing-services', 'book-editing-services', 'proofreading-services', 'book-formatting-services', 'publishing-services', 'audiobook-services'],
     ],
     'cta2' => [
         'h3' => 'Tired of Searching for a Website Designer Near You?',

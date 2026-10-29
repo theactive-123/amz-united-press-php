@@ -104,7 +104,7 @@ include __DIR__ . '/includes/header.php';
     <div class="x-w">
       <p class="x-kick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.5h14v17H5z"/><path d="M9 8.5h6M9 12.5h6M9 16.5h3.5"/></svg>What we do</p>
       <h2 class="x-h2 hm-h2 rv" id="c-h">Self-publish your book with a <em>full-service</em> author services company.</h2>
-      <p class="x-sub">Don’t leave the book in a drawer. From <a href="<?= e(url('/services/ebook-writing-services')) ?>">ebook writing</a> and <a href="<?= e(url('/services/book-editing-services')) ?>">book editing</a> to <a href="<?= e(url('/services/amazon-publishing-services')) ?>">Amazon publishing</a> and <a href="<?= e(url('/services/book-marketing-services')) ?>">book marketing</a>, every service you need is here, at prices written down before we start.</p>
+      <p class="x-sub">Don’t leave the book in a drawer. From <a href="<?= e(url('/services/ebook-writing-services')) ?>">ebook writing</a> and <a href="<?= e(url('/services/book-editing-services')) ?>">book editing</a> to <a href="<?= e(url('/services/publishing-services')) ?>">Amazon publishing</a> and <a href="<?= e(url('/services/book-marketing-services')) ?>">book marketing</a>, every service you need is here, at prices written down before we start.</p>
       <div class="xs" id="xp"><?= render_service_tabs() ?></div>
     </div>
   </section>
