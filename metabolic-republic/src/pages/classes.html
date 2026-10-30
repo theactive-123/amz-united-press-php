@@ -1,0 +1,81 @@
+<div class="page" id="page-classes" data-route="/classes" data-title="Classes and timetable | Metabolic Republic" data-description="Coached strength, movement, recovery and one-on-one sessions at Metabolic Republic. Browse the class library and preview the weekly timetable.">
+
+  <section class="hero is-sub" aria-labelledby="classes-title">
+    <img class="hero_media pos-50-76" src="assets/img/hero-classes.jpg" width="1264" height="842" alt="A small group in sage tops holding a calm standing pose on a wooden floor" fetchpriority="high">
+    <div class="hero_overlay" aria-hidden="true"></div>
+    <div class="hero_content">
+      <p class="label">Classes</p>
+      <h1 class="hero_title" id="classes-title">Sessions for <span class="heading_em">Every Pace.</span></h1>
+      <p class="hero_text">A calm, coached space for strength, mobility and recovery. Health you can measure, at a pace you can keep.</p>
+    </div>
+  </section>
+
+  <section class="section is-ivory library" aria-labelledby="library-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-head_title">
+          <p class="label">Class library</p>
+          <h2 class="heading is-inline" id="library-title">Find the <span class="heading_em">Right Session.</span></h2>
+        </div>
+        <p class="section-head_text lead is-20">Every session is coached and adjusted to you. Your plan suggests a gentle weekly rhythm.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Filter classes">
+        <button class="tabs_tab" type="button" role="tab" aria-selected="true" data-filter="all">All</button>
+        <button class="tabs_tab" type="button" role="tab" aria-selected="false" data-filter="Strength">Strength</button>
+        <button class="tabs_tab" type="button" role="tab" aria-selected="false" data-filter="Movement">Movement</button>
+        <button class="tabs_tab" type="button" role="tab" aria-selected="false" data-filter="Recovery">Recovery</button>
+        <button class="tabs_tab" type="button" role="tab" aria-selected="false" data-filter="One-on-one">One-on-one</button>
+      </div>
+      <!-- Rendered from CLASSES data in main.js -->
+      <ul class="class-list" data-render="class-list" aria-live="polite"></ul>
+    </div>
+  </section>
+
+  <section class="section is-ivory timetable" aria-labelledby="timetable-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-head_title">
+          <p class="label">Weekly timetable</p>
+          <h2 class="heading is-inline" id="timetable-title">Plan your <span class="heading_em">week.</span></h2>
+        </div>
+        <p class="section-head_text lead is-dark is-20">A preview of our launch week. Final times will be confirmed before opening.</p>
+      </div>
+      <!-- Desktop table + mobile day tabs, both rendered from TIMETABLE + CLASSES data in main.js -->
+      <div data-render="timetable"></div>
+      <p class="timetable_note"><span class="timetable_dot" aria-hidden="true"></span>Members book classes through the club app. Opening hours and final times will be published before launch.</p>
+    </div>
+  </section>
+
+  <section class="section is-mist split" aria-labelledby="pt-title">
+    <div class="split_inner">
+      <div class="split_media reveal">
+        <div class="split_media-frame is-soft">
+          <img class="pos-94-0" src="assets/img/pillar-movement.jpg" width="680" height="657" alt="A coach guiding members through a forward fold" loading="lazy">
+        </div>
+      </div>
+      <div class="split_body reveal">
+        <p class="label">Personal training</p>
+        <h2 class="heading is-inline" id="pt-title">One coach. <span class="heading_em">A plan built around you.</span></h2>
+        <p class="lead is-muted">For members who want a fully individual program and the most direct route to their goal.</p>
+        <ol class="steps">
+          <li class="step"><span class="step_num">01</span><div><h3 class="step_title">Assessment</h3><p class="step_text">A relaxed one-on-one covering how you move, how you feel and what you'd like to change.</p></div></li>
+          <li class="step"><span class="step_num">02</span><div><h3 class="step_title">Your plan</h3><p class="step_text">Sessions written for your body, history and schedule.</p></div></li>
+          <li class="step"><span class="step_num">03</span><div><h3 class="step_title">Check-ins</h3><p class="step_text">One-on-one training with check-ins between visits.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section is-sage first-session" aria-labelledby="first-session-title">
+    <div class="container first-session_grid">
+      <div class="stack-16 reveal">
+        <h2 class="heading is-inline" id="first-session-title">Your first <span class="heading_em">Session is on us.</span></h2>
+        <p class="lead is-dark first-session_text">Founding members get a free assessment and intro session before the doors open.</p>
+      </div>
+      <div class="button-row reveal">
+        <a class="button" href="#/membership">See membership options</a>
+        <a class="button button-outline" href="#/contact">Book a tour</a>
+      </div>
+    </div>
+  </section>
+</div>

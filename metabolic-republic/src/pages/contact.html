@@ -1,0 +1,106 @@
+<div class="page" id="page-contact" data-route="/contact" data-title="Contact | Metabolic Republic" data-description="Questions about membership, coaching or visiting the club? Send Metabolic Republic a note and we'll reply within one business day.">
+
+  <section class="hero is-sub" aria-labelledby="contact-title">
+    <img class="hero_media" src="assets/img/calm_group_meditation.jpg" width="1152" height="922" alt="Two members on Pilates reformers raising their arms in a calm studio" fetchpriority="high">
+    <div class="hero_overlay" aria-hidden="true"></div>
+    <div class="hero_content">
+      <p class="label">Contact</p>
+      <h1 class="hero_title" id="contact-title">We’d love to <span class="heading_em">meet you.</span></h1>
+      <p class="hero_text">Questions about membership, coaching or visiting the club? Send a note and we'll reply within one business day.</p>
+    </div>
+  </section>
+
+  <section class="section is-stone contact" aria-labelledby="visit-title">
+    <div class="container contact-grid">
+      <div class="contact-info reveal">
+        <h2 class="heading" id="visit-title">Visit the club</h2>
+        <div>
+          <dl class="info-list">
+            <div class="info-row"><dt class="info-row_label">Location</dt><dd class="info-row_value">380 Diablo Rd, Danville, CA 94526</dd></div>
+            <div class="info-row"><dt class="info-row_label">Hours</dt><dd class="info-row_value">Published before opening day <span class="chip-outline">Coming soon</span></dd></div>
+            <div class="info-row"><dt class="info-row_label">Email</dt><dd class="info-row_value"><a href="mailto:membership@metabolicrepublic.com">membership@metabolicrepublic.com</a></dd></div>
+            <div class="info-row"><dt class="info-row_label">Phone</dt><dd class="info-row_value" data-placeholder="club-phone">Shared before opening day</dd></div>
+          </dl>
+          <div class="map-card" role="img" aria-label="Map placeholder: 380 Diablo Rd, Danville, CA 94526">
+            <img src="assets/icons/map-pin.svg" width="35" height="35" alt="">
+            <p>380 Diablo Rd, Danville, CA 94526</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <h2 class="contact-form_title">Send a message</h2>
+        <p class="contact-form_intro">All fields are required unless marked optional.</p>
+        <form class="form js-form" data-form="contact" novalidate>
+          <div class="form_row">
+            <div class="field">
+              <label class="field_label" for="contact-first">First name</label>
+              <input class="field_input" id="contact-first" name="first_name" type="text" autocomplete="given-name" placeholder="Jordan" required>
+              <p class="field_error" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label class="field_label" for="contact-last">Last name</label>
+              <input class="field_input" id="contact-last" name="last_name" type="text" autocomplete="family-name" placeholder="Lee" required>
+              <p class="field_error" aria-live="polite"></p>
+            </div>
+          </div>
+          <div class="form_row">
+            <div class="field">
+              <label class="field_label" for="contact-email">Email</label>
+              <input class="field_input" id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+              <p class="field_error" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label class="field_label" for="contact-phone">Phone (optional)</label>
+              <input class="field_input" id="contact-phone" name="phone" type="tel" autocomplete="tel" placeholder="Your phone number">
+              <p class="field_error" aria-live="polite"></p>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field_label" for="contact-topic">What can we help with?</label>
+            <select class="field_input" id="contact-topic" name="topic" required>
+              <option value="" selected disabled>Choose a topic</option>
+              <option value="membership">Membership</option>
+              <option value="coaching">Coaching</option>
+              <option value="visiting">Visiting the club</option>
+              <option value="other">Something else</option>
+            </select>
+            <p class="field_error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label class="field_label" for="contact-message">Message</label>
+            <textarea class="field_input" id="contact-message" name="message" placeholder="Tell us about your goals or your question" required></textarea>
+            <p class="field_error" aria-live="polite"></p>
+          </div>
+          <label class="check" for="contact-optin">
+            <input id="contact-optin" name="marketing_opt_in" type="checkbox" value="yes">
+            <span>Send me opening news and founding member updates</span>
+          </label>
+          <div class="hp-field" aria-hidden="true"><label for="contact-company">Company</label><input id="contact-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
+          <button class="button is-block" type="submit">Send message</button>
+          <p class="consent">By sharing your phone number, you agree that Metabolic Republic may call or text you about your enquiry. Consent is not a condition of membership. Message and data rates may apply; reply STOP to opt out. See our <a href="#/privacy">Privacy Policy</a>.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section is-sage waitlist-band" aria-labelledby="contact-waitlist-title">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="waitlist-band_title" id="contact-waitlist-title">Don't miss <span class="heading_em">opening day.</span></h2>
+        <p class="lead">Founding spots are limited. Join the waitlist to hear first.</p>
+      </div>
+      <form class="js-form reveal" data-form="contact-waitlist" novalidate>
+        <div class="field">
+          <label class="visually-hidden" for="contact-waitlist-email">Email address</label>
+          <div class="inline-field">
+            <input id="contact-waitlist-email" name="email" type="email" autocomplete="email" placeholder="Email address" required>
+            <button type="submit">Join the waitlist</button>
+          </div>
+          <p class="field_error" aria-live="polite"></p>
+        </div>
+        <div class="hp-field" aria-hidden="true"><label for="contact-waitlist-company">Company</label><input id="contact-waitlist-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
+      </form>
+    </div>
+  </section>
+</div>

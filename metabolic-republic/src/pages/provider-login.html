@@ -1,0 +1,38 @@
+<div class="page" id="page-provider-login" data-route="/provider-login" data-bare data-noindex data-title="Provider portal sign in | Metabolic Republic" data-description="Placeholder sign-in for approved Metabolic Republic partner gyms.">
+  <div class="login">
+    <section class="login_panel" aria-labelledby="provider-portal-title">
+      <a class="brand" href="#/" aria-label="Metabolic Republic home">
+        <span class="brand_mark">{{LOGO}}</span>
+        <span class="brand_word" aria-hidden="true"><span class="brand_word-top">Metabolic</span> <span class="brand_word-bottom">Republic</span></span>
+      </a>
+      <div class="login_copy">
+        <p class="label is-small">Provider portal</p>
+        <h1 class="hero_title" id="provider-portal-title">Provider <span class="heading_em">portal.</span></h1>
+        <p>Secure access for our approved partner gyms.</p>
+      </div>
+    </section>
+    <section class="login_form" aria-labelledby="signin-title">
+      <p class="chip">Placeholder login</p>
+      <h2 class="login_title" id="signin-title">Sign in</h2>
+      <form class="form is-card js-form" data-form="provider-login" novalidate>
+        <div class="field">
+          <label class="field_label" for="provider-username">Username</label>
+          <input class="field_input" id="provider-username" name="username" type="text" autocomplete="username" placeholder="Enter your username" required>
+          <p class="field_error" aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label class="field_label" for="provider-password">Password</label>
+          <input class="field_input" id="provider-password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+          <p class="field_error" aria-live="polite"></p>
+        </div>
+        <a class="login_forgot" href="#/contact">Forgot password?</a>
+        <div class="hp-field" aria-hidden="true"><label for="provider-company">Company</label><input id="provider-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
+        <button class="button is-block" type="submit">Sign in</button>
+      </form>
+      <hr class="login_divider">
+      <p class="login_note">New partner gym? Sign-up needs an authorization code from Metabolic Republic, so only approved gyms get access.</p>
+      <a class="button button-outline is-block" href="#/contact">Request an authorization code</a>
+      <p class="provider-disclaimer is-light">Medical services are provided by OakTree Allied. Results vary. Not all patients qualify for treatment.</p>
+    </section>
+  </div>
+</div>

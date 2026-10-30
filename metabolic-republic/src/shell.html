@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Metabolic Republic | Calmer place to get stronger</title>
+  <meta name="description" content="Metabolic Republic is a wellness and training club in Danville, CA. Coached strength, mobility and recovery in a calm space. Founding memberships now open.">
+  <meta name="robots" content="index, follow" id="meta-robots">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Metabolic Republic">
+  <meta property="og:title" content="Metabolic Republic | Calmer place to get stronger" id="og-title">
+  <meta property="og:description" content="Metabolic Republic is a wellness and training club in Danville, CA. Coached strength, mobility and recovery in a calm space. Founding memberships now open." id="og-description">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#1e2e2a">
+  <link rel="icon" type="image/svg+xml" href="{{FAVICON}}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Epilogue:wght@300;400&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  {{STYLES}}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <div class="nav_inner">
+      <a class="brand" href="#/" aria-label="Metabolic Republic home">
+        <span class="brand_mark">{{LOGO}}</span>
+        <span class="brand_word" aria-hidden="true">
+          <span class="brand_word-top">Metabolic</span> <span class="brand_word-bottom">Republic</span>
+        </span>
+      </a>
+      <nav class="nav_links" aria-label="Main">
+        <a class="nav_link" href="#/about">About</a>
+        <a class="nav_link" href="#/classes">Classes</a>
+        <a class="nav_link" href="#/membership">Membership</a>
+        <a class="nav_link" href="#/consultation">Consultation</a>
+        <a class="nav_link" href="#/contact">Contact</a>
+      </nav>
+      <div class="nav_actions">
+        <a class="nav_tour" href="#/contact">Book a tour</a>
+        <a class="button button-outline-light is-small nav_providers" href="#/provider-redirect">For Providers</a>
+        <a class="button button-light is-small nav_join" href="#/membership">Join now</a>
+        <button class="nav_toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+          <span class="nav_toggle-bars"><span></span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+    <div class="menu_top">
+      <a class="brand" href="#/" aria-label="Metabolic Republic home">
+        <span class="brand_mark">{{LOGO}}</span>
+        <span class="brand_word" aria-hidden="true">
+          <span class="brand_word-top">Metabolic</span> <span class="brand_word-bottom">Republic</span>
+        </span>
+      </a>
+      <button class="menu_close" type="button" aria-label="Close menu">&#x2715;</button>
+    </div>
+    <nav class="menu_links" aria-label="Mobile">
+      <a class="menu_link" href="#/about">About</a>
+      <a class="menu_link" href="#/classes">Classes</a>
+      <a class="menu_link" href="#/membership">Membership</a>
+      <a class="menu_link" href="#/consultation">Consultation</a>
+      <a class="menu_link" href="#/contact">Contact</a>
+    </nav>
+    <div class="menu_actions">
+      <a class="button button-light" href="#/membership">Join now</a>
+      <a class="button button-outline-light" href="#/contact">Book a tour</a>
+      <a class="button button-outline-light" href="#/provider-redirect">For Providers</a>
+    </div>
+  </div>
+
+  <main id="main" tabindex="-1">
+{{PAGES}}
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer_top">
+        <div class="footer_about">
+          <a class="footer_logo" href="#/" aria-label="Metabolic Republic home">{{LOGO}}</a>
+          <p class="footer_blurb">A coach-led training club for strength, conditioning, mobility and recovery. Opening January 1, 2027.</p>
+          <ul class="footer_social" aria-label="Social">
+            <li><a href="#" data-placeholder="instagram">Instagram</a></li>
+            <li><a href="#" data-placeholder="facebook">Facebook</a></li>
+            <li><a href="#" data-placeholder="tiktok">TikTok</a></li>
+          </ul>
+        </div>
+        <div class="footer_cols">
+          <div class="footer_col is-club">
+            <h2 class="footer_heading">Club</h2>
+            <a href="#/about">About</a>
+            <a href="#/classes">Classes</a>
+            <a href="#/membership">Membership</a>
+            <a href="#/contact">Contact</a>
+          </div>
+          <div class="footer_col is-visit">
+            <h2 class="footer_heading">Visit</h2>
+            <p>380 Diablo Rd, Danville, CA 94526</p>
+            <p>Hours announced soon</p>
+            <a href="mailto:membership@metabolicrepublic.com">membership@metabolicrepublic.com</a>
+          </div>
+          <div class="footer_col is-waitlist">
+            <h2 class="footer_heading">Waitlist</h2>
+            <p>Get opening news and founding member offers first.</p>
+            <form class="js-form" data-form="footer-waitlist" novalidate>
+              <div class="field">
+                <label class="visually-hidden" for="footer-email">Email address</label>
+                <div class="inline-field">
+                  <input id="footer-email" name="email" type="email" autocomplete="email" placeholder="Email address" required>
+                  <button type="submit">Join</button>
+                </div>
+                <p class="field_error" aria-live="polite"></p>
+              </div>
+              <div class="hp-field" aria-hidden="true"><label for="footer-company">Company</label><input id="footer-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer_wordmark-space" aria-hidden="true">
+        <p class="footer_wordmark" data-text="METABOLIC REPUBLIC"></p>
+      </div>
+      <div class="footer_bottom">
+        <p>© 2026 Metabolic Republic</p>
+        <p class="footer_disclaimer">Medical services are provided by OakTree Allied. Results vary. Not all patients qualify for treatment.<br>Metabolic Republic meets health care. Recommended partner: OakTree Allied</p>
+        <p class="footer_legal"><a href="#/privacy">Privacy</a><a href="#/terms">Terms</a></p>
+      </div>
+    </div>
+  </footer>
+
+  {{SCRIPT}}
+</body>
+</html>

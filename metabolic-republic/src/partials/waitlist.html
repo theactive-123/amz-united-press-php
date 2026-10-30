@@ -1,0 +1,20 @@
+  <section class="section waitlist" aria-labelledby="waitlist-title">
+    <img class="waitlist_bg" src="assets/img/waitlist-bg.jpg" width="1440" height="501" alt="" loading="lazy">
+    <div class="container waitlist_grid">
+      <div class="waitlist_text reveal">
+        <h2 class="waitlist_title" id="waitlist-title">Hear first when we open</h2>
+        <p class="lead">Location, hours and opening date go to the waitlist first.</p>
+      </div>
+      <form class="waitlist_form js-form reveal" data-form="waitlist" novalidate>
+        <div class="field">
+          <label class="visually-hidden" for="waitlist-email">Email address</label>
+          <div class="inline-field">
+            <input id="waitlist-email" name="email" type="email" autocomplete="email" placeholder="Email address" required>
+            <button type="submit">Join the waitlist</button>
+          </div>
+          <p class="field_error" aria-live="polite"></p>
+        </div>
+        <div class="hp-field" aria-hidden="true"><label for="waitlist-company">Company</label><input id="waitlist-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
+      </form>
+    </div>
+  </section>
