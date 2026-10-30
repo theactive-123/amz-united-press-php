@@ -13,6 +13,10 @@ final class Mailer
         $m = cfg('mail');
         if (empty($m['enabled'])) return [false, 'Email sending is switched off in config.php.'];
 
+        if (($m['driver'] ?? 'smtp') === 'smtp' && (empty($m['host']) || $m['host'] === 'smtp.example.com' || ($m['password'] ?? '') === 'CHANGE_ME')) {
+            return [false, 'SMTP credentials have not been configured.'];
+        }
+
         $lib = __DIR__ . '/lib/PHPMailer/';
         if (!is_file($lib . 'PHPMailer.php')) return [false, 'PHPMailer files are missing from includes/lib/PHPMailer.'];
         require_once $lib . 'Exception.php';

@@ -82,3 +82,17 @@ Every form posts (POST) to `forms/submit.php`, which checks: CSRF token, hidden 
 - [ ] HTTPS redirect enabled, `site_url` and `robots.txt` domain updated
 - [ ] Optional: add your Google Analytics 4 ID as `ga4_id` in `config.php`
 # amz-united-press-php
+
+## CRM and analytics
+
+GA4 measurement ID `G-R43TW80BWG` is enabled globally. Successful AJAX submissions emit `generate_lead`; submissions without JavaScript use a one-time session flag on the thank-you page. Opening or refreshing the thank-you page alone does not generate a conversion.
+
+All five form sources (`home`, `contact`, `quote`, `service`, `landing`) use the server-side `/api/custom-lead` adapter. Requests use `x-crm-api-key` and the `{type, source, data: {form_type, fields, url}}` contract. Success requires a 2xx response containing `success: true` and a nonempty string `lead_id`. Failures show a retry message and do not trigger a conversion.
+
+Set `CRM_BASE_URL` and `CRM_SITE_API_KEY` on production, or upload the private `includes/config.local.php` separately. This file is ignored by Git and denied by Apache; do not put the API key in JavaScript. The local key has already been configured. PHP cURL and a valid HTTPS CA trust store are required; certificate verification stays enabled.
+
+Hostinger SMTP (port 465, SSL), team notifications and visitor confirmations are configured in the private local config. Upload this file separately when deploying, or supply SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD and ADMIN_EMAIL environment variables. Keep mail overrides in `includes/config.local.php` under `mail`, using the keys in `includes/config.php`. The team notification and visitor confirmation use `includes/EmailTemplates.php`. CRM acceptance controls form success; an email failure is recorded separately and does not ask the visitor to resubmit an already accepted lead. CRM-generated email behavior is managed on the CRM itself and is not configured by this API contract.
+
+Private `storage/submissions.log` records CRM lead IDs and both email delivery statuses. `storage/delivery-error.log` records failures without CRM credentials or response bodies. These files are diagnostic records, not an automatic retry queue.
+
+Run adapter checks with `php tests/crm.php` (mocked transport; no real leads or emails).

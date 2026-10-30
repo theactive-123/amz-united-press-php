@@ -45,6 +45,7 @@ function initForm(form){
 
   form.addEventListener('submit',function(ev){
     ev.preventDefault();
+    if(card.classList.contains('is-submitting'))return;
     banner.classList.remove('show');
     var names=['name','email','help'],ok=names.map(function(n){return validateField(form,n)}),bad=names[ok.indexOf(false)];
     if(bad){$('[name="'+bad+'"]',form).focus();return}
@@ -54,7 +55,7 @@ function initForm(form){
     fetch(form.action,{method:'POST',body:new FormData(form),headers:{'X-Requested-With':'fetch','Accept':'application/json'},credentials:'same-origin'})
       .then(function(r){return r.json().catch(function(){return {ok:false}})})
       .then(function(d){
-        if(d&&d.ok){reset();trackLead(form);card.classList.add('is-done');var s=$('.form-success',card);s.focus();confetti(s)}
+        if(d&&d.ok){reset();try{trackLead(form)}catch(e){}card.classList.add('is-done');var s=$('.form-success',card);s.focus();confetti(s)}
         else if(d&&d.errors&&Object.keys(d.errors).length){reset();Object.keys(d.errors).forEach(function(k){var f=$('[data-f="'+k+'"]',form);if(f){$('.err',f).textContent=d.errors[k];f.classList.add('invalid')}});var k0=Object.keys(d.errors)[0],el=$('[name="'+k0+'"]',form);if(el)el.focus()}
         else fail(d&&d.message)
       })

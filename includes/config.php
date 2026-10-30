@@ -26,11 +26,11 @@ return [
     'mail' => [
         'enabled'    => true,
         'driver'     => 'smtp',
-        'host'       => 'smtp.example.com',        // PLACEHOLDER: your SMTP host
-        'port'       => 587,
-        'encryption' => 'tls',
+        'host'       => 'smtp.hostinger.com',        // PLACEHOLDER: your SMTP host
+        'port'       => 465,
+        'encryption' => 'ssl',
         'username'   => 'no-reply@example.com',    // PLACEHOLDER
-        'password'   => 'CHANGE_ME',               // PLACEHOLDER
+        'password'   => 'Abbas1234',               // PLACEHOLDER
         'from_email' => 'no-reply@amzunitedpress.com',
         'from_name'  => 'AMZ United Press',
         'to_email'   => 'hello@amzunitedpress.com',
@@ -47,10 +47,16 @@ return [
         'log_submissions'    => true, // keep a copy of every message in storage/submissions.log
     ],
 
+    /* The API key is server-only: environment variable or ignored config.local.php. */
+    'crm' => [
+        'base_url' => getenv('CRM_BASE_URL') ?: 'https://crm.theactivesolutions.com',
+        'api_key' => getenv('CRM_SITE_API_KEY') ?: 'cd4bc6eda591f983c7df6e76d2568fa9e20bc043536acf91aad4a75407e34451',
+    ],
+
     'timezone' => 'America/Chicago',
 
     /* ---------- Optional: Google Analytics 4 ----------
      * Paste your measurement ID (like G-XXXXXXXXXX) to turn it on. Leave '' to keep tracking off.
      * If you turn it on, mention it in your Privacy Policy. */
-    'ga4_id' => '',
+    'ga4_id' => 'G-R43TW80BWG',
 ];
