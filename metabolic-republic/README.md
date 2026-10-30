@@ -6,33 +6,33 @@ This folder builds the Figma page **"Client Feedback v3 (legal updates)"** (file
 
 | File | What it is |
 |---|---|
-| `metabolic-republic-master.html` | **The deliverable.** One self-contained file: all 15 pages, CSS, JS, fonts link and every image embedded (about 5.8 MB). Double-click it to open it in a browser, with no server needed. |
-| `index.html` | The same master file, except images load from `assets/`. It is lighter (about 220 KB plus images) and better for hosting. |
-| `css/styles.css`, `js/main.js` | The shared CSS and JS as separate files, for reference when rebuilding in Webflow. |
+| `index.html`, `about.html`, `classes.html` … | **One real HTML file per page**, with normal links (`about.html`, `contact.html` …). They share `css/styles.css`, `js/main.js` and `assets/`. Unzip `metabolic-republic-site.zip` and open `index.html`. |
+| `metabolic-republic-master.html` | **Everything in one file**: all pages, CSS, JS and images embedded (about 6 MB). Pages are `#/about`, `#/contact` … inside the file. Open it in a browser; no server needed. |
+| `css/styles.css`, `js/main.js` | The shared CSS and JS. |
 | `assets/img`, `assets/icons` | Photos and SVGs exported from Figma. |
-| `src/` | The source the build assembles: `shell.html` (head, nav, menu and footer), `pages/*.html` (one per page), `partials/`, `styles.css` and `main.js`. |
-| `build.py` | Run `python3 build.py` after editing anything in `src/` (needs Pillow). |
+| `src/` | Source: `shell.html` (head, nav, menu, footer), `pages/*.html`, `partials/`, `styles.css`, `main.js`. |
+| `build.py` | Run `python3 build.py` after editing `src/` (needs Pillow). It regenerates every output above. |
 
-## Pages (hash routes inside the one file)
+## Pages
 
-| Route | Figma frame |
-|---|---|
-| `#/` | Home |
-| `#/about` | About |
-| `#/classes` | Classes |
-| `#/membership` | Membership (Option A: pricing tiers) |
-| `#/membership-b` | Membership (Option B: lead capture) |
-| `#/contact` | Contact |
-| `#/consultation` | Consultation |
-| `#/landing` | Landing |
-| `#/new-client` | New Client |
-| `#/interview` | Interview |
-| `#/billing` | Billing (noindex) |
-| `#/provider-redirect` | Provider Redirect (noindex, no nav or footer) |
-| `#/provider-login` | Provider Portal Login (noindex, no nav or footer) |
-| `#/privacy`, `#/terms` | Placeholder pages ("Policy coming soon") |
+| Separate file | In the master file | Figma frame |
+|---|---|---|
+| `index.html` | `#/` | Home |
+| `about.html` | `#/about` | About |
+| `classes.html` | `#/classes` | Classes |
+| `membership.html` | `#/membership` | Membership (Option A: pricing tiers) |
+| `membership-b.html` | `#/membership-b` | Membership (Option B: lead capture) |
+| `contact.html` | `#/contact` | Contact |
+| `consultation.html` | `#/consultation` | Consultation |
+| `landing.html` | `#/landing` | Landing |
+| `new-client.html` | `#/new-client` | New Client |
+| `interview.html` | `#/interview` | Interview |
+| `billing.html` | `#/billing` | Billing (noindex) |
+| `provider-redirect.html` | `#/provider-redirect` | Provider Redirect (noindex, no nav or footer) |
+| `provider-login.html` | `#/provider-login` | Provider Portal Login (noindex, no nav or footer) |
+| `privacy.html`, `terms.html` | `#/privacy`, `#/terms` | Placeholder pages |
 
-The router swaps the `<title>`, meta description, Open Graph tags and `robots` for each page. Links like `about.html` also resolve: `#/about.html` maps to `#/about`. Each page is a `<div class="page" data-route="…">` block, so splitting it back into separate files for Webflow is a copy-paste job.
+Each separate file has its own `<title>`, meta description, Open Graph tags and `robots`. When hosted, most static hosts (Netlify, Vercel, Cloudflare Pages) also serve `/about` for `about.html`.
 
 ## Connecting the forms
 

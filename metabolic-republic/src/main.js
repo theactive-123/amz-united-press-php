@@ -205,12 +205,18 @@
 
   function showRoute(initial) {
     var route = currentRoute();
-    if (route === null) {
-      var target = document.getElementById(location.hash.slice(1));
-      if (target) { target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' }); if (target.focus) target.focus({ preventScroll: true }); }
-      return;
+    var anchor = location.hash && location.hash.indexOf('#/') !== 0 ? document.getElementById(location.hash.slice(1)) : null;
+    function scrollToAnchor() {
+      if (!anchor) return;
+      anchor.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+      if (anchor.focus) anchor.focus({ preventScroll: true });
     }
-    var page = pages.filter(function (p) { return p.getAttribute('data-route') === route; })[0] ||
+    // In-page anchor (e.g. #footer-email) while a page is already showing: just scroll.
+    if (route === null && !initial) { scrollToAnchor(); return; }
+    if (route === null) route = '/';
+    // Separate-page build: one .page per file, so always show it.
+    var page = pages.length === 1 ? pages[0] :
+               pages.filter(function (p) { return p.getAttribute('data-route') === route; })[0] ||
                pages.filter(function (p) { return p.getAttribute('data-route') === '/'; })[0];
     pages.forEach(function (p) { p.hidden = p !== page; });
 
@@ -220,9 +226,12 @@
     ogDesc.setAttribute('content', page.getAttribute('data-description'));
     metaRobots.setAttribute('content', page.hasAttribute('data-noindex') ? 'noindex, nofollow' : 'index, follow');
     document.body.classList.toggle('is-bare', page.hasAttribute('data-bare'));
+    document.body.classList.toggle('footer-flat', page.getAttribute('data-footer') === 'flat');
 
     $$('.nav_link, .menu_link').forEach(function (a) {
-      if (a.getAttribute('href') === '#' + page.getAttribute('data-route')) a.setAttribute('aria-current', 'page');
+      var r = page.getAttribute('data-route');
+      var href = a.getAttribute('href');
+      if (href === '#' + r || href === (r === '/' ? 'index.html' : r.slice(1) + '.html')) a.setAttribute('aria-current', 'page');
       else a.removeAttribute('aria-current');
     });
 
@@ -230,6 +239,7 @@
     window.scrollTo(0, 0);
     onScroll();
     observeReveals(page);
+    if (anchor) { scrollToAnchor(); return; }
     if (!initial) {
       var h1 = $('h1', page);
       if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus({ preventScroll: true }); }

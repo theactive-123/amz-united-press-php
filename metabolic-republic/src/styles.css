@@ -502,7 +502,6 @@ body.menu-open { overflow: hidden; }
 }
 .room-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
 .room-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(30,46,42,0) 59.8%, var(--forest) 97%); }
-.room-card.is-dim, .js .room-card.is-dim.is-visible { opacity: .2; }
 .room-card_title { font-family: var(--font-display); font-size: 30px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400; }
 .feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid var(--line); }
 .feature-grid_item { border-top: 1px solid var(--line); padding: 32px 32px 36px; display: flex; flex-direction: column; gap: 8px; }
@@ -524,14 +523,16 @@ body.menu-open { overflow: hidden; }
 .pillars { --pt: 0px; --pb: 53px; }
 
 /* ---------- Split (first month) ---------- */
-.split { --pt: 16px; --pb: 16px; padding-left: 16px; padding-right: 16px; }
+.split { --pt: 30px; --pb: 30px; padding-left: 16px; padding-right: 16px; }
+.split.is-pt { --pt: 45px; --pb: 46px; }
 .split_inner { display: flex; align-items: center; max-width: 1408px; margin: 0 auto; }
 .split_media { flex: 0 0 720px; height: 657px; padding-left: 40px; }
-.split_media-frame { position: relative; height: 100%; border-radius: var(--radius-l); overflow: hidden; background: var(--photo); }
+.split_media-frame { position: relative; height: 100%; border-radius: 0 var(--radius-l) var(--radius-l) 0; overflow: hidden; background: var(--photo); }
 .split_media-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 71% 50%; }
 .split_media-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(139.5deg, rgba(217,227,222,.55) 0%, rgba(115,133,125,0) 94.58%); }
 .split_body { flex: 1 1 0; min-width: 0; max-width: 648px; padding-left: 47px; display: flex; flex-direction: column; justify-content: center; gap: 24px; }
 .split_body .lead { font-size: 18px; color: var(--forest); }
+.split_body .lead.is-19 { font-size: var(--fs-lead); }
 .steps { border-bottom: 0; }
 .step { display: flex; gap: 24px; padding: 22px 0; border-top: 1px solid var(--line); }
 .step_num { font-weight: 700; font-size: 19px; line-height: 1.4; letter-spacing: -0.005em; color: var(--jade-deep); }
@@ -585,7 +586,7 @@ body.menu-open { overflow: hidden; }
 /* ---------- Waitlist band ---------- */
 .waitlist { --pt: 120px; --pb: 99px; background: var(--stone); overflow: hidden; }
 .waitlist_bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .05; pointer-events: none; }
-.waitlist_grid { position: relative; display: flex; align-items: center; gap: 96px; }
+.waitlist_grid { position: relative; display: flex; align-items: center; gap: 96px; min-height: 221px; }
 .waitlist_text { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
 .waitlist_title { font-family: var(--font-serif); font-style: italic; font-weight: 400; font-size: var(--fs-h2); line-height: 1.1; letter-spacing: -0.01em; }
 .waitlist_form { flex: 1 1 0; min-width: 0; }
@@ -634,7 +635,7 @@ body.menu-open { overflow: hidden; }
 .footer_cols { flex: 1 1 0; min-width: 0; display: flex; gap: 64px; }
 .footer_col { display: flex; flex-direction: column; gap: 14px; font-size: 16px; line-height: 1.6; }
 .footer_col.is-club { flex: 0 0 162px; }
-.footer_col.is-visit { flex: 0 0 260px; }
+.footer_col.is-visit { flex: 0 0 260px; min-width: 0; white-space: nowrap; }
 .footer_col.is-waitlist { flex: 1 1 0; min-width: 0; }
 .footer_heading { font-family: var(--font-serif); font-weight: 400; font-size: 13px; line-height: 1.4; letter-spacing: 3.9px; text-transform: uppercase; color: var(--sage); margin-bottom: 6px; }
 .footer_col.is-waitlist .footer_heading { margin-bottom: 0; }
@@ -648,14 +649,14 @@ body.menu-open { overflow: hidden; }
 .footer_wordmark {
   position: absolute;
   left: 50%;
-  top: -6px;
+  top: 76px;
   transform: translateX(-50%);
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 286px;
   line-height: 1;
   letter-spacing: -0.06em;
-  color: rgba(255,255,255,.2);
+  color: rgba(255,255,255,.045);
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
@@ -669,6 +670,9 @@ body.menu-open { overflow: hidden; }
   border-top: 1px solid var(--line-light);
   padding: 24px 0 0;
   min-height: 59px;
+  position: relative;
+  z-index: 1;
+  background: var(--forest);
   font-weight: 500;
   font-size: 12px;
   line-height: 1.4;
@@ -809,7 +813,7 @@ body.is-bare .nav, body.is-bare .footer { display: none; }
 .consult-card_price { font-family: var(--font-display); font-weight: 400; font-size: 56px; line-height: 1.1; letter-spacing: -0.04em; }
 .consult-card_price.is-tbd { font-size: 36px; }
 .consult-card_list { display: flex; flex-direction: column; border-top: 1px solid rgba(30,46,42,.15); }
-.consult-card_list li { padding: 11px 0; border-bottom: 1px solid rgba(30,46,42,.15); }
+.consult-card_list li { padding: 22px 0; border-bottom: 1px solid rgba(30,46,42,.15); }
 .consult-card.is-featured .consult-card_list, .consult-card.is-featured .consult-card_list li { border-color: rgba(255,255,255,.25); }
 .consult-card .button { margin-top: auto; width: 100%; }
 .notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; }
@@ -1140,6 +1144,9 @@ body.is-bare { background: var(--stone); }
 }
 
 @media (max-width: 991px) {
+  .waitlist_grid { min-height: 0; }
+  .split_media-frame { border-radius: var(--radius-l); }
+  body.footer-flat .footer { padding-top: 48px; }
   :root { --gutter: 32px; }
   .nav { top: 8px; height: 72px; }
   .nav_join { display: none; }
@@ -1291,3 +1298,38 @@ body.is-bare { background: var(--stone); }
 }
 .provider-disclaimer { margin-top: 8px; text-align: center; font-weight: 500; font-size: 12px; line-height: 1.4; color: rgba(255,255,255,.75); }
 .provider-disclaimer.is-light { text-align: left; color: var(--muted); }
+
+/* Pages where the last section sits on top of the footer in Figma: square footer top */
+body.footer-flat .footer { margin-top: 0; border-radius: 0; padding-top: 23px; }
+.page[data-footer="flat"] > section:last-child { padding-bottom: var(--pb, 124px); }
+
+/* Consultation: the "Good to know" band overlaps the bottom of the cards (Figma) */
+.consult-options { --pt: 110px; --pb: 0px; }
+.good-to-know { z-index: 1; margin-top: -11px; }
+
+/* Road to opening: progress draws in when the timeline scrolls into view */
+.js .timeline[data-timeline] .timeline_line { position: relative; background: var(--line); }
+.js .timeline[data-timeline] .timeline_line::after {
+  content: ""; position: absolute; inset: 0; background: var(--jade-deep);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .9s var(--ease);
+}
+.js .timeline[data-timeline] .timeline_dot { background: var(--stone); border: 2px solid var(--muted); transition: background-color .4s var(--ease), border-color .4s var(--ease), transform .4s var(--ease); }
+.js .timeline[data-timeline] .timeline_item > :not(.timeline_track) { opacity: 0; transform: translateY(12px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.js .timeline[data-timeline].is-visible .timeline_item > :not(.timeline_track) { opacity: 1; transform: none; }
+.js .timeline[data-timeline].is-visible .timeline_item:not(.is-pending) .timeline_dot { background: var(--jade-deep); border-color: var(--jade-deep); }
+.js .timeline[data-timeline].is-visible .timeline_item:not(.is-pending) .timeline_line::after { transform: scaleX(1); }
+.js .timeline[data-timeline] .timeline_item:nth-child(1) .timeline_dot { transition-delay: .2s; }
+.js .timeline[data-timeline] .timeline_item:nth-child(1) .timeline_line::after { transition-delay: .5s; }
+.js .timeline[data-timeline] .timeline_item:nth-child(2) .timeline_dot { transition-delay: 1.3s; }
+.js .timeline[data-timeline] .timeline_item:nth-child(2) .timeline_line::after { transition-delay: 1.6s; }
+.js .timeline[data-timeline] .timeline_item:nth-child(1) > :not(.timeline_track) { transition-delay: .3s; }
+.js .timeline[data-timeline] .timeline_item:nth-child(2) > :not(.timeline_track) { transition-delay: 1.4s; }
+.js .timeline[data-timeline] .timeline_item:nth-child(3) > :not(.timeline_track) { transition-delay: 2.4s; }
+.js .timeline[data-timeline] .timeline_item:nth-child(4) > :not(.timeline_track) { transition-delay: 2.7s; }
+.js .timeline[data-timeline].reveal { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js .timeline[data-timeline] .timeline_item > :not(.timeline_track) { opacity: 1; transform: none; }
+  .js .timeline[data-timeline] .timeline_item:not(.is-pending) .timeline_dot { background: var(--jade-deep); border-color: var(--jade-deep); }
+  .js .timeline[data-timeline] .timeline_item:not(.is-pending) .timeline_line::after { transform: scaleX(1); }
+}

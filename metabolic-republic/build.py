@@ -2,9 +2,9 @@
 """Build the Metabolic Republic single-file site.
 
 Outputs (in this folder):
-  index.html                     one master HTML file, all pages + inline CSS/JS, images from assets/
-  metabolic-republic-master.html same file, fully self-contained (images embedded, optimized)
-  css/styles.css, js/main.js     the shared CSS/JS as separate files (handy for Webflow)
+  metabolic-republic-master.html one self-contained file: all pages (#/route), CSS, JS, images embedded
+  index.html, about.html, ...    one real HTML file per page (links like about.html), sharing
+                                 css/styles.css, js/main.js and assets/
 
 Usage:  python3 build.py
 """
@@ -44,29 +44,45 @@ def svg_inline(name, cls):
     return svg.strip()
 
 
-def assemble():
+def parts():
     logo = svg_inline("logo-mark.svg", "logo-svg")
     arrow_prev = svg_inline("arrow-prev.svg", "icon").replace('stroke="#1E2E2A" stroke-opacity="0.4"', 'stroke="currentColor"')
     arrow_next = svg_inline("arrow-next.svg", "icon").replace('stroke="#1E2E2A"', 'stroke="currentColor"')
-
-    pages = "\n".join(read("pages", p + ".html") for p in PAGES)
-    pages = pages.replace("{{WAITLIST}}", read("partials", "waitlist.html"))
-    pages = pages.replace("{{ICON_PREV}}", arrow_prev).replace("{{ICON_NEXT}}", arrow_next)
-
     favicon_svg = svg_inline("logo-mark.svg", "f").replace('fill="currentColor"', 'fill="#1e2e2a"')
     favicon = "data:image/svg+xml;base64," + base64.b64encode(favicon_svg.encode()).decode()
+    pages = {}
+    for p in PAGES:
+        html = read("pages", p + ".html").replace("{{WAITLIST}}", read("partials", "waitlist.html"))
+        pages[p] = html.replace("{{ICON_PREV}}", arrow_prev).replace("{{ICON_NEXT}}", arrow_next)
+    return logo, favicon, pages
 
-    css = read("styles.css")
-    js = read("main.js")
+
+def fill_shell(pages_html, logo, favicon, styles, script):
     html = read("shell.html")
-    html = html.replace("{{PAGES}}", pages)
+    html = html.replace("{{PAGES}}", pages_html)
     html = html.replace("{{LOGO}}", logo)
     html = html.replace("{{FAVICON}}", favicon)
     html = html.replace("{{OG_IMAGE}}", "assets/img/hero-home.jpg")
-    html = html.replace("{{STYLES}}", "<style>\n" + css.replace("../assets/", "assets/") + "\n</style>")
-    html = html.replace("{{SCRIPT}}", "<script>\n" + js + "\n</script>")
+    html = html.replace("{{STYLES}}", styles).replace("{{SCRIPT}}", script)
     assert "{{" not in html, re.findall(r"\{\{\w+\}\}", html)
-    return html, css, js
+    return html
+
+
+def route_file(route):
+    return "index.html" if route == "" else route + ".html"
+
+
+def set_head(html, page_html):
+    """Write the page's own title/description/robots into the static <head>."""
+    attr = lambda n: re.search(r'%s="([^"]*)"' % n, page_html).group(1)
+    title, desc = attr("data-title"), attr("data-description")
+    html = re.sub(r"<title>.*?</title>", "<title>%s</title>" % title, html, count=1)
+    html = re.sub(r'(<meta name="description" content=")[^"]*', r"\g<1>" + desc.replace("\\", ""), html, count=1)
+    html = re.sub(r'(<meta property="og:title" content=")[^"]*', r"\g<1>" + title, html, count=1)
+    html = re.sub(r'(<meta property="og:description" content=")[^"]*', r"\g<1>" + desc, html, count=1)
+    if "data-noindex" in page_html.split(">", 1)[0]:
+        html = html.replace('content="index, follow" id="meta-robots"', 'content="noindex, nofollow" id="meta-robots"')
+    return html
 
 
 def optimized_data_uri(rel):
@@ -104,17 +120,32 @@ def inline_assets(html):
 
 
 def main():
-    html, css, js = assemble()
+    logo, favicon, pages = parts()
+    css = read("styles.css")
+    js = read("main.js")
     os.makedirs(os.path.join(ROOT, "css"), exist_ok=True)
     os.makedirs(os.path.join(ROOT, "js"), exist_ok=True)
     open(os.path.join(ROOT, "css", "styles.css"), "w", encoding="utf-8").write(css)
     open(os.path.join(ROOT, "js", "main.js"), "w", encoding="utf-8").write(js)
-    open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(html)
 
-    master, cache = inline_assets(html)
+    # 1) One real file per page: about.html, classes.html ... (links rewritten from #/x to x.html)
+    for name, page_html in pages.items():
+        html = fill_shell(page_html, logo, favicon,
+                          '<link rel="stylesheet" href="css/styles.css">',
+                          '<script src="js/main.js"></script>')
+        html = re.sub(r'href="#/([\w-]*)"', lambda m: 'href="%s"' % route_file(m.group(1)), html)
+        html = set_head(html, page_html)
+        out = "index.html" if name == "home" else name + ".html"
+        open(os.path.join(ROOT, out), "w", encoding="utf-8").write(html)
+
+    # 2) The single self-contained master file (all pages, #/route navigation, images embedded)
+    master = fill_shell("\n".join(pages.values()), logo, favicon,
+                        "<style>\n" + css.replace("../assets/", "assets/") + "\n</style>",
+                        "<script>\n" + js + "\n</script>")
+    master, cache = inline_assets(master)
     open(os.path.join(ROOT, "metabolic-republic-master.html"), "w", encoding="utf-8").write(master)
-    print("index.html                     %7.1f KB" % (len(html.encode()) / 1024))
-    print("metabolic-republic-master.html %7.1f MB (%d embedded assets)" % (len(master.encode()) / 1048576, len(cache)))
+    print("separate pages: %d files (index.html, about.html, ...)" % len(pages))
+    print("metabolic-republic-master.html %.1f MB (%d embedded assets)" % (len(master.encode()) / 1048576, len(cache)))
 
 
 if __name__ == "__main__":
