@@ -38,6 +38,22 @@ function site_url(): string {
 function abs_url(string $path): string { return site_url() . url($path); }
 
 /** Inline icon from the SVG sprite (partials/sprite.svg). */
+/** tel: link target for the site phone number (US numbers get +1). */
+function tel_href(): string {
+    $d = preg_replace('/\D/', '', site('phone'));
+    return '+' . (strlen($d) === 10 ? '1' . $d : $d);
+}
+
+/**
+ * Email shown only on request, to keep it away from spam bots. The address is not in the
+ * page source as text: it is reversed and base64-encoded, and main.js swaps the button
+ * for a mailto link when clicked.
+ */
+function email_reveal(string $label = 'Show email address', string $cls = ''): string {
+    return '<span class="em-rv' . ($cls ? ' ' . e($cls) : '') . '" data-em="' . e(base64_encode(strrev(site('email')))) . '">'
+         . '<button type="button" class="em-btn" aria-label="Show our email address">' . ic('mail') . '<span>' . e($label) . '</span></button></span>';
+}
+
 function ic(string $name): string { return '<svg class="ic" aria-hidden="true"><use href="#i-' . e($name) . '"/></svg>'; }
 
 /** Photo from Unsplash (placeholder photography; replace with your own licensed photos). */

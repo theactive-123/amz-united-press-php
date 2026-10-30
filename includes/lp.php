@@ -9,7 +9,7 @@
 
 /* ---------- small pieces ---------- */
 
-function lp_tel(): string { return preg_replace('/[^\d+]/', '', site('phone')); }
+function lp_tel(): string { return tel_href(); }
 
 /** Heading block: eyebrow, h2 (may contain <em>), lead. $center for centred heads. */
 function lp_head(string $eyebrow, string $h2Html, string $lead = '', bool $center = false, string $id = ''): string {
@@ -229,7 +229,7 @@ function lp_final(string $eyebrow, string $h2, string $lead, array $ticks, array
 /** Schema for a landing page: the service, its FAQs and a breadcrumb. */
 function lp_schema(string $name, string $desc, string $path, array $faq, string $price = ''): array {
     $svc = ['@context' => 'https://schema.org', '@type' => 'Service', 'name' => $name, 'description' => $desc, 'url' => abs_url($path), 'areaServed' => 'Worldwide',
-            'provider' => ['@type' => 'Organization', 'name' => site('name'), 'url' => abs_url('/'), 'telephone' => site('phone'), 'email' => site('email')]];
+            'provider' => ['@type' => 'Organization', 'name' => site('name'), 'url' => abs_url('/'), 'telephone' => site('phone')]];
     if ($price !== '') $svc['offers'] = ['@type' => 'Offer', 'priceCurrency' => 'USD', 'price' => preg_replace('/[^\d.]/', '', $price), 'description' => 'Starting price. Written quote before work begins.'];
     return [$svc, faq_schema($faq), breadcrumb_schema([['Home', '/'], [$name, null]])];
 }

@@ -59,7 +59,7 @@ function sv_book(int $i, string $cls = ''): string {
 
 /** Primary + phone buttons. */
 function sv_actions(string $quote, int $help, string $label = 'Get a Free Quote', bool $dark = true): string {
-    $tel = preg_replace('/[^\d+]/', '', site('phone'));
+    $tel = tel_href();
     return '<div class="svx-actions"><button type="button" class="btn btn-primary" data-quote="' . e($quote) . '" data-help="' . $help . '">' . e($label) . '</button>'
          . '<a class="btn btn-ghost' . ($dark ? '' : ' on-light') . '" href="tel:' . e($tel) . '">' . sv_i('phone') . e(site('phone')) . '</a></div>';
 }
@@ -98,7 +98,7 @@ function sv_proofline(string $text = ''): string {
 
 /** Hero: background photo, copy, author proof and the lead form. */
 function sv_hero(array $d, array $cat, string $bg, string $quote, int $help): string {
-    $tel = preg_replace('/[^\d+]/', '', site('phone'));
+    $tel = tel_href();
     return '<section class="svx-hero has-form" aria-labelledby="svh-h1"><div class="svx-hero-bg" aria-hidden="true">' . sv_img($bg, '', true) . '</div><div class="x-w svx-hero-in">'
          . '<div class="svx-hero-copy">'
          . '<p class="svx-crumbs"><a href="' . e(url('/')) . '">Home</a> <span aria-hidden="true">/</span> <a href="' . e(url('/services#cat-' . $cat['k'])) . '">' . e($cat['t']) . '</a>' . ($d['t'] !== $cat['t'] ? ' <span aria-hidden="true">/</span> ' . e($d['t']) : '') . '</p>'
@@ -178,7 +178,7 @@ function sv_process(array $d, string $mode, string $quote, int $help): string {
 
 /** Call-to-action banner: copy + buttons, fanned covers, author faces and a rotating promise badge. */
 function sv_cta(string $titleHtml, string $sub, string $quote, int $help, string $variant = 'orange', int $seed = 0, string $tag = 'h2', string $id = ''): string {
-    $tel = preg_replace('/[^\d+]/', '', site('phone'));
+    $tel = tel_href();
     $long = mb_strlen(strip_tags($titleHtml)) > 64 ? ' long' : '';
     return '<section class="svx-cta-sec ' . e($variant) . '"' . ($id ? ' aria-labelledby="' . e($id) . '"' : ' aria-label="Get started"') . '><div class="x-w"><div class="svx-cta rv">'
          . '<div class="svx-cta-copy"><' . $tag . ($id ? ' id="' . e($id) . '"' : '') . ' class="svx-cta-h' . $long . '">' . $titleHtml . '</' . $tag . '>' . ($sub !== '' ? '<p>' . $sub . '</p>' : '')
@@ -409,7 +409,7 @@ function sv_sig(string $slug, int $s): string {
 
 /** Resource-page hero: background photo, copy, proof and a lead form. */
 function sv_page_hero(string $crumb, string $h1, string $lead, string $bg, string $formId, string $source, string $formTitle = 'Get your free quote', string $extra = ''): string {
-    $tel = preg_replace('/[^\d+]/', '', site('phone'));
+    $tel = tel_href();
     return '<section class="svx-hero has-form svx-ph" aria-labelledby="pg-h1"><div class="svx-hero-bg" aria-hidden="true">' . sv_img($bg, '', true) . '</div><div class="x-w svx-hero-in"><div class="svx-hero-copy">'
          . '<p class="svx-crumbs"><a href="' . e(url('/')) . '">Home</a> <span aria-hidden="true">/</span> ' . e($crumb) . '</p>'
          . '<h1 id="pg-h1" class="ent" style="--d:1">' . $h1 . '</h1><p class="svx-lead ent" style="--d:2">' . e($lead) . '</p>'
