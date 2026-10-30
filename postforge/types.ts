@@ -53,6 +53,8 @@ export interface GenerateInput {
 export interface Post {
   id: string;
   platform: Platform;
+  /** 1, 2 or 3 — which variation this is for its platform. */
+  variation: number;
   /** Main caption / post text. */
   text: string;
   /** Hashtags without the leading "#" are normalised to include it. */
@@ -61,6 +63,8 @@ export interface Post {
   thread?: string[];
   /** TikTok only: suggested 15-second video idea / script. */
   videoIdea?: string;
+  /** Problems the automatic quality check could not fix (shown to the user). */
+  warnings?: string[];
 }
 
 export interface GenerateResult {

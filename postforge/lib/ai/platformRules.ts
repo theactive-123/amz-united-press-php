@@ -11,6 +11,12 @@ export interface PlatformRule {
   /** Rules written as plain instructions for the AI. */
   rules: string[];
   hashtags: { min: number; max: number };
+  /** Whether hashtags count towards `charLimit` (they do on X; on TikTok the limit is for the caption only). */
+  hashtagsCountTowardsLimit: boolean;
+  /** Maximum emojis allowed (checked automatically). */
+  maxEmojis: number;
+  /** Optional word range for the caption (checked automatically, with a little tolerance). */
+  words?: { min: number; max: number };
 }
 
 export const PLATFORM_RULES: Record<Platform, PlatformRule> = {
@@ -18,6 +24,9 @@ export const PLATFORM_RULES: Record<Platform, PlatformRule> = {
     label: "Instagram",
     charLimit: 2200,
     hashtags: { min: 5, max: 10 },
+    hashtagsCountTowardsLimit: true,
+    maxEmojis: 8,
+    words: { min: 60, max: 220 },
     rules: [
       "The first line is a strong hook that makes people stop scrolling.",
       "Use short lines with line breaks between ideas.",
@@ -31,6 +40,8 @@ export const PLATFORM_RULES: Record<Platform, PlatformRule> = {
     label: "LinkedIn",
     charLimit: 3000,
     hashtags: { min: 0, max: 3 },
+    hashtagsCountTowardsLimit: true,
+    maxEmojis: 2,
     rules: [
       "The first 2 lines are a hook (this is what shows before 'see more').",
       "Use short paragraphs of 1-3 sentences.",
@@ -43,6 +54,8 @@ export const PLATFORM_RULES: Record<Platform, PlatformRule> = {
     label: "X (Twitter)",
     charLimit: 280,
     hashtags: { min: 0, max: 2 },
+    hashtagsCountTowardsLimit: true,
+    maxEmojis: 3,
     rules: [
       "The main post must be 280 characters or fewer INCLUDING hashtags. Count carefully.",
       "Punchy and direct. One idea per post.",
@@ -54,6 +67,9 @@ export const PLATFORM_RULES: Record<Platform, PlatformRule> = {
     label: "Facebook",
     charLimit: 63206,
     hashtags: { min: 1, max: 3 },
+    hashtagsCountTowardsLimit: true,
+    maxEmojis: 4,
+    words: { min: 35, max: 90 },
     rules: [
       "Conversational, like talking to a neighbour.",
       "40-80 words.",
@@ -65,6 +81,8 @@ export const PLATFORM_RULES: Record<Platform, PlatformRule> = {
     label: "TikTok",
     charLimit: 150,
     hashtags: { min: 3, max: 5 },
+    hashtagsCountTowardsLimit: false,
+    maxEmojis: 4,
     rules: [
       "The caption is under 150 characters (hashtags are counted separately) and opens with a hook.",
       "Provide 3-5 hashtags.",
