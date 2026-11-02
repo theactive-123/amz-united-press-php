@@ -7,7 +7,7 @@ if (!$d) { http_response_code(404); include __DIR__ . '/404.php'; exit; }
 $cat    = cat_by_key($d['cat']);
 $help   = help_for($d);
 $beyond = array_values(array_filter(array_map('sub_by_slug', $d['beyond']['slugs'] ?? [])));
-$tel    = preg_replace('/[^\d+]/', '', site('phone'));
+$tel    = tel_href();
 $meta = [
     'title' => $d['title'],
     'description' => $d['desc'],
@@ -16,7 +16,7 @@ $meta = [
         breadcrumb_schema([['Home', '/'], ['Services', '/services'], ...($d['name'] === $cat['t'] ? [[$d['name'], null]] : [[$cat['t'], '/services#cat-' . $cat['k']], [$d['name'], null]])]),
         ['@context' => 'https://schema.org', '@type' => 'Service', 'name' => $d['name'], 'description' => plain($d['short']), 'serviceType' => $d['name'],
          'url' => abs_url('/services/' . $d['slug']), 'areaServed' => 'Worldwide',
-         'provider' => ['@type' => 'Organization', 'name' => site('name'), 'url' => abs_url('/'), 'telephone' => site('phone'), 'email' => site('email')],
+         'provider' => ['@type' => 'Organization', 'name' => site('name'), 'url' => abs_url('/'), 'telephone' => site('phone')],
          'offers' => ['@type' => 'Offer', 'priceCurrency' => 'USD', 'price' => preg_replace('/[^\d.]/', '', $d['price']), 'description' => 'Starting price. Written quote before work begins.']],
         faq_schema($d['faq']),
     ],

@@ -522,3 +522,22 @@ a.card:hover{border-color:var(--ink);transform:translateY(-3px)}
   *{animation:none!important;transition:none!important}
   .js .rv{opacity:1;transform:none}
 }
+
+/* ---- click-to-reveal email ---- */
+.em-rv{display:inline-flex;align-items:center;vertical-align:baseline}
+.em-btn{display:inline-flex;align-items:center;gap:10px;padding:0;margin:0;border:0;background:none;font:inherit;color:inherit;cursor:pointer;text-align:left;line-height:inherit}
+.em-btn span{border-bottom:1px dashed currentColor;padding-bottom:1px;transition:border-color .2s,color .2s}
+.em-btn:hover span,.em-btn:focus-visible span{border-bottom-style:solid;border-color:var(--orange)}
+.em-btn .ic,.em-link .ic{flex:none}
+.em-link{display:inline-flex;align-items:center;gap:10px;color:inherit;text-decoration:none;word-break:break-all;animation:emIn .35s ease both}
+@keyframes emIn{from{opacity:0;transform:translateY(3px)}}
+.em-rv.em-text .em-btn .ic,.em-rv.em-text .em-link .ic,.em-rv.em-row .em-btn .ic,.em-rv.em-row .em-link .ic{display:none}
+.em-rv.em-text .em-btn span{border-bottom:1px solid var(--orange)}
+.em-rv.em-text .em-link{text-decoration:underline;text-decoration-color:var(--orange)}
+.em-rv.em-row .em-btn span{font-weight:inherit}
+.foot-contact .em-btn,.foot-contact .em-link,.lpf-contact .em-btn,.lpf-contact .em-link{gap:10px}
+.lpf-contact .em-btn,.lpf-contact .em-link{gap:8px;color:var(--inv-2)}
+.lpf-contact .em-btn:hover,.lpf-contact .em-link:hover{color:var(--inv)}
+.lpf-contact .em-btn .ic,.lpf-contact .em-link .ic{color:var(--orange)}
+@media (prefers-reduced-motion:reduce){.em-link{animation:none}}
+

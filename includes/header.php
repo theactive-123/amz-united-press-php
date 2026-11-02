@@ -9,7 +9,7 @@ $meta = array_merge(['title' => site('name'), 'description' => '', 'path' => '/'
 $canonical = abs_url($meta['path'] === '/' ? '/' : $meta['path']);
 $ogImage   = str_starts_with($meta['image'], 'http') ? $meta['image'] : abs_url($meta['image']);
 $schemas   = array_merge([
-    ['@context' => 'https://schema.org', '@type' => 'Organization', 'name' => site('name'), 'url' => abs_url('/'), 'logo' => abs_url('/assets/img/logo.png'), 'description' => 'Ghostwriting, ebook writing, book editing, cover design, publishing and book marketing services for authors and businesses.', 'telephone' => site('phone'), 'email' => site('email')],
+    ['@context' => 'https://schema.org', '@type' => 'Organization', 'name' => site('name'), 'url' => abs_url('/'), 'logo' => abs_url('/assets/img/logo.png'), 'description' => 'Ghostwriting, ebook writing, book editing, cover design, publishing and book marketing services for authors and businesses.', 'telephone' => site('phone')],
     ['@context' => 'https://schema.org', '@type' => 'WebSite', 'name' => site('name'), 'url' => abs_url('/')],
 ], $meta['schema']);
 header('X-Content-Type-Options: nosniff');
@@ -75,7 +75,7 @@ header('X-Content-Type-Options: nosniff');
 <?php readfile(__DIR__ . '/../partials/sprite.svg'); ?>
 
 <?php
-$tel = preg_replace('/[^\d+]/', '', site('phone'));
+$tel = tel_href();
 $resources = [['/portfolio', 'Portfolio', 'portfolio'], ['/how-it-works', 'How It Works', 'how-it-works'], ['/faq', 'FAQs', 'faq'], ['/pricing', 'Pricing', 'pricing'], ['/about', 'About Us', 'about'], ['/contact', 'Contact Us', 'contact']];
 $curCat = $meta['cat'] ?? '';
 ?>

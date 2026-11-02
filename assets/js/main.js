@@ -270,3 +270,11 @@ $$('.x-shelf .list-track').forEach(initList);
 initProof();
 initEffects();
 
+
+/* ---- click-to-reveal email: the address is stored reversed + base64 in data-em ---- */
+document.addEventListener('click',function(e){
+  var b=e.target.closest('.em-btn');if(!b)return;
+  var w=b.closest('.em-rv'),m;try{m=atob(w.getAttribute('data-em')).split('').reverse().join('')}catch(x){return}
+  var a=document.createElement('a');a.href='mailto:'+m;a.className='em-link';a.innerHTML=b.querySelector('svg')?b.querySelector('svg').outerHTML:'';a.appendChild(document.createTextNode(m));
+  w.replaceChildren(a);w.classList.add('shown');a.focus();
+});

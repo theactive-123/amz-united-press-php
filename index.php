@@ -7,7 +7,7 @@ $meta = [
     'path'        => '/',
     'nav'         => 'home',
     'schema'      => [
-        ['@context' => 'https://schema.org', '@type' => 'ProfessionalService', 'name' => site('name'), 'url' => abs_url('/'), 'image' => abs_url('/assets/img/og-image.jpg'), 'telephone' => site('phone'), 'email' => site('email'),
+        ['@context' => 'https://schema.org', '@type' => 'ProfessionalService', 'name' => site('name'), 'url' => abs_url('/'), 'image' => abs_url('/assets/img/og-image.jpg'), 'telephone' => site('phone'),
          'description' => 'Self-publishing services for authors: ghostwriting, ebook writing, book editing, proofreading, formatting, cover design, Amazon and ebook publishing, audiobooks and book marketing.',
          'areaServed' => 'Worldwide',
          'hasOfferCatalog' => ['@type' => 'OfferCatalog', 'name' => 'Self-publishing services', 'itemListElement' => array_map(fn($s) => ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => $s['name'], 'url' => abs_url('/services/' . $s['slug'])]], data('subs'))]],
@@ -31,7 +31,7 @@ include __DIR__ . '/includes/header.php';
         <p class="lead" id="hero-lead" aria-live="polite"></p>
         <div class="hero-actions">
           <button type="button" class="btn btn-primary" data-quote>Get a Free Quote</button>
-          <a class="btn btn-ghost" href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><?= e(site('phone')) ?></a>
+          <a class="btn btn-ghost" href="tel:<?= e(tel_href()) ?>"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><?= e(site('phone')) ?></a>
         </div>
         <div class="hero-pop"><span class="hand">Popular services</span><span id="hero-pop" style="display:contents"></span></div>
       </div>
@@ -261,7 +261,7 @@ include __DIR__ . '/includes/header.php';
         <p class="x-kick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5h18v13H3z"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>Write to us</p>
         <h2 id="final-h" class="x-h2 x-h2--xl rv">Writers and publishers, <em>ready for you.</em></h2>
         <p class="x-sub">Tell us about your idea or your draft. A real person replies within one business day with honest advice and no obligation.</p>
-        <a class="phone-big" href="tel:<?= e(preg_replace('/[^\d+]/', '', site('phone'))) ?>"><?= e(site('phone')) ?></a>
+        <a class="phone-big" href="tel:<?= e(tel_href()) ?>"><?= e(site('phone')) ?></a>
         <ul class="checks"><li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Free consultation</li><li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Scope, timeline and price in writing</li><li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Nothing starts until you say yes</li></ul>
       </div>
       <div class="postcard"><?= render_form('home', 'Tell us about your book', 'Takes about a minute. We reply within one business day.', 'home') ?></div>
