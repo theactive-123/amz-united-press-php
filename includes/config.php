@@ -29,9 +29,9 @@ return [
         'host'       => 'smtp.hostinger.com',        // PLACEHOLDER: your SMTP host
         'port'       => 465,
         'encryption' => 'ssl',
-        'username'   => 'no-reply@example.com',    // PLACEHOLDER
-        'password'   => 'Abbas1234',               // PLACEHOLDER
-        'from_email' => 'no-reply@amzunitedpress.com',
+        'username'   => 'hello@amzunitedpress.com',    // PLACEHOLDER
+        'password'   => 'Abbas123$$$#',               // PLACEHOLDER
+        'from_email' => 'hello@amzunitedpress.com',
         'from_name'  => 'AMZ United Press',
         'to_email'   => 'hello@amzunitedpress.com',
         'to_name'    => 'AMZ United Press',
