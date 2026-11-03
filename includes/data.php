@@ -210,12 +210,12 @@ $D = [
     ],
 
     // PLACEHOLDER: sample prices. Replace with your real packages.
-    // Publishing packages. Converted from GBP at 1 GBP = 1.3305 USD (XE mid-market, 28 Oct 2026), rounded to whole dollars.
+    // Publishing packages (USD).
     'prices' => [
         [
             't' => 'Economical Author Package',
             's' => '',
-            'p' => '$198',
+            'p' => '$199',
             'l' => [
                 'Professional Proofreading',
                 'eBook Formatting & Typesetting',
@@ -233,7 +233,7 @@ $D = [
         [
             't' => 'Author Choice Package',
             's' => '',
-            'p' => '$531',
+            'p' => '$499',
             'l' => [
                 'Everything in Economical',
                 'Professional Proofreading & Editing',
@@ -254,7 +254,7 @@ $D = [
         [
             't' => 'Author Bestseller',
             's' => '',
-            'p' => '$930',
+            'p' => '$899',
             'l' => [
                 'Professional Proofreading & Editing',
                 'Formatting & Typesetting',
@@ -333,7 +333,7 @@ $D = [
         'Cost & timing' => [
             [
                 'How much will it cost?',
-                'It depends on the length of your book, the services you choose and where you’re starting from. We give you a clear written quote before any work begins. Single services start from $150, and our publishing packages run from $198 to $930.',
+                'It depends on the length of your book, the services you choose and where you’re starting from. We give you a clear written quote before any work begins. Single services start from $150, and our publishing packages run from $199 to $899.',
             ],
             [
                 'How long does it take?',
