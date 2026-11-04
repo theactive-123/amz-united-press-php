@@ -60,6 +60,7 @@ header('X-Content-Type-Options: nosniff');
 <link rel="stylesheet" href="<?= e(asset('css/pages.css')) ?>">
 <link rel="stylesheet" href="<?= e(asset('css/site.css')) ?>">
 <?php if (!empty($meta['sv'])): ?><link rel="stylesheet" href="<?= e(asset('css/sv.css')) ?>"><?php endif; ?>
+<?php if (!empty($meta['blog'])): ?><link rel="stylesheet" href="<?= e(asset('css/blog.css')) ?>"><?php endif; ?>
 <?php endif; ?>
 <script>document.documentElement.classList.add('js');</script>
 
@@ -78,7 +79,7 @@ header('X-Content-Type-Options: nosniff');
 
 <?php
 $tel = tel_href();
-$resources = [['/portfolio', 'Portfolio', 'portfolio'], ['/how-it-works', 'How It Works', 'how-it-works'], ['/faq', 'FAQs', 'faq'], ['/pricing', 'Pricing', 'pricing'], ['/about', 'About Us', 'about'], ['/contact', 'Contact Us', 'contact']];
+$resources = [['/portfolio', 'Portfolio', 'portfolio'], ['/how-it-works', 'How It Works', 'how-it-works'], ['/faq', 'FAQs', 'faq'], ['/pricing', 'Pricing', 'pricing'], ['/about', 'About Us', 'about'], ['/blog', 'Blog', 'blog'], ['/contact', 'Contact Us', 'contact']];
 $curCat = $meta['cat'] ?? '';
 ?>
 <?php if (!empty($meta['ad'])): ?>

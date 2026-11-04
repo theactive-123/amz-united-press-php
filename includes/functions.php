@@ -173,6 +173,20 @@ function sitemap_pages(): array {
     foreach (data('subs') as $s) $p[] = ['/services/' . $s['slug'], '0.8', 'monthly'];
     foreach ([['/portfolio','0.7'],['/how-it-works','0.7'],['/pricing','0.8'],['/about','0.6'],['/faq','0.6'],['/contact','0.8']] as $x) $p[] = [$x[0], $x[1], 'monthly'];
     foreach (glob(ROOT . '/lp/*.php') ?: [] as $f) $p[] = ['/lp/' . basename($f, '.php'), '0.8', 'monthly'];
+    $p[] = ['/blog', '0.7', 'weekly'];
+    foreach (blog_posts() as $b) $p[] = ['/blog/' . $b['slug'], '0.7', 'monthly'];
     $p[] = ['/privacy', '0.3', 'yearly']; $p[] = ['/terms', '0.3', 'yearly'];
     return $p;
 }
+
+/** Blog articles, newest first. Each article lives in includes/posts/{slug}.php and returns an array. */
+function blog_posts(): array {
+    static $all = null;
+    if ($all !== null) return $all;
+    $all = [];
+    foreach (glob(ROOT . '/includes/posts/*.php') ?: [] as $f) { $p = require $f; if (is_array($p) && empty($p['draft'])) $all[] = $p; }
+    usort($all, fn($a, $b) => strcmp($b['date'], $a['date']));
+    return $all;
+}
+function blog_post(string $slug): ?array { foreach (blog_posts() as $p) if ($p['slug'] === $slug) return $p; return null; }
+

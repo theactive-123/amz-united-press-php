@@ -48,6 +48,9 @@ RewriteRule ^lp/?$ services [R=302,L]
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^lp/([a-z0-9-]+)$ lp/$1.php [L]
 
+# --- Blog articles: /blog/how-much-does-it-cost-to-self-publish-a-book -> post.php?slug=... ---
+RewriteRule ^blog/([a-z0-9-]+)/?$ post.php?slug=$1 [L,QSA]
+
 # --- Extensionless pages: /pricing -> pricing.php ---
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

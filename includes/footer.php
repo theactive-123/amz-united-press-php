@@ -41,7 +41,7 @@
       </ul></div>
       <?php endforeach; ?>
       <div><h4>Resources</h4><ul>
-        <li><a href="<?= e(url('/portfolio')) ?>">Portfolio</a></li><li><a href="<?= e(url('/how-it-works')) ?>">How It Works</a></li><li><a href="<?= e(url('/faq')) ?>">FAQs</a></li><li><a href="<?= e(url('/pricing')) ?>">Pricing</a></li><li><a href="<?= e(url('/about')) ?>">About Us</a></li><li><a href="<?= e(url('/contact')) ?>">Contact Us</a></li><li><a href="<?= e(url('/services')) ?>">All Services</a></li>
+        <li><a href="<?= e(url('/portfolio')) ?>">Portfolio</a></li><li><a href="<?= e(url('/how-it-works')) ?>">How It Works</a></li><li><a href="<?= e(url('/faq')) ?>">FAQs</a></li><li><a href="<?= e(url('/pricing')) ?>">Pricing</a></li><li><a href="<?= e(url('/about')) ?>">About Us</a></li><li><a href="<?= e(url('/blog')) ?>">Blog</a></li><li><a href="<?= e(url('/contact')) ?>">Contact Us</a></li><li><a href="<?= e(url('/services')) ?>">All Services</a></li>
       </ul></div>
     </div>
     <div class="foot-bottom"><span>© <span id="yr"><?= date('Y') ?></span> <?= e(site('name')) ?>. All rights reserved.</span><span><a href="<?= e(url('/privacy')) ?>">Privacy Policy</a> &nbsp;·&nbsp; <a href="<?= e(url('/terms')) ?>">Terms &amp; Conditions</a></span></div>
