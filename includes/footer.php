@@ -1,6 +1,12 @@
 </main>
 
-<?php if (!empty($meta['lp'])): ?>
+<?php if (!empty($meta['kx'])): ?>
+<footer class="kx-foot"><div class="kx-w">
+  <a class="kx-logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo-light.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>" loading="lazy"></a>
+  <p class="kx-foot-c"><a href="tel:<?= e(tel_href()) ?>" data-lp-call><?= e(site('phone')) ?></a><span aria-hidden="true">·</span><?= email_reveal('Email us') ?><span aria-hidden="true">·</span><a href="<?= e(url('/privacy')) ?>">Privacy Policy</a><span aria-hidden="true">·</span><a href="<?= e(url('/terms')) ?>">Terms &amp; Conditions</a></p>
+  <p class="kx-foot-s">© <?= date('Y') ?> <?= e(site('name')) ?>. All rights reserved.</p>
+</div></footer>
+<?php elseif (!empty($meta['lp'])): ?>
 <footer class="lpf">
   <div class="w">
     <div class="lpf-in">
@@ -56,5 +62,6 @@
 <script src="<?= e(asset('js/main.js')) ?>"></script>
 <script src="<?= e(asset('js/forms.js')) ?>"></script>
 <?php if (!empty($meta['lp'])): ?><script src="<?= e(asset('js/lp.js')) ?>"></script><?php endif; ?>
+<?php if (!empty($meta['kx'])): ?><script src="<?= e(asset('js/kx.js')) ?>"></script><?php endif; ?>
 </body>
 </html>

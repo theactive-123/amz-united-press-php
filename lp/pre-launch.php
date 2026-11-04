@@ -1,160 +1,172 @@
 <?php
 require dirname(__DIR__) . '/includes/bootstrap.php';
-require dirname(__DIR__) . '/includes/lx.php';
+require dirname(__DIR__) . '/includes/lp.php';
+require dirname(__DIR__) . '/includes/kx.php';
 
 $G = '$6,000';   // minimum sales target in the guarantee
 $FAQ = [
     ['Do I need to have my manuscript ready?', 'No. AMZ United Press can support the process from research and scripting through writing, editing, design and publishing.'],
     ['How many books will be launched?', 'The program is structured around 3 books per month, for a total of 12 books over 120 days.'],
-    ['Do you only publish the books?', 'No. We handle the complete workflow, including research, writing, editing, design, KDP setup, positioning, Amazon Ads and optimization.'],
+    ['Do you only publish the books?', 'No. AMZ United Press handles the complete workflow, including research, writing, editing, design, KDP setup, positioning, Amazon Ads and optimization.'],
     ['Do I need to manage writers or designers?', 'No. The service is designed to give you one team instead of multiple freelancers.'],
     ['What happens after the books go live?', 'We continue tracking and optimizing listings, pricing and Amazon Ads throughout the roadmap.'],
-    ['How does the guarantee work?', 'The program includes a minimum ' . $G . ' sales target, subject to the agreed eligibility requirements and guarantee terms. If the agreed minimum is not reached within the guarantee period, your investment is refunded according to those terms.'],
-    ['Do I keep the rights and royalties?', 'Yes. Every book is published on your own Amazon KDP account, under your name. You keep 100% of the rights and every royalty Amazon pays.'],
+    ['How does the guarantee work?', 'The program includes a minimum ' . $G . ' sales target, subject to the agreed eligibility requirements and guarantee terms.'],
 ];
 $meta = [
-    'lp' => true, 'lx' => true,
-    'title' => 'Amazon KDP Pre-Launch Program: 12 Books in 120 Days | AMZ United Press',
-    'description' => 'We research, write, design, publish and advertise 3 books a month for 120 days: a 12-book Amazon KDP portfolio with a minimum ' . $G . ' sales target. Book a free strategy call.',
+    'lp' => true, 'kx' => true, 'kx_btn' => 'Book Free Session',
+    'title' => 'Minimum ' . $G . ' in Book Sales Guaranteed | 12 Books in 120 Days | AMZ United Press',
+    'description' => 'We launch 3 books every month for 120 days. Research, writing, publishing and Amazon Ads handled. Hit ' . $G . ' in sales or get 100% of your money back.',
     'path' => '/lp/pre-launch', 'nav' => '',
-    'schema' => lp_schema('120-Day KDP Portfolio Program', 'A done-for-you Amazon KDP program: 12 books researched, written, designed, published and advertised over 120 days.', '/lp/pre-launch', $FAQ),
+    'schema' => lp_schema('120-Day KDP Portfolio Engine', 'A done-for-you Amazon KDP program: 12 books researched, written, designed, published and advertised over 120 days.', '/lp/pre-launch', $FAQ),
 ];
 include dirname(__DIR__) . '/includes/header.php';
 ?>
-<div class="page lx" data-page="lp-pre-launch">
+<div class="page" data-page="lp-pre-launch">
 
 <!-- Hero -->
-<section class="lx-hero" aria-labelledby="lp-h1"><span class="lx-grid-bg" aria-hidden="true"></span><span class="lx-glow" aria-hidden="true"></span>
-  <div class="w lx-hero-in">
-    <div>
-      <p class="lx-pill"><b>120 DAYS</b>12 books. One team. Everything handled.</p>
-      <h1 class="lx-h1" id="lp-h1">Minimum <?= e($G) ?> in book sales guaranteed. <em>Or we’ll refund you.</em></h1>
-      <p class="lx-lead">We launch 3 books every month for 120 days. From research to publishing and advertising, AMZ United Press handles it all, for authors, founders and new KDP publishers who are done putting everything on one title.</p>
-      <ul class="lx-promise"><li><?= lx_i('check') ?>12 books in 120 days</li><li><?= lx_i('check') ?>Amazon Ads built in</li><li><?= lx_i('check') ?>Hit <?= e($G) ?> or get 100% back*</li></ul>
-      <?= lx_cta('Book my free KDP strategy call') ?>
-      <span class="lx-btn-note">See how the 120-Day KDP Portfolio Engine works before you publish your next book.</span>
-      <?= lx_faces('<b>' . e(data('stats')[0][0] . data('stats')[0][1]) . ' books</b> published for authors who keep 100% of their royalties.') ?>
-    </div>
-    <?= lp_form('lp-form', 'Book your free strategy call', 'Tell us where you are. We reply within one business day to set up your call.', 7, 'Book My Free Call') ?>
+<section class="kx-hero" aria-labelledby="lp-h1">
+  <?= kx_stars() ?><?= kx_ring() ?>
+  <div class="kx-w">
+    <h1 class="kx-h1" id="lp-h1">Minimum <?= e($G) ?> in Book Sales Guaranteed.<br><span class="lime">Or We’ll Refund You.</span></h1>
+    <p class="kx-hero-p">We Launch 3 Books Every Month For 120 Days. From Research To Publishing And Advertising, We Handle It All.</p>
+    <p class="kx-sub" style="font-family:Inter,sans-serif;font-weight:700;text-transform:uppercase">12 Books. 120 Days. One Team.</p>
+    <p class="kx-hero-box kx-center" style="text-align:left">Hit $6K or get 100% of your money back.</p>
+    <?= kx_media('From first idea to finished book/Author Workspace with KDP Publishing Dashboard.png', 'Your 12-book portfolio, launched for you', '120-Day KDP Portfolio Engine') ?>
+    <div class="kx-hero-cta"><a class="kx-btn" href="#book" data-lp-cta>Book My Free KDP Strategy Call</a>
+      <p class="kx-note b">See How The 120-Day KDP Portfolio Engine Works Before You Publish Your Next Book.</p></div>
   </div>
 </section>
-
-<?= lp_trust('Your books, live on') ?>
+<div class="kx-bar" aria-hidden="true"></div>
 
 <!-- The problem -->
-<section class="lx-sec lx-alt" aria-labelledby="pr-h"><div class="w lx-split" style="align-items:center">
-  <div class="lx-rv">
-    <?= lx_kick('The problem') ?>
-    <h2 class="lx-h2" id="pr-h">One book is not a <em>publishing strategy.</em></h2>
-    <div class="lx-story"><p><b>Most authors spend months creating one book.</b></p><p>Then they publish it.</p><p>Then the real work starts. They realize they still need to figure out:</p></div>
-    <ul class="lx-chips"><li>Which keywords to target</li><li>Which categories to enter</li><li>How to price the book</li><li>How to get reviews</li><li>How to run Amazon Ads</li><li>How to improve the listing</li><li>What to publish next</li></ul>
-  </div>
-  <div class="lx-live lx-rv" style="--d:2">
-    <span class="lx-live-tag">LIVE</span>
-    <h3>And by then, the book is <em>already live.</em></h3>
-    <div class="lx-live-row"><img src="<?= e(lp_img(data('work')[3]['image'])) ?>" alt="" loading="lazy"><span><b>Your one title</b><small>No keywords plan · no ads · no next book</small></span><span class="lx-live-bars" aria-hidden="true"><i style="height:30%"></i><i style="height:22%"></i><i style="height:18%"></i><i style="height:12%"></i><i style="height:10%"></i><i style="height:8%"></i></span></div>
+<section class="kx-sec" aria-labelledby="pr-h"><div class="kx-w">
+  <div class="kx-center"><span class="kx-tag">The problem</span></div>
+  <h2 class="kx-h2" id="pr-h" style="margin-top:20px">One book is not a<br><span class="lime">publishing strategy.</span></h2>
+  <div class="kx-prob kx-w kx-narrow" style="padding:0">
+    <div class="kx-prob-txt kx-rv">
+      <h3>Most authors spend months creating one book.</h3>
+      <p>Then they publish it.</p>
+      <p class="lime">Then the real work starts.</p>
+      <p>They realize they still need to figure out:</p>
+      <ul class="kx-chips"><?php foreach (['Which keywords to target' => -2, 'Which categories to enter' => 1.5, 'How to price the book' => -1.5, 'How to get reviews' => 1, 'How to run Amazon Ads' => -1, 'How to improve the listing' => 1.5, 'What to publish next' => -1] as $c => $r): ?><li style="--r:<?= $r ?>deg"><?= e($c) ?></li><?php endforeach; ?></ul>
+    </div>
+    <div class="kx-live kx-rv" style="--d:1"><span class="kx-stamp">LIVE</span><h3>And by then, the book is <span class="lime">already live.</span></h3></div>
   </div>
 </div></section>
+<hr class="kx-rule">
 
-<!-- The system -->
-<section class="lx-sec lx-state" aria-labelledby="sy-h"><span class="lx-glow" aria-hidden="true"></span><div class="w">
-  <?= lx_kick('The fix', true) ?>
-  <h2 class="lx-h2 lx-rv" id="sy-h">The problem isn’t just publishing. It’s publishing <em>without a system.</em></h2>
-  <div class="lx-state-grid">
-    <div class="lx-rv"><span class="lx-ib"><?= lx_i('book') ?></span><b>One title, one chance</b><p>Everything rides on a single launch day, keyword and ad.</p></div>
-    <div class="lx-rv" style="--d:1"><span class="lx-ib"><?= lx_i('layers') ?></span><b>A portfolio gives you data</b><p>More books mean more opportunities and more ways to find what readers respond to.</p></div>
-    <div class="lx-rv" style="--d:2"><span class="lx-ib"><?= lx_i('target') ?></span><b>We build both</b><p>AMZ United Press builds the portfolio and the system around it.</p></div>
-  </div>
-  <?= lx_cta('Show me the 120-day plan', '#plan') ?>
+<!-- No system -->
+<section class="kx-sec" style="padding-top:clamp(40px,5vw,60px)" aria-labelledby="sy-h"><div class="kx-w kx-center">
+  <h2 class="kx-h2" id="sy-h" style="font-size:clamp(1.5rem,2.6vw,2.4rem)">The problem isn’t just publishing.<br><span class="lime">It’s publishing without a system.</span></h2>
+  <p class="kx-p" style="color:#fff;font-weight:700">One title gives you one chance.</p>
+  <p class="kx-p">A portfolio gives you more data, more opportunities and more ways to find what readers actually respond to.</p>
+  <p class="kx-p" style="color:#fff;font-weight:700">AMZ United Press builds the portfolio and the system around it.</p>
+  <a class="kx-btn" href="#plan" style="margin-top:14px">Show me the 120-day plan →</a>
 </div></section>
 
-<!-- 120-day plan -->
-<section class="lx-sec lx-alt" id="plan" aria-labelledby="pl-h"><div class="w">
-  <div class="lx-head"><?= lx_kick('The 120-day plan') ?><h2 class="lx-h2" id="pl-h">3 books every month. <em>12 books across 120 days.</em></h2></div>
-  <div class="lx-months">
-  <?php $M = [
-      ['Books 1–3', ['Research the market.', 'Build the first titles.', 'Launch with the right positioning, keywords and categories.']],
-      ['Books 4–6', ['Launch the next titles.', 'Review early sales data.', 'Improve listings and campaigns.']],
-      ['Books 7–9', ['Expand the portfolio.', 'Identify stronger niches and titles.', 'Optimize based on real market response.']],
-      ['Books 10–12', ['Complete the 12-book portfolio.', 'Improve existing titles.', 'Strengthen Amazon Ads.', 'Build the next growth plan.']],
-  ];
+<!-- 120 days -->
+<section class="kx-sec" id="plan" style="padding-top:clamp(30px,4vw,50px)" aria-labelledby="pl-h"><div class="kx-w">
+  <h2 class="kx-h2 l xl" id="pl-h">3 books every month.<br><span class="lime">12 books across 120 days.</span></h2>
+  <div class="kx-months">
+  <?php $M = [['Books 1–3', ['Research the market.', 'Build the first titles.', 'Launch with the right positioning, keywords and categories.']], ['Books 4–6', ['Launch the next titles.', 'Review early sales data.', 'Improve listings and campaigns.']], ['Books 7–9', ['Expand the portfolio.', 'Identify stronger niches and titles.', 'Optimize based on real market response.']], ['Books 10–12', ['Complete the 12-book portfolio.', 'Improve existing titles.', 'Strengthen Amazon Ads.', 'Build the next growth plan.']]];
   foreach ($M as $i => $m): ?>
-    <article class="lx-month lx-rv" style="--d:<?= $i ?>"><div class="lx-bar" aria-hidden="true"><?php for ($k = 0; $k < 12; $k++): ?><i<?= $k < ($i + 1) * 3 ? ' class="on"' : '' ?>></i><?php endfor; ?></div>
+    <article class="kx-month kx-rv" style="--d:<?= $i ?>"><div class="kx-pips" aria-hidden="true"><?php for ($k = 0; $k < 12; $k++): ?><i<?= $k < ($i + 1) * 3 ? ' class="on"' : '' ?>></i><?php endfor; ?></div>
       <small>Month <?= $i + 1 ?></small><h3><?= e($m[0]) ?></h3><ul><?php foreach ($m[1] as $x): ?><li><?= e($x) ?></li><?php endforeach; ?></ul></article>
   <?php endforeach; ?>
   </div>
-  <div class="lx-endnote lx-rv"><b>12</b><p><strong>At the end of 120 days</strong>You don’t have one book sitting on Amazon. You have a complete portfolio of 12 launched books.</p></div>
+  <div class="kx-end kx-rv"><h3>At the end of 120 days:</h3><p>You don’t have one book sitting on Amazon. You have a complete portfolio of 12 launched books.</p></div>
 </div></section>
+<div class="kx-bar" aria-hidden="true"></div>
 
 <!-- Case studies -->
-<section class="lx-sec" aria-labelledby="cs-h"><div class="w">
-  <div class="lx-head lx-c"><?= lx_kick('Case studies', true) ?><h2 class="lx-h2" id="cs-h">Real numbers from <em>live Amazon Ads accounts.</em></h2></div>
-  <div class="lx-cases">
-    <?= lx_case(['tag' => 'Peak-month performance', 'title' => 'Built slow. Scaled fast.', 'big' => '3,849 books sold. $131K in sales.', 'text' => 'A smart pre-launch setup, patient testing early on, and aggressive scaling once the winners were clear.', 'metrics' => [['26.64%', 'ACOS'], ['$52K+', 'Ad-attributed sales'], ['4,530', 'Orders in one month']], 'points' => [6, 8, 7, 12, 10, 16, 22, 20, 34, 46, 58, 82, 94]]) ?>
-    <?= lx_case(['tag' => 'Long-term scale', 'title' => 'From a single book to an established KDP portfolio', 'big' => '14,052 books sold. $497K in sales.', 'text' => 'Smart pre-launch setup, keyword research, and scaling winning campaigns turned ads into real sales.', 'metrics' => [['34.15%', 'ACOS'], ['$282K+', 'Ad-attributed sales'], ['24,456', 'Orders']], 'points' => [10, 14, 18, 24, 30, 28, 38, 44, 52, 60, 66, 78, 90]]) ?>
+<section class="kx-cases" aria-labelledby="cs-h"><div class="kx-w">
+  <h2 class="kx-h2" id="cs-h">Case <span class="lime">Studies</span></h2>
+  <div class="kx-case-grid">
+    <?= kx_case(['pill' => 'Peak-month performance', 'kpis' => [['$54,424', 'Total cost'], ['$131,604', 'Sales'], ['3,849', 'Purchases'], ['40.58%', 'ACOS']], 'a' => [10, 14, 12, 20, 16, 26, 22, 34, 28, 40, 36, 52, 60], 'b' => [6, 8, 7, 10, 9, 12, 14, 18, 22, 34, 50, 64, 80],
+        'title' => 'Built Slow. Scaled Fast.', 'big' => '3,849 Books Sold. $131K in Sales.', 'p' => ['Real numbers from a live Amazon Ads account we run.', 'A smart pre-launch setup, patient testing early on, and aggressive scaling once the winners were clear.']]) ?>
+    <?= kx_case(['pill' => 'Long-term scale', 'kpis' => [['$209,035', 'Total cost'], ['$497,054', 'Sales'], ['14,052', 'Purchases'], ['41.58%', 'ACOS']], 'a' => [30, 44, 36, 50, 40, 48, 38, 56, 44, 58, 50, 66, 74], 'b' => [24, 30, 34, 28, 40, 36, 44, 38, 46, 52, 48, 60, 70],
+        'title' => 'From a Single Book to an Established KDP Portfolio', 'big' => '14,052 Books Sold. $497K in Sales.', 'p' => ['That’s straight from the Amazon Ads dashboard of a catalog we manage.', 'Smart pre-launch setup, keyword research, and scaling winning campaigns turned ads into real sales.']]) ?>
   </div>
-  <p class="lx-note lx-c">Figures from Amazon Ads dashboards of catalogs we manage. Results vary by book, niche and budget.</p>
 </div></section>
 
 <!-- Whole launch -->
-<section class="lx-sec lx-light" aria-labelledby="wl-h"><div class="w">
-  <div class="lx-head"><?= lx_kick('Other companies give you one piece') ?><h2 class="lx-h2" id="wl-h">We handle <em>the whole launch.</em></h2>
-    <p class="lx-sub">You shouldn’t have to hire one person for writing, another for editing, another for design and someone else for Amazon Ads. AMZ United Press manages the complete publishing journey.</p></div>
-  <ol class="lx-steps">
-  <?php $S = [['Research', 'Niche research, competitor analysis, topic selection, market opportunity.'], ['Content', 'Scripting, book writing, editing, content refinement.'], ['Design', 'Cover design, interior formatting, A+ content.'], ['Publishing', 'KDP setup, title & subtitle, book description, keywords, categories, pricing.'], ['Launch', 'Review strategy, launch preparation, Amazon Ads, listing optimization.'], ['Growth', 'Performance tracking, ad optimization, pricing adjustments, portfolio optimization.']];
+<section class="kx-sec n2" aria-labelledby="wl-h" style="padding-top:20px"><div class="kx-w">
+  <h2 class="kx-h2" id="wl-h" style="font-size:clamp(1.8rem,3.4vw,2.6rem);margin-bottom:10px">Other companies give you one piece.</h2>
+  <p class="kx-sub" style="font-size:clamp(1.6rem,3vw,2.3rem);font-weight:700;margin-bottom:20px">we handle the whole launch</p>
+  <p class="kx-p">You shouldn’t have to hire one person for writing, another for editing, another for design and someone else for Amazon Ads.</p>
+  <p class="kx-p" style="color:#fff;font-weight:700">AMZ United Press manages the complete publishing journey.</p>
+  <ol class="kx-steps6">
+  <?php $S = [['Research', 'Niche research, Competitor analysis, Topic selection, Market opportunity.'], ['Content', 'Scripting, Book writing, Editing, Content refinement.'], ['Design', 'Cover design, Interior formatting, A+ content.'], ['Publishing', 'KDP setup, Title & subtitle, Book description, Keywords, Categories, Pricing.'], ['Launch', 'Review strategy, Launch preparation, Amazon Ads, Listing optimization.'], ['Growth', 'Performance tracking, Ad optimization, Pricing adjustments, Portfolio optimization.']];
   foreach ($S as $i => $s): ?>
-    <li class="lx-rv" style="--d:<?= $i % 3 ?>"><span class="n">0<?= $i + 1 ?></span><small>Step 0<?= $i + 1 ?></small><h3><?= e($s[0]) ?></h3><p><?= e($s[1]) ?></p></li>
+    <li class="kx-rv" style="--d:<?= $i % 3 ?>"><div class="kx-n-out" aria-hidden="true"><b>0<?= $i + 1 ?></b><i></i></div><span class="kx-chip-s">Step 0<?= $i + 1 ?></span><h3><?= e($s[0]) ?></h3><p><?= e($s[1]) ?></p></li>
   <?php endforeach; ?>
   </ol>
 </div></section>
 
-<!-- Band -->
-<section class="lx-sec lx-light" style="padding-top:0" aria-labelledby="bd-h"><div class="w"><div class="lx-band lx-rv">
-  <div><h2 id="bd-h">Let’s build your 12-book portfolio.</h2><p>Book a free call to explore your 12-book launch strategy and <?= e($G) ?> sales target, and see if we’re the right fit.</p><?= lx_cta('Book my free strategy call') ?></div>
-  <?= lx_covers([2, 4, 6, 7, 8]) ?>
-</div></div></section>
+<!-- Booking -->
+<?= kx_book('Let’s Build Your 12-Book Portfolio', 'Book a free call to explore your 12-book launch strategy and ' . $G . ' sales target.', 'Book your free KDP strategy call', 'Tell us where you are. We reply within one business day to set up your call.', 7, 'Book My Free Strategy Call',
+    ['A 30-minute call with our KDP team', 'Your 12-book launch strategy, mapped to your goals', 'How the ' . $G . ' sales target and guarantee terms work', 'Honest advice on whether the program is right for you']) ?>
 
-<!-- With / without -->
-<section class="lx-sec lx-alt" aria-labelledby="vs-h"><div class="w">
-  <div class="lx-head lx-c"><?= lx_kick('The difference', true) ?><h2 class="lx-h2" id="vs-h">From publish &amp; hope to a <em>complete KDP system.</em></h2>
-    <p class="lx-sub">Most authors publish one book, hire separate freelancers and add ads later. Here is what changes when one team runs the whole portfolio.</p></div>
-  <div class="lx-vs">
-    <div class="bad lx-rv"><h3>Without a system</h3><ul><?php foreach (['One book', 'Multiple freelancers', 'Random keyword research', 'Guessing categories', 'Cover designed separately', 'Ads added later', 'No clear roadmap', 'No portfolio strategy', 'Constant trial and error'] as $x): ?><li><?= lx_i('x') ?><?= e($x) ?></li><?php endforeach; ?></ul></div>
-    <div class="good lx-rv" style="--d:1"><h3>With AMZ United Press</h3><ul><?php foreach (['12 books', 'One team', 'Research before publishing', 'Professional writing & design', 'Keywords & categories planned', 'Amazon Ads built into the launch', '120-day roadmap', 'Ongoing optimization', 'Minimum sales target'] as $x): ?><li><?= lx_i('check') ?><?= e($x) ?></li><?php endforeach; ?></ul></div>
+<!-- From publish & hope -->
+<section class="kx-sec n2" aria-labelledby="vs-h"><span class="kx-glowdome" aria-hidden="true"></span><div class="kx-w" style="padding-top:clamp(100px,10vw,150px)">
+  <h2 class="kx-h2 nc" id="vs-h" style="font-size:clamp(1.8rem,3vw,2.5rem)">From publish &amp; hope to a complete<br><span class="lime">KDP system</span></h2>
+  <p class="kx-p" style="max-width:56em">Most authors publish one book, hire a different freelancer for every job and add ads later. Without a plan, good books get buried and launches stall before readers ever find them.</p>
+  <div class="kx-vs">
+    <div class="kx-rv"><h3>Without AMZ United Press</h3><ul><?php foreach (['One book', 'Multiple freelancers', 'Random keyword research', 'Guessing categories', 'Cover designed separately', 'Ads added later', 'No clear roadmap', 'No portfolio strategy', 'Constant trial and error'] as $x): ?><li><span class="x" aria-hidden="true">✕</span><?= e($x) ?></li><?php endforeach; ?></ul></div>
+    <div class="kx-rv" style="--d:1"><h3>With AMZ United Press</h3><ul><?php foreach (['12 books', 'One team', 'Research before publishing', 'Professional writing & design', 'Keywords & categories planned', 'Amazon Ads built into the launch', '120-day roadmap', 'Ongoing optimization', 'Minimum sales target'] as $x): ?><li><span class="ok"><?= kx_i('check') ?></span><?= e($x) ?></li><?php endforeach; ?></ul></div>
+  </div>
+</div></section>
+<div class="kx-bar" aria-hidden="true"></div>
+
+<!-- Business -->
+<section class="kx-sec" aria-labelledby="bz-h"><div class="kx-w" style="max-width:1000px">
+  <h2 class="kx-h2" id="bz-h" style="font-size:clamp(1.6rem,2.8vw,2.3rem)">We don’t just help you publish. <span class="lime">We help you build a publishing business.</span></h2>
+  <div class="kx-vals">
+  <?php $V = [['One team', 'No chasing multiple freelancers. Writing, editing, design, publishing and marketing are managed under one system.'], ['Three books every month', 'Instead of putting all your expectations on one title, we create multiple opportunities to find what works.'], ['Strategy before publishing', 'Keywords, categories, pricing, positioning and launch planning happen before the books go live.'], ['Marketing after publishing', 'We don’t disappear after launch day. Amazon Ads and optimization continue as we collect data.'], ['Portfolio-level thinking', 'We use the performance of the full portfolio to make better publishing decisions.'], ['120-day roadmap', 'You know what is being built, launched and optimized throughout the program.']];
+  foreach ($V as $i => $v): ?><article class="kx-rv" style="--d:<?= $i % 3 ?>"><h3><?= e($v[0]) ?></h3><p><?= e($v[1]) ?></p></article><?php endforeach; ?>
   </div>
 </div></section>
 
-<!-- Business -->
-<section class="lx-sec lx-light" aria-labelledby="bz-h"><div class="w">
-  <div class="lx-head"><?= lx_kick('Why it works') ?><h2 class="lx-h2" id="bz-h">We don’t just help you publish. We help you <em>build a publishing business.</em></h2></div>
-  <div class="lx-values">
-  <?php $V = [['users', 'One team', 'No chasing multiple freelancers. Writing, editing, design, publishing and marketing are managed under one system.'], ['book', 'Three books every month', 'Instead of putting all your expectations on one title, we create multiple opportunities to find what works.'], ['target', 'Strategy before publishing', 'Keywords, categories, pricing, positioning and launch planning happen before the books go live.'], ['trend', 'Marketing after publishing', 'We don’t disappear after launch day. Amazon Ads and optimization continue as we collect data.'], ['layers', 'Portfolio-level thinking', 'We use the performance of the full portfolio to make better publishing decisions.'], ['map', '120-day roadmap', 'You know what is being built, launched and optimized throughout the program.']];
-  foreach ($V as $i => $v): ?>
-    <article class="lx-rv" style="--d:<?= $i % 3 ?>"><span class="lx-ib"><?= lx_i($v[0]) ?></span><h3><?= e($v[1]) ?></h3><p><?= e($v[2]) ?></p></article>
-  <?php endforeach; ?>
-  </div>
+<!-- Authors -->
+<div class="kx-bar" aria-hidden="true"></div>
+<section class="kx-proof" aria-labelledby="au-h"><div class="kx-w">
+  <h2 class="kx-h2" id="au-h" style="font-size:clamp(1.6rem,2.8vw,2.3rem);margin:0">Authors who trusted<br><span class="lime">AMZ United Press</span></h2></div>
+  <?= kx_authors() ?>
+</section>
+
+<!-- FAQ -->
+<section class="kx-sec n3" aria-labelledby="fq-h"><div class="kx-w">
+  <h2 class="kx-h2 nc" id="fq-h" style="font-weight:600;line-height:1.5">The questions people ask<br>right before they <span class="lime">click buy</span></h2>
+  <?= kx_faq($FAQ) ?>
 </div></section>
 
 <!-- Guarantee -->
-<section class="lx-sec" id="guarantee" aria-labelledby="gu-h"><span class="lx-glow" aria-hidden="true"></span><div class="w">
-  <div class="lx-head lx-c"><?= lx_kick('The guarantee', true) ?><h2 class="lx-h2" id="gu-h">We’re confident enough to put <em>a target behind the work.</em></h2>
-    <p class="lx-sub">Most publishing services stop once your book is uploaded. We don’t.</p></div>
-  <div class="lx-guar">
-    <div class="lx-rv"><small class="lx-kick" style="margin:0">The program combines</small><ul><?php foreach (['12 books', 'Market research', 'Professional production', 'Amazon positioning', 'Amazon Ads', '120 days of optimization'] as $x): ?><li><?= lx_i('check') ?><?= e($x) ?></li><?php endforeach; ?></ul><p class="lx-sub" style="margin:14px 0 0">That gives us more than one opportunity to generate results.</p></div>
-    <div class="big lx-rv" style="--d:1"><small>Our target: minimum</small><b><?= e($G) ?></b><p><strong>in sales</strong> within the agreed guarantee period.</p><p>If the agreed minimum target is not achieved, your investment is refunded according to the terms of the guarantee.</p></div>
+<section class="kx-sec" style="background:#071214" id="guarantee" aria-labelledby="gu-h"><div class="kx-w kx-center">
+  <h2 class="kx-h2 nc" id="gu-h" style="font-weight:600">We’re confident enough to put a target <span class="lime">behind the work.</span></h2>
+  <p class="kx-p" style="font-size:1.1rem">Most publishing services stop once your book is uploaded.</p>
+  <p class="kx-p" style="color:#fff;font-weight:800;font-size:1.15rem">We don’t.</p>
+  <div class="kx-guar" style="text-align:left">
+    <div class="kx-rv"><small>AMZ United Press combines:</small><ul><?php foreach (['12 books', 'Market research', 'Professional production', 'Amazon positioning', 'Amazon Ads', '120 days of optimization'] as $x): ?><li><?= kx_i('check') ?><?= e($x) ?></li><?php endforeach; ?></ul><p class="kx-p" style="text-align:left;margin:14px 0 0;font-size:.94rem">That gives us more than one opportunity to generate results.</p></div>
+    <div class="tgt kx-rv" style="--d:1"><small>Our target:</small><em>MINIMUM</em><b><?= e($G) ?></b><strong>IN SALES</strong><p style="color:#fff;font-size:1.1rem;margin:4px 0 22px">within the agreed guarantee period.</p><p>If the agreed minimum target is not achieved, your investment is refunded according to the terms of the guarantee.</p></div>
   </div>
-  <h3 class="lx-h3 lx-c" style="text-align:center;margin-top:48px">Why can we stand behind it? Because we’re not betting everything on:</h3>
-  <div class="lx-not"><span>One book</span><span>One launch day</span><span>One ad</span><span>One keyword</span></div>
-  <p class="lx-sub lx-c" style="text-align:center"><b style="color:var(--tx)">We’re building and optimizing a portfolio.</b></p>
-  <p style="text-align:center;margin-top:26px"><?= lx_cta('Show me how the guarantee works') ?></p>
+  <h3 style="font-family:var(--sg);font-weight:700;font-size:clamp(1.4rem,2.2vw,1.8rem);margin:44px 0 10px">Why can we stand behind it?</h3>
+  <p class="kx-p">Because we’re not betting everything on:</p>
+  <div class="kx-pillset"><span>One book.</span><span>One launch day.</span><span>One ad.</span><span>One keyword.</span></div>
+  <p class="kx-p" style="color:#fff;font-size:1.1rem">We’re building and <b>optimizing a portfolio.</b></p>
+  <a class="kx-btn" href="#book" data-lp-cta style="margin-top:24px">Show me how the guarantee works →</a>
 </div></section>
 
-<?= lx_faq('The questions people ask <em>right before they buy.</em>', $FAQ) ?>
+<!-- Final -->
+<section class="kx-sec blk" aria-labelledby="fn-h"><div class="kx-w"><div class="kx-final kx-rv">
+  <h2 class="kx-h2 nc xl" id="fn-h" style="font-weight:700">120 days from now, where <span class="lime">do you want to be?</span></h2>
+  <p class="kx-hero-p" style="max-width:40em;font-weight:600">Still Trying To Finish And Launch One Book? Or Looking At A Portfolio Of 12 Professionally Built Titles Live On Amazon?</p>
+  <div class="kx-dots"><span>AMZ United Press handles</span><span>Research</span><span>Writing</span><span>Editing</span><span>Design</span><span>Publishing</span><span>Positioning</span><span>Amazon Ads</span><span>Optimization</span></div>
+  <p class="kx-lead">12 Books. 120 Days. End-To-End. Minimum <?= e($G) ?> Sales Target.*</p>
+  <a class="kx-btn nc" href="#book" data-lp-cta><?= kx_i('arrow') ?>Book my free KDP strategy call</a>
+  <p class="kx-note b" style="font-style:normal;font-size:.8rem">So You Can Focus On Building The Business, Not Managing Freelancers.</p>
+  <p class="kx-note" style="font-size:.76rem;color:#8A9592;margin-top:22px">*The minimum sales target applies subject to the agreed eligibility requirements and guarantee terms, provided in writing before you start.</p>
+</div></div></section>
 
-<?= lx_final('120 days from now', 'Where do you want <em>to be?</em>', 'Still trying to finish and launch one book? Or looking at a portfolio of 12 professionally built titles live on Amazon? We handle research, writing, editing, design, publishing, positioning, Amazon Ads and optimization, so you can focus on building the business, not managing freelancers.',
-    ['12 books in 120 days, end-to-end', 'Minimum ' . $G . ' sales target*', 'You keep 100% of rights and royalties'],
-    ['Book my free KDP strategy call', 'A real person replies within one business day.', 7, 'Book My Free Call']) ?>
-<p class="lx-fine" style="padding:0 20px 40px">*The minimum sales target applies subject to the agreed eligibility requirements and guarantee terms, provided in writing before you start.</p>
-
+<?= kx_dock('Book a call') ?>
 </div>
 <?php include dirname(__DIR__) . '/includes/footer.php'; ?>

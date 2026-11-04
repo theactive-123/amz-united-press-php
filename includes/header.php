@@ -49,9 +49,12 @@ header('X-Content-Type-Options: nosniff');
 <link rel="preload" href="<?= e(asset('fonts/instrument-serif-italic-400.woff2')) ?>" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 <link rel="stylesheet" href="<?= e(asset('css/fonts.css')) ?>">
-<?php if (!empty($meta['lp'])): /* landing pages: one standalone stylesheet */ ?>
+<?php if (!empty($meta['kx'])): /* campaign pages: own stylesheet and fonts */ ?>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="<?= e(asset('css/kx.css')) ?>">
+<?php elseif (!empty($meta['lp'])): /* landing pages: one standalone stylesheet */ ?>
 <link rel="stylesheet" href="<?= e(asset('css/lp.css')) ?>">
-<?php if (!empty($meta['lx'])): ?><link rel="stylesheet" href="<?= e(asset('css/lx.css')) ?>"><?php endif; ?>
 <?php else: ?>
 <link rel="stylesheet" href="<?= e(asset('css/base.css')) ?>">
 <link rel="stylesheet" href="<?= e(asset('css/theme.css')) ?>">
@@ -80,7 +83,14 @@ $tel = tel_href();
 $resources = [['/portfolio', 'Portfolio', 'portfolio'], ['/how-it-works', 'How It Works', 'how-it-works'], ['/faq', 'FAQs', 'faq'], ['/pricing', 'Pricing', 'pricing'], ['/about', 'About Us', 'about'], ['/contact', 'Contact Us', 'contact']];
 $curCat = $meta['cat'] ?? '';
 ?>
-<?php if (!empty($meta['lp'])): ?>
+<?php if (!empty($meta['kx'])): ?>
+<header class="kx-top">
+  <div class="kx-w kx-top-in">
+    <a class="kx-logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo-light.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>"></a>
+    <a class="kx-top-btn" href="#book" data-lp-cta><?= e($meta['kx_btn'] ?? 'Book Free Session') ?></a>
+  </div>
+</header>
+<?php elseif (!empty($meta['lp'])): ?>
 <header class="lph">
   <div class="lph-in">
     <a class="logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>"></a>
