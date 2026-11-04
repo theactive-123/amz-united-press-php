@@ -25,15 +25,21 @@ include dirname(__DIR__) . '/includes/header.php';
 <!-- Hero -->
 <section class="kx-hero" aria-labelledby="lp-h1">
   <?= kx_stars() ?><?= kx_ring() ?>
-  <div class="kx-w">
-    <p class="kx-eyebrow">For published Amazon KDP authors &amp; publishers</p>
-    <h1 class="kx-h1" id="lp-h1" style="font-size:clamp(1.9rem,4vw,3.3rem)">Your book is published. But is it<br>actually <span class="lime">selling?</span></h1>
-    <p class="kx-sub" style="font-size:clamp(1rem,1.5vw,1.3rem)">Turn Underperforming KDP Books Into a Stronger, Scalable Publishing Portfolio.</p>
-    <p class="kx-hero-p sm">Your Book Is Already Live On Amazon. But Low Visibility, Weak Listings, Ineffective Advertising, And Poor Positioning Could Be Holding Back Its Sales Potential.</p>
-    <p class="kx-hero-p sm">Introducing <b>The KDP REVIVE &amp; SCALE System</b>, A 90-Day Growth Program Designed To Optimize Your Existing Books, Improve Their Sales Performance, And Build A Strategy For Expanding Your Kindle Publishing Portfolio.</p>
-    <?= kx_media('Fourparts/Self-Publishing Dashboard Workspace.png', '', 'KDP Revive & Scale System') ?>
-    <div class="kx-hero-cta"><a class="kx-btn big" href="#book" data-lp-cta>Book My Free KDP Growth Audit — $500 Value</a>
-      <p class="kx-ticks">✔ 30-Minute Consultation | Personalized Account Review | No Obligation</p></div>
+  <div class="kx-w kx-hero-split">
+    <div>
+      <p class="kx-kick">For published Amazon KDP authors &amp; publishers</p>
+      <h1 class="kx-h1" id="lp-h1">Your book is published. But is it actually <span class="lime">selling?</span></h1>
+      <p class="kx-hero-p" style="font-weight:600">Turn underperforming KDP books into a stronger, scalable publishing portfolio.</p>
+      <p class="kx-hero-p sm">Low visibility, weak listings, ineffective advertising and poor positioning could be holding back your sales. The <b>KDP Revive &amp; Scale System</b> is a 90-day growth program that optimizes your existing books, improves their sales and builds a strategy for expanding your Kindle portfolio.</p>
+      <div class="kx-hero-cta"><a class="kx-btn" href="#book" data-lp-cta>Book my free KDP growth audit — $500 value</a>
+        <p class="kx-ticks">✔ 30-minute consultation · Personal account review · No obligation</p></div>
+      <?= kx_faces('Trusted by authors with <b>' . e(data('stats')[0][0] . data('stats')[0][1]) . ' books</b> on Amazon.') ?>
+    </div>
+    <div class="kx-hero-vis">
+      <?= kx_media('Fourparts/Self-Publishing Dashboard Workspace.png', '', 'KDP Revive & Scale System') ?>
+      <span class="kx-hero-float f1" aria-hidden="true"><i><?= kx_i('trend') ?></i><span><b>90 days</b><small>to a stronger portfolio</small></span></span>
+      <span class="kx-hero-float f2" aria-hidden="true"><i><?= kx_i('search') ?></i><span><b>Free audit</b><small>$500 value</small></span></span>
+    </div>
   </div>
 </section>
 
@@ -49,17 +55,10 @@ include dirname(__DIR__) . '/includes/header.php';
 
 <!-- System -->
 <section class="kx-sec" style="background:#070F0E" aria-labelledby="sy-h"><div class="kx-w">
-  <h2 class="kx-h2" id="sy-h" style="font-size:clamp(1.7rem,3vw,2.6rem)">Introducing the KDP <span class="lime">Revive &amp; Scale</span> System</h2>
-  <p class="kx-sub" style="color:#fff;font-weight:700">One Complete System to Optimize Existing Books and Build Your Next Stage of Growth.</p>
+  <div class="kx-center"><p class="kx-kick">Introducing</p></div><h2 class="kx-h2" id="sy-h">The KDP <span class="lime">Revive &amp; Scale</span> System.</h2>
+  <p class="kx-p" style="color:#fff;font-weight:700;font-size:1.15rem">One Complete System to Optimize Existing Books and Build Your Next Stage of Growth.</p>
   <p class="kx-p">We don’t simply run ads or change a few keywords. We evaluate the complete performance of your publishing business and identify the improvements that matter most.</p>
-  <ol class="kx-ngrid">
-  <?php $S = [['Complete KDP Performance Audit', 'Analyze book sales, royalties, visibility, advertising performance, reader demand, and existing catalog performance to identify the biggest growth limitations.'], ['Amazon Listing & Conversion Optimization', 'Improve relevant keywords, categories, book descriptions, metadata, A+ Content where eligible, and cover positioning to strengthen discoverability and purchase conversion.'], ['Amazon Ads Strategy & Management', 'Build or restructure advertising campaigns, refine targeting, eliminate inefficient spend, and optimize campaigns using performance data.'], ['Pricing, Positioning & Competitive Research', 'Evaluate pricing, competitive titles, market demand, and reader expectations to identify stronger opportunities for your existing books.'], ['Review & Reader Engagement Strategy', 'Develop Amazon-compliant approaches to encourage authentic reader feedback, strengthen author credibility, and improve the reader experience.'], ['Kindle Portfolio Expansion Strategy', 'Identify opportunities for additional books, related topics, series, and new categories using market research and the performance of your existing titles.']];
-  foreach ($S as $i => $s): ?><li class="kx-rv" style="--d:<?= $i % 3 ?>"><span class="n">0<?= $i + 1 ?></span><h3><?= e($s[0]) ?></h3><p><?= e($s[1]) ?></p></li><?php endforeach; ?>
-  </ol>
-  <ol class="kx-ngrid two">
-    <li class="kx-rv"><span class="n">07</span><h3>Performance Tracking &amp; Reporting</h3><p>Monitor sales, royalties, advertising efficiency, keyword visibility, and portfolio performance so every major decision is supported by data.</p></li>
-    <li class="kx-rv" style="--d:1"><span class="n">08</span><h3>Strategic Relaunch &amp; Ongoing Optimization</h3><p>Where the data supports it, implement a structured relaunch strategy and continuously refine your listings, advertising, and positioning.</p></li>
-  </ol>
+  <?= kx_bento([['search', 'Complete KDP performance audit', 'Analyze book sales, royalties, visibility, advertising performance, reader demand and existing catalog performance to identify the biggest growth limitations.'], ['target', 'Amazon listing & conversion optimization', 'Improve keywords, categories, book descriptions, metadata, A+ Content where eligible, and cover positioning to strengthen discoverability and conversion.'], ['chart', 'Amazon Ads strategy & management', 'Build or restructure campaigns, refine targeting, eliminate inefficient spend and optimize using performance data.'], ['opt', 'Pricing, positioning & competitive research', 'Evaluate pricing, competing titles, market demand and reader expectations to find stronger opportunities.'], ['star', 'Review & reader engagement strategy', 'Amazon-compliant approaches to encourage authentic reader feedback and strengthen author credibility.'], ['layers', 'Kindle portfolio expansion strategy', 'Identify opportunities for additional books, related topics, series and new categories.'], ['doc', 'Performance tracking & reporting', 'Monitor sales, royalties, ad efficiency, keyword visibility and portfolio performance, so every decision is backed by data.'], ['refresh', 'Strategic relaunch & ongoing optimization', 'Where the data supports it, run a structured relaunch and keep refining listings, ads and positioning.']]) ?>
   <div class="kx-center" style="margin-top:36px"><a class="kx-btn" href="#book" data-lp-cta>Get My Free KDP Growth Audit</a></div>
 </div></section>
 
@@ -79,7 +78,7 @@ include dirname(__DIR__) . '/includes/header.php';
   <h2 class="kx-h2" id="vs-h" style="font-size:clamp(1.6rem,2.8vw,2.4rem);line-height:1.5">Most KDP services fix one piece.<br>AMZ United Press looks at why the whole <span class="lime">book stalled.</span></h2>
   <div class="kx-cmp">
     <div class="kx-rv" data-t="Typical KDP Services"><ul><?php foreach (['Change a few keywords', 'Run ads on the listing you already have', 'Focus on traffic without checking conversion', 'Treat reviews, pricing and PPC separately', 'Send reports without telling you what matters first', 'Make changes without a clear recovery sequence', 'Move on when the initial work is finished'] as $x): ?><li><span class="ib" style="--c:#E5484D"><?= kx_i('x') ?></span><?= e($x) ?></li><?php endforeach; ?></ul></div>
-    <div class="kx-rv" style="--d:1" data-t="AMZ United Press Revive"><ul><?php foreach (['Start with a complete Recovery Audit', 'Rebuild keywords, categories and listing first', 'Repair the review pipeline', 'Build or rebuild Amazon Ads', 'Test pricing and positioning against real response', 'Follow a structured 90-day recovery sequence', 'Track rank, reviews and revenue against your starting point'] as $x): ?><li><span class="ib" style="--c:#B8E82E"><?= kx_i('check') ?></span><?= e($x) ?></li><?php endforeach; ?></ul></div>
+    <div class="kx-rv" style="--d:1" data-t="AMZ United Press Revive"><ul><?php foreach (['Start with a complete Recovery Audit', 'Rebuild keywords, categories and listing first', 'Repair the review pipeline', 'Build or rebuild Amazon Ads', 'Test pricing and positioning against real response', 'Follow a structured 90-day recovery sequence', 'Track rank, reviews and revenue against your starting point'] as $x): ?><li><span class="ib" style="--c:#F29102"><?= kx_i('check') ?></span><?= e($x) ?></li><?php endforeach; ?></ul></div>
   </div>
 </div></section>
 
@@ -117,7 +116,7 @@ include dirname(__DIR__) . '/includes/header.php';
 
 <!-- Case studies -->
 <section class="kx-cases" aria-labelledby="cs-h"><div class="kx-w">
-  <h2 class="kx-h2" id="cs-h">Case <span class="lime">Studies</span></h2>
+  <h2 class="kx-h2" id="cs-h">Case <span class="lime">studies.</span></h2>
   <div class="kx-case-grid">
     <?= kx_case(['pill' => 'Peak-month performance', 'kpis' => [['US$13,999', 'Spend'], ['US$52,546', 'Sales'], ['4,530', 'Orders'], ['26.64%', 'ACOS']], 'a' => [6, 10, 8, 14, 12, 20, 16, 30, 26, 44, 50, 66, 82], 'b' => [4, 6, 6, 8, 10, 12, 18, 22, 30, 40, 48, 58, 74],
         'title' => 'From 10 Sales to 4,530', 'big' => '$52K in Ad Sales in a Single Month', 'p' => ['A sharper ad structure and a better-converting listing pushed one December past 4,500 orders while keeping ACOS well under 27%.'], 'tiles' => [['4,530', 'Orders in one month'], ['$52K+', 'Ad-attributed sales'], ['26.64%', 'ACOS']]], 'laptop') ?>
@@ -131,10 +130,7 @@ include dirname(__DIR__) . '/includes/header.php';
     ['A 30-minute review of your books and Amazon Ads', 'Your visibility, conversion and advertising gaps', 'A practical 90-day growth roadmap', 'No pressure and no obligation']) ?>
 
 <!-- FAQ -->
-<section class="kx-sec" style="background:#04111A" aria-labelledby="fq-h"><div class="kx-w">
-  <h2 class="kx-h2" id="fq-h" style="font-size:clamp(1.6rem,2.6vw,2.2rem)">Frequently asked <span class="lime">questions</span></h2>
-  <?= kx_faq($FAQ, true) ?>
-</div></section>
+<?= kx_faqsec('Frequently asked <span class="lime">questions.</span>', $FAQ, '#0F0E0C') ?>
 
 <!-- Final -->
 <section class="kx-sec" style="background:#04111A;padding-top:0" aria-labelledby="fn-h"><div class="kx-w"><div class="kx-final kx-rv">

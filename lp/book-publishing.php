@@ -29,7 +29,7 @@ include dirname(__DIR__) . '/includes/header.php';
 <section class="kx-hero" aria-labelledby="lp-h1">
   <?= kx_stars() ?><?= kx_ring() ?>
   <div class="kx-w">
-    <p class="kx-eyebrow">Book publishing packages from <?= e($from) ?></p>
+    <p class="kx-kick">Book publishing packages from <?= e($from) ?></p>
     <h1 class="kx-h1" id="lp-h1">Publish your book on Amazon.<br><span class="lime">Keep 100% of your royalties.</span></h1>
     <p class="kx-hero-p">We Proofread, Format, Design Your Cover And Publish Your Ebook And Paperback On Amazon KDP And 10+ Stores, Under Your Name.</p>
     <p class="kx-sub" style="font-family:Inter,sans-serif;font-weight:700;text-transform:uppercase">Free 3D Cover. ISBN Included. Live In 1–2 Weeks.</p>
@@ -46,7 +46,7 @@ include dirname(__DIR__) . '/includes/header.php';
 
 <!-- Packages -->
 <section class="kx-sec" id="packages" aria-labelledby="pk-h"><div class="kx-w">
-  <div class="kx-center"><span class="kx-tag">Publishing packages</span></div>
+  <div class="kx-center"><p class="kx-kick">Publishing packages</p></div>
   <h2 class="kx-h2" id="pk-h" style="margin-top:20px">Choose the package that’s right<br><span class="lime">for your book.</span></h2>
   <p class="kx-p">Clear prices, everything listed. You keep every right and every royalty.</p>
   <div class="kx-plans">
@@ -65,7 +65,7 @@ include dirname(__DIR__) . '/includes/header.php';
 <!-- Problem -->
 <section class="kx-sec" aria-labelledby="pr-h" style="padding-top:0"><div class="kx-w">
   <hr class="kx-rule" style="margin-bottom:clamp(50px,6vw,80px)">
-  <div class="kx-center"><span class="kx-tag">Why authors get stuck</span></div>
+  <div class="kx-center"><p class="kx-kick">Why authors get stuck</p></div>
   <h2 class="kx-h2" id="pr-h" style="margin-top:20px">Writing the book was hard.<br><span class="lime">Publishing it shouldn’t be.</span></h2>
   <div class="kx-prob kx-w kx-narrow" style="padding:0">
     <div class="kx-prob-txt kx-rv">
@@ -82,13 +82,8 @@ include dirname(__DIR__) . '/includes/header.php';
 <!-- Steps -->
 <section class="kx-sec n2" aria-labelledby="st-h"><div class="kx-w">
   <h2 class="kx-h2" id="st-h" style="font-size:clamp(1.8rem,3.4vw,2.6rem);margin-bottom:10px">From manuscript to Amazon.</h2>
-  <p class="kx-sub" style="font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:700;margin-bottom:20px">one team, one clear price</p>
-  <ol class="kx-steps6">
-  <?php $S = [['Free consultation', 'Tell us about your book. You get a written quote and timeline.'], ['Proofreading & editing', 'Spelling, grammar and consistency checked so readers see a clean book.'], ['Formatting & cover', 'Kindle, EPUB and print files, plus a free 3D cover sized for every store.'], ['ISBN & listing', 'ISBN and barcode, title, description, keywords, categories and pricing.'], ['You approve', 'Review the interior, cover and listing. Nothing goes live without your OK.'], ['Publish & earn', 'We publish on Amazon and other stores. Royalties go straight to you.']];
-  foreach ($S as $i => $s): ?>
-    <li class="kx-rv" style="--d:<?= $i % 3 ?>"><div class="kx-n-out" aria-hidden="true"><b>0<?= $i + 1 ?></b><i></i></div><span class="kx-chip-s">Step 0<?= $i + 1 ?></span><h3><?= e($s[0]) ?></h3><p><?= e($s[1]) ?></p></li>
-  <?php endforeach; ?>
-  </ol>
+  <p class="kx-h2" style="margin-bottom:20px"><span class="lime">One team, one clear price.</span></p>
+  <?= kx_rows([['Free consultation', 'Tell us about your book. You get a written quote and timeline.'], ['Proofreading & editing', 'Spelling, grammar and consistency checked so readers see a clean book.'], ['Formatting & cover', 'Kindle, EPUB and print files, plus a free 3D cover sized for every store.'], ['ISBN & listing', 'ISBN and barcode, title, description, keywords, categories and pricing.'], ['You approve', 'Review the interior, cover and listing. Nothing goes live without your OK.'], ['Publish & earn', 'We publish on Amazon and other stores. Royalties go straight to you.']]) ?>
 </div></section>
 
 <!-- With / without -->
@@ -108,10 +103,7 @@ include dirname(__DIR__) . '/includes/header.php';
 </section>
 
 <!-- FAQ -->
-<section class="kx-sec n3" aria-labelledby="fq-h"><div class="kx-w">
-  <h2 class="kx-h2 nc" id="fq-h" style="font-weight:600;line-height:1.5">The questions authors ask<br>right before they <span class="lime">publish</span></h2>
-  <?= kx_faq($FAQ) ?>
-</div></section>
+<?= kx_faqsec('The questions authors ask right before they <span class="lime">publish.</span>', $FAQ) ?>
 
 <!-- Final -->
 <section class="kx-sec blk" aria-labelledby="fn-h"><div class="kx-w"><div class="kx-final kx-rv">

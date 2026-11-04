@@ -17,6 +17,14 @@ function kx_i(string $n): string {
         'map'    => '<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>',
         'cal'    => '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/><path d="m10 13 4 4M14 13l-4 4"/>',
         'box'    => '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="m8 12 3 3 5-6"/>',
+        'users'  => '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M17 14.5c2.4.2 4 1.7 4.6 4.5"/>',
+        'book'   => '<path d="M4.5 4h4.5v16H4.5zM10.5 4H15v16h-4.5z"/><path d="m17 5.2 3.6 1-3.6 13.2-2.6-.8"/>',
+        'target' => '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+        'trend'  => '<path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/>',
+        'layers' => '<path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/>',
+        'search' => '<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
+        'star'   => '<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z"/>',
+        'refresh'=> '<path d="M20 11a8 8 0 0 0-14.6-4.5L4 8"/><path d="M4 3v5h5"/><path d="M4 13a8 8 0 0 0 14.6 4.5L20 16"/><path d="M20 21v-5h-5"/>',
     ][$n] ?? '';
     return '<svg class="kx-ic" viewBox="0 0 24 24" aria-hidden="true">' . $p . '</svg>';
 }
@@ -25,8 +33,8 @@ function kx_i(string $n): string {
 function kx_stars(): string {
     $star = '<svg viewBox="0 0 24 24"><path d="M12 0c.6 6.6 5.4 11.4 12 12-6.6.6-11.4 5.4-12 12-.6-6.6-5.4-11.4-12-12C6.6 11.4 11.4 6.6 12 0z"/></svg>';
     $x = '<svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>';
-    $pts = [['86%', '26%', 14, '#fff', $x], ['89.5%', '28%', 12, '#fff', $x], ['92.5%', '30.5%', 22, '#CDF549', $star], ['86%', '35%', 18, '#fff', $star], ['92%', '35%', 12, '#fff', $x],
-            ['8.5%', '45%', 12, '#fff', $x], ['11.5%', '47%', 12, '#fff', $x], ['14.5%', '49.5%', 20, '#CDF549', $star], ['7.5%', '54%', 16, '#fff', $star], ['13.8%', '53.5%', 11, '#fff', $x]];
+    $pts = [['86%', '26%', 14, '#fff', $x], ['89.5%', '28%', 12, '#fff', $x], ['92.5%', '30.5%', 22, '#FFB43B', $star], ['86%', '35%', 18, '#fff', $star], ['92%', '35%', 12, '#fff', $x],
+            ['8.5%', '45%', 12, '#fff', $x], ['11.5%', '47%', 12, '#fff', $x], ['14.5%', '49.5%', 20, '#FFB43B', $star], ['7.5%', '54%', 16, '#fff', $star], ['13.8%', '53.5%', 11, '#fff', $x]];
     $h = '<div class="kx-stars" aria-hidden="true">';
     foreach ($pts as $i => $p) $h .= '<i style="left:' . $p[0] . ';top:' . $p[1] . ';--s:' . $p[2] . 'px;--c:' . $p[3] . ';--dl:' . ($i * .37) . 's">' . $p[4] . '</i>';
     return $h . '</div>';
@@ -34,7 +42,7 @@ function kx_stars(): string {
 
 /** Lime wireframe ring in the lower-left corner of the hero. */
 function kx_ring(): string {
-    $h = '<svg class="kx-ring" viewBox="0 0 400 400" aria-hidden="true" fill="none" stroke="#B8E82E" stroke-width="1.6" opacity=".9">';
+    $h = '<svg class="kx-ring" viewBox="0 0 400 400" aria-hidden="true" fill="none" stroke="#F29102" stroke-width="1.6" opacity=".9">';
     for ($i = 0; $i < 14; $i++) { $rx = 70 + $i * 9; $h .= '<ellipse cx="200" cy="200" rx="' . $rx . '" ry="' . (190 - $i * 2) . '" transform="rotate(' . (28 + $i * 2) . ' 200 200)"/>'; }
     for ($i = 0; $i < 12; $i++) $h .= '<path d="M' . (60 + $i * 24) . ' 30 Q 200 ' . (200 + ($i - 6) * 10) . ' ' . (60 + $i * 24) . ' 370" opacity=".55"/>';
     return $h . '</svg>';
@@ -102,4 +110,34 @@ function kx_dock(string $label = 'Book now'): string {
 function kx_media(string $img, string $cap = '', string $badge = ''): string {
     return '<div class="kx-media kx-rv"><div class="kx-media-in"><img src="' . e(url('/assets/img/' . implode('/', array_map('rawurlencode', explode('/', $img))))) . '" alt="" fetchpriority="high">'
          . ($badge ? '<span class="kx-media-badge">' . e($badge) . '</span>' : '') . ($cap ? '<span class="kx-media-cap">' . e($cap) . '</span>' : '') . '</div></div>';
+}
+
+/** Row of real author photos with a proof line. */
+function kx_faces(string $html): string {
+    $imgs = glob(__DIR__ . '/../assets/img/client-images/*.{png,jpg,jpeg,webp,avif}', GLOB_BRACE) ?: []; natsort($imgs);
+    $h = '<div class="kx-faces"><span aria-hidden="true">';
+    foreach (array_slice(array_values($imgs), 0, 5) as $f) $h .= '<img src="' . e(asset('img/client-images/' . rawurlencode(basename($f)))) . '" alt="" width="40" height="40" loading="lazy">';
+    return $h . '</span><p>' . $html . '</p></div>';
+}
+
+/** Numbered rule rows (two columns). $items = [[title, text], ...] */
+function kx_rows(array $items): string {
+    $h = '<ol class="kx-rows">';
+    foreach ($items as $i => $s) $h .= '<li class="kx-rv" style="--d:' . ($i % 2) . '"><span class="n">0' . ($i + 1) . '</span><div><small>Step 0' . ($i + 1) . '</small><h3>' . e($s[0]) . '</h3><p>' . e($s[1]) . '</p></div></li>';
+    return $h . '</ol>';
+}
+
+/** Bento cards. $items = [[icon, title, text], ...]; the first card is the large one. */
+function kx_bento(array $items): string {
+    $h = '<div class="kx-bento n' . count($items) . '">';
+    foreach ($items as $i => $v) $h .= '<article class="kx-rv' . ($i === 0 ? ' big' : '') . '" style="--d:' . ($i % 3) . '"><span class="num" aria-hidden="true">0' . ($i + 1) . '</span><span class="ib">' . kx_i($v[0]) . '</span><h3>' . e($v[1]) . '</h3><p>' . e($v[2]) . '</p></article>';
+    return $h . '</div>';
+}
+
+/** Two-column FAQ section: heading and contact on the left, accordion on the right. */
+function kx_faqsec(string $h2Html, array $items, string $bg = '#0B0B0A', bool $left = false): string {
+    return '<section class="kx-sec" style="background:' . e($bg) . '" aria-labelledby="fq-h"><div class="kx-w kx-faqwrap"><div class="side">'
+         . '<p class="kx-kick">Questions</p><h2 class="kx-h2" id="fq-h">' . $h2Html . '</h2>'
+         . '<p>Can’t see your question? Talk to a real person.</p><a class="tel" href="tel:' . e(tel_href()) . '" data-lp-call>' . e(site('phone')) . '</a></div>'
+         . kx_faq($items, $left) . '</div></section>';
 }

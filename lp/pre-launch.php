@@ -26,22 +26,29 @@ include dirname(__DIR__) . '/includes/header.php';
 <!-- Hero -->
 <section class="kx-hero" aria-labelledby="lp-h1">
   <?= kx_stars() ?><?= kx_ring() ?>
-  <div class="kx-w">
-    <h1 class="kx-h1" id="lp-h1">Minimum <?= e($G) ?> in Book Sales Guaranteed.<br><span class="lime">Or We’ll Refund You.</span></h1>
-    <p class="kx-hero-p">We Launch 3 Books Every Month For 120 Days. From Research To Publishing And Advertising, We Handle It All.</p>
-    <p class="kx-sub" style="font-family:Inter,sans-serif;font-weight:700;text-transform:uppercase">12 Books. 120 Days. One Team.</p>
-    <p class="kx-hero-box kx-center" style="text-align:left">Hit $6K or get 100% of your money back.</p>
-    <?= kx_media('From first idea to finished book/Author Workspace with KDP Publishing Dashboard.png', 'Your 12-book portfolio, launched for you', '120-Day KDP Portfolio Engine') ?>
-    <div class="kx-hero-cta"><a class="kx-btn" href="#book" data-lp-cta>Book My Free KDP Strategy Call</a>
-      <p class="kx-note b">See How The 120-Day KDP Portfolio Engine Works Before You Publish Your Next Book.</p></div>
+  <div class="kx-w kx-hero-split">
+    <div>
+      <p class="kx-kick">12 books · 120 days · one team</p>
+      <h1 class="kx-h1" id="lp-h1">Minimum <?= e($G) ?> in book sales guaranteed. <span class="lime">Or we’ll refund you.</span></h1>
+      <p class="kx-hero-p">We launch 3 books every month for 120 days. From research to publishing and advertising, we handle it all.</p>
+      <p class="kx-hero-box">Hit $6K or get 100% of your money back.*</p>
+      <div class="kx-hero-cta"><a class="kx-btn" href="#book" data-lp-cta>Book my free KDP strategy call <?= kx_i('arrow') ?></a>
+        <p class="kx-note">See how the 120-Day KDP Portfolio Engine works before you publish your next book.</p></div>
+      <?= kx_faces('<b>' . e(data('stats')[0][0] . data('stats')[0][1]) . ' books</b> published for authors who keep 100% of their royalties.') ?>
+    </div>
+    <div class="kx-hero-vis">
+      <?= kx_media('From first idea to finished book/Author Workspace with KDP Publishing Dashboard.png', '', '120-Day KDP Portfolio Engine') ?>
+      <span class="kx-hero-float f1" aria-hidden="true"><i><?= kx_i('book') ?></i><span><b>12 books</b><small>launched in 120 days</small></span></span>
+      <span class="kx-hero-float f2" aria-hidden="true"><i><?= kx_i('trend') ?></i><span><b><?= e($G) ?></b><small>minimum sales target</small></span></span>
+    </div>
   </div>
 </section>
 <div class="kx-bar" aria-hidden="true"></div>
 
 <!-- The problem -->
 <section class="kx-sec" aria-labelledby="pr-h"><div class="kx-w">
-  <div class="kx-center"><span class="kx-tag">The problem</span></div>
-  <h2 class="kx-h2" id="pr-h" style="margin-top:20px">One book is not a<br><span class="lime">publishing strategy.</span></h2>
+  <div class="kx-center"><p class="kx-kick">The problem</p></div>
+  <h2 class="kx-h2" id="pr-h" style="margin-top:20px">One book is not a <span class="lime">publishing strategy.</span></h2>
   <div class="kx-prob kx-w kx-narrow" style="padding:0">
     <div class="kx-prob-txt kx-rv">
       <h3>Most authors spend months creating one book.</h3>
@@ -66,7 +73,7 @@ include dirname(__DIR__) . '/includes/header.php';
 
 <!-- 120 days -->
 <section class="kx-sec" id="plan" style="padding-top:clamp(30px,4vw,50px)" aria-labelledby="pl-h"><div class="kx-w">
-  <h2 class="kx-h2 l xl" id="pl-h">3 books every month.<br><span class="lime">12 books across 120 days.</span></h2>
+  <p class="kx-kick">The 120-day plan</p><h2 class="kx-h2 l xl" id="pl-h" style="margin-bottom:56px">3 books every month. <span class="lime">12 books across 120 days.</span></h2>
   <div class="kx-months">
   <?php $M = [['Books 1–3', ['Research the market.', 'Build the first titles.', 'Launch with the right positioning, keywords and categories.']], ['Books 4–6', ['Launch the next titles.', 'Review early sales data.', 'Improve listings and campaigns.']], ['Books 7–9', ['Expand the portfolio.', 'Identify stronger niches and titles.', 'Optimize based on real market response.']], ['Books 10–12', ['Complete the 12-book portfolio.', 'Improve existing titles.', 'Strengthen Amazon Ads.', 'Build the next growth plan.']]];
   foreach ($M as $i => $m): ?>
@@ -80,7 +87,7 @@ include dirname(__DIR__) . '/includes/header.php';
 
 <!-- Case studies -->
 <section class="kx-cases" aria-labelledby="cs-h"><div class="kx-w">
-  <h2 class="kx-h2" id="cs-h">Case <span class="lime">Studies</span></h2>
+  <h2 class="kx-h2" id="cs-h">Case <span class="lime">studies.</span></h2>
   <div class="kx-case-grid">
     <?= kx_case(['pill' => 'Peak-month performance', 'kpis' => [['$54,424', 'Total cost'], ['$131,604', 'Sales'], ['3,849', 'Purchases'], ['40.58%', 'ACOS']], 'a' => [10, 14, 12, 20, 16, 26, 22, 34, 28, 40, 36, 52, 60], 'b' => [6, 8, 7, 10, 9, 12, 14, 18, 22, 34, 50, 64, 80],
         'title' => 'Built Slow. Scaled Fast.', 'big' => '3,849 Books Sold. $131K in Sales.', 'p' => ['Real numbers from a live Amazon Ads account we run.', 'A smart pre-launch setup, patient testing early on, and aggressive scaling once the winners were clear.']]) ?>
@@ -92,15 +99,10 @@ include dirname(__DIR__) . '/includes/header.php';
 <!-- Whole launch -->
 <section class="kx-sec n2" aria-labelledby="wl-h" style="padding-top:20px"><div class="kx-w">
   <h2 class="kx-h2" id="wl-h" style="font-size:clamp(1.8rem,3.4vw,2.6rem);margin-bottom:10px">Other companies give you one piece.</h2>
-  <p class="kx-sub" style="font-size:clamp(1.6rem,3vw,2.3rem);font-weight:700;margin-bottom:20px">we handle the whole launch</p>
+  <p class="kx-h2" style="margin-bottom:20px"><span class="lime">We handle the whole launch.</span></p>
   <p class="kx-p">You shouldn’t have to hire one person for writing, another for editing, another for design and someone else for Amazon Ads.</p>
   <p class="kx-p" style="color:#fff;font-weight:700">AMZ United Press manages the complete publishing journey.</p>
-  <ol class="kx-steps6">
-  <?php $S = [['Research', 'Niche research, Competitor analysis, Topic selection, Market opportunity.'], ['Content', 'Scripting, Book writing, Editing, Content refinement.'], ['Design', 'Cover design, Interior formatting, A+ content.'], ['Publishing', 'KDP setup, Title & subtitle, Book description, Keywords, Categories, Pricing.'], ['Launch', 'Review strategy, Launch preparation, Amazon Ads, Listing optimization.'], ['Growth', 'Performance tracking, Ad optimization, Pricing adjustments, Portfolio optimization.']];
-  foreach ($S as $i => $s): ?>
-    <li class="kx-rv" style="--d:<?= $i % 3 ?>"><div class="kx-n-out" aria-hidden="true"><b>0<?= $i + 1 ?></b><i></i></div><span class="kx-chip-s">Step 0<?= $i + 1 ?></span><h3><?= e($s[0]) ?></h3><p><?= e($s[1]) ?></p></li>
-  <?php endforeach; ?>
-  </ol>
+  <?= kx_rows([['Research', 'Niche research, competitor analysis, topic selection, market opportunity.'], ['Content', 'Scripting, book writing, editing, content refinement.'], ['Design', 'Cover design, interior formatting, A+ content.'], ['Publishing', 'KDP setup, title & subtitle, book description, keywords, categories, pricing.'], ['Launch', 'Review strategy, launch preparation, Amazon Ads, listing optimization.'], ['Growth', 'Performance tracking, ad optimization, pricing adjustments, portfolio optimization.']]) ?>
 </div></section>
 
 <!-- Booking -->
@@ -121,10 +123,7 @@ include dirname(__DIR__) . '/includes/header.php';
 <!-- Business -->
 <section class="kx-sec" aria-labelledby="bz-h"><div class="kx-w" style="max-width:1000px">
   <h2 class="kx-h2" id="bz-h" style="font-size:clamp(1.6rem,2.8vw,2.3rem)">We don’t just help you publish. <span class="lime">We help you build a publishing business.</span></h2>
-  <div class="kx-vals">
-  <?php $V = [['One team', 'No chasing multiple freelancers. Writing, editing, design, publishing and marketing are managed under one system.'], ['Three books every month', 'Instead of putting all your expectations on one title, we create multiple opportunities to find what works.'], ['Strategy before publishing', 'Keywords, categories, pricing, positioning and launch planning happen before the books go live.'], ['Marketing after publishing', 'We don’t disappear after launch day. Amazon Ads and optimization continue as we collect data.'], ['Portfolio-level thinking', 'We use the performance of the full portfolio to make better publishing decisions.'], ['120-day roadmap', 'You know what is being built, launched and optimized throughout the program.']];
-  foreach ($V as $i => $v): ?><article class="kx-rv" style="--d:<?= $i % 3 ?>"><h3><?= e($v[0]) ?></h3><p><?= e($v[1]) ?></p></article><?php endforeach; ?>
-  </div>
+  <?= kx_bento([['users', 'One team', 'No chasing multiple freelancers. Writing, editing, design, publishing and marketing are managed under one system.'], ['book', 'Three books every month', 'Instead of putting all your expectations on one title, we create multiple opportunities to find what works.'], ['target', 'Strategy before publishing', 'Keywords, categories, pricing, positioning and launch planning happen before the books go live.'], ['trend', 'Marketing after publishing', 'We don’t disappear after launch day. Amazon Ads and optimization continue as we collect data.'], ['layers', 'Portfolio-level thinking', 'We use the performance of the full portfolio to make better publishing decisions.'], ['map', '120-day roadmap', 'You know what is being built, launched and optimized throughout the program.']]) ?>
 </div></section>
 
 <!-- Authors -->
@@ -135,10 +134,7 @@ include dirname(__DIR__) . '/includes/header.php';
 </section>
 
 <!-- FAQ -->
-<section class="kx-sec n3" aria-labelledby="fq-h"><div class="kx-w">
-  <h2 class="kx-h2 nc" id="fq-h" style="font-weight:600;line-height:1.5">The questions people ask<br>right before they <span class="lime">click buy</span></h2>
-  <?= kx_faq($FAQ) ?>
-</div></section>
+<?= kx_faqsec('The questions people ask right before they <span class="lime">click buy.</span>', $FAQ) ?>
 
 <!-- Guarantee -->
 <section class="kx-sec" style="background:#071214" id="guarantee" aria-labelledby="gu-h"><div class="kx-w kx-center">

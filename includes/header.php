@@ -50,8 +50,6 @@ header('X-Content-Type-Options: nosniff');
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 <link rel="stylesheet" href="<?= e(asset('css/fonts.css')) ?>">
 <?php if (!empty($meta['kx'])): /* campaign pages: own stylesheet and fonts */ ?>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap">
 <link rel="stylesheet" href="<?= e(asset('css/kx.css')) ?>">
 <?php elseif (!empty($meta['lp'])): /* landing pages: one standalone stylesheet */ ?>
 <link rel="stylesheet" href="<?= e(asset('css/lp.css')) ?>">
