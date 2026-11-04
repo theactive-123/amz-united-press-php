@@ -1,10 +1,10 @@
 </main>
 
-<?php if (!empty($meta['kx'])): ?>
-<footer class="kx-foot"><div class="kx-w">
-  <a class="kx-logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo-light.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>" loading="lazy"></a>
-  <p class="kx-foot-c"><a href="tel:<?= e(tel_href()) ?>" data-lp-call><?= e(site('phone')) ?></a><span aria-hidden="true">·</span><?= email_reveal('Email us') ?><span aria-hidden="true">·</span><a href="<?= e(url('/privacy')) ?>">Privacy Policy</a><span aria-hidden="true">·</span><a href="<?= e(url('/terms')) ?>">Terms &amp; Conditions</a></p>
-  <p class="kx-foot-s">© <?= date('Y') ?> <?= e(site('name')) ?>. All rights reserved.</p>
+<?php if (!empty($meta['ad'])): ?>
+<footer class="ad-foot"><div class="ad-w ad-foot-in">
+  <a class="ad-logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo-light.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>" loading="lazy"></a>
+  <p class="ad-foot-c"><a href="tel:<?= e(tel_href()) ?>" data-lp-call><?= e(site('phone')) ?></a><span aria-hidden="true">·</span><?= email_reveal('Email us') ?><span aria-hidden="true">·</span><a href="<?= e(url('/privacy')) ?>">Privacy Policy</a><span aria-hidden="true">·</span><a href="<?= e(url('/terms')) ?>">Terms &amp; Conditions</a></p>
+  <p class="ad-foot-s">© <?= date('Y') ?> <?= e(site('name')) ?>. All rights reserved. Results described on this page are not typical and depend on your book, niche and budget.</p>
 </div></footer>
 <?php elseif (!empty($meta['lp'])): ?>
 <footer class="lpf">
@@ -62,6 +62,6 @@
 <script src="<?= e(asset('js/main.js')) ?>"></script>
 <script src="<?= e(asset('js/forms.js')) ?>"></script>
 <?php if (!empty($meta['lp'])): ?><script src="<?= e(asset('js/lp.js')) ?>"></script><?php endif; ?>
-<?php if (!empty($meta['kx'])): ?><script src="<?= e(asset('js/kx.js')) ?>"></script><?php endif; ?>
+<?php if (!empty($meta['ad'])): ?><script src="<?= e(asset('js/ad.js')) ?>"></script><?php endif; ?>
 </body>
 </html>

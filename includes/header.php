@@ -49,8 +49,8 @@ header('X-Content-Type-Options: nosniff');
 <link rel="preload" href="<?= e(asset('fonts/instrument-serif-italic-400.woff2')) ?>" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 <link rel="stylesheet" href="<?= e(asset('css/fonts.css')) ?>">
-<?php if (!empty($meta['kx'])): /* campaign pages: own stylesheet and fonts */ ?>
-<link rel="stylesheet" href="<?= e(asset('css/kx.css')) ?>">
+<?php if (!empty($meta['ad'])): /* ad landing pages: own stylesheet */ ?>
+<link rel="stylesheet" href="<?= e(asset('css/ad.css')) ?>">
 <?php elseif (!empty($meta['lp'])): /* landing pages: one standalone stylesheet */ ?>
 <link rel="stylesheet" href="<?= e(asset('css/lp.css')) ?>">
 <?php else: ?>
@@ -81,11 +81,15 @@ $tel = tel_href();
 $resources = [['/portfolio', 'Portfolio', 'portfolio'], ['/how-it-works', 'How It Works', 'how-it-works'], ['/faq', 'FAQs', 'faq'], ['/pricing', 'Pricing', 'pricing'], ['/about', 'About Us', 'about'], ['/contact', 'Contact Us', 'contact']];
 $curCat = $meta['cat'] ?? '';
 ?>
-<?php if (!empty($meta['kx'])): ?>
-<header class="kx-top">
-  <div class="kx-w kx-top-in">
-    <a class="kx-logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo-light.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>"></a>
-    <a class="kx-top-btn" href="#book" data-lp-cta><?= e($meta['kx_btn'] ?? 'Book Free Session') ?></a>
+<?php if (!empty($meta['ad'])): ?>
+<div class="ad-strip"><div class="ad-w"><?= ic('shield') ?><span><?= e($meta['ad_strip'] ?? 'You keep 100% of your rights and royalties · Free consultation · Written quote before we start') ?></span></div></div>
+<header class="ad-top">
+  <div class="ad-w ad-top-in">
+    <a class="ad-logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>"></a>
+    <div class="ad-top-r">
+      <a class="ad-top-tel" href="tel:<?= e(tel_href()) ?>" data-lp-call><?= ic('phone') ?><span><small>Talk to a publishing expert</small><b><?= e(site('phone')) ?></b></span></a>
+      <a class="ad-btn sm" href="#book" data-lp-cta><?= e($meta['ad_btn'] ?? 'Get a Free Quote') ?></a>
+    </div>
   </div>
 </header>
 <?php elseif (!empty($meta['lp'])): ?>
