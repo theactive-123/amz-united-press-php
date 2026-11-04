@@ -51,6 +51,7 @@ header('X-Content-Type-Options: nosniff');
 <link rel="stylesheet" href="<?= e(asset('css/fonts.css')) ?>">
 <?php if (!empty($meta['lp'])): /* landing pages: one standalone stylesheet */ ?>
 <link rel="stylesheet" href="<?= e(asset('css/lp.css')) ?>">
+<?php if (!empty($meta['lx'])): ?><link rel="stylesheet" href="<?= e(asset('css/lx.css')) ?>"><?php endif; ?>
 <?php else: ?>
 <link rel="stylesheet" href="<?= e(asset('css/base.css')) ?>">
 <link rel="stylesheet" href="<?= e(asset('css/theme.css')) ?>">
