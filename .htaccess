@@ -19,6 +19,7 @@ RewriteEngine On
 RewriteRule ^(includes|storage|partials)/ - [F,L]
 RewriteRule (^|/)\.(?!well-known) - [F,L]
 RewriteRule ^(README\.md|DESIGN\.md)$ - [F,L]
+RewriteRule ^docs(/|$) - [F,L]
 
 # --- Redirect /index.php and /page.php to the clean URL ---
 RewriteCond %{THE_REQUEST} \s/+(.*?)index\.php[\s?] [NC]
