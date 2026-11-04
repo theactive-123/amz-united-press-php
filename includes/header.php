@@ -38,10 +38,10 @@ header('X-Content-Type-Options: nosniff');
 <meta name="twitter:image" content="<?= e($ogImage) ?>">
 
 <!-- Icons and app manifest -->
-<link rel="apple-touch-icon" sizes="180x180" href="<?= e(url('/apple-touch-icon.png')) ?>">
-<link rel="icon" type="image/png" sizes="32x32" href="<?= e(url('/favicon-32x32.png')) ?>">
-<link rel="icon" type="image/png" sizes="16x16" href="<?= e(url('/favicon-16x16.png')) ?>">
+<link rel="icon" type="image/png" sizes="96x96" href="<?= e(url('/favicon-96x96.png')) ?>">
+<link rel="icon" type="image/svg+xml" href="<?= e(url('/favicon.svg')) ?>">
 <link rel="shortcut icon" href="<?= e(url('/favicon.ico')) ?>">
+<link rel="apple-touch-icon" sizes="180x180" href="<?= e(url('/apple-touch-icon.png')) ?>">
 <link rel="manifest" href="<?= e(url('/site.webmanifest')) ?>">
 
 <!-- Fonts and styles -->
