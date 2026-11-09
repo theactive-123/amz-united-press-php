@@ -3,7 +3,7 @@
 
 :root{--ink:#141413;--ink2:#1E1D1B;--ink3:#2C2A27;--ivory:#FBFAF7;--sand:#F4F0E8;--sand2:#ECE6DA;--paper:#fff;
   --or:#F29102;--or2:#FFB43B;--ord:#B04A00;--or-rgb:242,145,2;--grad:linear-gradient(135deg,#FFB43B 0%,#F29102 46%,#E4690A 100%);
-  --tx:#141413;--tx2:#4D4943;--tx3:#77726A;--inv:#FBFAF7;--inv2:#D8D5CB;--inv3:#A9A49A;--ln:#E3DED4;--lnd:rgba(255,255,255,.12);
+  --tx:#141413;--tx2:#4D4943;--tx3:#686359;--inv:#FBFAF7;--inv2:#D8D5CB;--inv3:#A9A49A;--ln:#E3DED4;--lnd:rgba(255,255,255,.12);
   --sans:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;--serif:'Instrument Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
   --r:22px;--sh:0 1px 2px rgba(20,20,19,.05),0 22px 44px -26px rgba(20,20,19,.35);--sh2:0 40px 80px -40px rgba(0,0,0,.6)}
 *,*::before,*::after{box-sizing:border-box}

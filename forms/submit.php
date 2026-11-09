@@ -109,6 +109,5 @@ if (!$crmSent) respond(false, 'We could not send your message right now. Please 
 
 $hits[] = time();
 @file_put_contents($rlFile, json_encode($hits), LOCK_EX);
-unset($_SESSION['flash']);
-if (!$isAjax) $_SESSION['lead_conversion'] = ['form_source' => $source, 'service' => $help];
+if (!$isAjax) { session_boot(); unset($_SESSION['flash']); $_SESSION['lead_conversion'] = ['form_source' => $source, 'service' => $help]; }
 respond(true, 'Thank you - we have received your message.', [], 200, $old, $source);

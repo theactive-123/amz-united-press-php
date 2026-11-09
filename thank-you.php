@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/includes/bootstrap.php';
-session_boot();
+if (isset($_COOKIE['amzsid'])) session_boot();
 $conversion = $_SESSION['lead_conversion'] ?? null;
 unset($_SESSION['lead_conversion']);
 $meta = [

@@ -6,6 +6,8 @@
  *   schema (optional list of JSON-LD arrays), noindex (optional true), og_type (optional)
  */
 $meta = array_merge(['title' => site('name'), 'description' => '', 'path' => '/', 'nav' => '', 'image' => '/assets/img/og-image.jpg', 'schema' => [], 'noindex' => false, 'og_type' => 'website'], $meta ?? []);
+// Paid-ad landing pages repeat service-page content, so keep them out of search results.
+if (!empty($meta['ad']) || !empty($meta['lp'])) $meta['noindex'] = true;
 $canonical = abs_url($meta['path'] === '/' ? '/' : $meta['path']);
 $ogImage   = str_starts_with($meta['image'], 'http') ? $meta['image'] : abs_url($meta['image']);
 $schemas   = array_merge([
@@ -13,6 +15,9 @@ $schemas   = array_merge([
     ['@context' => 'https://schema.org', '@type' => 'WebSite', 'name' => site('name'), 'url' => abs_url('/')],
 ], $meta['schema']);
 header('X-Content-Type-Options: nosniff');
+// Pages carry no personal data, so a CDN (e.g. Cloudflare with a cache rule) may keep them for 10 minutes.
+// Visitors with a session (form error messages) always get a fresh page.
+if (!headers_sent()) header(isset($_COOKIE['amzsid']) || $meta['path'] === '/thank-you' ? 'Cache-Control: no-store' : 'Cache-Control: public, max-age=0, s-maxage=600, stale-while-revalidate=60');
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -47,29 +52,23 @@ header('X-Content-Type-Options: nosniff');
 <!-- Fonts and styles -->
 <link rel="preload" href="<?= e(asset('fonts/inter-100-900.woff2')) ?>" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="<?= e(asset('fonts/instrument-serif-italic-400.woff2')) ?>" as="font" type="font/woff2" crossorigin>
-<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-<link rel="stylesheet" href="<?= e(asset('css/fonts.css')) ?>">
-<?php if (!empty($meta['ad'])): /* ad landing pages: own stylesheet */ ?>
-<link rel="stylesheet" href="<?= e(asset('css/ad.css')) ?>">
-<?php elseif (!empty($meta['lp'])): /* landing pages: one standalone stylesheet */ ?>
-<link rel="stylesheet" href="<?= e(asset('css/lp.css')) ?>">
-<?php else: ?>
-<link rel="stylesheet" href="<?= e(asset('css/base.css')) ?>">
-<link rel="stylesheet" href="<?= e(asset('css/theme.css')) ?>">
-<link rel="stylesheet" href="<?= e(asset('css/home.css')) ?>">
-<link rel="stylesheet" href="<?= e(asset('css/pages.css')) ?>">
-<link rel="stylesheet" href="<?= e(asset('css/site.css')) ?>">
-<?php if (!empty($meta['sv'])): ?><link rel="stylesheet" href="<?= e(asset('css/sv.css')) ?>"><?php endif; ?>
-<?php if (!empty($meta['blog'])): ?><link rel="stylesheet" href="<?= e(asset('css/blog.css')) ?>"><?php endif; ?>
-<?php endif; ?>
+<?php
+// One stylesheet per page type (see css_bundle in functions.php).
+if (!empty($meta['ad']))     echo css_bundle('ad', ['fonts', 'ad']);
+elseif (!empty($meta['lp'])) echo css_bundle('lp', ['fonts', 'lp']);
+else echo css_bundle('site' . (!empty($meta['sv']) ? '-sv' : '') . (!empty($meta['blog']) ? '-blog' : ''),
+    array_merge(['fonts', 'base', 'theme', 'home', 'pages', 'site'], !empty($meta['sv']) ? ['sv'] : [], !empty($meta['blog']) ? ['blog'] : []));
+?>
+
 <script>document.documentElement.classList.add('js');</script>
 
 <?php foreach ($schemas as $s): ?>
 <script type="application/ld+json"><?= json_encode($s, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?></script>
 <?php endforeach; ?>
 <?php if (cfg('ga4_id')): ?>
-<script async src="https://www.googletagmanager.com/gtag/js?id=<?= e(cfg('ga4_id')) ?>"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','<?= e(cfg('ga4_id')) ?>');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','<?= e(cfg('ga4_id')) ?>');
+/* Load Google Analytics after the page is ready (first interaction or 3.5 s after load) so it never slows the first paint. */
+(function(){var done=0,ev=['scroll','pointerdown','keydown','touchstart'];function go(){if(done)return;done=1;ev.forEach(function(e){removeEventListener(e,go)});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=<?= e(cfg('ga4_id')) ?>';document.head.appendChild(s)}ev.forEach(function(e){addEventListener(e,go,{passive:true,once:true})});addEventListener('load',function(){setTimeout(go,3500)})})();</script>
 <?php endif; ?>
 </head>
 <body>
@@ -88,7 +87,7 @@ $curCat = $meta['cat'] ?? '';
   <div class="ad-w ad-top-in">
     <a class="ad-logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>"></a>
     <div class="ad-top-r">
-      <a class="ad-top-tel" href="tel:<?= e(tel_href()) ?>" data-lp-call><?= ic('phone') ?><span><small>Talk to a publishing expert</small><b><?= e(site('phone')) ?></b></span></a>
+      <a class="ad-top-tel" href="tel:<?= e(tel_href()) ?>" data-lp-call><?= ic('phone') ?><span class="sr">Call <?= e(site('phone')) ?></span><span aria-hidden="true"><small>Talk to a publishing expert</small><b><?= e(site('phone')) ?></b></span></a>
       <a class="ad-btn sm" href="#book" data-lp-cta><?= e($meta['ad_btn'] ?? 'Get a Free Quote') ?></a>
     </div>
   </div>

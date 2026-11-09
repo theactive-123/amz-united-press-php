@@ -1,3 +1,6 @@
 /includes/config.local.php
 /storage/*.log
 /storage/ratelimit/
+# Generated CSS bundles (rebuilt automatically from assets/css/*.css)
+assets/css/bundle-*.css
+

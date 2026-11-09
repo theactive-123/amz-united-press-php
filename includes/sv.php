@@ -85,7 +85,7 @@ function sv_hero_art(string $kind, int $s): string {
 
 /** Real author photos (client images), for proof rows and CTA banners. */
 function sv_faces(int $n = 5): string {
-    $imgs = glob(__DIR__ . '/../assets/img/client-images/*.{png,jpg,jpeg,webp,avif}', GLOB_BRACE) ?: []; natsort($imgs);
+    $imgs = glob(__DIR__ . '/../assets/img/client-images/*.{png,jpg,jpeg}', GLOB_BRACE) ?: []; natsort($imgs);
     $h = '';
     foreach (array_slice(array_values($imgs), 0, $n) as $f) $h .= '<img src="' . e(asset('img/client-images/' . rawurlencode(basename($f)))) . '" alt="" loading="lazy" decoding="async" width="48" height="48">';
     return $h;
@@ -198,7 +198,7 @@ function sv_proof(string $kind): string {
              . '<div class="x-w list-foot"><div class="arrows"><button type="button" id="list-prev" aria-label="Previous covers"><svg class="ic" aria-hidden="true" style="transform:scaleX(-1)"><use href="#i-arrow"/></svg></button><button type="button" id="list-next" aria-label="Next covers"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button></div></div></section>';
     }
     if ($kind === 'clients') {
-        $imgs = glob(__DIR__ . '/../assets/img/client-images/*.{png,jpg,jpeg,webp,avif}', GLOB_BRACE) ?: []; natsort($imgs);
+        $imgs = glob(__DIR__ . '/../assets/img/client-images/*.{png,jpg,jpeg}', GLOB_BRACE) ?: []; natsort($imgs);
         $g = '';
         for ($c = 0; $c < 2; $c++) { $g .= '<div class="trusted-group">'; foreach ($imgs as $f) $g .= '<img src="' . e(asset('img/client-images/' . rawurlencode(basename($f)))) . '" alt="" loading="lazy" decoding="async">'; $g .= '</div>'; }
         return '<section class="x-strip trusted-strip" aria-labelledby="sv-trust"><div class="trusted-label"><span class="trusted-eyebrow"><i aria-hidden="true"></i> Our author community</span><h2 id="sv-trust">Trusted by <em>authors.</em></h2><p>Our authors, proudly holding the books they brought to life.</p></div>'

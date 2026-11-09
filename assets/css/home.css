@@ -81,7 +81,7 @@ img.img-fail{opacity:0}
 .x-man-photo .x-frame{aspect-ratio:4/5}
 .x-man .x-h2{max-width:8em}
 .x-big{font-size:clamp(1.55rem,2.8vw,2.55rem);font-weight:700;line-height:1.22;letter-spacing:-.03em;margin:0 0 clamp(36px,5vw,64px);max-width:22em}
-.scrub span{color:rgba(20,20,19,.22);transition:color .35s}
+.scrub span{color:rgba(20,20,19,.5);transition:color .35s}
 .scrub span.lit{color:var(--ink)}
 .x-commit{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .x-commit li{display:flex;gap:16px;align-items:flex-start;padding:22px;border-radius:22px;background:#fff;border:1px solid var(--line);font-size:1.05rem;line-height:1.5;font-weight:500}

@@ -12,12 +12,25 @@ function session_boot(): void {
         session_start();
     }
 }
+/**
+ * Form security token. It is signed with the site secret instead of being stored in a session, so pages need
+ * no cookie and can be cached. Valid for 7 days (long enough for a cached page), checked again on submit.
+ */
 function csrf_token(): string {
-    session_boot();
-    if (empty($_SESSION['csrf'])) $_SESSION['csrf'] = bin2hex(random_bytes(24));
-    return $_SESSION['csrf'];
+    $t = (string)time();
+    return $t . '.' . hash_hmac('sha256', 'csrf|' . $t, (string)cfg('security.secret', 'x'));
 }
-function csrf_ok(?string $t): bool { session_boot(); return !empty($_SESSION['csrf']) && is_string($t) && hash_equals($_SESSION['csrf'], $t); }
+function csrf_ok(?string $tok): bool {
+    if (!is_string($tok) || $tok === '') return false;
+    if (str_contains($tok, '.')) {
+        [$t, $sig] = explode('.', $tok, 2);
+        return ctype_digit($t) && (time() - (int)$t) < 7 * 86400
+            && hash_equals(hash_hmac('sha256', 'csrf|' . $t, (string)cfg('security.secret', 'x')), $sig);
+    }
+    // Older session-based token (pages opened before this change).
+    session_boot();
+    return !empty($_SESSION['csrf']) && hash_equals($_SESSION['csrf'], $tok);
+}
 
 /** A signed timestamp: lets the server see how long the form was open (bots submit instantly). */
 function form_stamp(): string { $t = (string)time(); return $t . '.' . hash_hmac('sha256', $t, (string)cfg('security.secret', 'x')); }
@@ -35,7 +48,8 @@ function form_stamp_age(?string $s): ?int {
  */
 function render_form(string $p, string $heading, string $sub, string $source, string $btn = 'Send my request', ?int $preselect = null): string {
     $flash = '';
-    session_boot();
+    // Only visitors coming back from a failed non-JavaScript submit have a session (with the error message).
+    if (isset($_COOKIE['amzsid'])) session_boot();
     $old = [];
     if (!empty($_SESSION['flash'][$source])) { $f = $_SESSION['flash'][$source]; unset($_SESSION['flash'][$source]); $flash = $f['message'] ?? ''; $old = $f['old'] ?? []; $errs = $f['errors'] ?? []; }
     $errs = $errs ?? [];

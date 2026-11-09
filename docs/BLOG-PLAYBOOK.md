@@ -11,7 +11,8 @@ Used by the daily scheduled blog task. Follow it exactly; it keeps every article
   `bp-table`, `bp-tip`, `bp-fig`, `bp-math`, `bp-ol`, `bp-flags`, `bp-budgets`, `bp-cta` (in-article CTA box).
 - Featured image: 1200×630 JPG in `assets/img/blog/{slug}.jpg`, rendered in brand style (ink background,
   orange gradient accent, Inter headline with an Instrument Serif italic line, logo-light.png bottom-left).
-  Reuse images from `assets/img/lp/` inside the article where they genuinely fit.
+  Also save a WebP copy next to it (`assets/img/blog/{slug}.webp`, quality ~80): pages serve the WebP automatically,
+  while the JPG stays for social sharing. Reuse images from `assets/img/lp/` inside the article where they genuinely fit.
 
 ## Topic selection
 - Check `docs/blog-log.md` and existing `includes/posts/` first. Never repeat a primary keyword or cover

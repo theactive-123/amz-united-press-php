@@ -41,7 +41,7 @@ function lp_checks(array $items, bool $two = false): string {
 function lp_img(string $path): string { return url(implode('/', array_map('rawurlencode', explode('/', $path)))); }
 
 function lp_author_photos(): array {
-    $f = glob(ROOT . '/assets/img/client-images/*.{png,jpg,jpeg,webp}', GLOB_BRACE) ?: [];
+    $f = glob(ROOT . '/assets/img/client-images/*.{png,jpg,jpeg}', GLOB_BRACE) ?: [];
     natsort($f);
     return array_values(array_map(fn($x) => asset('img/client-images/' . rawurlencode(basename($x))), $f));
 }

@@ -5,5 +5,4 @@ Disallow: /includes/
 Disallow: /storage/
 Disallow: /thank-you
 
-# Replace with your real domain before launch
-Sitemap: https://www.example.com/sitemap.xml
+Sitemap: https://amzunitedpress.com/sitemap.xml

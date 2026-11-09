@@ -35,12 +35,12 @@
         </ul>
       </div>
       <?php foreach (data('cats') as $c): if ($c['k'] === 'edit') continue; ?>
-      <div><h4><?= e($c['t']) ?></h4><ul>
+      <div><h2 class="fh"><?= e($c['t']) ?></h2><ul>
         <?php foreach (subs_of($c['k']) as $s): ?><li><a href="<?= e(url('/services/' . $s['slug'])) ?>"><?= e($s['name']) ?></a></li><?php endforeach; ?>
-        <?php if ($c['k'] === 'publish'): ?></ul><h4 class="foot-h-gap"><?= e(cat_by_key('edit')['t']) ?></h4><ul><?php foreach (subs_of('edit') as $s): ?><li><a href="<?= e(url('/services/' . $s['slug'])) ?>"><?= e($s['name']) ?></a></li><?php endforeach; ?><?php endif; ?>
+        <?php if ($c['k'] === 'publish'): ?></ul><h2 class="fh foot-h-gap"><?= e(cat_by_key('edit')['t']) ?></h2><ul><?php foreach (subs_of('edit') as $s): ?><li><a href="<?= e(url('/services/' . $s['slug'])) ?>"><?= e($s['name']) ?></a></li><?php endforeach; ?><?php endif; ?>
       </ul></div>
       <?php endforeach; ?>
-      <div><h4>Resources</h4><ul>
+      <div><h2 class="fh">Resources</h2><ul>
         <li><a href="<?= e(url('/portfolio')) ?>">Portfolio</a></li><li><a href="<?= e(url('/how-it-works')) ?>">How It Works</a></li><li><a href="<?= e(url('/faq')) ?>">FAQs</a></li><li><a href="<?= e(url('/pricing')) ?>">Pricing</a></li><li><a href="<?= e(url('/about')) ?>">About Us</a></li><li><a href="<?= e(url('/blog')) ?>">Blog</a></li><li><a href="<?= e(url('/contact')) ?>">Contact Us</a></li><li><a href="<?= e(url('/services')) ?>">All Services</a></li>
       </ul></div>
     </div>

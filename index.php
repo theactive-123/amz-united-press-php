@@ -28,16 +28,16 @@ include __DIR__ . '/includes/header.php';
       <p class="x-deck ent" style="--d:3"><span class="sr">We write, edit, design, publish and launch your ebook.</span><span aria-hidden="true">We <span class="rot"><b id="rot">write</b></span> your ebook. You keep every royalty.</span></p>
       <div class="x-hero-body ent" style="--d:4">
         <div class="seg" role="radiogroup" aria-label="I am a…"><button type="button" role="radio" aria-checked="true" data-aud="author">For authors</button><button type="button" role="radio" aria-checked="false" data-aud="biz">For founders &amp; businesses</button></div>
-        <p class="lead" id="hero-lead" aria-live="polite"></p>
+        <p class="lead" id="hero-lead" aria-live="polite">New writer or published author, AMZ United Press gives you every self-publishing service in one place: ghostwriting, editing, cover design, formatting, Amazon publishing and book marketing. You stay the author, with 100% of your rights and royalties.</p>
         <div class="hero-actions">
           <button type="button" class="btn btn-primary" data-quote>Get a Free Quote</button>
           <a class="btn btn-ghost" href="tel:<?= e(tel_href()) ?>"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><?= e(site('phone')) ?></a>
         </div>
-        <div class="hero-pop"><span class="hand">Popular services</span><span id="hero-pop" style="display:contents"></span></div>
+        <div class="hero-pop"><span class="hand">Popular services</span><span id="hero-pop" style="display:contents"><?php foreach ([['ghostwriting-services', 'Ghostwriting'], ['book-editing-services', 'Book editing'], ['publishing-services', 'Amazon publishing']] as $hp): ?><a class="pchip" href="<?= e(url('/services/' . $hp[0])) ?>"><?= e($hp[1]) ?> <?= ic('arrow') ?></a><?php endforeach; ?></span></div>
       </div>
       </div>
       <div class="banner-right-image">
-        <img src="<?= e(asset('img/banner-right-image.png')) ?>" alt="Two ebook covers created by AMZ United Press" fetchpriority="high" decoding="async">
+        <img src="<?= e(asset('img/banner-right-image.png')) ?>" srcset="<?= e(url('/assets/img/banner-right-image-720.webp')) ?> 720w, <?= e(url('/assets/img/banner-right-image.webp')) ?> 1400w" sizes="(max-width: 900px) 92vw, 55vw" width="1400" height="971" alt="Two ebook covers created by AMZ United Press" fetchpriority="high" decoding="async">
       </div>
     </div>
     <a class="x-scroll" href="#how" aria-label="Scroll to the next section"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -50,7 +50,7 @@ include __DIR__ . '/includes/header.php';
     <div class="trusted-window" aria-hidden="true">
       <div class="x-strip-t" id="x-strip">
         <?php
-          $clientImages = glob(__DIR__ . '/assets/img/client-images/*.{png,jpg,jpeg,webp,avif}', GLOB_BRACE) ?: [];
+          $clientImages = glob(__DIR__ . '/assets/img/client-images/*.{png,jpg,jpeg}', GLOB_BRACE) ?: [];
           natsort($clientImages);
           for ($copy = 0; $copy < 2; $copy++):
         ?><div class="trusted-group"><?php foreach ($clientImages as $clientImage): ?><img src="<?= e(asset('img/client-images/' . rawurlencode(basename($clientImage)))) ?>" alt="" loading="lazy" decoding="async"><?php endforeach; ?></div><?php endfor; ?>
@@ -191,7 +191,7 @@ include __DIR__ . '/includes/header.php';
       <p class="x-kick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 20 1-4.2L16.2 4.6l3.2 3.2L8.2 19z"/><path d="m14 6.8 3.2 3.2"/></svg>Cover maker</p>
       <h2 class="x-h2 rv" id="st-big">Try a cover. <em>Right now.</em></h2>
       <p class="x-sub">Type your title, pick a genre and watch a concept cover appear. It is a quick sketch of what our designers can do.</p>
-      <aside class="hero-press" id="studio" role="group" aria-labelledby="st-h">
+      <aside class="hero-press" id="studio" aria-labelledby="st-h">
         <div class="st-top"><h3 id="st-h">Live preview</h3><span aria-hidden="true">Concept</span></div>
         <div class="st-stage" id="st-stage"><div class="bk3d" id="st-book"></div></div>
         <div class="studio">

@@ -661,3 +661,5 @@
   .svx-cta-pills{justify-content:flex-start}
   .svx-stage .svx-book{width:150px}.svx-stage .svx-kindle{width:200px}
 }
+
+.svx-crumbs a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}

@@ -41,7 +41,7 @@ function initShelf(tabsEl,hostEl,limit){
     if(limit)list=list.slice(0,limit);
     var c=colsNow(),rows='';
     for(var k=0;k<list.length;k+=c){
-      rows+='<div class="srow" style="--cols:'+c+'">'+list.slice(k,k+c).map(function(o){return '<button type="button" class="sb" data-i="'+o.i+'" aria-label="'+esc(o.w.t)+' by '+esc(o.w.by)+', '+esc(o.w.g)+'">'+bookHTML(o.w,uid())+'<span class="lbl">'+esc(o.w.t)+'</span><span class="book-author">'+esc(o.w.by)+'</span>'+reviewHTML(o.w)+'</button>'}).join('')+'</div>';
+      rows+='<div class="srow" style="--cols:'+c+'">'+list.slice(k,k+c).map(function(o){return '<button type="button" class="sb" data-i="'+o.i+'">'+bookHTML(o.w,uid())+'<span class="lbl">'+esc(o.w.t)+'</span><span class="book-author">'+esc(o.w.by)+'</span>'+reviewHTML(o.w)+'</button>'}).join('')+'</div>';
     }
     hostEl.innerHTML=rows;
     hostEl.setAttribute('aria-labelledby',$('[aria-selected="true"]',tabsEl).id);
@@ -66,13 +66,13 @@ function initList(track){
   belt.className='cover-belt';track.appendChild(belt);
   for(var group=0;group<3;group++)WORK.forEach(function(w,i){
     var card=document.createElement('button');card.type='button';card.className='li';card.dataset.i=i;
-    card.setAttribute('aria-label',w.t+' by '+w.by );
+    
     if(group!==1){card.tabIndex=-1;card.setAttribute('aria-hidden','true')}
     card.innerHTML='<span class="bkw">'+bookHTML(w,uid())+'</span><span class="li-meta"><span class="n">'+esc(w.g)+'</span><b>'+esc(w.t)+'</b><i>'+esc(w.by)+'</i>'+reviewHTML(w)+'</span>';
     belt.appendChild(card);
   });
   var cards=Array.from(belt.children);
-  function highlight(){var width=track.clientWidth;cards.forEach(function(card){var distance=Math.abs(card.offsetLeft+card.offsetWidth/2-track.scrollLeft-width/2);card.style.opacity=String(1-.6*clamp((distance-width*.12)/(width*.5),0,1))})}
+  function highlight(){var width=track.clientWidth;cards.forEach(function(card){var distance=Math.abs(card.offsetLeft+card.offsetWidth/2-track.scrollLeft-width/2);var f=clamp((distance-width*.12)/(width*.5),0,1);card.style.opacity=String(1-.15*f);var art=card.querySelector('.bkw');if(art)art.style.opacity=String(1-.6*f)})}
   function measure(){cycle=cards[WORK.length].offsetLeft-cards[0].offsetLeft;pos=cycle;track.scrollLeft=pos;highlight()}
   function go(d){hold=performance.now()+4500;track.scrollBy({left:d*(cards[0].offsetWidth+parseFloat(getComputedStyle(belt).gap)),behavior:RM?'auto':'smooth'})}
   $('#list-prev',section).addEventListener('click',function(){go(-1)});$('#list-next',section).addEventListener('click',function(){go(1)});
@@ -112,8 +112,8 @@ function segKeys(box){
   });
 }
 var AUDC={
-  author:{lead:'New writer or published author, AMZ United Press gives you every self-publishing service in one place: ghostwriting, editing, cover design, formatting, Amazon publishing and book marketing. You stay the author, with 100% of your rights and royalties.',pop:[['ghostwriting-services','Ghostwriting'],['book-editing-services','Book editing'],['amazon-publishing-services','Amazon publishing']]},
-  biz:{lead:'Turn your expertise into a book that builds authority and brings in clients. Our ebook writers draft thought-leadership titles, lead-magnet ebooks and company stories, then we publish and promote them for you.',pop:[['ebook-writing-services','Ebook writing'],['book-marketing-services','Book marketing'],['ebook-publishing-services','Ebook publishing']]}
+  author:{lead:'New writer or published author, AMZ United Press gives you every self-publishing service in one place: ghostwriting, editing, cover design, formatting, Amazon publishing and book marketing. You stay the author, with 100% of your rights and royalties.',pop:[['ghostwriting-services','Ghostwriting'],['book-editing-services','Book editing'],['publishing-services','Amazon publishing']]},
+  biz:{lead:'Turn your expertise into a book that builds authority and brings in clients. Our ebook writers draft thought-leadership titles, lead-magnet ebooks and company stories, then we publish and promote them for you.',pop:[['ebook-writing-services','Ebook writing'],['book-marketing-services','Book marketing'],['publishing-services','Ebook publishing']]}
 };
 function setAud(k){
   $$('[data-aud]').forEach(function(b){b.setAttribute('aria-checked',b.getAttribute('data-aud')===k)});
@@ -144,7 +144,7 @@ function initEffects(){
   observeNew(document);
   /* scroll-scrubbed statement: words light up as you read */
   var scr=$$('.scrub');
-  scr.forEach(function(el){var txt=el.textContent.trim().split(/\s+/);el.setAttribute('aria-label',el.textContent.trim());el.innerHTML=txt.map(function(w){return '<span aria-hidden="true"'+(RM?' class="lit"':'')+'>'+w+'</span>'}).join(' ');el._w=$$('span',el);el._n=RM?txt.length:0});
+  scr.forEach(function(el){var txt=el.textContent.trim().split(/\s+/);var full=el.textContent.trim();el.innerHTML='<span class="sr">'+full.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</span><span aria-hidden="true">'+txt.map(function(w){return '<span'+(RM?' class="lit"':'')+'>'+w+'</span>'}).join(' ')+'</span>';el._w=$$('span[aria-hidden] span',el);el._n=RM?txt.length:0});
   var pxs=$$('.px');
   function parallax(){
     if(RM)return;

@@ -28,4 +28,4 @@ require __DIR__ . '/forms.php';
 require __DIR__ . '/sections.php';
 
 // Buffer output so the session cookie can be set by forms rendered lower down the page.
-ob_start();
+ob_start('optimize_html');

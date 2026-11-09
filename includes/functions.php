@@ -172,7 +172,7 @@ function sitemap_pages(): array {
     $p = [['/', '1.0', 'weekly'], ['/services', '0.9', 'weekly']];
     foreach (data('subs') as $s) $p[] = ['/services/' . $s['slug'], '0.8', 'monthly'];
     foreach ([['/portfolio','0.7'],['/how-it-works','0.7'],['/pricing','0.8'],['/about','0.6'],['/faq','0.6'],['/contact','0.8']] as $x) $p[] = [$x[0], $x[1], 'monthly'];
-    foreach (glob(ROOT . '/lp/*.php') ?: [] as $f) $p[] = ['/lp/' . basename($f, '.php'), '0.8', 'monthly'];
+    // Ad landing pages (/lp/...) are noindex and stay out of the sitemap.
     $p[] = ['/blog', '0.7', 'weekly'];
     foreach (blog_posts() as $b) $p[] = ['/blog/' . $b['slug'], '0.7', 'monthly'];
     $p[] = ['/privacy', '0.3', 'yearly']; $p[] = ['/terms', '0.3', 'yearly'];
@@ -190,3 +190,60 @@ function blog_posts(): array {
 }
 function blog_post(string $slug): ?array { foreach (blog_posts() as $p) if ($p['slug'] === $slug) return $p; return null; }
 
+
+/**
+ * Page output filter: serves the lighter WebP copy of any PNG/JPG under /assets/img when one exists
+ * (created with the same name next to the original). Only touches src/srcset attributes and CSS url(),
+ * so og:image and other absolute links keep the original JPG/PNG for social networks.
+ */
+function optimize_html(string $html): string {
+    if (stripos(substr($html, 0, 200), '<!doctype html') === false) return $html;
+    static $seen = [];
+    // Unsplash photos are stored locally in /assets/img/photos as {id}-400/800/1600.webp.
+    $html = preg_replace_callback('#src="https://images\.unsplash\.com/photo-([0-9]+-[0-9a-f]+)\?[^"]*?w=(\d+)[^"]*"#', function ($m) {
+        $b = '/assets/img/photos/' . $m[1];
+        if (!is_file(ROOT . $b . '-800.webp')) return $m[0];
+        $w = (int)$m[2];
+        if ($w <= 400) return 'src="' . e(url($b . '-400.webp')) . '"';
+        if ($w <= 900) return 'src="' . e(url($b . '-800.webp')) . '" srcset="' . e(url($b . '-400.webp')) . ' 400w, ' . e(url($b . '-800.webp')) . ' 800w" sizes="(max-width: 600px) 100vw, ' . $w . 'px"';
+        return 'src="' . e(url($b . '-1600.webp')) . '" srcset="' . e(url($b . '-800.webp')) . ' 800w, ' . e(url($b . '-1600.webp')) . ' 1600w" sizes="100vw"';
+    }, $html) ?? $html;
+    return preg_replace_callback('#((?:src|srcset)="|url\()([^"\)]*?/assets/img/[^"\)\s?]+?)\.(png|jpe?g)(\?[^"\)\s]*)?(?=["\)\s,])#i', function ($m) use (&$seen) {
+        $rel = substr($m[2], strpos($m[2], '/assets/img/') + 1);
+        $webp = ROOT . '/' . rawurldecode($rel) . '.webp';
+        $ok = $seen[$webp] ??= is_file($webp);
+        if (!$ok) return $m[0];
+        // Large images also get an 800px copy ({name}-800.webp) for phones.
+        if (stripos($m[1], 'src="') === 0 && is_file(substr($webp, 0, -5) . '-800.webp')) {
+            return $m[1] . $m[2] . '.webp" srcset="' . $m[2] . '-800.webp 800w, ' . $m[2] . '.webp 1400w" sizes="(max-width: 900px) 100vw, 60vw';
+        }
+        return $m[1] . $m[2] . '.webp';
+    }, $html) ?? $html;
+}
+
+/**
+ * One combined, lightly minified stylesheet instead of several render-blocking requests.
+ * Built on first request into assets/css/bundle-{name}-{hash}.css and rebuilt automatically whenever
+ * any source file changes. If the folder isn't writable, the separate files are linked as before.
+ */
+function css_bundle(string $name, array $files): string {
+    $dir = ROOT . '/assets/css/';
+    $sig = '';
+    foreach ($files as $f) $sig .= $f . ':' . (is_file($dir . $f . '.css') ? filemtime($dir . $f . '.css') : 0) . ';';
+    $out = 'bundle-' . $name . '-' . substr(md5($sig), 0, 10) . '.css';
+    if (!is_file($dir . $out)) {
+        $css = '';
+        foreach ($files as $f) if (is_file($dir . $f . '.css')) $css .= file_get_contents($dir . $f . '.css') . "\n";
+        $css = preg_replace('#/\*.*?\*/#s', '', $css);
+        $css = preg_replace('/\s+/', ' ', $css);
+        $css = preg_replace('/\s*([{};])\s*/', '$1', $css);
+        $tmp = $dir . $out . '.' . getmypid() . '.tmp';
+        if (@file_put_contents($tmp, trim($css)) !== false && @rename($tmp, $dir . $out)) {
+            foreach (glob($dir . 'bundle-' . $name . '-*.css') ?: [] as $old) if (basename($old) !== $out) @unlink($old);
+        } else {
+            @unlink($tmp);
+            return implode("\n", array_map(fn($f) => '<link rel="stylesheet" href="' . e(asset('css/' . $f . '.css')) . '">', $files));
+        }
+    }
+    return '<link rel="stylesheet" href="' . e(url('/assets/css/' . $out)) . '">';
+}
