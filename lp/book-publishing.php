@@ -19,7 +19,7 @@ $FAQ = [
     ['Will you help me sell the book after launch?', 'The Author Bestseller package includes press releases and social media page creation. Book marketing and Amazon Ads management can be added to any package.'],
 ];
 $meta = [
-    'lp' => true, 'ad' => true, 'adx' => 'light', 'ad_btn' => 'Get a Free Quote',
+    'lp' => true, 'ad' => true, 'adx' => 'dark', 'ad_btn' => 'Free Quote',
     'title' => 'Book Publishing Services: Publish on Amazon from ' . $from . ' | AMZ United Press',
     'description' => 'Your book professionally published on Amazon KDP and 10+ stores: proofreading, formatting, free 3D cover, ISBN and upload. From ' . $from . '. Keep 100% of your royalties.',
     'path' => '/lp/book-publishing', 'nav' => '',
@@ -29,113 +29,105 @@ include dirname(__DIR__) . '/includes/header.php';
 ?>
 <div class="page" data-page="lp-book-publishing">
 
-<!-- 1. Hero: headline between real book covers -->
-<section class="x-bhero" aria-labelledby="lp-h1">
-  <div class="x-bks" aria-hidden="true">
-  <?php foreach ([['1%', '14%', -10, 0], ['10%', '52%', 8, 3], ['-2%', '70%', -4, 6], ['84%', '8%', 9, 1], ['91%', '44%', -8, 4], ['80%', '64%', 6, 7]] as $b): ?>
-    <img src="<?= e(ad_cover($w[$b[3] % count($w)])) ?>" alt="" style="left:<?= $b[0] ?>;top:<?= $b[1] ?>;transform:rotate(<?= $b[2] ?>deg)">
-  <?php endforeach; ?>
-  </div>
+<!-- 1. Hero (dark) -->
+<section class="x-hero" aria-labelledby="lp-h1">
+  <?= x_deco() ?>
   <div class="x-w x-nw">
-    <p class="x-eyebrow" style="color:var(--x-or2)">Done-for-you book publishing</p>
-    <h1 class="x-h1" id="lp-h1">All the support of a publishing house. <span class="a">None of the downside.</span></h1>
-    <p class="x-sub">Work with a full publishing team (editors, designers and KDP specialists) and keep 100% of your rights, your royalties and your creative control.</p>
-    <?= x_cta('Get my free publishing quote', '<b>Packages from ' . e($from) . '.</b> One-time fee, written quote first.') ?>
+    <p class="x-label">Done-for-you book publishing</p>
+    <h1 class="x-h1" id="lp-h1">Your book, professionally published. <span class="a">Every royalty stays yours.</span></h1>
+    <p class="x-sub">The full team of a publishing house (editors, designers and KDP specialists) without signing away your rights. We prepare, publish and list your book on Amazon and 10+ stores, under your name.</p>
+    <span class="x-hl x-acc">Live on Amazon in as little as 2 weeks.</span>
+    <p class="x-pill"><?= ad_i('tag') ?>Packages from <?= e($from) ?> · one-time fee · written quote first</p>
   </div>
-  <div class="x-w x-blogos"><?= x_logos('Your book on the stores readers use') ?></div>
+  <div class="x-w">
+    <div class="x-frame"><?= ad_video('publishing', 'How it works · 20 sec', 'Short video: how AMZ United Press takes a manuscript from proofreading to a live Amazon listing') ?></div>
+    <div class="x-nums"><div><b class="x-acc"><?= e($st[0][0] . $st[0][1]) ?></b><span>Books published</span></div><div><b class="x-acc"><?= e($st[1][0] . $st[1][1]) ?></b><span>Authors served</span></div><div><b class="x-acc">10+</b><span>Stores</span></div><div><b class="x-acc">100%</b><span>Royalties to you</span></div></div>
+    <?= x_cta('Get my free publishing quote', '<b>Free and no obligation.</b> A real person replies within one business day.') ?>
+  </div>
 </section>
 
-<!-- 2. Numbers + video -->
-<section class="x-lsec" aria-labelledby="vd-h"><div class="x-w">
-  <div class="x-head"><h2 class="x-h2" id="vd-h">Your book. Published professionally. <span class="a x-acc">In as little as 2 weeks.</span></h2></div>
-  <div class="x-stats">
-    <div class="col">
-      <div class="x-stat big ad-rv"><small>Books published</small><b><?= e($st[0][0] . $st[0][1]) ?></b><p>Fiction, nonfiction, memoir, children’s books and more, across <?= e($st[2][0]) ?> genres.</p></div>
-      <div class="row">
-        <div class="x-stat ad-rv" style="--d:1"><small>Authors served</small><b><?= e($st[1][0] . $st[1][1]) ?></b><p>First-time authors and seasoned self-publishers.</p></div>
-        <div class="x-stat ad-rv" style="--d:2"><small>Your royalties</small><b>100%</b><p>Paid by Amazon straight to you. We never take a cut.</p></div>
-      </div>
+<section class="x-logos"><div class="x-w"><?= x_logos('Your book on the stores readers use') ?></div></section>
+
+<!-- 2. The problem (light) -->
+<section class="x-sec lt" aria-labelledby="pr-h"><div class="x-w">
+  <?= x_head('pr-h', 'The book is written. <span class="a">Now what?</span>', 'Sound familiar?') ?>
+  <div class="x-prob">
+    <div class="ad-rv">
+      <p class="lead">Finishing a manuscript feels like the finish line.</p>
+      <p>Then you open the KDP dashboard, and <span class="hi">a whole new list of questions appears:</span></p>
+      <ul class="x-chips"><li>Which trim size?</li><li>EPUB or KPF?</li><li>Why was my file rejected?</li><li>Do I need an ISBN?</li><li>Which categories?</li><li>What keywords?</li><li>How do I price it?</li></ul>
+      <p style="margin-top:22px">Most authors lose weeks here, or publish a book that looks home-made next to the competition. <b class="x-strong">You don’t have to.</b></p>
     </div>
-    <?= ad_video('publishing', 'How it works · 20 sec', 'Short video: how AMZ United Press takes a manuscript from proofreading to a live Amazon listing') ?>
+    <figure class="x-photo ad-rv" style="--d:1;margin:0"><?= ad_img('writing', 'An author’s desk with a finished manuscript') ?><i>manuscript_final_v7.docx</i></figure>
   </div>
 </div></section>
 
-<!-- 3. Traditional vs us -->
-<section class="x-lsec sand" aria-labelledby="cp-h"><div class="x-w">
-  <div class="x-head"><p class="x-eyebrow">Why AMZ United Press</p><h2 class="x-h2" id="cp-h">The best of traditional publishing. <span class="a">Without the worst of it.</span></h2>
-    <p class="x-sub">Traditional and vanity publishers often take your rights, a share of your royalties and the final say on your cover. We give you the same professional team, with the freedom of self-publishing.</p></div>
-  <?= ad_compare(['Traditional publisher', 'What they give you', [['Professional editing', true], ['Cover design', true], ['Formatting', true], ['Distribution', true], ['You keep your rights', false], ['You keep 100% of royalties', false], ['Final say on your cover', false], ['Published in weeks, not years', false]]],
-                 ['AMZ United Press', 'What we give you', [['Professional editing', true], ['Cover design', true], ['Formatting', true], ['Distribution to 10+ stores', true], ['You keep your rights', true], ['You keep 100% of royalties', true], ['Final say on everything', true], ['Live in as little as 1–2 weeks', true]]]) ?>
-  <p class="x-quote">“You’ve worked too hard on your story to hand it, and its earnings, to someone else.”</p>
-  <?= x_cta('Get my free quote', 'No commitment. Just clarity and a written price.') ?>
+<!-- 3. Publisher vs us (dark) -->
+<section class="x-sec b2 glow" aria-labelledby="cp-h"><span class="x-edge" aria-hidden="true"></span><div class="x-w">
+  <?= x_head('cp-h', 'Everything a publisher gives you. <span class="a">Without giving up your book.</span>', '', 'Traditional and vanity publishers often take your rights, a share of your royalties and the final say on your cover. <b class="x-strong">We give you the same professional team, and you stay the publisher.</b>') ?>
+  <?= x_vs(['Traditional publisher', 'What they take', ['Your rights, often for years', 'A share of every royalty', 'The final say on your cover', 'Control of your price', 'Months or years to publish']],
+           ['AMZ United Press', 'What you keep', ['100% of your rights', '100% of your royalties', 'Final approval on every file', 'Your price, your accounts', 'Live in as little as 1–2 weeks']]) ?>
+  <?= x_cta('Get my free quote', 'You’ve spent months, maybe years, on this book. <b>Its earnings should be yours.</b>') ?>
 </div></section>
 
-<!-- 4. Author success plan -->
-<section class="x-dsec" aria-labelledby="pl-h"><div class="x-w">
-  <div class="x-head"><h2 class="x-h2" id="pl-h">Your author <span class="a i x-acc">success plan.</span></h2>
-    <p class="x-sub">Whether your manuscript is finished, still being edited, or you published a book that isn’t selling, we have a plan for you.</p></div>
-  <div class="x-plan">
-  <?php $C = [['pen', 'Proofreading & editing', 'Spelling, grammar, consistency and flow checked line by line, so reviewers talk about your story, not your typos.'], ['layout', 'Formatting & typesetting', 'Kindle, EPUB, paperback and hardcover interiors with the right trim size, margins and chapter styling.'], ['book', 'Cover design', 'A free 3D cover designed for your genre, readable as a tiny thumbnail and sharp as a printed wrap.'], ['tag', 'ISBN, keywords & categories', 'ISBN and barcode, title, subtitle, description, categories and keywords researched for discoverability.'], ['globe', 'Amazon KDP & 10+ stores', 'We set up or connect your accounts and publish on Amazon, Apple Books, Barnes & Noble, Kobo and more.']];
-  foreach ($C as $i => $c): ?><div class="ad-rv" style="--d:<?= $i % 3 ?>"><?= ad_i($c[0]) ?><h3><?= e($c[1]) ?></h3><p><?= e($c[2]) ?></p></div><?php endforeach; ?>
-    <div class="hl ad-rv" style="--d:2"><?= ad_i('users') ?><h3>One project manager, start to finish</h3><p>A real person who keeps you updated, answers your questions and makes sure nothing slips.</p><a href="#book" data-lp-cta>Get my free quote</a></div>
-  </div>
+<!-- 4. What we handle (light) -->
+<section class="x-sec lt sand" aria-labelledby="wh-h"><div class="x-w">
+  <?= x_head('wh-h', 'A complete publishing team, <span class="a">working for you.</span>', 'What we handle', 'Everything between your manuscript and a live listing, done by specialists and managed by one person who knows your book.') ?>
+  <?= ad_cards([
+      ['editing', 'Proofreading & editing', 'A clean, professional read', 'Spelling, grammar, consistency and flow checked line by line, so reviewers talk about your story, not your typos.'],
+      ['layout', 'Formatting & typesetting', 'Files that pass review', 'Kindle, EPUB, paperback and hardcover interiors with the right trim size, margins and chapter styling.'],
+      ['showcase', 'Cover design', 'A cover that sells', 'A free 3D cover designed for your genre, readable as a tiny thumbnail and sharp as a printed wrap.'],
+      ['proposal', 'ISBN & metadata', 'Built to be found', 'ISBN and barcode, title, subtitle, description, categories and keywords researched for discoverability.'],
+      ['kdp', 'Amazon KDP & 10+ stores', 'Published in your name', 'We set up or connect your accounts and publish on Amazon, Apple Books, Barnes & Noble, Kobo and more.'],
+      ['call', 'Project manager', 'One person, start to finish', 'A real person who keeps you updated, answers your questions and makes sure nothing slips.'],
+  ]) ?>
 </div></section>
 
-<!-- 5. The problem -->
-<section class="x-lsec" aria-labelledby="pr-h"><div class="x-w ad-split">
-  <div class="ad-photo ad-rv"><?= ad_img('writing', 'An author’s desk with a finished manuscript') ?><span class="badge"><i>DRAFT</i>manuscript_final_v7.docx</span></div>
-  <div class="ad-rv" style="--d:1">
-    <p class="x-eyebrow">Sound familiar?</p>
-    <h2 class="x-h2" id="pr-h" style="text-align:left">The book is written. <span class="a x-acc">Now what?</span></h2>
-    <p class="x-sub" style="margin-left:0">Finishing a manuscript feels like the finish line. Then you open the KDP dashboard and a whole new list of questions appears:</p>
-    <ul class="ad-chips" style="margin-top:16px"><li>Which trim size?</li><li>EPUB or KPF?</li><li>Why was my file rejected?</li><li>Do I need an ISBN?</li><li>Which categories?</li><li>What keywords?</li><li>How do I price it?</li></ul>
-    <p class="x-sub" style="margin-left:0">Most authors lose weeks here, or publish a book that looks home-made next to the competition. <b style="color:var(--tx)">You don’t have to.</b></p>
-  </div>
+<!-- 5. How it works (dark) -->
+<section class="x-sec" aria-labelledby="hw-h"><div class="x-w">
+  <?= x_head('hw-h', 'From manuscript to Amazon <span class="a">in four steps.</span>') ?>
+  <ol class="x-flow">
+  <?php $F = [['Free 30-minute call', 'Tell us about your book', 'Your manuscript, your goals and where you want to sell. You get a written quote and timeline, and nothing starts until you say yes.'], ['Proofread & formatted', 'We prepare your book', 'Editors proofread, designers create your 3D cover, and formatters build every file: Kindle, EPUB, paperback and hardcover.'], ['You approve everything', 'You review the files', 'You see the interior, cover and full listing before anything goes live. Ask for changes, and we make them.'], ['Live on Amazon', 'We publish, you earn', 'We publish on the stores in your package, check every listing and send you the live links. Royalties go straight to you.']];
+  foreach ($F as $i => $f): ?><li class="ad-rv" style="--d:<?= $i ?>"><b>0<?= $i + 1 ?></b><small><?= e($f[0]) ?></small><h3><?= e($f[1]) ?></h3><p><?= e($f[2]) ?></p></li><?php endforeach; ?>
+  </ol>
+  <?= x_cta('Start with a free call') ?>
 </div></section>
 
-<!-- 6. Books -->
-<section class="x-dsec" aria-labelledby="bk-h"><div class="x-w">
-  <div class="x-head"><h2 class="x-h2" id="bk-h">Published by <span class="a i x-acc">AMZ United Press</span> authors.</h2>
-    <p class="x-sub">Real books, real authors, real readers. <b class="x-strong">Will yours be next?</b></p></div>
+<!-- 6. Packages (light) -->
+<section class="x-sec lt" id="packages" aria-labelledby="pk-h"><div class="x-w">
+  <?= x_head('pk-h', 'Simple pricing. <span class="a">No royalty splits.</span>', 'Publishing packages', 'One-time fees, everything listed. Pick a package or ask us which one fits your book.') ?>
+  <?= ad_plans() ?>
+  <p class="x-c" style="margin-top:34px">Not sure which one fits? <a href="#book" data-lp-cta style="font-weight:700;color:var(--tx)">Get a free recommendation</a> or call <a href="tel:<?= e(tel_href()) ?>" data-lp-call style="font-weight:700;color:var(--tx)"><?= e(site('phone')) ?></a>.</p>
+</div></section>
+
+<!-- 7. Books & authors (dark) -->
+<section class="x-sec b2 glow" aria-labelledby="bk-h"><span class="x-edge" aria-hidden="true"></span><div class="x-w">
+  <?= x_head('bk-h', 'Real books. Real authors. <span class="a">Will yours be next?</span>', '', 'Books published with AMZ United Press, with their real Amazon review counts.') ?>
   <div class="x-shelf">
   <?php foreach (array_slice($w, 0, 6) as $i => $b): $rv = (int)($b['reviews'] ?? 0); ?>
     <figure class="ad-rv" style="--d:<?= $i ?>"><img src="<?= e(ad_cover($b)) ?>" alt="<?= e($b['t'] . ' by ' . $b['by']) ?>" loading="lazy"><figcaption><b style="margin-top:14px"><?= e($b['t']) ?></b><?= e($b['by']) ?><?= $rv ? ' · ' . e(number_format($rv)) . ($rv === 1 ? ' Amazon review' : ' Amazon reviews') : '' ?></figcaption></figure>
   <?php endforeach; ?>
   </div>
+  <div class="x-authors" style="margin-top:clamp(40px,5vw,60px)"><?php foreach (array_slice(ad_authors_list(), 0, 5) as $i => $a): ?><img class="ad-rv" style="--d:<?= $i ?>" src="<?= e(ad_src($a . '.webp')) ?>" alt="An AMZ United Press author holding their published book" loading="lazy"><?php endforeach; ?></div>
 </div></section>
 
-<!-- 7. Packages -->
-<section class="x-lsec sand" id="packages" aria-labelledby="pk-h"><div class="x-w">
-  <div class="x-head"><p class="x-eyebrow">Publishing packages</p><h2 class="x-h2" id="pk-h">Simple pricing. <span class="a x-acc">No royalty splits.</span></h2>
-    <p class="x-sub">One-time fees, everything listed. Pick a package or ask us which one fits your book.</p></div>
-  <?= ad_plans() ?>
-  <p class="x-c" style="margin-top:34px;color:var(--tx2)">Not sure which one fits? <a href="#book" data-lp-cta style="font-weight:700">Get a free recommendation</a> or call <a href="tel:<?= e(tel_href()) ?>" data-lp-call style="font-weight:700"><?= e(site('phone')) ?></a>.</p>
+<!-- 8. Quote form (dark) -->
+<section class="x-sec line" aria-labelledby="qt-h"><div class="x-w">
+  <?= x_formsec('qt-h', 'Let’s get your book <span class="a">on Amazon.</span>', 'Tell us about your manuscript and where you want to sell it. We’ll reply within one business day with a recommended package and a written quote.',
+      ['Packages from ' . $from . ', one-time fee', 'Free 3D cover, ISBN and barcode', '100% of your rights and royalties', 'Nothing published without your approval'],
+      ['lp-form', 'Get your free publishing quote', 'Tell us about your book. We’ll recommend the right package and send a written quote.', 3], 'Free quote') ?>
 </div></section>
 
-<!-- 8. What happens next -->
-<section class="x-dsec" aria-labelledby="nx-h"><div class="x-w">
-  <div class="x-head"><p class="x-eyebrow" style="color:var(--x-or2)">Ready to get started?</p><h2 class="x-h2" id="nx-h">Here’s exactly <span class="a i x-acc">what happens next.</span></h2>
-    <p class="x-sub">No pitch decks. No pressure. Just an honest conversation about your book and the clearest path to publishing it.</p></div>
-  <ol class="x-next">
-  <?php foreach ([['Tell us about your book', 'Fill in the short form. It takes about a minute and no preparation is needed.'], ['We map out your path', 'A publishing specialist reviews your goals and recommends the right package, with a written quote.'], ['Decide what’s right for you', 'No hard close and no follow-up pressure. If we’re a fit, we start. The next move is always yours.']] as $i => $s): ?>
-    <li class="ad-rv" style="--d:<?= $i ?>"><span class="n"><?= $i + 1 ?></span><h3><?= e($s[0]) ?></h3><p><?= e($s[1]) ?></p></li>
-  <?php endforeach; ?>
-  </ol>
-  <p class="x-promise">If AMZ United Press is the right fit, we’ll tell you which package makes sense and why. <em>If it isn’t, we’ll tell you that too.</em></p>
-  <?= x_cta('Get my free publishing quote', 'No obligation. Honest advice.') ?>
-</div></section>
-
-<!-- 9. FAQ -->
-<section class="x-lsec" aria-labelledby="fq-h"><div class="x-w">
-  <div class="x-head"><h2 class="x-h2" id="fq-h">Questions authors ask <span class="a x-acc">before they publish.</span></h2></div>
+<!-- 9. FAQ (light) -->
+<section class="x-sec lt sand" aria-labelledby="fq-h"><div class="x-w">
+  <?= x_head('fq-h', 'Questions authors ask <span class="a">before they publish.</span>') ?>
   <?= x_faq($FAQ) ?>
 </div></section>
 
-<!-- 10. Form -->
-<section class="x-lsec sand" aria-labelledby="qt-h"><div class="x-w">
-  <?= x_formsec('qt-h', 'Let’s get your book <span class="a x-acc">on Amazon.</span>', 'Tell us about your manuscript and where you want to sell it. We’ll reply within one business day with a recommended package and a written quote.',
-      ['Packages from ' . $from . ', one-time fee', 'Free 3D cover, ISBN and barcode', '100% of your rights and royalties', 'Live in as little as 1–2 weeks'],
-      ['lp-form', 'Get your free publishing quote', 'Tell us about your book. We’ll recommend the right package and send a written quote.', 3]) ?>
+<!-- 10. Final (dark) -->
+<section class="x-sec" aria-labelledby="fn-h"><div class="x-w">
+  <?= x_final('Your book deserves <span class="a">to be read.</span>', 'You’ve done the hard part. Let a professional team handle the rest, while you keep every right and every royalty.',
+      ['Proofreading', 'Formatting', 'Free 3D cover', 'ISBN & barcode', 'Amazon KDP', '10+ stores'], 'Packages from ' . e($from) . '. One-time fee. 100% of royalties to you.', 'Get my free publishing quote', 'No obligation. <b>A written quote before anything starts.</b>') ?>
 </div></section>
 
 <?= ad_dock('Free quote') ?>

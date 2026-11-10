@@ -369,3 +369,49 @@ body.adx-light{background:var(--ivory);color:var(--tx)}
 @media (max-width:1000px){.x-stats .ad-video{min-height:0;height:auto;aspect-ratio:16/9}}
 .x-lsec,.x-dsec{position:relative;overflow:hidden}
 @media (max-width:760px){.x-spark{display:none}}
+
+/* ===== Light sections inside the dark pages (.x-sec.lt) ===== */
+.x-sec.lt{background:var(--ivory);color:var(--tx)}
+.x-sec.lt.sand{background:var(--sand)}
+.x-sec.lt .x-sub,.x-sec.lt p{color:var(--tx2)}
+.x-sec.lt .x-strong{color:var(--tx)}
+.x-sec.lt .x-tag{color:var(--tx2);border-color:var(--ln);background:#fff}
+.x-sec.lt .x-chips li{background:#fff;border-color:var(--ln);color:var(--tx)}
+.x-sec.lt .x-prob .lead{color:var(--tx)}
+.x-sec.lt .x-prob .hi{color:var(--ord)}
+.x-sec.lt .x-h2 .a,.x-sec.lt .x-acc{background:linear-gradient(135deg,#F29102,#D2560A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.x-sec.lt .x-faq{background:#fff;border-color:var(--ln)}
+.x-sec.lt .x-faq details{border-color:var(--ln)}
+.x-sec.lt .x-faq summary{color:var(--tx)}
+.x-sec.lt .x-faq details[open] summary,.x-sec.lt .x-faq summary::after{color:var(--ord)}
+.x-sec.lt .x-faq details>div p{color:var(--tx2)}
+.x-sec.lt .x-cta small{color:var(--tx3)}
+.x-sec.lt .x-cta small b{color:var(--tx)}
+.x-sec.lt .ad-card{background:#fff}
+
+/* photo card for the light problem section */
+.x-photo{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(20,20,19,.5)}
+.x-photo img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.x-photo i{position:absolute;left:18px;top:18px;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:10px;background:#fff;color:var(--tx);font:700 .78rem/1 var(--mono);font-style:normal;box-shadow:0 10px 30px -10px rgba(0,0,0,.4)}
+.x-photo i::before{content:"";width:8px;height:8px;border-radius:50%;background:#ff5a4d}
+
+/* stat row under the hero video */
+.x-nums{display:grid;grid-template-columns:repeat(4,1fr);max-width:880px;margin:clamp(28px,4vw,40px) auto 0;border:1px solid var(--x-ln2);border-radius:18px;overflow:hidden}
+.x-nums div{padding:20px 12px;text-align:center;border-left:1px solid var(--x-ln2)}
+.x-nums div:first-child{border-left:0}
+.x-nums b{display:block;font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:800;line-height:1.05}
+.x-nums span{font-size:.82rem;color:var(--x-tx3)}
+
+/* 4 process steps on dark: big outlined numbers with connector */
+.x-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:f}
+.x-flow li{position:relative;padding:28px 24px;border-radius:20px;background:var(--x-card);border:1px solid var(--x-ln)}
+.x-flow li b{display:block;font-size:3rem;font-weight:300;line-height:1;color:transparent;-webkit-text-stroke:1.5px var(--x-or);margin-bottom:18px}
+.x-flow small{display:inline-block;padding:5px 12px;border-radius:999px;background:rgba(242,145,2,.12);color:var(--x-or2);font:700 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.x-flow h3{font-size:1.15rem;margin:0 0 8px}
+.x-flow p{color:var(--x-tx2);font-size:.94rem;margin:0}
+.x-flow li:not(:last-child)::after{content:"";position:absolute;right:-14px;top:52px;width:10px;height:10px;border-top:2px solid var(--x-or);border-right:2px solid var(--x-or);transform:rotate(45deg);z-index:1}
+
+@media (max-width:1000px){.x-flow{grid-template-columns:repeat(2,1fr)}.x-flow li::after{display:none}}
+@media (max-width:560px){.x-flow,.x-nums{grid-template-columns:1fr 1fr}.x-nums div:nth-child(3){border-left:0}.x-nums div:nth-child(n+3){border-top:1px solid var(--x-ln2)}}
+.x-sec.lt .ad-plan.hot p,.x-sec.lt .ad-plan.hot .price{color:#fff}
+.x-sec.lt .ad-plan.hot .once{color:var(--inv3)}
