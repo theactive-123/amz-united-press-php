@@ -17,7 +17,7 @@
     v.addEventListener('play', sync); v.addEventListener('pause', sync); sync();
   });
 
-  document.querySelectorAll('.ad-faq').forEach(function (box) {
+  document.querySelectorAll('.ad-faq,.x-faq').forEach(function (box) {
     box.addEventListener('toggle', function (e) {
       if (!e.target.open) return;
       box.querySelectorAll('details[open]').forEach(function (d) { if (d !== e.target) d.open = false; });

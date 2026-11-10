@@ -53,7 +53,8 @@ if (!headers_sent()) header(isset($_COOKIE['amzsid']) || $meta['path'] === '/tha
 <link rel="preload" href="<?= e(asset('fonts/instrument-serif-italic-400.woff2')) ?>" as="font" type="font/woff2" crossorigin>
 <?php
 // One stylesheet per page type (see css_bundle in functions.php).
-if (!empty($meta['ad']))     echo css_bundle('ad', ['fonts', 'ad']);
+if (!empty($meta['adx']))    echo css_bundle('adx', ['fonts', 'ad', 'adx']);
+elseif (!empty($meta['ad'])) echo css_bundle('ad', ['fonts', 'ad']);
 elseif (!empty($meta['lp'])) echo css_bundle('lp', ['fonts', 'lp']);
 else echo css_bundle('site' . (!empty($meta['sv']) ? '-sv' : '') . (!empty($meta['blog']) ? '-blog' : ''),
     array_merge(['fonts', 'base', 'theme', 'home', 'pages', 'site'], !empty($meta['sv']) ? ['sv'] : [], !empty($meta['blog']) ? ['blog'] : []));
@@ -70,7 +71,7 @@ else echo css_bundle('site' . (!empty($meta['sv']) ? '-sv' : '') . (!empty($meta
 (function(){var done=0,ev=['scroll','pointerdown','keydown','touchstart'];function go(){if(done)return;done=1;ev.forEach(function(e){removeEventListener(e,go)});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=<?= e(cfg('ga4_id')) ?>';document.head.appendChild(s)}ev.forEach(function(e){addEventListener(e,go,{passive:true,once:true})});addEventListener('load',function(){setTimeout(go,3500)})})();</script>
 <?php endif; ?>
 </head>
-<body>
+<body<?= !empty($meta['adx']) ? ' class="adx adx-' . e($meta['adx']) . '"' : '' ?>>
 <a class="skip" href="#main">Skip to main content</a>
 <div class="progress" id="progress" aria-hidden="true"></div>
 <?php readfile(__DIR__ . '/../partials/sprite.svg'); ?>
@@ -84,7 +85,7 @@ $curCat = $meta['cat'] ?? '';
 <div class="ad-strip"><div class="ad-w"><?= ic('shield') ?><span><?= e($meta['ad_strip'] ?? 'You keep 100% of your rights and royalties · Free consultation · Written quote before we start') ?></span></div></div>
 <header class="ad-top">
   <div class="ad-w ad-top-in">
-    <a class="ad-logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset('img/logo.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>"></a>
+    <a class="ad-logo" href="<?= e(url('/')) ?>" aria-label="<?= e(site('name')) ?> — home"><img src="<?= e(asset(($meta['adx'] ?? '') === 'dark' ? 'img/logo-light.png' : 'img/logo.png')) ?>" width="491" height="213" alt="<?= e(site('name')) ?>"></a>
     <div class="ad-top-r">
       <a class="ad-top-tel" href="tel:<?= e(tel_href()) ?>" data-lp-call><?= ic('phone') ?><span class="sr">Call <?= e(site('phone')) ?></span><span aria-hidden="true"><small>Talk to a publishing expert</small><b><?= e(site('phone')) ?></b></span></a>
       <a class="ad-btn sm" href="#book" data-lp-cta><?= e($meta['ad_btn'] ?? 'Get a Free Quote') ?></a>

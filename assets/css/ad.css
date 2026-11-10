@@ -409,3 +409,4 @@ main{display:block}
 .ad-vstat{display:flex;flex-direction:column;justify-content:center}
 @media (max-width:940px){.ad-vgrid .ad-video{aspect-ratio:16/9;min-height:0;height:auto}.ad-vstats{grid-template-rows:none}}
 .ad-guar .ad-ctarow{flex-wrap:wrap}.ad-guar>div{min-width:0}
+.ad-top-tel span.sr{display:block!important}
