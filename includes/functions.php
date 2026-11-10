@@ -167,12 +167,26 @@ function faq_schema(array $items): array {
     ], $items)];
 }
 
+/** Public landing pages shared by navigation and the XML sitemap. */
+function public_landing_pages(): array {
+    return [
+        '/lp/writing-services' => 'Book Writing Services',
+        '/lp/ghostwriting-services' => 'Ghostwriting Services',
+        '/lp/editing-services' => 'Editing Services',
+        '/lp/publishing-services' => 'Publishing Services',
+        '/lp/book-publishing' => 'Book Publishing Packages',
+        '/lp/book-marketing-services' => 'Book Marketing Services',
+        '/lp/pre-launch' => 'Book Pre-Launch Program',
+        '/lp/post-launch' => 'Post-Launch Growth Program',
+    ];
+}
+
 /** Every public page for the sitemap: [path, priority, changefreq] */
 function sitemap_pages(): array {
     $p = [['/', '1.0', 'weekly'], ['/services', '0.9', 'weekly']];
     foreach (data('subs') as $s) $p[] = ['/services/' . $s['slug'], '0.8', 'monthly'];
     foreach ([['/portfolio','0.7'],['/how-it-works','0.7'],['/pricing','0.8'],['/about','0.6'],['/faq','0.6'],['/contact','0.8']] as $x) $p[] = [$x[0], $x[1], 'monthly'];
-    // Ad landing pages (/lp/...) are noindex and stay out of the sitemap.
+    foreach (public_landing_pages() as $path => $label) $p[] = [$path, '0.7', 'monthly'];
     $p[] = ['/blog', '0.7', 'weekly'];
     foreach (blog_posts() as $b) $p[] = ['/blog/' . $b['slug'], '0.7', 'monthly'];
     $p[] = ['/privacy', '0.3', 'yearly']; $p[] = ['/terms', '0.3', 'yearly'];
