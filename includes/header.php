@@ -6,8 +6,7 @@
  *   schema (optional list of JSON-LD arrays), noindex (optional true), og_type (optional)
  */
 $meta = array_merge(['title' => site('name'), 'description' => '', 'path' => '/', 'nav' => '', 'image' => '/assets/img/og-image.jpg', 'schema' => [], 'noindex' => false, 'og_type' => 'website'], $meta ?? []);
-// Paid-ad landing pages repeat service-page content, so keep them out of search results.
-if (!empty($meta['ad']) || !empty($meta['lp'])) $meta['noindex'] = true;
+// Layout flags (ad/lp) do not control indexing. Set noindex explicitly for private pages.
 $canonical = abs_url($meta['path'] === '/' ? '/' : $meta['path']);
 $ogImage   = str_starts_with($meta['image'], 'http') ? $meta['image'] : abs_url($meta['image']);
 $schemas   = array_merge([

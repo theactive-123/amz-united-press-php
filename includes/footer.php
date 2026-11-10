@@ -41,6 +41,7 @@
       </ul></div>
       <?php endforeach; ?>
       <div><h2 class="fh">Resources</h2><ul>
+        <?php foreach (public_landing_pages() as $path => $label): ?><li><a href="<?= e(url($path)) ?>"><?= e($label) ?></a></li><?php endforeach; ?>
         <li><a href="<?= e(url('/portfolio')) ?>">Portfolio</a></li><li><a href="<?= e(url('/how-it-works')) ?>">How It Works</a></li><li><a href="<?= e(url('/faq')) ?>">FAQs</a></li><li><a href="<?= e(url('/pricing')) ?>">Pricing</a></li><li><a href="<?= e(url('/about')) ?>">About Us</a></li><li><a href="<?= e(url('/blog')) ?>">Blog</a></li><li><a href="<?= e(url('/contact')) ?>">Contact Us</a></li><li><a href="<?= e(url('/services')) ?>">All Services</a></li>
       </ul></div>
     </div>
