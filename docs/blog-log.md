@@ -6,3 +6,4 @@ date | slug | primary keyword | category
 2026-11-09 | how-to-publish-a-book-on-amazon | how to publish a book on Amazon | Amazon KDP
 2026-11-10 | how-much-does-a-ghostwriter-cost | how much does a ghostwriter cost | Ghostwriting
 2026-11-11 | how-to-format-a-book-for-kdp | how to format a book for KDP | Amazon KDP
+2026-11-12 | how-to-market-a-self-published-book | how to market a self-published book | Book Marketing
