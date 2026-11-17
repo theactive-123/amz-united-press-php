@@ -29,7 +29,7 @@ function trackLead(form){
   var src=($('[name="source"]',form)||{}).value||'',help=($('[name="help"]',form)||{}).value||'';
   window.dataLayer=window.dataLayer||[];dataLayer.push({event:'lead_submit',form_source:src,service:help,page:location.pathname});
   if(window.gtag)gtag('event','generate_lead',{form_source:src,service:help});
-  if(window.fbq)fbq('track','Lead',{content_name:help});
+  if(window.fbq)fbq('track','Lead',{content_name:help,content_category:src});
 }
 
 function initForm(form){

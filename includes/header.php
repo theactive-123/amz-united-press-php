@@ -27,6 +27,7 @@ if (!headers_sent()) header(isset($_COOKIE['amzsid']) || $meta['path'] === '/tha
 <link rel="canonical" href="<?= e($canonical) ?>">
 <meta name="robots" content="<?= $meta['noindex'] ? 'noindex, follow' : 'index, follow, max-image-preview:large' ?>">
 <meta name="theme-color" content="#F29102">
+<?php if (cfg('meta_domain_verification')): ?><meta name="facebook-domain-verification" content="<?= e(cfg('meta_domain_verification')) ?>" /><?php endif; ?>
 
 <!-- Social sharing -->
 <meta property="og:site_name" content="<?= e(site('name')) ?>">

@@ -61,4 +61,6 @@ return [
     'ga4_id' => 'G-R43TW80BWG',
     // Meta (Facebook) Pixel ID. Leave '' to turn the pixel off.
     'meta_pixel_id' => '964224859816741',
+    // Meta Business domain verification (facebook-domain-verification meta tag). Leave '' to remove.
+    'meta_domain_verification' => 'gr7s0372lb7of3nq6kqa6xtl4jkm3n',
 ];

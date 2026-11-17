@@ -9,8 +9,11 @@ $meta = [
     'path' => '/thank-you', 'nav' => '', 'noindex' => true,
 ];
 include __DIR__ . '/includes/header.php';
-if ($conversion && cfg('ga4_id')) {
-    echo '<script>gtag("event","generate_lead",' . json_encode($conversion, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . ');</script>';
+// Conversion events for visitors whose form was sent without JavaScript (the JavaScript path fires them on the form itself).
+if ($conversion) {
+    $j = fn($v) => json_encode($v, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+    if (cfg('ga4_id')) echo '<script>gtag("event","generate_lead",' . $j($conversion) . ');</script>';
+    if (cfg('meta_pixel_id')) echo '<script>if(window.fbq)fbq("track","Lead",' . $j(['content_name' => $conversion['service'] ?? '', 'content_category' => $conversion['form_source'] ?? '']) . ');</script>';
 }
 ?>
 <div class="page active" data-page="thank-you">
