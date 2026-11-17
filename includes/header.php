@@ -70,8 +70,25 @@ else echo css_bundle('site' . (!empty($meta['sv']) ? '-sv' : '') . (!empty($meta
 /* Load Google Analytics after the page is ready (first interaction or 3.5 s after load) so it never slows the first paint. */
 (function(){var done=0,ev=['scroll','pointerdown','keydown','touchstart'];function go(){if(done)return;done=1;ev.forEach(function(e){removeEventListener(e,go)});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=<?= e(cfg('ga4_id')) ?>';document.head.appendChild(s)}ev.forEach(function(e){addEventListener(e,go,{passive:true,once:true})});addEventListener('load',function(){setTimeout(go,3500)})})();</script>
 <?php endif; ?>
+<?php if (cfg('meta_pixel_id')): ?>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '<?= e(cfg('meta_pixel_id')) ?>');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
+<?php endif; ?>
 </head>
 <body<?= !empty($meta['adx']) ? ' class="adx adx-' . e($meta['adx']) . '"' : '' ?>>
+<?php if (cfg('meta_pixel_id')): ?><noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=<?= e(cfg('meta_pixel_id')) ?>&amp;ev=PageView&amp;noscript=1"></noscript><?php endif; ?>
 <a class="skip" href="#main">Skip to main content</a>
 <div class="progress" id="progress" aria-hidden="true"></div>
 <?php readfile(__DIR__ . '/../partials/sprite.svg'); ?>

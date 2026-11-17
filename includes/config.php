@@ -59,4 +59,6 @@ return [
      * Paste your measurement ID (like G-XXXXXXXXXX) to turn it on. Leave '' to keep tracking off.
      * If you turn it on, mention it in your Privacy Policy. */
     'ga4_id' => 'G-R43TW80BWG',
+    // Meta (Facebook) Pixel ID. Leave '' to turn the pixel off.
+    'meta_pixel_id' => '964224859816741',
 ];
