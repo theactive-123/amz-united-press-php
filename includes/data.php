@@ -285,6 +285,12 @@ $D = [
     ],
 
     // PLACEHOLDER: sample testimonials. Replace with real client quotes, used with permission.
+    // REAL client reviews for the book publishing landing page (/lp/book-publishing).
+    // Add only genuine reviews, used with the client's permission. The review cards appear automatically once this
+    // list has entries. Fields: name, rating (1-5), quote, book (optional), photo (optional, file in assets/img/lp/).
+    // Example: ['name' => 'Jane D.', 'rating' => 5, 'quote' => '…', 'book' => 'My Book Title', 'photo' => 'author-1.webp'],
+    'lp_reviews' => [],
+
     'testimonials' => [
         [
             'Helen M.',

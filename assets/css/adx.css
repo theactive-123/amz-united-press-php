@@ -415,3 +415,86 @@ body.adx-light{background:var(--ivory);color:var(--tx)}
 @media (max-width:560px){.x-flow,.x-nums{grid-template-columns:1fr 1fr}.x-nums div:nth-child(3){border-left:0}.x-nums div:nth-child(n+3){border-top:1px solid var(--x-ln2)}}
 .x-sec.lt .ad-plan.hot p,.x-sec.lt .ad-plan.hot .price{color:#fff}
 .x-sec.lt .ad-plan.hot .once{color:var(--inv3)}
+
+/* ===== Book publishing funnel (.x-big): larger, easier-to-read text for older readers ===== */
+.x-big{font-size:19px}
+.x-big .x-sub{font-size:clamp(1.15rem,1.7vw,1.32rem);line-height:1.6}
+.x-big .x-label,.x-big .x-eyebrow{font-size:1rem;letter-spacing:.12em}
+.x-big .x-tag{font-size:.92rem;padding:9px 18px;letter-spacing:.1em}
+.x-big .x-h2{font-size:clamp(2.1rem,4.2vw,3.4rem)}
+.x-big .x-h3,.x-big h3{font-size:1.3rem}
+.x-big p,.x-big li{font-size:1.08rem}
+.x-big .x-cta small{font-size:1.02rem}
+.x-big .x-btn{font-size:1.1rem;min-height:64px;padding:0 40px}
+.x-big .x-faq summary{font-size:1.18rem;padding:24px 28px}
+.x-big .x-faq details>div p{font-size:1.1rem;line-height:1.65}
+.x-big .ad-card-b small,.x-big .x-flow small,.x-big .x-step small{font-size:.86rem}
+.x-big .ad-card-b h3{font-size:1.3rem}
+.x-big .ad-card-b p,.x-big .x-flow p{font-size:1.04rem}
+.x-big .x-vs li{font-size:1.1rem}
+.x-big .ad-plan li span{font-size:1rem}
+.x-big .x-disc,.x-big .x-nums span{font-size:.95rem}
+
+/* hero ticks and phone line */
+.x-hticks{display:grid;gap:12px;justify-content:center;margin:26px auto 0;max-width:640px;text-align:left}
+.x-hticks li{display:flex;gap:12px;align-items:flex-start;font-size:1.15rem;font-weight:600;color:var(--x-tx)}
+.x-hticks .ad-ic{color:var(--x-or2);width:1.3em;height:1.3em;margin-top:2px}
+.x-call{margin-top:14px;font-size:1.1rem;color:var(--x-tx2)}
+.x-call a{color:var(--x-or2);font-weight:800;text-decoration:none;border-bottom:2px solid rgba(255,180,59,.5)}
+.x-watch{display:inline-flex;align-items:center;gap:10px;margin:clamp(26px,3.6vw,36px) 0 0;font-weight:700;font-size:1.05rem;color:var(--x-or2)}
+.x-watch .ad-ic{width:28px;height:28px;padding:6px;border-radius:50%;background:var(--grad);color:#1A1003;fill:currentColor}
+.x-frame .ad-video video{background:#000}
+
+/* bigger store logos */
+.x-big .x-logos{padding:40px 0}
+.x-big .x-logos p{font-size:.95rem}
+.x-big .x-logos ul{gap:clamp(14px,2.4vw,28px)}
+.x-big .x-logos img{height:68px;padding:12px 22px;border-radius:14px}
+
+/* the "now what?" questions: a calm list, not buttons */
+.x-qlist{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;margin-top:20px}
+.x-qlist li{display:flex;gap:14px;align-items:center;font-size:1.12rem;font-weight:600;color:var(--tx);padding:6px 0;border-bottom:1px dashed var(--ln)}
+.x-qlist li i{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(242,145,2,.14);color:var(--ord);font-style:normal;font-weight:800}
+
+/* who it's for */
+.x-for{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.x-for>div{padding:30px 26px;border-radius:22px;background:var(--x-card);border:1px solid var(--x-ln)}
+.x-for .ad-ic{width:44px;height:44px;padding:10px;border-radius:50%;background:rgba(242,145,2,.14);color:var(--x-or2);margin-bottom:18px}
+.x-for h3{margin:0 0 10px}
+.x-for p{color:var(--x-tx2);margin:0}
+
+/* reviews (Trustpilot-like layout, real data only) */
+.x-rev{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2fr);gap:24px;align-items:start}
+.x-rev-sum{padding:32px 28px;border-radius:22px;background:var(--ink);color:var(--x-tx);position:sticky;top:110px}
+.x-rev-sum b{display:block;font-size:clamp(3rem,6vw,4.4rem);font-weight:800;line-height:1;margin:14px 0 8px}
+.x-rev-sum p{color:var(--x-tx2)!important;margin:0 0 6px}
+.x-tiles{display:flex;gap:4px}
+.x-tiles i{width:30px;height:30px;display:grid;place-items:center;background:var(--x-or);border-radius:4px}
+.x-tiles i svg{width:20px;height:20px;fill:#fff;stroke:none}
+.x-tiles i.off{background:#d9d4c9}
+.x-rev-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.x-rcard{display:flex;gap:18px;padding:22px;border-radius:18px;background:#fff;border:1px solid var(--ln);box-shadow:0 18px 40px -30px rgba(20,20,19,.4)}
+.x-rcard img.c{width:76px;flex:none;aspect-ratio:2/3;object-fit:cover;border-radius:3px 7px 7px 3px;box-shadow:0 12px 24px -12px rgba(0,0,0,.6)}
+.x-rcard h3{font-size:1.12rem!important;margin:0 0 4px;color:var(--tx)}
+.x-rcard .by{font-size:.98rem!important;color:var(--tx2);margin:0 0 10px}
+.x-rcard .n{display:inline-flex;align-items:center;gap:8px;font-weight:800;color:var(--tx);font-size:1.02rem!important}
+.x-rcard .n small{font-weight:600;color:var(--tx3);font-size:.9rem}
+.x-tcard{padding:26px;border-radius:18px;background:#fff;border:1px solid var(--ln)}
+.x-tcard q{display:block;margin:14px 0 16px;font-size:1.12rem;line-height:1.6;color:var(--tx);quotes:none}
+.x-tcard .who{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--tx)}
+.x-tcard .who img{width:52px;height:52px;border-radius:50%;object-fit:cover}
+.x-tcard .who span{display:block;font-weight:500;color:var(--tx3);font-size:.95rem}
+.x-faces{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:clamp(36px,4vw,52px)}
+.x-faces figure{margin:0}
+.x-faces img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:18px}
+.x-faces-cap{text-align:center;margin:16px 0 0;color:var(--tx2)}
+
+/* promises */
+.x-prom{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.x-prom>div{display:flex;gap:16px;padding:26px 24px;border-radius:20px;background:var(--x-card);border:1px solid var(--x-ln)}
+.x-prom .ad-ic{flex:none;width:30px;height:30px;color:var(--x-or2)}
+.x-prom h3{margin:0 0 6px}
+.x-prom p{margin:0;color:var(--x-tx2)}
+
+@media (max-width:1000px){.x-for,.x-prom{grid-template-columns:repeat(2,1fr)}.x-rev{grid-template-columns:1fr}.x-rev-sum{position:static}.x-faces{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){.x-qlist,.x-rev-grid,.x-for,.x-prom{grid-template-columns:1fr}.x-big .x-logos img{height:54px;padding:10px 16px}.x-hticks li{font-size:1.05rem}.x-big{font-size:18px}}
