@@ -45,8 +45,8 @@ include dirname(__DIR__) . '/includes/header.php';
     <p class="x-sub x-sub-d">We proofread, format and design your cover, then put your book on Amazon and other stores, under your name. No tech skills needed.</p>
   </div>
   <div class="x-w">
-    <p class="x-watch"><?= ad_i('play') ?>Watch: how it works (1 minute)</p>
-    <div class="x-frame"><?= x_vsl('vsl-publishing-vo', 'Video: how AMZ United Press publishes your book, in four simple steps') ?></div>
+    <p class="x-watch"><?= ad_i('play') ?>Watch: how it works (30 seconds)</p>
+    <div class="x-frame"><?= x_vsl('vsl-publishing-anim', 'Video: how AMZ United Press publishes your book, in four simple steps') ?></div>
     <p class="x-sub x-sub-m">We proofread, format and design your cover, then put your book on Amazon and other stores, under your name. No tech skills needed.</p>
     <ul class="x-hticks">
       <li><?= ad_i('check') ?><span>Live on Amazon in as little as 2 weeks</span></li>

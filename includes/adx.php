@@ -29,7 +29,8 @@ function x_deco(): string {
 function x_logos(string $label): string {
     $l = ['amazon_kindle' => 'Amazon Kindle', 'ibooks' => 'Apple Books', 'barnes_noble' => 'Barnes & Noble', 'rakuten_kobo' => 'Rakuten Kobo', 'ingramspark' => 'IngramSpark', 'scribd' => 'Scribd'];
     $h = '<ul>';
-    foreach ($l as $f => $n) $h .= '<li><img src="' . e(asset('img/publishable-logo/' . $f . '.png')) . '" alt="' . e($n) . '" loading="lazy"></li>';
+    // White, transparent versions (assets/img/publishable-logo/white) sit directly on the dark strip.
+    foreach ($l as $f => $n) $h .= '<li><img src="' . e(asset('img/publishable-logo/white/' . $f . '.webp')) . '" alt="' . e($n) . '" height="120" loading="lazy"></li>';
     return '<p>' . e($label) . '</p>' . $h . '</ul>';
 }
 

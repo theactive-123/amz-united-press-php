@@ -584,3 +584,12 @@ body.adx-light{background:var(--ivory);color:var(--tx)}
   .x-hero3 .x-sub-m{display:block;margin:22px auto 0}
   .x-hero3 .x-watch{margin:16px 0 10px;font-size:1rem}
 }
+
+/* store logos: white, transparent, large (no white boxes) */
+.x-logos img,.x-blogos img,.x-big .x-logos img{background:none!important;padding:0!important;border-radius:0!important;filter:none!important;opacity:.92;width:auto;height:40px}
+.x-big .x-logos img{height:50px}
+.x-big .x-logos ul,.x-logos ul{gap:clamp(28px,4.6vw,64px);row-gap:26px}
+.x-big .x-logos{padding:46px 0 50px}
+.x-big .x-logos p{margin-bottom:6px}
+.x-logos .x-w{flex-direction:column;gap:22px}
+@media (max-width:640px){.x-logos img,.x-big .x-logos img{height:32px}.x-big .x-logos ul,.x-logos ul{gap:22px 30px}}
