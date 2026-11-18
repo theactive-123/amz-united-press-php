@@ -43,3 +43,19 @@ document.querySelectorAll('[data-vsl]').forEach(function (box) {
     window.dataLayer = window.dataLayer || []; dataLayer.push({ event: 'vsl_sound_on', page: location.pathname });
   });
 });
+
+/* Count-up for big stats when they scroll into view. */
+(function () {
+  var els = document.querySelectorAll('[data-countup]');
+  if (!els.length || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return; io.unobserve(e.target);
+      var el = e.target, to = +el.getAttribute('data-countup'), t0 = null;
+      function step(ts) { if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / 1400), v = Math.round(to * (1 - Math.pow(1 - p, 3)));
+        el.textContent = v.toLocaleString('en-US') + '+'; if (p < 1) requestAnimationFrame(step); }
+      requestAnimationFrame(step);
+    });
+  }, { threshold: .4 });
+  els.forEach(function (el) { io.observe(el); });
+})();

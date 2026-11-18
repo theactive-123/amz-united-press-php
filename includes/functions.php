@@ -174,7 +174,6 @@ function public_landing_pages(): array {
         '/lp/ghostwriting-services' => 'Ghostwriting Services',
         '/lp/editing-services' => 'Editing Services',
         '/lp/publishing-services' => 'Publishing Services',
-        '/lp/book-publishing' => 'Book Publishing Packages',
         '/lp/book-marketing-services' => 'Book Marketing Services',
         '/lp/pre-launch' => 'Book Pre-Launch Program',
         '/lp/post-launch' => 'Post-Launch Growth Program',

@@ -285,11 +285,22 @@ $D = [
     ],
 
     // PLACEHOLDER: sample testimonials. Replace with real client quotes, used with permission.
-    // REAL client reviews for the book publishing landing page (/lp/book-publishing).
-    // Add only genuine reviews, used with the client's permission. The review cards appear automatically once this
-    // list has entries. Fields: name, rating (1-5), quote, book (optional), photo (optional, file in assets/img/lp/).
-    // Example: ['name' => 'Jane D.', 'rating' => 5, 'quote' => '…', 'book' => 'My Book Title', 'photo' => 'author-1.webp'],
-    'lp_reviews' => [],
+    // Author stories for the book publishing page (/publish-your-book): real client photos.
+    // To show a testimonial on a card, fill in the client's REAL words (with their permission):
+    //   'name' => 'Jane D.', 'quote' => 'Their exact words…', 'rating' => 5
+    // Cards without a quote show the photo and book title only (no invented reviews).
+    'author_stories' => [
+        ['photo' => 'author-2.webp',  'book' => 'Spiritual Compass',              'name' => '', 'quote' => '', 'rating' => 0],
+        ['photo' => 'author-3.webp',  'book' => 'I Will Not Be Silenced',         'name' => '', 'quote' => '', 'rating' => 0],
+        ['photo' => 'author-5.webp',  'book' => 'Right Road to the Promised Land', 'name' => '', 'quote' => '', 'rating' => 0],
+        ['photo' => 'author-12.webp', 'book' => 'When I Became His Daughter',     'name' => '', 'quote' => '', 'rating' => 0],
+        ['photo' => 'author-9.webp',  'book' => 'Overcoming the Bench',           'name' => '', 'quote' => '', 'rating' => 0],
+        ['photo' => 'author-13.webp', 'book' => 'Pavlos',                         'name' => '', 'quote' => '', 'rating' => 0],
+        ['photo' => 'author-1.webp',  'book' => '',                               'name' => '', 'quote' => '', 'rating' => 0],
+        ['photo' => 'author-4.webp',  'book' => '',                               'name' => '', 'quote' => '', 'rating' => 0],
+        ['photo' => 'author-11.webp', 'book' => '',                               'name' => '', 'quote' => '', 'rating' => 0],
+        ['photo' => 'author-14.webp', 'book' => '',                               'name' => '', 'quote' => '', 'rating' => 0],
+    ],
 
     'testimonials' => [
         [

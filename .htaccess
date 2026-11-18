@@ -62,6 +62,9 @@ RewriteRule ^services/book-marketing/?$ https://%{HTTP_HOST}/services/book-marke
 # --- Clean service URLs: /services/ghostwriting-services -> service.php?slug=ghostwriting-services ---
 RewriteRule ^services/([a-z0-9-]+)/?$ service.php?slug=$1 [L,QSA]
 
+# --- The book publishing ad page moved to /publish-your-book ---
+RewriteRule ^lp/book-publishing/?$ https://%{HTTP_HOST}/publish-your-book [R=301,L]
+
 # --- Ad landing pages: /lp/writing-services -> lp/writing-services.php ---
 RewriteRule ^lp/?$ https://%{HTTP_HOST}/services [R=301,L]
 RewriteCond %{REQUEST_FILENAME}.php -f

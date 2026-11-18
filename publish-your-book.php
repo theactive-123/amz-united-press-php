@@ -1,13 +1,13 @@
 <?php
-require dirname(__DIR__) . '/includes/bootstrap.php';
-require dirname(__DIR__) . '/includes/lp.php';
-require dirname(__DIR__) . '/includes/ad.php';
-require dirname(__DIR__) . '/includes/adx.php';
+require __DIR__ . '/includes/bootstrap.php';
+require __DIR__ . '/includes/lp.php';
+require __DIR__ . '/includes/ad.php';
+require __DIR__ . '/includes/adx.php';
 
 $PL = data('prices');
 $from = $PL[0]['p'];
 $w = data('work');
-$reviews = data('lp_reviews') ?? [];
+$stories = data('author_stories') ?? [];
 // Real Amazon review counts on client books in the portfolio (from data.php).
 $withRev = array_values(array_filter($w, fn($b) => (int)($b['reviews'] ?? 0) > 0));
 usort($withRev, fn($a, $b) => (int)$b['reviews'] <=> (int)$a['reviews']);
@@ -29,10 +29,10 @@ $meta = [
     'lp' => true, 'ad' => true, 'adx' => 'dark', 'ad_btn' => 'Free Quote',
     'title' => 'Book Publishing Services: Publish on Amazon from ' . $from . ' | AMZ United Press',
     'description' => 'Finished your book? We edit, format, design your cover and publish it on Amazon and 10+ stores. From ' . $from . '. You keep 100% of your royalties.',
-    'path' => '/lp/book-publishing', 'nav' => '',
-    'schema' => lp_schema('Book Publishing Packages', 'Professional book publishing on Amazon KDP and other stores, including proofreading, formatting, cover design, ISBN and upload.', '/lp/book-publishing', $FAQ, $from),
+    'path' => '/publish-your-book', 'nav' => '',
+    'schema' => lp_schema('Book Publishing Packages', 'Professional book publishing on Amazon KDP and other stores, including proofreading, formatting, cover design, ISBN and upload.', '/publish-your-book', $FAQ, $from),
 ];
-include dirname(__DIR__) . '/includes/header.php';
+include __DIR__ . '/includes/header.php';
 ?>
 <div class="page x-big" data-page="lp-book-publishing">
 
@@ -107,37 +107,44 @@ include dirname(__DIR__) . '/includes/header.php';
   ]) ?>
 </div></section>
 
-<!-- 6. Reviews and real authors -->
-<section class="x-sec lt" aria-labelledby="rv-h"><div class="x-w">
-  <?= x_head('rv-h', 'Real books. Real readers. <span class="a">Real reviews.</span>', 'Proof, not promises', 'Books we’ve worked on, with the reviews readers have left on Amazon.') ?>
-  <div class="x-rev">
-    <div class="x-rev-sum ad-rv">
-      <p class="x-tag" style="margin:0;border-color:rgba(255,255,255,.2);color:#F5F2EA;background:rgba(255,255,255,.05)">On Amazon</p>
-      <b class="x-acc"><?= e($revRound) ?></b>
-      <p><strong style="color:#fff">Amazon reader reviews</strong></p>
-      <p>across <?= count($withRev) ?> of the client books in our portfolio.</p>
-      <p style="font-size:.95rem;margin-top:14px">Review counts as shown on Amazon. Results vary by book.</p>
-    </div>
+<!-- 6. Loved by readers: real Amazon review counts on client books -->
+<section class="x-sec glow line x-shelfsec" aria-labelledby="rv-h"><span class="x-edge" aria-hidden="true"></span><div class="x-w">
+  <div class="x-shelf-top ad-rv">
     <div>
-      <?php if ($reviews): ?>
-      <div class="x-rev-grid" style="margin-bottom:16px">
-      <?php foreach ($reviews as $i => $r): $rt = max(1, min(5, (int)($r['rating'] ?? 5))); ?>
-        <figure class="x-tcard ad-rv" style="--d:<?= $i % 2 ?>;margin:0"><div class="x-tiles" role="img" aria-label="<?= $rt ?> out of 5 stars"><?php for ($s = 1; $s <= 5; $s++): ?><i<?= $s > $rt ? ' class="off"' : '' ?>><?= $star ?></i><?php endfor; ?></div>
-          <q><?= e($r['quote']) ?></q><figcaption class="who"><?php if (!empty($r['photo'])): ?><img src="<?= e(ad_src($r['photo'])) ?>" alt="" loading="lazy"><?php endif; ?><div><?= e($r['name']) ?><?php if (!empty($r['book'])): ?><span>Author of <?= e($r['book']) ?></span><?php endif; ?></div></figcaption></figure>
-      <?php endforeach; ?>
-      </div>
-      <?php endif; ?>
-      <div class="x-rev-grid">
-      <?php foreach (array_slice($withRev, 0, 6) as $i => $b): ?>
-        <article class="x-rcard ad-rv" style="--d:<?= $i % 2 ?>"><img class="c" src="<?= e(ad_cover($b)) ?>" alt="<?= e($b['t'] . ' by ' . $b['by']) ?>" loading="lazy"><div><h3><?= e($b['t']) ?></h3><p class="by">by <?= e($b['by']) ?></p><p class="n"><?= e(number_format((int)$b['reviews'])) ?> <small><?= (int)$b['reviews'] === 1 ? 'Amazon review' : 'Amazon reviews' ?></small></p></div></article>
-      <?php endforeach; ?>
-      </div>
+      <p class="x-label">Proof, not promises</p>
+      <h2 class="x-h2" id="rv-h">Books we’ve worked on are <span class="a">loved by readers.</span></h2>
     </div>
+    <div class="x-bigstat"><b class="x-acc" data-countup="<?= (int)(floor($revTotal / 1000) * 1000) ?>"><?= e($revRound) ?></b><span>reader reviews on Amazon across <?= count($withRev) ?> client books</span></div>
   </div>
-  <div class="x-faces">
-  <?php foreach (array_slice(ad_authors_list(), 0, 10) as $i => $a): ?><figure class="ad-rv" style="--d:<?= $i % 5 ?>"><img src="<?= e(ad_src($a . '.webp')) ?>" alt="An author holding their book published with AMZ United Press" loading="lazy"></figure><?php endforeach; ?>
+  <div class="x-shelf2">
+  <?php foreach (array_slice($withRev, 0, 6) as $i => $b): ?>
+    <figure class="ad-rv" style="--d:<?= $i ?>"><div class="bk"><img src="<?= e(ad_cover($b)) ?>" alt="<?= e($b['t'] . ' by ' . $b['by']) ?>" loading="lazy"></div>
+      <figcaption><span class="cnt"><?= ad_i('star') ?><?= e(number_format((int)$b['reviews'])) ?> reviews</span><b><?= e($b['t']) ?></b><small><?= e($b['by']) ?></small></figcaption></figure>
+  <?php endforeach; ?>
   </div>
-  <p class="x-faces-cap">Real authors we’ve worked with, holding their published books.</p>
+  <p class="x-disc">Review counts as shown on each book’s Amazon page. Every book is different, and results vary.</p>
+</div></section>
+
+<!-- 6b. Meet our authors: real client photos (quotes appear only when real ones are added in data.php) -->
+<section class="x-sec lt sand" aria-labelledby="au-h"><div class="x-w">
+  <?= x_head('au-h', 'Meet some of <span class="a">our authors.</span>', 'Real people, real books', 'Everyday people who finally saw their book in print, with our team behind them.') ?>
+  <div class="x-tgrid">
+  <?php foreach ($stories as $i => $t): $q = trim($t['quote'] ?? ''); $rt = max(0, min(5, (int)($t['rating'] ?? 0))); ?>
+    <figure class="x-tc ad-rv" style="--d:<?= $i % 5 ?>">
+      <img src="<?= e(ad_src($t['photo'])) ?>" alt="<?= e(!empty($t['book']) ? 'An author holding their book, ' . $t['book'] : 'An author holding their published book') ?>" loading="lazy">
+      <figcaption>
+        <?php if ($q !== ''): ?>
+          <?php if ($rt): ?><span class="st" role="img" aria-label="<?= $rt ?> out of 5 stars"><?= str_repeat(ad_i('star'), $rt) ?></span><?php endif; ?>
+          <q><?= e($q) ?></q>
+          <b><?= e($t['name'] ?: 'AMZ United Press author') ?></b>
+        <?php else: ?>
+          <span class="pub"><?= ad_i('book') ?>Published author</span>
+          <b><?= !empty($t['book']) ? 'Author of “' . e($t['book']) . '”' : 'Holding their published book' ?></b>
+        <?php endif; ?>
+      </figcaption>
+    </figure>
+  <?php endforeach; ?>
+  </div>
 </div></section>
 
 <!-- 7. Publisher vs us -->
@@ -185,4 +192,4 @@ include dirname(__DIR__) . '/includes/header.php';
 
 <?= ad_dock('Free quote') ?>
 </div>
-<?php include dirname(__DIR__) . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/includes/footer.php'; ?>
