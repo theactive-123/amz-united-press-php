@@ -46,7 +46,7 @@ include dirname(__DIR__) . '/includes/header.php';
     </div>
     <div class="x-vid">
       <p class="x-watch"><?= ad_i('play') ?>Watch: how it works (1 minute)</p>
-      <div class="x-frame"><?= x_vsl('vsl-publishing', 'Video: how AMZ United Press publishes your book, in four simple steps') ?></div>
+      <div class="x-frame"><?= x_vsl('vsl-publishing-vo', 'Video: how AMZ United Press publishes your book, in four simple steps') ?></div>
     </div>
     <div class="x-hb">
       <p class="x-sub">We proofread, format and design your cover, then put your book on Amazon and other stores, under your name. No tech skills needed. A real person helps you every step of the way.</p>
