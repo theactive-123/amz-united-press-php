@@ -627,3 +627,11 @@ body.adx-light{background:var(--ivory);color:var(--tx)}
 @media (max-width:1100px){.x-tgrid{grid-template-columns:repeat(3,minmax(0,1fr))}.x-shelf2{grid-template-columns:repeat(3,1fr);row-gap:40px}.x-shelf2::after{display:none}}
 @media (max-width:760px){.x-shelf-top{grid-template-columns:1fr}.x-tgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.x-tc figcaption{padding:14px}}
 @media (max-width:760px){.x-shelf2{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 18px}.x-shelf2 img{transform:none}.x-shelf2 .cnt{font-size:.9rem!important;padding:6px 10px}}
+/* QA: never let flow cards push past the screen edge; single column on small phones */
+.x-flow{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1000px){.x-flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.x-flow{grid-template-columns:minmax(0,1fr)}.x-flow li{padding:24px 20px}.x-flow li b{font-size:2.4rem;margin-bottom:12px}}
+/* QA: tablet — stack the "Now what?" block so questions get full width; no lone author card */
+@media (max-width:1000px){.x-prob{grid-template-columns:minmax(0,1fr)}.x-prob>:last-child{max-width:560px;width:100%;margin:0 auto}}
+@media (max-width:1100px) and (min-width:901px){.x-tgrid{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}}
+@media (max-width:900px){.x-tgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}

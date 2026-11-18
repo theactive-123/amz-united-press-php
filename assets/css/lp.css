@@ -541,3 +541,6 @@ a.card:hover{border-color:var(--ink);transform:translateY(-3px)}
 .lpf-contact .em-btn .ic,.lpf-contact .em-link .ic{color:var(--orange)}
 @media (prefers-reduced-motion:reduce){.em-link{animation:none}}
 
+
+/* keep phone numbers on one line */
+a[href^="tel:"]:not(:has(*)){white-space:nowrap}

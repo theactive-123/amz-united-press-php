@@ -431,3 +431,6 @@ main,.site-footer{overflow-x:clip}
   .contact-grid>div[data-form]{padding:28px 22px}
   .hero-art figcaption{left:0}
 }
+
+/* keep phone numbers on one line */
+a[href^="tel:"]:not(:has(*)){white-space:nowrap}
