@@ -65,3 +65,11 @@ function x_final(string $h2, string $sub, array $dots, string $big, string $cta,
     return '<div class="x-final ad-rv"><h2 class="x-h2" id="fn-h">' . $h2 . '</h2><p class="x-sub">' . $sub . '</p><ul class="x-dots">' . $d . '</ul>'
          . ($big ? '<p class="big">' . $big . '</p>' : '') . x_cta($cta, $note) . '</div>';
 }
+
+/** Sales video (VSL): autoplays muted with captions; "Tap for sound" restarts it from the start with audio. */
+function x_vsl(string $name, string $label): string {
+    return '<div class="ad-video x-vslbox" data-ad-video data-vsl><video autoplay muted loop playsinline preload="metadata" poster="' . e(ad_src('poster-' . $name . '.jpg')) . '" aria-label="' . e($label) . '">'
+         . '<source src="' . e(asset('video/' . $name . '.mp4')) . '" type="video/mp4"></video>'
+         . '<button type="button" class="x-sound" data-sound>' . ad_i('play') . '<span>Tap for sound</span></button>'
+         . '<button type="button" class="ad-video-btn" aria-label="Pause video">' . ad_i('pause') . '</button></div>';
+}

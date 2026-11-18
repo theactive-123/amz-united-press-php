@@ -31,3 +31,15 @@
     });
   });
 })();
+
+/* VSL: first tap turns the sound on and restarts the video from the beginning, with controls. */
+document.querySelectorAll('[data-vsl]').forEach(function (box) {
+  var v = box.querySelector('video'), s = box.querySelector('[data-sound]');
+  if (!v || !s) return;
+  s.addEventListener('click', function () {
+    v.muted = false; v.loop = false; v.currentTime = 0; v.controls = true;
+    var p = v.play(); if (p && p.catch) p.catch(function () {});
+    box.classList.add('sound-on');
+    window.dataLayer = window.dataLayer || []; dataLayer.push({ event: 'vsl_sound_on', page: location.pathname });
+  });
+});

@@ -498,3 +498,68 @@ body.adx-light{background:var(--ivory);color:var(--tx)}
 
 @media (max-width:1000px){.x-for,.x-prom{grid-template-columns:repeat(2,1fr)}.x-rev{grid-template-columns:1fr}.x-rev-sum{position:static}.x-faces{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:640px){.x-qlist,.x-rev-grid,.x-for,.x-prom{grid-template-columns:1fr}.x-big .x-logos img{height:54px;padding:10px 16px}.x-hticks li{font-size:1.05rem}.x-big{font-size:18px}}
+
+/* ===== Book publishing v3: bigger type, no tiny mono labels, video above the fold ===== */
+.x-big{font-size:20px}
+.x-big .x-label,.x-big .x-eyebrow,.x-big .x-tag,.x-big .ad-card-b small,.x-big .x-flow small,.x-big .ad-plan h3,.x-big .x-logos p,.x-big .lab{
+  font-family:var(--sans)!important;text-transform:none!important;letter-spacing:0!important;font-weight:700}
+.x-big .x-label{font-size:1.15rem;color:var(--x-or2)}
+.x-big .x-tag{font-size:1.05rem;padding:9px 18px}
+.x-big .x-tag::before{display:none}
+.x-big .ad-card-b small,.x-big .x-flow small{font-size:1rem}
+.x-big .x-logos p{font-size:1.1rem;color:var(--x-tx2)}
+.x-big .ad-plan h3{font-size:1.25rem}
+.x-big .x-sub{font-size:clamp(1.22rem,1.8vw,1.4rem)}
+.x-big p,.x-big li{font-size:1.15rem}
+.x-big .x-h3,.x-big h3{font-size:1.4rem}
+.x-big .ad-card-b p,.x-big .x-flow p,.x-big .x-for p,.x-big .x-prom p{font-size:1.12rem}
+.x-big .x-qlist li{font-size:1.2rem}
+.x-big .x-vs li{font-size:1.18rem}
+.x-big .ad-plan li span{font-size:1.08rem}
+.x-big .x-faq summary{font-size:1.25rem}
+.x-big .x-faq details>div p{font-size:1.18rem}
+.x-big .x-rcard h3{font-size:1.2rem!important}
+.x-big .x-cta small{font-size:1.1rem}
+.x-big .x-btn{font-size:1.15rem;min-height:66px}
+.x-big .ad-form .form-body label,.x-big .ad-form input,.x-big .ad-form select,.x-big .ad-form textarea{font-size:1.05rem}
+
+/* hero: copy left, video right (video ~40% of the screen on desktop) */
+.x-hero2{text-align:left;padding:clamp(40px,5vw,70px) 0 clamp(56px,6vw,84px)}
+.x-hero2 .x-hgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:clamp(30px,4vw,60px);align-items:center;position:relative;z-index:1}
+.x-hero2 .x-h1{font-size:clamp(2.3rem,4vw,3.7rem);line-height:1.04}
+.x-hero2 .x-sub{margin:18px 0 0;max-width:none}
+.x-hero2 .x-hticks{margin:22px 0 0;justify-content:start;max-width:none}
+.x-hero2 .x-cta{align-items:flex-start;margin-top:28px}
+.x-hero2 .x-call{text-align:left;margin-top:12px}
+.x-hero2 .x-frame{margin:0;max-width:none}
+.x-hero2 .x-watch{margin:0 0 14px}
+@media (max-width:1000px){
+  .x-hero2{text-align:center}
+  .x-hero2 .x-hgrid{grid-template-columns:1fr}
+  .x-hero2 .x-vid{order:-1}
+  .x-hero2 .x-hticks{justify-content:center;margin-left:auto;margin-right:auto;text-align:left}
+  .x-hero2 .x-cta{align-items:center}
+  .x-hero2 .x-call{text-align:center}
+  .x-hero2 .x-watch{justify-content:center;display:flex}
+}
+.x-hero2 .x-hgrid{grid-template-areas:"top vid" "bot vid";grid-template-rows:auto 1fr;row-gap:0}
+.x-hero2 .x-ht{grid-area:top;align-self:end}
+.x-hero2 .x-hb{grid-area:bot;align-self:start}
+.x-hero2 .x-vid{grid-area:vid}
+@media (max-width:1000px){.x-hero2 .x-hgrid{grid-template-areas:"top" "vid" "bot";grid-template-rows:auto;row-gap:26px}.x-hero2 .x-vid{order:0}}
+.x-vslbox{position:relative}
+.x-sound{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:12px;padding:16px 26px;border:0;border-radius:999px;background:var(--grad);color:#1A1003;font-weight:800;font-size:1.15rem;cursor:pointer;box-shadow:0 20px 50px -14px rgba(0,0,0,.8),0 0 0 8px rgba(242,145,2,.25);animation:x-pulse 2s ease-in-out infinite}
+.x-sound .ad-ic{width:26px;height:26px;fill:currentColor}
+@keyframes x-pulse{50%{box-shadow:0 20px 50px -14px rgba(0,0,0,.8),0 0 0 16px rgba(242,145,2,.08)}}
+.x-vslbox.sound-on .x-sound,.x-vslbox.sound-on .ad-video-btn{display:none}
+@media (prefers-reduced-motion:reduce){.x-sound{animation:none}}
+.x-hero2{padding-top:clamp(30px,3.6vw,52px)}
+.x-hero2 .x-hgrid{grid-template-columns:minmax(0,.92fr) minmax(0,1.18fr);align-items:start}
+.x-hero2 .x-vid{align-self:start;padding-top:6px}
+.x-hero2 .x-h1{font-size:clamp(2.1rem,3.3vw,3.15rem)}
+.x-hero2 .x-spark{display:none}
+.x-sound{left:16px;top:auto;bottom:16px;transform:none;padding:14px 22px;font-size:1.05rem}
+@media (max-width:1000px){.x-hero2 .x-vid{padding-top:0}}
+@media (max-width:1000px){.x-hero2 .x-hgrid{grid-template-columns:1fr;grid-template-areas:"top" "vid" "bot";row-gap:22px}.x-hero2 .x-h1{font-size:clamp(2rem,7vw,3rem)}}
+@media (max-width:640px){.x-sound{top:10px;bottom:auto;left:10px;padding:9px 14px;font-size:.92rem;gap:8px}.x-sound .ad-ic{width:18px;height:18px}.x-vslbox .ad-video-btn{width:38px;height:38px}}
+.x-big .ad-plan .tag{font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:.95rem;font-weight:800}.x-big .ad-plan .once{font-size:.98rem}

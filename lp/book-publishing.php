@@ -36,24 +36,28 @@ include dirname(__DIR__) . '/includes/header.php';
 ?>
 <div class="page x-big" data-page="lp-book-publishing">
 
-<!-- 1. Hero -->
-<section class="x-hero" aria-labelledby="lp-h1">
+<!-- 1. Hero: headline left, video right (headline, video, then benefits on phones) -->
+<section class="x-hero x-hero2" aria-labelledby="lp-h1">
   <?= x_deco() ?>
-  <div class="x-w x-nw">
-    <p class="x-label">For authors with a finished (or nearly finished) book</p>
-    <h1 class="x-h1" id="lp-h1">Finished your book? We’ll publish it for you. <span class="a">You keep every royalty.</span></h1>
-    <p class="x-sub">Our team proofreads, formats and designs your cover, then puts your book on Amazon and other stores, under your name. No tech skills needed. A real person guides you every step of the way.</p>
-    <ul class="x-hticks">
-      <li><?= ad_i('check') ?><span>Live on Amazon in as little as 2 weeks</span></li>
-      <li><?= ad_i('check') ?><span>Free 3D cover, ISBN and barcode included</span></li>
-      <li><?= ad_i('check') ?><span>Packages from <?= e($from) ?>, one-time fee, written quote first</span></li>
-    </ul>
-    <p class="x-watch"><?= ad_i('play') ?>Watch: how it works (1 minute)</p>
-  </div>
-  <div class="x-w">
-    <div class="x-frame" style="margin-top:16px"><?= ad_video('vsl-publishing', 'How it works · 1 min', 'Video: how AMZ United Press publishes your book, in four simple steps') ?></div>
-    <?= x_cta('Get my free publishing quote', '<b>Free, no obligation.</b> A real person replies within one business day.') ?>
-    <p class="x-call x-c">Prefer to talk? Call <a href="tel:<?= e(tel_href()) ?>" data-lp-call><?= e(site('phone')) ?></a></p>
+  <div class="x-w x-hgrid">
+    <div class="x-ht">
+      <p class="x-label">For authors with a finished book</p>
+      <h1 class="x-h1" id="lp-h1">Finished your book? We’ll publish it for you. <span class="a">You keep every royalty.</span></h1>
+    </div>
+    <div class="x-vid">
+      <p class="x-watch"><?= ad_i('play') ?>Watch: how it works (1 minute)</p>
+      <div class="x-frame"><?= x_vsl('vsl-publishing', 'Video: how AMZ United Press publishes your book, in four simple steps') ?></div>
+    </div>
+    <div class="x-hb">
+      <p class="x-sub">We proofread, format and design your cover, then put your book on Amazon and other stores, under your name. No tech skills needed. A real person helps you every step of the way.</p>
+      <ul class="x-hticks">
+        <li><?= ad_i('check') ?><span>Live on Amazon in as little as 2 weeks</span></li>
+        <li><?= ad_i('check') ?><span>Free 3D cover, ISBN and barcode included</span></li>
+        <li><?= ad_i('check') ?><span>From <?= e($from) ?>, one-time fee, written quote first</span></li>
+      </ul>
+      <?= x_cta('Get my free publishing quote', '<b>Free, no obligation.</b> A real person replies within one business day.') ?>
+      <p class="x-call">Prefer to talk? Call <a href="tel:<?= e(tel_href()) ?>" data-lp-call><?= e(site('phone')) ?></a></p>
+    </div>
   </div>
 </section>
 
